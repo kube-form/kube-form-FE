@@ -98,4 +98,5 @@ $RECYCLE.BIN/
 
 # custom
 
+.vscode
 build
