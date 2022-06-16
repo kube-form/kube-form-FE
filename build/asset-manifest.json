@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/kube-form-FE/static/css/main.b8a4e861.css",
-    "main.js": "/kube-form-FE/static/js/main.bdfe1c3b.js",
+    "main.js": "/kube-form-FE/static/js/main.4b0137a3.js",
     "static/js/728.1661dfc3.chunk.js": "/kube-form-FE/static/js/728.1661dfc3.chunk.js",
     "static/css/809.0ab87913.chunk.css": "/kube-form-FE/static/css/809.0ab87913.chunk.css",
     "static/js/809.99d6a129.chunk.js": "/kube-form-FE/static/js/809.99d6a129.chunk.js",
@@ -9,6 +9,7 @@
     "static/js/80.b1d22ff0.chunk.js": "/kube-form-FE/static/js/80.b1d22ff0.chunk.js",
     "static/js/584.f4eb08fc.chunk.js": "/kube-form-FE/static/js/584.f4eb08fc.chunk.js",
     "static/js/773.a79ebb3f.chunk.js": "/kube-form-FE/static/js/773.a79ebb3f.chunk.js",
+    "static/js/358.0caa1dea.chunk.js": "/kube-form-FE/static/js/358.0caa1dea.chunk.js",
     "static/js/418.780ee19f.chunk.js": "/kube-form-FE/static/js/418.780ee19f.chunk.js",
     "static/js/170.456e085e.chunk.js": "/kube-form-FE/static/js/170.456e085e.chunk.js",
     "static/js/29.c3b91f8c.chunk.js": "/kube-form-FE/static/js/29.c3b91f8c.chunk.js",
@@ -21,7 +22,7 @@
     "static/media/social-google.svg": "/kube-form-FE/static/media/social-google.9887eb8eb43729cb99f402cfa0de3c44.svg",
     "static/media/earning.svg": "/kube-form-FE/static/media/earning.b019e86a7ee117bd6bb2e8cab90c0db5.svg",
     "main.b8a4e861.css.map": "/kube-form-FE/static/css/main.b8a4e861.css.map",
-    "main.bdfe1c3b.js.map": "/kube-form-FE/static/js/main.bdfe1c3b.js.map",
+    "main.4b0137a3.js.map": "/kube-form-FE/static/js/main.4b0137a3.js.map",
     "728.1661dfc3.chunk.js.map": "/kube-form-FE/static/js/728.1661dfc3.chunk.js.map",
     "809.0ab87913.chunk.css.map": "/kube-form-FE/static/css/809.0ab87913.chunk.css.map",
     "809.99d6a129.chunk.js.map": "/kube-form-FE/static/js/809.99d6a129.chunk.js.map",
@@ -29,6 +30,7 @@
     "80.b1d22ff0.chunk.js.map": "/kube-form-FE/static/js/80.b1d22ff0.chunk.js.map",
     "584.f4eb08fc.chunk.js.map": "/kube-form-FE/static/js/584.f4eb08fc.chunk.js.map",
     "773.a79ebb3f.chunk.js.map": "/kube-form-FE/static/js/773.a79ebb3f.chunk.js.map",
+    "358.0caa1dea.chunk.js.map": "/kube-form-FE/static/js/358.0caa1dea.chunk.js.map",
     "418.780ee19f.chunk.js.map": "/kube-form-FE/static/js/418.780ee19f.chunk.js.map",
     "170.456e085e.chunk.js.map": "/kube-form-FE/static/js/170.456e085e.chunk.js.map",
     "29.c3b91f8c.chunk.js.map": "/kube-form-FE/static/js/29.c3b91f8c.chunk.js.map",
@@ -37,6 +39,6 @@
   },
   "entrypoints": [
     "static/css/main.b8a4e861.css",
-    "static/js/main.bdfe1c3b.js"
+    "static/js/main.4b0137a3.js"
   ]
 }

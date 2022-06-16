@@ -23,40 +23,46 @@ const UtilsTablerIcons = Loadable(
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
+const NotFound = Loadable(lazy(() => import('views/NotFound')));
+
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
-    path: '/',
+    path: '/kube-form-FE',
     element: <MainLayout />,
     children: [
         {
-            path: '/',
+            path: '/kube-form-FE',
             element: <DashboardDefault />,
         },
         {
-            path: '/dashboard/default',
+            path: '/kube-form-FE/dashboard/default',
             element: <DashboardDefault />,
         },
 
         {
-            path: '/utils/cluster',
+            path: '/kube-form-FEutils/cluster',
             element: <UtilsCluster />,
         },
         {
-            path: '/utils/util-shadow',
+            path: '/kube-form-FE/utils/util-shadow',
             element: <UtilsShadow />,
         },
         {
-            path: '/icons/tabler-icons',
+            path: '/kube-form-FE/icons/tabler-icons',
             element: <UtilsTablerIcons />,
         },
         {
-            path: '/icons/material-icons',
+            path: '/kube-form-FE/icons/material-icons',
             element: <UtilsMaterialIcons />,
         },
         {
-            path: '/sample-page',
+            path: '/kube-form-FE/sample-page',
             element: <SamplePage />,
+        },
+        {
+            path: '/kube-form-FE/*',
+            element: <NotFound />,
         },
     ],
 };

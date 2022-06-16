@@ -15,15 +15,15 @@ const AuthRegister3 = Loadable(
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
 
 const AuthenticationRoutes = {
-    path: '/',
+    path: '/kube-form-FE',
     element: <MinimalLayout />,
     children: [
         {
-            path: '/pages/login/login3',
+            path: '/kube-form-FE/pages/login/login3',
             element: <AuthLogin3 />,
         },
         {
-            path: '/pages/register/register3',
+            path: '/kube-form-FE/pages/register/register3',
             element: <AuthRegister3 />,
         },
     ],
