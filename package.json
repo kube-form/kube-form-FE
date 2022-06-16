@@ -1,6 +1,7 @@
 {
     "name": "kube-form-FE",
     "version": "0.0.1",
+    "homepage": "https://kube-form.github.io/kube-form-FE",
     "private": true,
     "dependencies": {
         "@emotion/cache": "^11.9.3",
@@ -46,7 +47,8 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "deploy": "gh-pages -d build"
     },
     "eslintConfig": {
         "extends": [
