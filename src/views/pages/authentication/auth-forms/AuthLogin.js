@@ -34,6 +34,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import Google from 'assets/images/icons/social-google.svg';
+import useAuth from 'hooks/useAuth';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -43,9 +44,10 @@ function FirebaseLogin({ ...others }) {
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
     const customization = useSelector((state) => state.customization);
     const [checked, setChecked] = useState(true);
+    const auth = useAuth();
 
     const googleHandler = async () => {
-        console.error('Login');
+        auth.firebaseGoogleSignIn();
     };
 
     const [showPassword, setShowPassword] = useState(false);
