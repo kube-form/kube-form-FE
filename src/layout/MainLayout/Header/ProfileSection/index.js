@@ -33,7 +33,8 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
-import User1 from 'assets/images/users/user-round.svg';
+import LoginIcon from '@mui/icons-material/Login';
+import config from 'config';
 
 // assets
 import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
@@ -46,6 +47,7 @@ function ProfileSection() {
     const theme = useTheme();
     const customization = useSelector((state) => state.customization);
     const navigate = useNavigate();
+    const auth = useAuth();
 
     const [sdm, setSdm] = useState(true);
     const [value, setValue] = useState('');
@@ -53,7 +55,6 @@ function ProfileSection() {
     const [selectedIndex, setSelectedIndex] = useState(-1);
     const [open, setOpen] = useState(false);
 
-    const auth = useAuth();
     /**
      * anchorRef is used on different componets and specifying one type leads to other components throwing an error
      * */
@@ -78,7 +79,46 @@ function ProfileSection() {
         }
     };
     const handleToggle = () => {
-        setOpen((prevOpen) => !prevOpen);
+        if (auth.user) {
+            setOpen((prevOpen) => !prevOpen);
+        } else {
+            navigate(config.loginPath);
+        }
+    };
+
+    const stringToColor = (string) => {
+        if (!string) return '#000000'; // default color
+        let hash = 0;
+        let i;
+        /* eslint-disable no-bitwise */
+        for (i = 0; i < string.length; i += 1) {
+            hash = string.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        let color = '#';
+        for (i = 0; i < 3; i += 1) {
+            const tmp = (hash >> (i * 8)) & 0xff;
+            color += `00${tmp.toString(16)}`.slice(-2);
+        }
+        /* eslint-enable no-bitwise */
+        return color;
+    };
+
+    const stringAvatar = (name) => {
+        if (!name) {
+            return {
+                children: `not`,
+            };
+        }
+        try {
+            return {
+                children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+            };
+        } catch (e) {
+            console.warn('name to profile icon error', e);
+        }
+        return {
+            children: `${name[0]}${name[1]}`,
+        };
     };
 
     const prevOpen = useRef(open);
@@ -113,18 +153,35 @@ function ProfileSection() {
                     },
                 }}
                 icon={
-                    <Avatar
-                        src={User1}
-                        sx={{
-                            ...theme.typography.mediumAvatar,
-                            margin: '8px 0 8px 8px !important',
-                            cursor: 'pointer',
-                        }}
-                        ref={anchorRef}
-                        aria-controls={open ? 'menu-list-grow' : undefined}
-                        aria-haspopup="true"
-                        color="inherit"
-                    />
+                    auth.user ? (
+                        <Avatar
+                            sx={{
+                                ...theme.typography.mediumAvatar,
+                                margin: '8px 0 8px 8px !important',
+                                cursor: 'pointer',
+                                bgcolor: stringToColor(auth.user.name),
+                            }}
+                            ref={anchorRef}
+                            aria-controls={open ? 'menu-list-grow' : undefined}
+                            aria-haspopup="true"
+                            color="inherit"
+                            {...stringAvatar(auth.user.name)}
+                        />
+                    ) : (
+                        <Avatar
+                            sx={{
+                                ...theme.typography.mediumAvatar,
+                                margin: '8px 0 8px 8px !important',
+                                cursor: 'pointer',
+                            }}
+                            ref={anchorRef}
+                            aria-controls={open ? 'menu-list-grow' : undefined}
+                            aria-haspopup="true"
+                            color="inherit"
+                        >
+                            <LoginIcon />
+                        </Avatar>
+                    )
                 }
                 label={
                     <IconSettings
@@ -185,7 +242,7 @@ function ProfileSection() {
                                                     variant="h4"
                                                     sx={{ fontWeight: 400 }}
                                                 >
-                                                    Johne Doe
+                                                    {auth.user?.name}
                                                 </Typography>
                                             </Stack>
                                             <Typography variant="subtitle2">

@@ -170,18 +170,16 @@ function FirebaseLogin({ ...others }) {
                     { setErrors, setStatus, setSubmitting },
                 ) => {
                     try {
-                        const res = await auth.firebaseEmailPasswordSignIn(
+                        await auth.firebaseEmailPasswordSignIn(
                             values.email,
                             values.password,
                         );
-                        console.log(res);
                         if (scriptedRef.current) {
                             setStatus({ success: true });
                             setSubmitting(false);
                         }
                         navigate(config.basename);
                     } catch (err) {
-                        console.error(err);
                         if (scriptedRef.current) {
                             setStatus({ success: false });
                             setErrors({ submit: err.message });
