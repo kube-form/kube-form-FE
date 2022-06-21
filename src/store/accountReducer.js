@@ -12,8 +12,9 @@ const accountReducer = (state = initialState, action) => {
         case actionTypes.LOGIN:
             return {
                 ...state,
-                isLoggedIn: true,
+                isLoggedIn: action.payload.isLoggedIn,
                 isInitialized: true,
+                user: action.payload.user,
             };
         case actionTypes.LOGOUT:
             return {

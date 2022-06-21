@@ -5,10 +5,14 @@ import { Typography } from '@mui/material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
+import useAuth from 'hooks/useAuth';
 
 // ==============================|| SAMPLE PAGE ||============================== //
 
 function SamplePage() {
+    const auth = useAuth();
+
+    console.log(11, auth);
     return (
         <MainCard title="Sample Card">
             <Typography variant="body2">
