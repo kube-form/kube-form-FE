@@ -3,6 +3,7 @@ const config = {
     // like '/berry-material-react/react/default'
     basename: '/kube-form-FE',
     defaultPath: '/kube-form-FE/dashboard/default',
+    loginPath: `/kube-form-FE/pages/login/login3`,
     fontFamily: `'Roboto', sans-serif`,
     borderRadius: 12,
 

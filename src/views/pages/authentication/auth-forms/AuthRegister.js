@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // material-ui
@@ -31,11 +31,12 @@ import useScriptRef from 'hooks/useScriptRef';
 import Google from 'assets/images/icons/social-google.svg';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { strengthColor, strengthIndicator } from 'utils/password-strength';
+import useAuth from 'hooks/useAuth';
+import config from 'config';
 
 // assets
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import useAuth from 'hooks/useAuth';
 
 // ===========================|| FIREBASE - REGISTER ||=========================== //
 
@@ -44,6 +45,7 @@ function FirebaseRegister({ ...others }) {
     const scriptedRef = useScriptRef();
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
     const customization = useSelector((state) => state.customization);
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [checked, setChecked] = useState(true);
 
@@ -173,10 +175,17 @@ function FirebaseRegister({ ...others }) {
                     { setErrors, setStatus, setSubmitting },
                 ) => {
                     try {
+                        console.log(values);
+                        const res = await auth.firebaseRegister(
+                            values.email,
+                            values.password,
+                        );
+                        console.log(res);
                         if (scriptedRef.current) {
                             setStatus({ success: true });
                             setSubmitting(false);
                         }
+                        navigate(config.loginPath);
                     } catch (err) {
                         console.error(err);
                         if (scriptedRef.current) {

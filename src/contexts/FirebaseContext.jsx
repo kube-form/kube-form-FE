@@ -1,7 +1,13 @@
 import React, { createContext, useReducer, useEffect } from 'react';
 
 import * as firebase from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+} from 'firebase/auth';
 
 import * as actionTypes from 'store/actions';
 import accountReducer from 'store/accountReducer';
@@ -49,8 +55,10 @@ export function FirebaseProvider({ children }) {
         [dispatch],
     );
 
-    const firebaseEmailPasswordSignIn = (email, password) =>
-        getAuth().signInWithEmailAndPassword(email, password);
+    const firebaseEmailPasswordSignIn = (email, password) => {
+        const auth = getAuth();
+        return signInWithEmailAndPassword(auth, email, password);
+    };
 
     const firebaseGoogleSignIn = () => {
         const auth = getAuth();
@@ -80,8 +88,10 @@ export function FirebaseProvider({ children }) {
             });
     };
 
-    const firebaseRegister = async (email, password) =>
-        getAuth().createUserWithEmailAndPassword(email, password);
+    const firebaseRegister = async (email, password) => {
+        const auth = getAuth();
+        return createUserWithEmailAndPassword(auth, email, password);
+    };
 
     const logout = () => getAuth().signOut();
 
