@@ -26,6 +26,7 @@
         "react/no-unstable-nested-components": "warn",
         "react/prop-types": "warn",
         "react/destructuring-assignment": "warn",
-        "no-param-reassign": "warn"
+        "no-param-reassign": "warn",
+        "no-unused-vars": "warn"
     }
 }

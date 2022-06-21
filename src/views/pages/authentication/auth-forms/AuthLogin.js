@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 
 // material-ui
@@ -34,6 +35,8 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import Google from 'assets/images/icons/social-google.svg';
+import useAuth from 'hooks/useAuth';
+import config from 'config';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -41,11 +44,14 @@ function FirebaseLogin({ ...others }) {
     const theme = useTheme();
     const scriptedRef = useScriptRef();
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
+    const navigate = useNavigate();
     const customization = useSelector((state) => state.customization);
     const [checked, setChecked] = useState(true);
+    const auth = useAuth();
 
     const googleHandler = async () => {
-        console.error('Login');
+        await auth.firebaseGoogleSignIn();
+        navigate(config.basename);
     };
 
     const [showPassword, setShowPassword] = useState(false);
@@ -147,8 +153,8 @@ function FirebaseLogin({ ...others }) {
 
             <Formik
                 initialValues={{
-                    email: 'info@codedthemes.com',
-                    password: '123456',
+                    email: 'test@test.test',
+                    password: 'test1234',
                     submit: null,
                 }}
                 validationSchema={Yup.object().shape({
@@ -165,12 +171,16 @@ function FirebaseLogin({ ...others }) {
                     { setErrors, setStatus, setSubmitting },
                 ) => {
                     try {
+                        await auth.firebaseEmailPasswordSignIn(
+                            values.email,
+                            values.password,
+                        );
                         if (scriptedRef.current) {
                             setStatus({ success: true });
                             setSubmitting(false);
                         }
+                        navigate(config.basename);
                     } catch (err) {
-                        console.error(err);
                         if (scriptedRef.current) {
                             setStatus({ success: false });
                             setErrors({ submit: err.message });
