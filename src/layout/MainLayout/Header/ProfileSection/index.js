@@ -60,6 +60,7 @@ function ProfileSection() {
      * */
     const anchorRef = useRef(null);
     const handleLogout = async () => {
+        setOpen(false);
         auth.logout();
     };
 
@@ -153,7 +154,7 @@ function ProfileSection() {
                     },
                 }}
                 icon={
-                    auth.user ? (
+                    auth.user && (
                         <Avatar
                             sx={{
                                 ...theme.typography.mediumAvatar,
@@ -167,28 +168,18 @@ function ProfileSection() {
                             color="inherit"
                             {...stringAvatar(auth.user.name)}
                         />
-                    ) : (
-                        <Avatar
-                            sx={{
-                                ...theme.typography.mediumAvatar,
-                                margin: '8px 0 8px 8px !important',
-                                cursor: 'pointer',
-                            }}
-                            ref={anchorRef}
-                            aria-controls={open ? 'menu-list-grow' : undefined}
-                            aria-haspopup="true"
-                            color="inherit"
-                        >
-                            <LoginIcon />
-                        </Avatar>
                     )
                 }
                 label={
-                    <IconSettings
-                        stroke={1.5}
-                        size="1.5rem"
-                        color={theme.palette.primary.main}
-                    />
+                    auth.user ? (
+                        <IconSettings
+                            stroke={1.5}
+                            size="1.5rem"
+                            color={theme.palette.primary.main}
+                        />
+                    ) : (
+                        <LoginIcon />
+                    )
                 }
                 variant="outlined"
                 ref={anchorRef}
@@ -408,7 +399,7 @@ function ProfileSection() {
                                                         handleListItemClick(
                                                             event,
                                                             0,
-                                                            '/user/account-profile/profile1',
+                                                            '/kube-form-FE/profile/setting',
                                                         )
                                                     }
                                                 >

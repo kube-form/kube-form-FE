@@ -54,7 +54,8 @@ function FirebaseRegister({ ...others }) {
     const auth = useAuth();
 
     const googleHandler = async () => {
-        auth.firebaseGoogleSignIn();
+        await auth.firebaseGoogleSignIn();
+        navigate(config.basename);
     };
 
     const handleClickShowPassword = () => {

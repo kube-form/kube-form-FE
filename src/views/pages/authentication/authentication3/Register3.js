@@ -111,7 +111,7 @@ function Register() {
                                         >
                                             <Typography
                                                 component={Link}
-                                                to="/pages/login/login3"
+                                                to="/kube-form-FE/pages/login/login3"
                                                 variant="subtitle1"
                                                 sx={{ textDecoration: 'none' }}
                                             >

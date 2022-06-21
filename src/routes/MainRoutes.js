@@ -60,6 +60,7 @@ const MainRoutes = {
             path: '/kube-form-FE/sample-page',
             element: <SamplePage />,
         },
+        // custom path
         {
             path: '/kube-form-FE/*',
             element: <NotFound />,

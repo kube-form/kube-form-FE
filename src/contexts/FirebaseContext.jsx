@@ -55,15 +55,16 @@ export function FirebaseProvider({ children }) {
         [dispatch],
     );
 
-    const firebaseEmailPasswordSignIn = (email, password) => {
+    const firebaseEmailPasswordSignIn = async (email, password) => {
         const auth = getAuth();
-        return signInWithEmailAndPassword(auth, email, password);
+        const res = await signInWithEmailAndPassword(auth, email, password);
+        return res;
     };
 
-    const firebaseGoogleSignIn = () => {
+    const firebaseGoogleSignIn = async () => {
         const auth = getAuth();
         const provider = new GoogleAuthProvider();
-        signInWithPopup(auth, provider)
+        await signInWithPopup(auth, provider)
             .then((result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 const credential =
@@ -93,7 +94,9 @@ export function FirebaseProvider({ children }) {
         return createUserWithEmailAndPassword(auth, email, password);
     };
 
-    const logout = () => getAuth().signOut();
+    const logout = () => {
+        getAuth().signOut();
+    };
 
     const resetPassword = async (email) => {
         await getAuth().sendPasswordResetEmail(email);
