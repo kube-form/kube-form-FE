@@ -33,6 +33,7 @@
         "react-beautiful-dnd": "^13.1.0",
         "react-device-detect": "^2.2.2",
         "react-dom": "^18.2.0",
+        "react-lineto": "^3.3.0",
         "react-perfect-scrollbar": "^1.5.8",
         "react-redux": "^8.0.2",
         "react-router": "6.3.0",
@@ -89,6 +90,7 @@
         "eslint-plugin-react-hooks": "^4.6.0",
         "gh-pages": "^4.0.0",
         "prettier": "^2.7.1",
+        "react-beautiful-dnd-grid": "^0.1.3-alpha",
         "sass": "^1.52.3"
     }
 }

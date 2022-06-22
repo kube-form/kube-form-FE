@@ -4,6 +4,7 @@ export const AllArea = styled.div`
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
     position: relative;
+    height: 1000px;
 `;
 export const Title = styled.h3`
     padding: 8px;
@@ -14,18 +15,18 @@ export const Title = styled.h3`
 export const List = styled.div`
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     bottom: 0;
     display: flex;
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
     /* margin-top: 10px; */
     border-radius: 12px;
-    @media (max-width: 500px) {
+    @media (max-width: 900px) {
         position: relative;
         background-color: gray;
     }
-    @media (min-width: 500px) {
+    @media (min-width: 900px) {
         position: absolute;
         width: 250px;
         max-height: 600px;
@@ -36,17 +37,17 @@ export const List = styled.div`
 export const Container = styled.div`
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
     bottom: 0;
     display: flex;
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
     border-radius: 12px;
-    @media (max-width: 500px) {
+    @media (max-width: 900px) {
         position: relative;
         background-color: lightblue;
     }
-    @media (min-width: 500px) {
+    @media (min-width: 900px) {
         position: absolute;
         width: 250px;
         max-height: 600px;

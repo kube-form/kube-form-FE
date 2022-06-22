@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
+import LineTo from 'react-lineto';
 
 import { v4 as uuid } from 'uuid';
 import { Button } from '@material-ui/core';
 import MainCard from 'ui-component/cards/MainCard';
 import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
 
+// import { ListManager } from 'react-beautiful-dnd-grid';
 import { Column } from './column';
 // import "@atlaskit/css-reset";
-import { ButtonBox, Container, List, ImgArea, AllArea } from './styles';
+import { ButtonBox, Container, List, AllArea } from './styles';
 import Remove from './remove';
 import Modal from './modal';
-import clusterImg from './img/Cluster.jpeg';
+// import clusterImg from './img/Cluster.jpeg';
 import './css/global.css';
 
 const Items = [
@@ -128,6 +130,8 @@ export default function Cluster() {
     const CloseModal = () => {
         setModalOpen(false);
     };
+    // const test = ['Pod1', 'Pod2', 'Pod3'];
+
     return (
         <MainCard
             title="Cluster DnD"
@@ -139,16 +143,30 @@ export default function Cluster() {
                     // onDragUpdate={onDragUpdate}
                     onDragEnd={onDragEnd}
                 >
-                    <List>
+                    <List className="List">
                         <Column items={Items} droppableId="Items" />
                     </List>
 
-                    <ImgArea>
+                    {/* <ImgArea>
                         <img className="img" src={clusterImg} alt="cluster" />
-                    </ImgArea>
-                    <Container>
+                    </ImgArea> */}
+
+                    <Container className="Container">
                         <Column items={items} droppableId="area" />
                     </Container>
+                    {/* <ListManager
+                        items={items}
+                        direaction="horizontal"
+                        maxItems={3}
+                        render={(items, i) => <Column items={items[i]} />}
+                        // onDragEnd={noop}
+                    /> */}
+                    <LineTo
+                        borderColor="black"
+                        borderWidth="3px"
+                        from="List"
+                        to="Container"
+                    />
                     <Remove items={items} droppableId="remove" />
                 </DragDropContext>
                 <ButtonBox>
