@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import LineTo from 'react-lineto';
 
 import { v4 as uuid } from 'uuid';
-import { Button } from '@material-ui/core';
+import { Button, List, Container, Box, Grid } from '@material-ui/core';
 import MainCard from 'ui-component/cards/MainCard';
 import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
+import usePods from 'hooks/usePods';
 
 // import { ListManager } from 'react-beautiful-dnd-grid';
-import { Column } from './column';
-// import "@atlaskit/css-reset";
-import { ButtonBox, Container, List, AllArea } from './styles';
+import { Column } from './Column';
+// import '@atlaskit/css-reset';
+import { ButtonBox, AllArea } from './styles';
 import Remove from './remove';
 import Modal from './modal';
 // import clusterImg from './img/Cluster.jpeg';
-import './css/global.css';
+// import './css/global.css';
 
 const Items = [
     {
@@ -54,11 +55,20 @@ const Items = [
         content: 'Flask',
     },
 ];
-console.log(Items);
+
 export default function Cluster() {
-    const [items, setItems] = useState([]);
+    const pods = usePods();
+
+    console.log(pods);
+    const [items, setItems] = useState([Items[0]]);
     const [modalOpen, setModalOpen] = useState(false);
     // splice(start, deleteCnt, insertVal) start부터 deleteCnt개 제거, insertVal몇개 넣어라
+
+    const getDummyData = async () => {
+        setTimeout(() => {
+            pods.setWait(Items);
+        }, 1000);
+    };
 
     const reorder = (current, startIndex, endIndex) => {
         const result = Array.from(current);
@@ -68,36 +78,8 @@ export default function Cluster() {
         return result;
     };
 
-    const copy = (source, current, droppableSource, droppableDestination) => {
-        // console.log(droppableDestination, "==> dest", destination);
-        const item = source[droppableSource.index];
-        const idx = droppableDestination.index;
-        const arr = Array.from(current);
-
-        arr.splice(idx, 0, { ...item, id: uuid() });
-        setItems(arr);
-    };
-
-    const removeItem = (current, dropSource) => {
-        const arr = Array.from(current);
-
-        arr.splice(dropSource.index, 1);
-        setItems(arr);
-    };
-
     const onDragEnd = (result) => {
         const { destination, source } = result;
-        // droppableId는 어느 column에 위치하는지, index는 해당 column에서 몇번째 task인지
-        console.log(
-            '도착지 index 도착지 droppableId',
-            destination?.index,
-            destination?.droppableId,
-        );
-        console.log(
-            '출발지 index 출발지 droppableId',
-            source.index,
-            source.droppableId,
-        );
 
         // 올바른 droppable 위에 두지 않았으므로 그냥 리턴
         if (!destination) return;
@@ -111,16 +93,24 @@ export default function Cluster() {
 
         const start = source.droppableId;
         const finish = destination.droppableId;
-        console.log(source);
         if (start === 'area' && start === finish) {
-            console.log('==');
-            setItems(reorder(items, source.index, destination.index));
+            // console.log('==');
+            // setItems(reorder(items, source.index, destination.index));
         }
-        if (start === 'Items' && finish === 'area') {
-            copy(Items, items, source, destination);
+        if (start === 'wait') {
+            if (finish === 'main') {
+                pods.addMainFromWait(source.index);
+            } else if (finish === 'sub') {
+                pods.addSubFromWait(source.index);
+            }
+            // copy(Items, items, source, destination);
         }
-        if (start === 'area' && finish === 'remove') {
-            removeItem(items, source);
+        if (finish === 'remove' || finish === 'wait') {
+            if (start === 'main') {
+                pods.removeMain(source.index);
+            } else if (start === 'sub') {
+                pods.removeSub(source.index);
+            }
         }
     };
 
@@ -130,7 +120,10 @@ export default function Cluster() {
     const CloseModal = () => {
         setModalOpen(false);
     };
-    // const test = ['Pod1', 'Pod2', 'Pod3'];
+
+    useEffect(() => {
+        getDummyData();
+    }, []);
 
     return (
         <MainCard
@@ -143,30 +136,23 @@ export default function Cluster() {
                     // onDragUpdate={onDragUpdate}
                     onDragEnd={onDragEnd}
                 >
-                    <List className="List">
-                        <Column items={Items} droppableId="Items" />
-                    </List>
-
-                    {/* <ImgArea>
-                        <img className="img" src={clusterImg} alt="cluster" />
-                    </ImgArea> */}
-
-                    <Container className="Container">
-                        <Column items={items} droppableId="area" />
-                    </Container>
-                    {/* <ListManager
-                        items={items}
-                        direaction="horizontal"
-                        maxItems={3}
-                        render={(items, i) => <Column items={items[i]} />}
-                        // onDragEnd={noop}
-                    /> */}
-                    <LineTo
-                        borderColor="black"
-                        borderWidth="3px"
-                        from="List"
-                        to="Container"
-                    />
+                    <Grid container>
+                        <Grid item xs={4}>
+                            <Box className="main">
+                                <Column items={pods.main} droppableId="main" />
+                            </Box>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Box className="sub">
+                                <Column items={pods.sub} droppableId="sub" />
+                            </Box>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Box className="wait">
+                                <Column items={pods.wait} droppableId="wait" />
+                            </Box>
+                        </Grid>
+                    </Grid>
                     <Remove items={items} droppableId="remove" />
                 </DragDropContext>
                 <ButtonBox>
