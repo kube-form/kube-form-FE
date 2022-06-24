@@ -4,3 +4,9 @@ export const MENU_TOGGLE = '@customization/MENU_TOGGLE';
 export const MENU_OPEN = '@customization/MENU_OPEN';
 export const SET_FONT_FAMILY = '@customization/SET_FONT_FAMILY';
 export const SET_BORDER_RADIUS = '@customization/SET_BORDER_RADIUS';
+
+// action - pod reducer
+export const POD_INITIAL_ALL = '@pod/INITIAL_ALL';
+export const POD_SET_WAIT = '@pod/SET_WAIT'; // multiple array
+export const POD_SET_MAIN = '@pod/SET_MAIN'; // one
+export const POD_SET_SUB = '@pod/SET_SUB';
