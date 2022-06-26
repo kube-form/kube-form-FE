@@ -1,7 +1,10 @@
 import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+
 import Task from './task';
-import { Title, ColContainer, TaskList, Item } from './styles';
+import { Title, TaskList, ColContainer, Item } from './styles';
 
 // eslint-disable-next-line import/prefer-default-export
 export function Column({ items, droppableId }) {
@@ -30,3 +33,13 @@ export function Column({ items, droppableId }) {
         </ColContainer>
     );
 }
+
+Column.propTypes = {
+    items: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            content: PropTypes.string,
+        }),
+    ).isRequired,
+    droppableId: PropTypes.string.isRequired,
+};

@@ -4,7 +4,6 @@ export const AllArea = styled.div`
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
     position: relative;
-    height: 1000px;
 `;
 export const Title = styled.h3`
     padding: 8px;
@@ -59,7 +58,6 @@ export const ColContainer = styled.div`
     margin: 8px;
     border: 3px solid lightgrey;
     border-radius: 10px;
-    width: 400px;
     display: flex;
     flex-direction: column;
 `;
