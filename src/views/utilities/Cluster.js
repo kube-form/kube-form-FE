@@ -8,8 +8,7 @@ import MainCard from 'ui-component/cards/MainCard';
 import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
 import usePods from 'hooks/usePods';
 
-// import { ListManager } from 'react-beautiful-dnd-grid';
-import { Column } from './Column';
+import { Column } from './column';
 // import '@atlaskit/css-reset';
 import { ButtonBox, AllArea } from './styles';
 import Remove from './remove';
@@ -60,7 +59,7 @@ export default function Cluster() {
     const pods = usePods();
 
     console.log(pods);
-    const [items, setItems] = useState([Items[0]]);
+    const [items, setItems] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
     // splice(start, deleteCnt, insertVal) start부터 deleteCnt개 제거, insertVal몇개 넣어라
 
@@ -125,6 +124,19 @@ export default function Cluster() {
         getDummyData();
     }, []);
 
+    const makeLine = (now, next) => {
+        const line = (
+            <LineTo
+                borderColor="black"
+                borderWidth="3px"
+                from={now}
+                to={next}
+            />
+        );
+        return line;
+    };
+
+    console.log(pods.wait);
     return (
         <MainCard
             title="Cluster DnD"
@@ -153,6 +165,13 @@ export default function Cluster() {
                             </Box>
                         </Grid>
                     </Grid>
+                    {pods.main &&
+                        pods.sub &&
+                        pods.sub.map((i) => {
+                            makeLine(pods.main[0].id, pods.sub[i].id);
+                        })}
+                    {/* {makeLine(pods.main[0].id, pods.sub[1].id)} */}
+
                     <Remove items={items} droppableId="remove" />
                 </DragDropContext>
                 <ButtonBox>
