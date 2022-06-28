@@ -30,6 +30,6 @@ jobs:
             - name: Deploy
               uses: peaceiris/actions-gh-pages@v3
               with:
-                  github_token: ${{ secrets.deploy }}
+                  access-token: ${{ secrets.deploy }}
                   publish_dir: ./build # 이 폴더에 있는 파일을 배포
 
