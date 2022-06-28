@@ -59,7 +59,8 @@ const Items = [
 export default function Cluster() {
     const pods = usePods();
 
-    console.log(pods);
+    const { main, sub } = pods;
+
     const [items, setItems] = useState([Items[0]]);
     const [modalOpen, setModalOpen] = useState(false);
     // splice(start, deleteCnt, insertVal) start부터 deleteCnt개 제거, insertVal몇개 넣어라
@@ -125,6 +126,10 @@ export default function Cluster() {
         getDummyData();
     }, []);
 
+    // useEffect(() => {
+    //     console.log(main, sub);
+    // }, [main, sub]);
+
     return (
         <MainCard
             title="Cluster DnD"
@@ -155,6 +160,15 @@ export default function Cluster() {
                     </Grid>
                     <Remove items={items} droppableId="remove" />
                 </DragDropContext>
+                {pods.main.length &&
+                    pods.sub.length &&
+                    pods.sub.map((item) => (
+                        <LineTo
+                            key={item.id}
+                            from={pods.main[0].id}
+                            to={item.id}
+                        />
+                    ))}
                 <ButtonBox>
                     <Button
                         onClick={() => {
