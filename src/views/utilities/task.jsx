@@ -6,8 +6,6 @@ import usePods from 'hooks/usePods';
 import { TaskContainer } from './styles';
 
 export default function Task({ item, index }) {
-    const { sub } = usePods();
-
     return (
         <Draggable key={item.id} draggableId={item.id} index={index}>
             {(provided, snapshot) => (

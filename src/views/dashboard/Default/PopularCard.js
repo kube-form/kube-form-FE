@@ -43,6 +43,7 @@ function PopularCard({ isLoading }) {
     };
 
     return (
+        // eslint-disable-next-line react/jsx-no-useless-fragment
         <>
             {isLoading ? (
                 <SkeletonPopularCard />

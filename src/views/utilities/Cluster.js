@@ -7,6 +7,7 @@ import { Button, List, Container, Box, Grid } from '@material-ui/core';
 import MainCard from 'ui-component/cards/MainCard';
 import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
 import usePods from 'hooks/usePods';
+import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 
 import { Column } from './column';
 // import '@atlaskit/css-reset';
@@ -136,7 +137,6 @@ export default function Cluster() {
         return line;
     };
 
-    console.log(pods.wait);
     return (
         <MainCard
             title="Cluster DnD"
@@ -154,27 +154,20 @@ export default function Cluster() {
                                 <Column items={pods.main} droppableId="main" />
                             </Box>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={8}>
                             <Box className="sub">
                                 <Column items={pods.sub} droppableId="sub" />
                             </Box>
                         </Grid>
-                        <Grid item xs={4}>
-                            <Box className="wait">
-                                <Column items={pods.wait} droppableId="wait" />
-                            </Box>
-                        </Grid>
                     </Grid>
-                    {pods.main &&
-                        pods.sub &&
-                        pods.sub.map((i) => {
-                            makeLine(pods.main[0].id, pods.sub[i].id);
-                        })}
-                    {/* {makeLine(pods.main[0].id, pods.sub[1].id)} */}
-
-                    <Remove items={items} droppableId="remove" />
+                    <Grid item xs={12}>
+                        <Remove items={items} droppableId="remove" />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <WaitContainer />
+                    </Grid>
                 </DragDropContext>
-                <ButtonBox>
+                {/* <ButtonBox>
                     <Button
                         onClick={() => {
                             setTimeout(OpenModal, 2000);
@@ -183,7 +176,7 @@ export default function Cluster() {
                     >
                         Submit
                     </Button>
-                </ButtonBox>
+                </ButtonBox> */}
                 <Modal
                     open={modalOpen}
                     close={CloseModal}
