@@ -42,7 +42,7 @@ function ContainerCard({ id, content, index }) {
                                         <img
                                             className="ContainerCardImage"
                                             alt={`${index}_container_image`}
-                                            src={`https://picsum.photos/id/${index}/100/50`}
+                                            src={`https://picsum.photos/id/${index}/50/50`}
                                         />
                                     </Avatar>
                                 </ListItemAvatar>

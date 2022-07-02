@@ -23,6 +23,14 @@ const UtilsTablerIcons = Loadable(
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
+// custom
+
+const IAMSetting = Loadable(
+    lazy(() => import('views/utilities/iam/IamSettingPage')),
+);
+const IAMRegister = Loadable(
+    lazy(() => import('views/utilities/iam/IamRegisterPage')),
+);
 const NotFound = Loadable(lazy(() => import('views/NotFound')));
 
 // ==============================|| MAIN ROUTING ||============================== //
@@ -39,9 +47,8 @@ const MainRoutes = {
             path: '/kube-form-FE/dashboard/default',
             element: <DashboardDefault />,
         },
-
         {
-            path: '/kube-form-FEutils/cluster',
+            path: '/kube-form-FE/utils/cluster',
             element: <UtilsCluster />,
         },
         {
@@ -59,6 +66,14 @@ const MainRoutes = {
         {
             path: '/kube-form-FE/sample-page',
             element: <SamplePage />,
+        },
+        {
+            path: '/kube-form-FE/iam/setting',
+            element: <IAMSetting />,
+        },
+        {
+            path: '/kube-form-FE/iam/register',
+            element: <IAMRegister />,
         },
         {
             path: '/kube-form-FE/*',

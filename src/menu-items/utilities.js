@@ -1,11 +1,12 @@
 // assets
-import { IconShadow, IconWindmill, IconDragDrop } from '@tabler/icons';
+import { IconShadow, IconWindmill, IconDragDrop, IconKey } from '@tabler/icons';
 
 // constant
 const icons = {
     IconDragDrop,
     IconShadow,
     IconWindmill,
+    IconKey,
 };
 
 // ==============================|| UTILITIES MENU ITEMS ||============================== //
@@ -15,6 +16,28 @@ const utilities = {
     title: 'Utilities',
     type: 'group',
     children: [
+        {
+            id: 'iam',
+            title: 'IAM',
+            type: 'collapse',
+            icon: icons.IconKey,
+            children: [
+                {
+                    id: 'iam-register',
+                    title: 'Register',
+                    type: 'item',
+                    url: '/iam/register',
+                    breadcrumbs: false,
+                },
+                {
+                    id: 'iam-setting',
+                    title: 'Setting',
+                    type: 'item',
+                    url: '/iam/setting',
+                    breadcrumbs: false,
+                },
+            ],
+        },
         {
             id: 'util-cluster',
             title: 'Cluster',
