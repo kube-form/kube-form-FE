@@ -47,12 +47,11 @@ function IamRegisterPage() {
                 }}
                 validationSchema={Yup.object().shape({
                     accessKeyId: Yup.string()
-                        .email('Must be a valid email')
                         .max(255)
-                        .required('Email is required'),
+                        .required('Access Key Id is required'),
                     secretAcessKey: Yup.string()
                         .max(255)
-                        .required('Password is required'),
+                        .required('Secret Access Key is required'),
                 })}
                 onSubmit={async (
                     values,
