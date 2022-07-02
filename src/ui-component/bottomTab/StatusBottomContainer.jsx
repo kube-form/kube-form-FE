@@ -1,14 +1,5 @@
 import React, { useState } from 'react';
-import {
-    Box,
-    Button,
-    CardContent,
-    Tabs,
-    Tab,
-    TabPanel,
-    Typography,
-    Divider,
-} from '@mui/material';
+import { Box, Tabs, Tab } from '@mui/material';
 import MainCard from 'ui-component/cards/MainCard';
 import NetworkPanel from 'ui-component/bottomTabPannel/NetworkPanel';
 import PropTypes from 'prop-types';

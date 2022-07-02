@@ -100,9 +100,10 @@ function NetworkPanel({ value, index }) {
                                             width: 22,
                                             height: 22,
                                             mr: 1,
+                                            bgcolor: 'transparent',
                                         }}
                                     >
-                                        <CheckIcon />
+                                        <CheckIcon color="success" />
                                     </Avatar>
                                     <Typography
                                         sx={{

@@ -18,7 +18,8 @@
             "warn",
             { "extensions": [".js", ".jsx"] }
         ],
-        "react/jsx-props-no-spreading": "warn",
+        "no-console": "off",
+        "react/jsx-props-no-spreading": "off",
         "react/jsx-no-useless-fragment": "warn",
         "react/forbid-prop-types": "warn",
         "react/function-component-definition": "warn",

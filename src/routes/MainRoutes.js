@@ -31,6 +31,9 @@ const IAMSetting = Loadable(
 const IAMRegister = Loadable(
     lazy(() => import('views/utilities/iam/IamRegisterPage')),
 );
+const IAMUpdate = Loadable(
+    lazy(() => import('views/utilities/iam/IamUpdatePage')),
+);
 const NotFound = Loadable(lazy(() => import('views/NotFound')));
 
 // ==============================|| MAIN ROUTING ||============================== //
@@ -74,6 +77,10 @@ const MainRoutes = {
         {
             path: '/kube-form-FE/iam/register',
             element: <IAMRegister />,
+        },
+        {
+            path: '/kube-form-FE/iam/update',
+            element: <IAMUpdate />,
         },
         {
             path: '/kube-form-FE/*',

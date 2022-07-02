@@ -6,11 +6,12 @@ import {
     Typography,
     Divider,
 } from '@mui/material';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 
 import usePods from 'hooks/usePods';
 import { gridSpacing } from 'store/constant';
+import AnimateButton from 'ui-component/extended/AnimateButton';
 
 import MainCard from 'ui-component/cards/MainCard';
 import ContainerCard from 'ui-component/cards/ContaienrCard';
@@ -81,9 +82,11 @@ function WaitContainer() {
                         textAlign="center"
                         sx={{ display: 'flex', alignItems: 'center' }}
                     >
-                        <Button variant="contained" fullWidth>
-                            submit
-                        </Button>
+                        <AnimateButton>
+                            <Button variant="contained" fullWidth>
+                                submit
+                            </Button>
+                        </AnimateButton>
                     </Grid>
                     <Grid
                         item

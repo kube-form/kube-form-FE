@@ -6,7 +6,7 @@ import {
     Button,
     FormHelperText,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import MainCard from 'ui-component/cards/MainCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
@@ -14,16 +14,21 @@ import useScriptRef from 'hooks/useScriptRef';
 // third party
 import * as Yup from 'yup';
 import { Formik } from 'formik';
+import useLocationQuery from 'hooks/useLocationQuery';
 
-function IamRegisterPage() {
+function IamUpdatePage() {
     const scriptedRef = useScriptRef();
     const theme = useTheme();
+    const query = useLocationQuery();
 
     return (
-        <MainCard title="IAM Register">
+        <MainCard title="IAM Update">
+            {/* <Grid container direction="column" justifyContent="flex-end">
+                
+            </Grid> */}
             <Formik
                 initialValues={{
-                    accessKeyId: '',
+                    accessKeyId: query.get('accessKeyId'),
                     secretAccessKey: '',
                     submit: null,
                 }}
@@ -45,7 +50,6 @@ function IamRegisterPage() {
                             setSubmitting(false);
                         }
                     } catch (err) {
-                        console.error(err);
                         if (scriptedRef.current) {
                             setStatus({ success: false });
                             setErrors({ submit: err.message });
@@ -79,6 +83,7 @@ function IamRegisterPage() {
                                 id="outlined-adornment-accessKeyId"
                                 type="text"
                                 value={values.accessKeyId}
+                                disabled
                                 name="accessKeyId"
                                 onBlur={handleBlur}
                                 onChange={handleChange}
@@ -175,4 +180,4 @@ function IamRegisterPage() {
     );
 }
 
-export default IamRegisterPage;
+export default IamUpdatePage;
