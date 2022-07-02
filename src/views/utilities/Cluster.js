@@ -8,6 +8,7 @@ import MainCard from 'ui-component/cards/MainCard';
 import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
 import usePods from 'hooks/usePods';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
+import StatusBottomContainer from 'ui-component/bottomTab/StatusBottomContainer';
 
 import { Column } from './column';
 // import '@atlaskit/css-reset';
@@ -166,6 +167,9 @@ export default function Cluster() {
                     <Grid item xs={12}>
                         <WaitContainer />
                     </Grid>
+                    {/* <Grid item xs={12}>
+                        <StatusBottomContainer />
+                    </Grid> */}
                 </DragDropContext>
                 {/* <ButtonBox>
                     <Button

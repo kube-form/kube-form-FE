@@ -25,10 +25,6 @@ function WaitContainer() {
         setPage(parseInt(e.target.outerText, 10));
     };
 
-    useEffect(() => {
-        console.warn(page);
-    }, [page]);
-
     return (
         <MainCard content={false}>
             <CardContent>
