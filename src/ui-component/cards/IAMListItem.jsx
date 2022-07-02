@@ -21,7 +21,7 @@ function IAMListItem({ accessKeyId, updated, detail }) {
         <ListItem>
             <Grid
                 container
-                sx={{ justifyContent: 'space-between' }}
+                sx={{ justifyContent: { xs: 'none', sm: 'space-between' } }}
                 spacing={1}
             >
                 <Grid
@@ -40,7 +40,10 @@ function IAMListItem({ accessKeyId, updated, detail }) {
                         primary={
                             <Typography
                                 variant="h4"
-                                sx={{ wordWrap: 'break-word' }}
+                                sx={{
+                                    wordWrap: 'break-word',
+                                    color: theme.palette.success.dark,
+                                }}
                             >
                                 {accessKeyId}
                             </Typography>
@@ -65,7 +68,7 @@ function IAMListItem({ accessKeyId, updated, detail }) {
                         primary={
                             <Typography
                                 variant="subtitle2"
-                                sx={{ color: theme.palette.grey[500], mt: 0.5 }}
+                                sx={{ color: theme.palette.grey[900], mt: 0.5 }}
                             >
                                 {getMomentFromNow(updated)}
                             </Typography>
@@ -74,8 +77,9 @@ function IAMListItem({ accessKeyId, updated, detail }) {
                 </Grid>
                 <Grid
                     item
-                    xs={12}
+                    xs={3}
                     sm={1}
+                    md={1}
                     sx={{
                         display: 'flex',
                         alignItems: 'center',
@@ -85,6 +89,7 @@ function IAMListItem({ accessKeyId, updated, detail }) {
                     <Box>
                         <Button
                             variant="contained"
+                            size="small"
                             component={Link}
                             to={{
                                 pathname: '/kube-form-FE/iam/update',
@@ -93,6 +98,23 @@ function IAMListItem({ accessKeyId, updated, detail }) {
                             }}
                         >
                             Update
+                        </Button>
+                    </Box>
+                </Grid>
+                <Grid
+                    item
+                    xs={3}
+                    sm={1}
+                    md={1}
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: { xs: 'none', sm: 'space-between' },
+                    }}
+                >
+                    <Box>
+                        <Button variant="contained" color="error" size="small">
+                            Delete
                         </Button>
                     </Box>
                 </Grid>
