@@ -10,11 +10,11 @@ import usePods from 'hooks/usePods';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import StatusBottomContainer from 'ui-component/bottomTab/StatusBottomContainer';
 
-import { Column } from './column';
+import { Column } from './Column';
 // import '@atlaskit/css-reset';
 import { ButtonBox, AllArea } from './styles';
-import Remove from './remove';
-import Modal from './modal';
+import Remove from './Remove';
+import Modal from './Modal';
 // import './css/global.css';
 
 const Items = [

@@ -3,7 +3,7 @@ import { Droppable } from 'react-beautiful-dnd';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import Task from './task';
+import Task from './Task';
 import { Title, TaskList, ColContainer, Item } from './styles';
 
 // eslint-disable-next-line import/prefer-default-export
