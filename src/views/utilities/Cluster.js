@@ -1,21 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
-import { SteppedLineTo } from 'react-lineto';
 
 import { v4 as uuid } from 'uuid';
-import { Button, Box, Grid } from '@material-ui/core';
-import MainCard from 'ui-component/cards/MainCard';
-import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
+import { Grid } from '@material-ui/core';
 import usePods from 'hooks/usePods';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
-import StatusBottomContainer from 'ui-component/bottomTab/StatusBottomContainer';
-
-import { Column } from './Column';
-// import '@atlaskit/css-reset';
-import { ButtonBox, AllArea } from './styles';
-import Remove from './Remove';
-import Modal from './Modal';
-// import './css/global.css';
 
 const Items = [
     {
@@ -59,27 +48,10 @@ const Items = [
 export default function Cluster() {
     const pods = usePods();
 
-    console.log(pods);
-    const [items, setItems] = useState([]);
-    const { main, sub } = pods;
-    const [modalOpen, setModalOpen] = useState(false);
-    // splice(start, deleteCnt, insertVal) start부터 deleteCnt개 제거, insertVal몇개 넣어라
-
-    const subArr = pods.sub;
-    const cnt = subArr.length;
-
     const getDummyData = async () => {
         setTimeout(() => {
             pods.setWait(Items);
         }, 1000);
-    };
-
-    const reorder = (current, startIndex, endIndex) => {
-        const result = Array.from(current);
-        const [removed] = result.splice(startIndex, 1); // startIndex 한개 removed로
-        result.splice(endIndex, 0, removed); // 마지막에 removed추가
-
-        return result;
     };
 
     const onDragEnd = (result) => {
@@ -120,85 +92,15 @@ export default function Cluster() {
         }
     };
 
-    const OpenModal = () => {
-        setModalOpen(true);
-    };
-    const CloseModal = () => {
-        setModalOpen(false);
-    };
-
     useEffect(() => {
         getDummyData();
     }, []);
 
-    // useEffect(() => {
-    //     console.log(main, sub);
-    // }, [main, sub]);
-
     return (
-        <MainCard
-            title="Cluster DnD"
-            secondary={<SecondaryAction link="https://kubernetes.io/ko/" />}
-        >
-            <AllArea>
-                <DragDropContext
-                    // onDragStart={onDragStart}
-                    // onDragUpdate={onDragUpdate}
-                    onDragEnd={onDragEnd}
-                >
-                    <Grid container>
-                        <Grid item xs={4}>
-                            <Box className="main">
-                                <Column items={pods.main} droppableId="main" />
-                            </Box>
-                        </Grid>
-                        <Grid item xs={8}>
-                            <Box className="sub">
-                                <Column items={pods.sub} droppableId="sub" />
-                            </Box>
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Remove items={items} droppableId="remove" />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <WaitContainer />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <StatusBottomContainer />
-                    </Grid>
-                </DragDropContext>
-                {subArr.map((item) => (
-                    <SteppedLineTo
-                        delay={0}
-                        borderColor="#000"
-                        borderWidth="2px"
-                        borderStyle="solid"
-                        // 점선 : dashed
-                        key={item.id}
-                        from={pods.main[0].id}
-                        to={item.id}
-                        orientation="h"
-                    />
-                ))}
-                <ButtonBox>
-                    <Button
-                        onClick={() => {
-                            setTimeout(OpenModal, 2000);
-                        }}
-                        color="primary"
-                    >
-                        Submit
-                    </Button>
-                </ButtonBox>
-                <Modal
-                    open={modalOpen}
-                    close={CloseModal}
-                    header="제출 확인 창"
-                >
-                    제출이 완료되었습니다!
-                </Modal>
-            </AllArea>
-        </MainCard>
+        <DragDropContext onDragEnd={onDragEnd}>
+            <Grid item xs={12}>
+                <WaitContainer />
+            </Grid>
+        </DragDropContext>
     );
 }

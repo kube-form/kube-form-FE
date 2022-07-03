@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Draggable } from 'react-beautiful-dnd';
-import usePods from 'hooks/usePods';
 
-import { TaskContainer } from './styles';
+import styled from '@emotion/styled';
 
 export default function Task({ item, index }) {
     return (
@@ -30,3 +29,5 @@ Task.propTypes = {
     }).isRequired,
     index: PropTypes.number.isRequired,
 };
+
+const TaskContainer = styled.div``;

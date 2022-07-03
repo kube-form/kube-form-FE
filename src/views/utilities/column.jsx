@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
 import Task from './Task';
-import { Title, TaskList, ColContainer, Item } from './styles';
 
 // eslint-disable-next-line import/prefer-default-export
 export function Column({ items, droppableId }) {
@@ -43,3 +42,11 @@ Column.propTypes = {
     ).isRequired,
     droppableId: PropTypes.string.isRequired,
 };
+
+const Title = styled.h3``;
+
+const TaskList = styled.div``;
+
+const ColContainer = styled.div``;
+
+const Item = styled.div``;
