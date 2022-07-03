@@ -75,6 +75,7 @@ export const TaskList = styled.div`
     background-color: ${(props) => (props.isDraggingOver ? 'orange' : 'white')};
     flex-grow: 1;
     min-height: 100px;
+    /* z-index: 99; */
 `;
 
 export const TaskContainer = styled.div`
@@ -92,6 +93,7 @@ export const TaskContainer = styled.div`
             ? 'lightgreen'
             : 'white'};
     display: flex;
+    z-index: 99;
 `;
 
 export const RemoveBox = styled.div`
