@@ -103,6 +103,8 @@ export default function Cluster() {
                 pods.addMainFromWait(source.index);
             } else if (finish === 'sub') {
                 pods.addSubFromWait(source.index);
+            } else if (start === finish) {
+                pods.reorder(source.index, destination.index);
             }
             // copy(Items, items, source, destination);
         }

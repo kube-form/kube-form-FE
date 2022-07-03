@@ -16,6 +16,7 @@ import { Draggable } from 'react-beautiful-dnd';
 
 function ContainerCard({ id, content, index }) {
     const theme = useTheme();
+
     return (
         <Draggable key={id} draggableId={id} index={index}>
             {(provided, snapshot) => (

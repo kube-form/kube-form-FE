@@ -348,7 +348,7 @@ function ProfileSection() {
                                                         handleListItemClick(
                                                             event,
                                                             0,
-                                                            '/user/account-profile/profile1',
+                                                            '/kube-form-FE/iam/setting',
                                                         )
                                                     }
                                                 >
