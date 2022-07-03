@@ -1,35 +1,43 @@
-name: Build and Deploy # Github Action 이름
+name: github pages
 
 on:
-    push:
-        branches:
-            - master # 빌드할 브랜치
+  push:
+    branches:
+      - master
 
 jobs:
-    deploy:
-        runs-on: ubuntu-18.04
-        steps:
-            - uses: actions/checkout@v2
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Setup Node
-              uses: actions/setup-node@v2.1.2
-              with:
-                  node-version: '12.x'
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: '12.x'
 
-            - name: Cache dependencies
-              uses: actions/cache@v2
-              with:
-                  path: ~/.npm
-                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-node-
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-            - run: npm ci
-            - run: npm run build # 빌드 스크립트
+      - run: npm ci
+      - name: Build
+        run: npm run build
+        env:
+          REACT_APP_FIREBASE_APIKEY: ${{ secrets.REACT_APP_FIREBASE_APIKEY }}
+          REACT_APP_FIREBASE_APPID: ${{ secrets.REACT_APP_FIREBASE_APPID }}
+          REACT_APP_FIREBASE_AUTHDOMAIN: ${{ secrets.REACT_APP_FIREBASE_AUTHDOMAIN }}
+          REACT_APP_FIREBASE_MEASUREMENTID: ${{ secrets.REACT_APP_FIREBASE_MEASUREMENTID }}
+          REACT_APP_FIREBASE_MESSGINGSENDERID: ${{ secrets.REACT_APP_FIREBASE_MESSGINGSENDERID }}
+          REACT_APP_FIREBASE_PROJECTID: ${{ secrets.REACT_APP_FIREBASE_PROJECTID }}
+          REACT_APP_FIREBASE_STORAGEBUCKET: ${{ secrets.REACT_APP_FIREBASE_STORAGEBUCKET }}
 
-            - name: Deploy
-              uses: peaceiris/actions-gh-pages@v3
-              with:
-                  github_token: ${{ secrets.deploy }}
-                  publish_dir: ./build # 이 폴더에 있는 파일을 배포
-
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.deploy }}
+          publish_dir: ./build

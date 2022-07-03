@@ -12,6 +12,7 @@ import themes from 'themes';
 
 // project imports
 import NavigationScroll from 'layout/NavigationScroll';
+import { FirebaseProvider } from 'contexts/FirebaseContext';
 
 // ==============================|| APP ||============================== //
 
@@ -23,7 +24,9 @@ function App() {
             <ThemeProvider theme={themes(customization)}>
                 <CssBaseline />
                 <NavigationScroll>
-                    <Routes />
+                    <FirebaseProvider>
+                        <Routes />
+                    </FirebaseProvider>
                 </NavigationScroll>
             </ThemeProvider>
         </StyledEngineProvider>

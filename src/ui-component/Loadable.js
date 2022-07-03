@@ -6,6 +6,7 @@ import Loader from './Loader';
 // ==============================|| LOADABLE - LAZY LOADING ||============================== //
 
 const Loadable = (Component) =>
+    // eslint-disable-next-line func-names
     function (props) {
         return (
             <Suspense fallback={<Loader />}>

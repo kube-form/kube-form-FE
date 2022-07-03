@@ -10,3 +10,5 @@ export const POD_INITIAL_ALL = '@pod/INITIAL_ALL';
 export const POD_SET_WAIT = '@pod/SET_WAIT'; // multiple array
 export const POD_SET_MAIN = '@pod/SET_MAIN'; // one
 export const POD_SET_SUB = '@pod/SET_SUB';
+export const LOGIN = '@account/LOGIN';
+export const LOGOUT = '@account/LOGOUT';
