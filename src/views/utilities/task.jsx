@@ -14,7 +14,7 @@ export default function Task({ item, index }) {
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}
                     className={item.id}
-                    isDragging={snapshot.isDragging}
+                    isdragging={snapshot.isdragging}
                 >
                     {item.content}
                 </TaskContainer>

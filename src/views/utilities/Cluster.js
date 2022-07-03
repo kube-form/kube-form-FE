@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
-import LineTo, { SteppedLineTo } from 'react-lineto';
+import { SteppedLineTo } from 'react-lineto';
 
 import { v4 as uuid } from 'uuid';
-import { Button, List, Container, Box, Grid } from '@material-ui/core';
+import { Button, Box, Grid } from '@material-ui/core';
 import MainCard from 'ui-component/cards/MainCard';
 import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
 import usePods from 'hooks/usePods';
@@ -168,29 +168,6 @@ export default function Cluster() {
                         <StatusBottomContainer />
                     </Grid>
                 </DragDropContext>
-                {/* {pods.main.length &&
-                    pods.sub.length &&
-                    pods.sub.map((item) => (
-                        <LineTo
-                            key={item.id}
-                            from={pods.main[0].id}
-                            to={item.id}
-                        />
-                    ))} */}
-
-                {/* {cnt &&
-                    pods.sub.map((item) => (
-                        <SteppedLineTo
-                            borderColor="#000"
-                            borderWidth="2px"
-                            borderStyle="solid"
-                            // 점선 : dashed
-                            key={item.id}
-                            from={pods.main[0].id}
-                            to={item.id}
-                            orientation="h"
-                        />
-                    ))} */}
                 {subArr.map((item) => (
                     <SteppedLineTo
                         delay={0}

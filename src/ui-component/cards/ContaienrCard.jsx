@@ -24,7 +24,7 @@ function ContainerCard({ id, content, index }) {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}
-                    isDragging={snapshot.isDragging}
+                    isdragging={snapshot.isdragging}
                     item
                     lg={3}
                     md={3}
