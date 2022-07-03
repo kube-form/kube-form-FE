@@ -16,6 +16,13 @@ const usePods = () => {
         dispatch({ type: actionTypes.POD_SET_WAIT, payload: wait });
     };
 
+    const reorder = (startIndex, endIndex) => {
+        const result = [...container.wait];
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+        setWait(result);
+    };
+
     // wait -> main 일단 한 개로 고려
     const addMainFromWait = (waitIdx) => {
         try {
@@ -69,6 +76,7 @@ const usePods = () => {
     return {
         ...container,
         initAll,
+        reorder,
         setWait,
         addSubFromWait,
         addMainFromWait,

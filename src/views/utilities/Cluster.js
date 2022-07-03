@@ -7,6 +7,8 @@ import { Button, List, Container, Box, Grid } from '@material-ui/core';
 import MainCard from 'ui-component/cards/MainCard';
 import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
 import usePods from 'hooks/usePods';
+import WaitContainer from 'ui-component/bottomTab/WaitContainer';
+import StatusBottomContainer from 'ui-component/bottomTab/StatusBottomContainer';
 
 import { Column } from './column';
 // import '@atlaskit/css-reset';
@@ -104,6 +106,8 @@ export default function Cluster() {
                 pods.addMainFromWait(source.index);
             } else if (finish === 'sub') {
                 pods.addSubFromWait(source.index);
+            } else if (start === finish) {
+                pods.reorder(source.index, destination.index);
             }
             // copy(Items, items, source, destination);
         }
@@ -148,19 +152,21 @@ export default function Cluster() {
                                 <Column items={pods.main} droppableId="main" />
                             </Box>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={8}>
                             <Box className="sub">
                                 <Column items={pods.sub} droppableId="sub" />
                             </Box>
                         </Grid>
-                        <Grid item xs={4}>
-                            <Box className="wait">
-                                <Column items={pods.wait} droppableId="wait" />
-                            </Box>
-                        </Grid>
                     </Grid>
-
-                    <Remove items={items} droppableId="remove" />
+                    <Grid item xs={12}>
+                        <Remove items={items} droppableId="remove" />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <WaitContainer />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <StatusBottomContainer />
+                    </Grid>
                 </DragDropContext>
                 {/* {pods.main.length &&
                     pods.sub.length &&
