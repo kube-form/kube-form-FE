@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
-import LineTo from 'react-lineto';
+import LineTo, { SteppedLineTo } from 'react-lineto';
 
 import { v4 as uuid } from 'uuid';
 import { Button, List, Container, Box, Grid } from '@material-ui/core';
@@ -13,7 +13,6 @@ import { Column } from './column';
 import { ButtonBox, AllArea } from './styles';
 import Remove from './remove';
 import Modal from './modal';
-// import clusterImg from './img/Cluster.jpeg';
 // import './css/global.css';
 
 const Items = [
@@ -60,8 +59,12 @@ export default function Cluster() {
 
     console.log(pods);
     const [items, setItems] = useState([]);
+    const { main, sub } = pods;
     const [modalOpen, setModalOpen] = useState(false);
     // splice(start, deleteCnt, insertVal) start부터 deleteCnt개 제거, insertVal몇개 넣어라
+
+    const subArr = pods.sub;
+    const cnt = subArr.length;
 
     const getDummyData = async () => {
         setTimeout(() => {
@@ -124,19 +127,10 @@ export default function Cluster() {
         getDummyData();
     }, []);
 
-    const makeLine = (now, next) => {
-        const line = (
-            <LineTo
-                borderColor="black"
-                borderWidth="3px"
-                from={now}
-                to={next}
-            />
-        );
-        return line;
-    };
+    // useEffect(() => {
+    //     console.log(main, sub);
+    // }, [main, sub]);
 
-    console.log(pods.wait);
     return (
         <MainCard
             title="Cluster DnD"
@@ -165,15 +159,45 @@ export default function Cluster() {
                             </Box>
                         </Grid>
                     </Grid>
-                    {pods.main &&
-                        pods.sub &&
-                        pods.sub.map((i) => {
-                            makeLine(pods.main[0].id, pods.sub[i].id);
-                        })}
-                    {/* {makeLine(pods.main[0].id, pods.sub[1].id)} */}
 
                     <Remove items={items} droppableId="remove" />
                 </DragDropContext>
+                {/* {pods.main.length &&
+                    pods.sub.length &&
+                    pods.sub.map((item) => (
+                        <LineTo
+                            key={item.id}
+                            from={pods.main[0].id}
+                            to={item.id}
+                        />
+                    ))} */}
+
+                {/* {cnt &&
+                    pods.sub.map((item) => (
+                        <SteppedLineTo
+                            borderColor="#000"
+                            borderWidth="2px"
+                            borderStyle="solid"
+                            // 점선 : dashed
+                            key={item.id}
+                            from={pods.main[0].id}
+                            to={item.id}
+                            orientation="h"
+                        />
+                    ))} */}
+                {subArr.map((item) => (
+                    <SteppedLineTo
+                        delay={0}
+                        borderColor="#000"
+                        borderWidth="2px"
+                        borderStyle="solid"
+                        // 점선 : dashed
+                        key={item.id}
+                        from={pods.main[0].id}
+                        to={item.id}
+                        orientation="h"
+                    />
+                ))}
                 <ButtonBox>
                     <Button
                         onClick={() => {
