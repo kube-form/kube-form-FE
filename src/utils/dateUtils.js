@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
+
 import moment from 'moment';
-import koLocale from 'moment/locale/ko';
+import 'moment-timezone';
 
 export default function getMomentFromNow(date) {
-    moment.locale('kr', [koLocale]);
     return moment(date).fromNow();
 }
 
