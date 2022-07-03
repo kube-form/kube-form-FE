@@ -169,7 +169,7 @@ function IamUpdatePage() {
                                     variant="contained"
                                     color="secondary"
                                 >
-                                    Register
+                                    Update
                                 </Button>
                             </AnimateButton>
                         </Box>

@@ -169,9 +169,9 @@ export default function Cluster() {
                     <Grid item xs={12}>
                         <WaitContainer />
                     </Grid>
-                    {/* <Grid item xs={12}>
+                    <Grid item xs={12}>
                         <StatusBottomContainer />
-                    </Grid> */}
+                    </Grid>
                 </DragDropContext>
                 {/* <ButtonBox>
                     <Button
