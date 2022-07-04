@@ -5,9 +5,9 @@ import { v4 as uuid } from 'uuid';
 import { Grid } from '@material-ui/core';
 import usePods from 'hooks/usePods';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
-
-import { Column } from './Column';
-import Remove from './Remove';
+import { gridSpacing } from 'store/constant';
+import NodeContainer from 'ui-component/middleTab/NodeContainer';
+// import { Column } from 'ui-component/middleTab/Column';
 
 const Items = [
     {
@@ -99,8 +99,22 @@ export default function Cluster() {
         getDummyData();
     }, []);
 
+    console.log(pods.sub);
     return (
         <DragDropContext onDragEnd={onDragEnd}>
+            <Grid container>
+                <Grid item xs={gridSpacing}>
+                    admin img + arrow
+                </Grid>
+
+                <Grid item xs={gridSpacing * 2}>
+                    <NodeContainer items={pods.sub} />
+                </Grid>
+
+                <Grid item xs={gridSpacing}>
+                    ingress controller + User img
+                </Grid>
+            </Grid>
             <Grid item xs={12}>
                 <WaitContainer />
             </Grid>

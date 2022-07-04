@@ -63,10 +63,11 @@ export const ColContainer = styled.div`
 `;
 
 export const Item = styled.div`
-    /* display: flex; */
-    /* :hover {
-    background-color: ${(props) => (props.area === 'area' ? 'blue' : 'green')};
-  } */
+    display: flex;
+    :hover {
+        background-color: ${(props) =>
+            props.area === 'area' ? 'blue' : 'green'};
+    }
 `;
 
 export const TaskList = styled.div`
