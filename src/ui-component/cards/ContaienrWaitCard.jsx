@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { Draggable } from 'react-beautiful-dnd';
 
-function ContainerCard({ id, content, index }) {
+function ContainerWaitCard({ id, content, index }) {
     const theme = useTheme();
 
     return (
@@ -80,7 +80,7 @@ function ContainerCard({ id, content, index }) {
     );
 }
 
-ContainerCard.propTypes = {
+ContainerWaitCard.propTypes = {
     index: PropTypes.number.isRequired,
     content: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
@@ -116,4 +116,4 @@ const ImageContainerCard = styled(Grid)(({ theme }) => ({
     },
 }));
 
-export default ContainerCard;
+export default ContainerWaitCard;

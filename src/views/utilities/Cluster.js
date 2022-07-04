@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import { v4 as uuid } from 'uuid';
 import { Grid } from '@material-ui/core';
 import usePods from 'hooks/usePods';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
+import ContainerCard from 'ui-component/cards/ContainerCard';
 
 const Items = [
     {
@@ -98,6 +99,41 @@ export default function Cluster() {
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
+            <Grid container>
+                <Grid item xs={3}>
+                    1
+                </Grid>
+                <Grid
+                    item
+                    xs={3}
+                    style={{ display: 'flex', alignItems: 'center' }}
+                >
+                    1
+                </Grid>
+                <Grid item xs={3}>
+                    <Droppable droppableId="sub">
+                        {(provided, snapshot) => (
+                            <Grid
+                                item
+                                xs={11}
+                                container
+                                className="sub"
+                                ref={provided.innerRef}
+                                isDraggingOver={snapshot.isDraggingOver}
+                                {...provided.droppableProps}
+                            >
+                                {pods.sub.map((item, index) => (
+                                    <ContainerCard index={index} {...item} />
+                                ))}
+                                {provided.placeholder}
+                            </Grid>
+                        )}
+                    </Droppable>
+                </Grid>
+                <Grid item xs={3}>
+                    4
+                </Grid>
+            </Grid>
             <Grid item xs={12}>
                 <WaitContainer />
             </Grid>
