@@ -5,6 +5,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import {
     Avatar,
     Box,
+    CardActionArea,
     Grid,
     List,
     ListItem,
@@ -26,50 +27,54 @@ function ContainerCard({ id, content, index }) {
                     ref={provided.innerRef}
                     isdragging={snapshot.isdragging}
                     item
+                    xs={12}
                 >
-                    <Box sx={{ p: 2 }}>
-                        <List sx={{ py: 0 }}>
-                            <ListItem
-                                alignItems="center"
-                                disableGutters
-                                sx={{ py: 0 }}
-                            >
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <img
-                                            className="ContainerCardImage"
-                                            alt={`${index}_container_image`}
-                                            src={`https://picsum.photos/id/${index}/50/50`}
-                                        />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText
-                                    sx={{
-                                        py: 0,
-                                        mt: 0.45,
-                                        mb: 0.45,
-                                    }}
-                                    primary={
-                                        <Typography variant="h4" noWrap>
-                                            {content}
-                                        </Typography>
-                                    }
-                                    secondary={
-                                        <Typography
-                                            variant="subtitle2"
-                                            sx={{
-                                                color: theme.palette.grey[500],
-                                                mt: 0.5,
-                                            }}
-                                            noWrap
-                                        >
-                                            {id}
-                                        </Typography>
-                                    }
-                                />
-                            </ListItem>
-                        </List>
-                    </Box>
+                    <CardActionArea>
+                        <Box sx={{ p: 2 }}>
+                            <List sx={{ py: 0 }}>
+                                <ListItem
+                                    alignItems="center"
+                                    disableGutters
+                                    sx={{ py: 0 }}
+                                >
+                                    <ListItemAvatar>
+                                        <Avatar>
+                                            <img
+                                                className="ContainerCardImage"
+                                                alt={`${index}_container_image`}
+                                                src={`https://picsum.photos/id/${index}/50/50`}
+                                            />
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText
+                                        sx={{
+                                            py: 0,
+                                            mt: 0.45,
+                                            mb: 0.45,
+                                        }}
+                                        primary={
+                                            <Typography variant="h4" noWrap>
+                                                {content}
+                                            </Typography>
+                                        }
+                                        secondary={
+                                            <Typography
+                                                variant="subtitle2"
+                                                sx={{
+                                                    color: theme.palette
+                                                        .grey[500],
+                                                    mt: 0.5,
+                                                }}
+                                                noWrap
+                                            >
+                                                {id}
+                                            </Typography>
+                                        }
+                                    />
+                                </ListItem>
+                            </List>
+                        </Box>
+                    </CardActionArea>
                 </ImageContainerCard>
             )}
         </Draggable>
