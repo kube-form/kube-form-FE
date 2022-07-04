@@ -5,7 +5,6 @@ import styled from '@emotion/styled';
 import ContainerCard from 'ui-component/cards/ContaienrCard';
 
 import Task from './Task';
-import { Title, TaskList, ColContainer, Item } from './Styles';
 
 // eslint-disable-next-line import/prefer-default-export
 export function Column({ items, droppableId }) {
@@ -24,7 +23,7 @@ export function Column({ items, droppableId }) {
                     >
                         <Item area={droppableId}>
                             {items.map((item, index) => (
-                                <ContainerCard
+                                <Task
                                     key={item.id}
                                     content={item.content}
                                     index={index}
@@ -49,3 +48,11 @@ Column.propTypes = {
     ).isRequired,
     droppableId: PropTypes.string.isRequired,
 };
+
+const Title = styled.h3``;
+
+const TaskList = styled.div``;
+
+const ColContainer = styled.div``;
+
+const Item = styled.div``;
