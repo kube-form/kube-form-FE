@@ -1,13 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 
-import { v4 as uuid } from 'uuid';
-import { Grid } from '@material-ui/core';
 import usePods from 'hooks/usePods';
-import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import { gridSpacing } from 'store/constant';
+import { v4 as uuid } from 'uuid';
+import { useTheme } from '@mui/material/styles';
+import { Grid } from '@material-ui/core';
+
+import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import NodeContainer from 'ui-component/middleTab/NodeContainer';
+
+import RightView from 'ui-component/middleTab/RightView';
 // import { Column } from 'ui-component/middleTab/Column';
+import CableIcon from '@mui/icons-material/Cable';
+
+import LineTo, { SteppedLineTo } from 'react-lineto';
 
 const Items = [
     {
@@ -50,6 +57,8 @@ const Items = [
 
 export default function Cluster() {
     const pods = usePods();
+    const [items, setItems] = useState([]);
+    const theme = useTheme();
 
     const getDummyData = async () => {
         setTimeout(() => {
@@ -98,22 +107,55 @@ export default function Cluster() {
     useEffect(() => {
         getDummyData();
     }, []);
-
-    console.log(pods.sub);
     return (
         <DragDropContext onDragEnd={onDragEnd}>
             <Grid container>
                 <Grid item xs={gridSpacing}>
                     admin img + arrow
                 </Grid>
-
-                <Grid item xs={gridSpacing * 2}>
-                    <NodeContainer items={pods.sub} />
-                </Grid>
-
                 <Grid item xs={gridSpacing}>
-                    ingress controller + User img
+                    main
                 </Grid>
+                <Grid item xs={gridSpacing}>
+                    <NodeContainer />
+                    {/* <Column items={pods.sub} droppableId="sub" /> */}
+                </Grid>
+                <Grid item xs={gridSpacing}>
+                    <CableIcon
+                        className="Cable"
+                        sx={{
+                            m: 2,
+                            fontSize: 50,
+                            color: theme.palette.secondary[200],
+                        }}
+                    />
+                    <div className="test">test</div>
+                </Grid>
+                {console.log(pods.sub)}
+                {pods.sub.map((item) => (
+                    <SteppedLineTo
+                        delay={0}
+                        borderColor="#000"
+                        borderStyle="solid"
+                        // 점선 : dashed
+                        key={item.id}
+                        from="test"
+                        to={item.id}
+                        orientation="h"
+                    />
+                ))}
+                {pods.sub.map((item) => (
+                    <LineTo
+                        delay={0}
+                        borderColor="#000"
+                        borderStyle="solid"
+                        // 점선 : dashed
+                        key={item.id}
+                        from="test"
+                        to={item.id}
+                        orientation="h"
+                    />
+                ))}
             </Grid>
             <Grid item xs={12}>
                 <WaitContainer />

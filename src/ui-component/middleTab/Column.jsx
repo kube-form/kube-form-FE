@@ -1,10 +1,7 @@
 import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-// import ContainerCard from 'ui-component/cards/ContaienrCard';
-
-import Task from 'ui-component/middleTab/Task';
+import NodeCard from 'ui-component/cards/NodeCard';
 
 // eslint-disable-next-line import/prefer-default-export
 export function Column({ items, droppableId }) {
@@ -21,16 +18,15 @@ export function Column({ items, droppableId }) {
                         isDraggingOver={snapshot.isDraggingOver}
                         {...provided.droppableProps}
                     >
-                        <Item area={droppableId}>
-                            {items.map((item, index) => (
-                                <Task
-                                    key={item.id}
-                                    content={item.content}
-                                    index={index}
-                                    id={item.id}
-                                />
-                            ))}
-                        </Item>
+                        {items.map((item, index) => (
+                            <NodeCard
+                                key={item.id}
+                                content={item.content}
+                                index={index}
+                                id={item.id}
+                            />
+                        ))}
+
                         {provided.placeholder}
                     </TaskList>
                 )}
@@ -38,16 +34,6 @@ export function Column({ items, droppableId }) {
         </ColContainer>
     );
 }
-
-Column.propTypes = {
-    items: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string,
-            content: PropTypes.string,
-        }),
-    ).isRequired,
-    droppableId: PropTypes.string.isRequired,
-};
 
 const Title = styled.h3`
     padding: 8px;
@@ -70,12 +56,4 @@ const ColContainer = styled.div`
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-`;
-
-const Item = styled.div`
-    display: flex;
-    :hover {
-        background-color: ${(props) =>
-            props.area === 'area' ? 'blue' : 'green'};
-    }
 `;

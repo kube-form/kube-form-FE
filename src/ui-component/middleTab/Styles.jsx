@@ -4,7 +4,11 @@ export const AllArea = styled.div`
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
     position: relative;
+    text-align: center;
+    display: flex;
+    justify-content: center;
 `;
+
 export const Title = styled.h3`
     padding: 8px;
     font-size: 32px;
