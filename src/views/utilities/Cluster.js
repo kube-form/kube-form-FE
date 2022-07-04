@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
-import { SteppedLineTo } from 'react-lineto';
+import LineTo, { SteppedLineTo } from 'react-lineto';
 
 import { v4 as uuid } from 'uuid';
 import { Button, Box, Grid } from '@material-ui/core';
-import MainCard from 'ui-component/cards/MainCard';
-import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
+
 import usePods from 'hooks/usePods';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import StatusBottomContainer from 'ui-component/bottomTab/StatusBottomContainer';
 
 import { Column } from './Column';
 // import '@atlaskit/css-reset';
-import { ButtonBox, AllArea } from './styles';
+import { ButtonBox, AllArea } from './Styles';
 import Remove from './Remove';
 import Modal from './Modal';
 // import './css/global.css';
@@ -136,39 +135,54 @@ export default function Cluster() {
     // }, [main, sub]);
 
     return (
-        <MainCard
-            title="Cluster DnD"
-            secondary={<SecondaryAction link="https://kubernetes.io/ko/" />}
-        >
-            <AllArea>
-                <DragDropContext
-                    // onDragStart={onDragStart}
-                    // onDragUpdate={onDragUpdate}
-                    onDragEnd={onDragEnd}
-                >
-                    <Grid container>
-                        <Grid item xs={4}>
-                            <Box className="main">
-                                <Column items={pods.main} droppableId="main" />
-                            </Box>
-                        </Grid>
-                        <Grid item xs={8}>
-                            <Box className="sub">
-                                <Column items={pods.sub} droppableId="sub" />
-                            </Box>
-                        </Grid>
+        <AllArea>
+            <DragDropContext
+                // onDragStart={onDragStart}
+                // onDragUpdate={onDragUpdate}
+                onDragEnd={onDragEnd}
+            >
+                <Grid container sx={{ display: 'flex', alginItems: 'center' }}>
+                    <Grid item xs={3}>
+                        123
                     </Grid>
-                    <Grid item xs={12}>
-                        <Remove items={items} droppableId="remove" />
+                    <Grid
+                        item
+                        xs={3}
+                        sx={{ display: 'flex', alginItems: 'center' }}
+                    >
+                        <Box className="main">
+                            <Column items={pods.main} droppableId="main" />
+                        </Box>
                     </Grid>
-                    <Grid item xs={12}>
-                        <WaitContainer />
+                    <Grid item xs={3}>
+                        <Box className="sub">
+                            <Column items={pods.sub} droppableId="sub" />
+                        </Box>
                     </Grid>
-                    <Grid item xs={12}>
-                        <StatusBottomContainer />
+                    <Grid item xs={3}>
+                        456
                     </Grid>
-                </DragDropContext>
-                {subArr.map((item) => (
+                </Grid>
+                <Grid item xs={12}>
+                    <Remove items={items} droppableId="remove" />
+                </Grid>
+                <Grid item xs={12}>
+                    <WaitContainer />
+                </Grid>
+                <Grid item xs={12}>
+                    <StatusBottomContainer />
+                </Grid>
+            </DragDropContext>
+            <LineTo
+                delay={0}
+                borderColor="#000"
+                borderWidth="2px"
+                borderStyle="solid"
+                // 점선 : dashed
+                from="main"
+                to="sub"
+            />
+            {/* {subArr.map((item) => (
                     <SteppedLineTo
                         delay={0}
                         borderColor="#000"
@@ -180,25 +194,20 @@ export default function Cluster() {
                         to={item.id}
                         orientation="h"
                     />
-                ))}
-                <ButtonBox>
-                    <Button
-                        onClick={() => {
-                            setTimeout(OpenModal, 2000);
-                        }}
-                        color="primary"
-                    >
-                        Submit
-                    </Button>
-                </ButtonBox>
-                <Modal
-                    open={modalOpen}
-                    close={CloseModal}
-                    header="제출 확인 창"
+                ))} */}
+            <ButtonBox>
+                <Button
+                    onClick={() => {
+                        setTimeout(OpenModal, 2000);
+                    }}
+                    color="primary"
                 >
-                    제출이 완료되었습니다!
-                </Modal>
-            </AllArea>
-        </MainCard>
+                    Submit
+                </Button>
+            </ButtonBox>
+            <Modal open={modalOpen} close={CloseModal} header="제출 확인 창">
+                제출이 완료되었습니다!
+            </Modal>
+        </AllArea>
     );
 }

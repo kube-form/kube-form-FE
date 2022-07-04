@@ -2,9 +2,10 @@ import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import ContainerCard from 'ui-component/cards/ContaienrCard';
 
 import Task from './Task';
-import { Title, TaskList, ColContainer, Item } from './styles';
+import { Title, TaskList, ColContainer, Item } from './Styles';
 
 // eslint-disable-next-line import/prefer-default-export
 export function Column({ items, droppableId }) {
@@ -23,7 +24,12 @@ export function Column({ items, droppableId }) {
                     >
                         <Item area={droppableId}>
                             {items.map((item, index) => (
-                                <Task key={item.id} item={item} index={index} />
+                                <ContainerCard
+                                    key={item.id}
+                                    content={item.content}
+                                    index={index}
+                                    id={item.id}
+                                />
                             ))}
                         </Item>
                         {provided.placeholder}

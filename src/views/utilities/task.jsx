@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Draggable } from 'react-beautiful-dnd';
 import usePods from 'hooks/usePods';
 
-import { TaskContainer } from './styles';
+import { TaskContainer } from './Styles';
 
 export default function Task({ item, index }) {
     return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import { Title, RemoveBox, RemoveArea, IconBox, RemoveDiv } from './styles';
+import { Title, RemoveBox, RemoveArea, IconBox, RemoveDiv } from './Styles';
 
 // eslint-disable-next-line react/prop-types
 // eslint-disable-next-line no-unused-vars
