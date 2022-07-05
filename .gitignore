@@ -101,3 +101,5 @@ $RECYCLE.BIN/
 .vscode
 build
 .env
+
+yarn.lock
