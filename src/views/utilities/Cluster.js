@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { DragDropContext } from 'react-beautiful-dnd';
+import React, { useEffect } from 'react';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import usePods from 'hooks/usePods';
 import { gridSpacing } from 'store/constant';
 import { v4 as uuid } from 'uuid';
-import { useTheme } from '@mui/material/styles';
-import { Grid } from '@material-ui/core';
-
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import NodeContainer from 'ui-component/middleTab/NodeContainer';
-
-// import { Column } from 'ui-component/middleTab/Column';
-
 import RightView from 'ui-component/middleTab/RightView';
-// import CableIcon from '@mui/icons-material/Cable';
-// import Xarrow, { useXarrow, Xwrapper } from 'react-xarrows';
+import { Grid, Box } from '@material-ui/core';
+import usePods from 'hooks/usePods';
+import ContainerCard from 'ui-component/cards/ContainerCard';
+import MainWorkerNode from 'ui-component/node/MainWorkerNode';
+import { Xwrapper } from 'react-xarrows';
+import LeftUserNode from 'ui-component/node/LeftUserNode';
+import LineSet from 'ui-component/line/LineSet';
 
 const Items = [
     {
@@ -107,29 +106,38 @@ export default function Cluster() {
     useEffect(() => {
         getDummyData();
     }, []);
-    return (
-        <DragDropContext onDragEnd={onDragEnd}>
-            <Grid
-                container
-                justifyContent="center"
-                alignItems="center"
-                xs={{ m: 10 }}
-            >
-                <Grid item xs={gridSpacing}>
-                    admin img + arrow
-                </Grid>
-                <Grid item xs={gridSpacing}>
-                    main
-                </Grid>
-                <Grid item xs={gridSpacing * 2}>
-                    <NodeContainer />
-                    {/* <Column items={pods.sub} droppableId="sub" /> */}
-                </Grid>
-            </Grid>
 
-            <Grid item xs={12}>
-                <WaitContainer />
-            </Grid>
-        </DragDropContext>
+    useEffect(() => {}, [window.innerWidth]);
+
+    return (
+        <Xwrapper>
+            <DragDropContext onDragEnd={onDragEnd}>
+                <Grid container>
+                    <Grid
+                        item
+                        xs={2}
+                        direction="column"
+                        style={{ display: 'flex', alignItems: 'flex-start' }}
+                    >
+                        <Box sx={{ minHeight: 100 }} />
+                        <LeftUserNode className="eks_user" />
+                    </Grid>
+                    <Grid
+                        item
+                        xs={4}
+                        style={{ display: 'flex', alignItems: 'center' }}
+                    >
+                        <MainWorkerNode className="eks_main" />
+                    </Grid>
+                    <Grid item xs={gridSpacing * 2}>
+                      <NodeContainer />
+                    </Grid>
+                </Grid>
+                <LineSet />
+                <Grid item xs={12}>
+                    <WaitContainer />
+                </Grid>
+            </DragDropContext>
+        </Xwrapper>
     );
 }
