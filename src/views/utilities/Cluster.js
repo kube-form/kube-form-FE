@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
+import usePods from 'hooks/usePods';
+import { gridSpacing } from 'store/constant';
 import { v4 as uuid } from 'uuid';
+import WaitContainer from 'ui-component/bottomTab/WaitContainer';
+import NodeContainer from 'ui-component/middleTab/NodeContainer';
+import RightView from 'ui-component/middleTab/RightView';
 import { Grid, Box } from '@material-ui/core';
 import usePods from 'hooks/usePods';
-import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import ContainerCard from 'ui-component/cards/ContainerCard';
 import MainWorkerNode from 'ui-component/node/MainWorkerNode';
-
 import { Xwrapper } from 'react-xarrows';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
 import LineSet from 'ui-component/line/LineSet';
@@ -53,6 +56,8 @@ const Items = [
 
 export default function Cluster() {
     const pods = usePods();
+    const [items, setItems] = useState([]);
+    const theme = useTheme();
 
     const getDummyData = async () => {
         setTimeout(() => {
@@ -124,37 +129,8 @@ export default function Cluster() {
                     >
                         <MainWorkerNode className="eks_main" />
                     </Grid>
-                    <Grid item xs={3}>
-                        <Droppable droppableId="sub">
-                            {(provided, snapshot) => (
-                                <Grid
-                                    style={{
-                                        backgroundColor: '#ffffff',
-                                        zIndex: 99,
-                                        minHeight: 400,
-                                    }}
-                                    item
-                                    xs={11}
-                                    container
-                                    className="eks_sub"
-                                    id="eks_sub"
-                                    ref={provided.innerRef}
-                                    isDraggingOver={snapshot.isDraggingOver}
-                                    {...provided.droppableProps}
-                                >
-                                    {pods.sub.map((item, index) => (
-                                        <ContainerCard
-                                            index={index}
-                                            {...item}
-                                        />
-                                    ))}
-                                    {provided.placeholder}
-                                </Grid>
-                            )}
-                        </Droppable>
-                    </Grid>
-                    <Grid item xs={3}>
-                        4
+                    <Grid item xs={gridSpacing * 2}>
+                      <NodeContainer />
                     </Grid>
                 </Grid>
                 <LineSet />

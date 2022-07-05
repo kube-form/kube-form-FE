@@ -1,15 +1,13 @@
 import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import DeleteIcon from '@material-ui/icons/Delete';
-import styled from '@emotion/styled';
+import { Title, RemoveBox, RemoveArea, IconBox, RemoveDiv } from './styles';
 
-// eslint-disable-next-line react/prop-types
-// eslint-disable-next-line no-unused-vars
 export default function Remove({ key, items, droppableId, target }) {
     return (
         <RemoveDiv>
             <Title>
-                {droppableId} <br /> {` item`}
+                {droppableId} {<br />} {` item`}
             </Title>
             <RemoveBox>
                 <Droppable
@@ -36,13 +34,3 @@ export default function Remove({ key, items, droppableId, target }) {
         </RemoveDiv>
     );
 }
-
-const Title = styled.h3``;
-
-const RemoveBox = styled.div``;
-
-const RemoveArea = styled.div``;
-
-const IconBox = styled.div``;
-
-const RemoveDiv = styled.div``;
