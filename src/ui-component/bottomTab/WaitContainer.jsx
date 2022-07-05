@@ -22,8 +22,8 @@ function WaitContainer() {
     const { wait } = usePods();
     const [page, setPage] = useState(1);
 
-    const handlePage = (e) => {
-        setPage(parseInt(e.target.outerText, 10));
+    const handlePage = (e, value) => {
+        setPage(value);
     };
 
     return (

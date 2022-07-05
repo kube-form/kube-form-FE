@@ -3,7 +3,7 @@ import usePods from 'hooks/usePods';
 
 import { gridSpacing } from 'store/constant';
 import { useTheme } from '@mui/material/styles';
-import { Grid, Typography } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 
 import styled from '@emotion/styled';
 
@@ -13,22 +13,16 @@ import NodeCard from 'ui-component/cards/NodeCard';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import HailIcon from '@mui/icons-material/Hail';
 
-import Xarrow, { Xwrapper } from 'react-xarrows';
-
 function NodeContainer() {
     const { sub } = usePods();
     const theme = useTheme();
-    const controllerRef = useRef();
-    const userRef = useRef(null);
 
     return (
         <Grid container spacing={gridSpacing} alignItems="center">
             <Grid item xs={6}>
-                {/* <Column items={items} droppableId="sub" /> */}
-                <ColContainer>
-                    <Typography variant="h2" align="center">
-                        Worker Node
-                    </Typography>
+                <ColContainer
+                    style={{ minHeight: 400, backgroundColor: '#fff' }}
+                >
                     <Droppable droppableId="sub">
                         {(provided, snapshot) => (
                             <TaskList
@@ -53,7 +47,8 @@ function NodeContainer() {
             </Grid>
             <Grid item xs={3} alignContent="center" jusitfyContent="center">
                 <AccountTreeIcon
-                    ref={controllerRef}
+                    // ref={controllerRef}
+                    id="controller"
                     sx={{
                         ml: 8,
                         fontSize: 50,
@@ -63,7 +58,8 @@ function NodeContainer() {
             </Grid>
             <Grid item xs={3} alignContent="center" jusitfyContent="center">
                 <HailIcon
-                    ref={userRef}
+                    // ref={userRef}
+                    id="user"
                     sx={{
                         ml: 5,
                         fontSize: 50,
@@ -71,36 +67,13 @@ function NodeContainer() {
                     }}
                 />
             </Grid>
-
-            <Xwrapper>
-                {sub.map((item) => (
-                    <Xarrow
-                        key={item.id}
-                        start={controllerRef}
-                        end={item.id}
-                        path="grid"
-                        startAnchor="left"
-                        color={theme.palette.secondary[200]}
-                        showHead={null}
-                        strokeWidth={3}
-                        headSize={4}
-                    />
-                ))}
-                <Xarrow
-                    end={controllerRef}
-                    start={userRef}
-                    strokeWidth={2}
-                    showHead={null}
-                    color={theme.palette.secondary[200]}
-                />
-            </Xwrapper>
         </Grid>
     );
 }
 
 export default NodeContainer;
 
-const TaskList = styled.div`
+const TaskList = styled(Box)`
     border-radius: 10px;
     padding: 15px;
     transition: background-color 0.5s ease;
@@ -109,10 +82,9 @@ const TaskList = styled.div`
             ? props.theme.palette.success.light
             : props.theme.palette.primary};
     flex-grow: 1;
+    min-height: 400px;
 
     /* z-index: 99; */
 `;
 
-const ColContainer = styled(Grid)(({ theme }) => ({
-    // backgroundColor: `${theme.palette.grey}`,
-}));
+const ColContainer = styled(Grid)(({ theme }) => ({}));

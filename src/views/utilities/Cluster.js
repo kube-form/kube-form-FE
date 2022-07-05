@@ -8,7 +8,6 @@ import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import NodeContainer from 'ui-component/middleTab/NodeContainer';
 import RightView from 'ui-component/middleTab/RightView';
 import { Grid, Box } from '@material-ui/core';
-import usePods from 'hooks/usePods';
 import ContainerCard from 'ui-component/cards/ContainerCard';
 import MainWorkerNode from 'ui-component/node/MainWorkerNode';
 import { Xwrapper } from 'react-xarrows';
@@ -56,8 +55,6 @@ const Items = [
 
 export default function Cluster() {
     const pods = usePods();
-    const [items, setItems] = useState([]);
-    const theme = useTheme();
 
     const getDummyData = async () => {
         setTimeout(() => {
@@ -112,28 +109,36 @@ export default function Cluster() {
     return (
         <Xwrapper>
             <DragDropContext onDragEnd={onDragEnd}>
-                <Grid container>
-                    <Grid
-                        item
-                        xs={2}
-                        direction="column"
-                        style={{ display: 'flex', alignItems: 'flex-start' }}
-                    >
-                        <Box sx={{ minHeight: 100 }} />
-                        <LeftUserNode className="eks_user" />
+                <Box py={2}>
+                    <Grid container>
+                        <Grid
+                            item
+                            xs={2}
+                            direction="column"
+                            style={{
+                                display: 'flex',
+                                alignItems: 'flex-start',
+                            }}
+                        >
+                            <Box sx={{ minHeight: 100 }} />
+                            <LeftUserNode className="admin" />
+                        </Grid>
+                        <Grid
+                            item
+                            xs={4}
+                            alignItems="center"
+                            style={{ display: 'flex' }}
+                        >
+                            <MainWorkerNode className="main" />
+                        </Grid>
+                        <Grid item xs={6} id="sub">
+                            <NodeContainer />
+                        </Grid>
                     </Grid>
-                    <Grid
-                        item
-                        xs={4}
-                        style={{ display: 'flex', alignItems: 'center' }}
-                    >
-                        <MainWorkerNode className="eks_main" />
-                    </Grid>
-                    <Grid item xs={gridSpacing * 2}>
-                      <NodeContainer />
-                    </Grid>
-                </Grid>
+                </Box>
+
                 <LineSet />
+
                 <Grid item xs={12}>
                     <WaitContainer />
                 </Grid>

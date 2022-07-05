@@ -2,36 +2,58 @@ import React from 'react';
 import Xarrow, { useXarrow } from 'react-xarrows';
 import { useTheme } from '@mui/material/styles';
 import { Typography } from '@mui/material';
+import usePods from 'hooks/usePods';
 
 function LineSet() {
     const theme = useTheme();
+    const { sub } = usePods();
+    const borderSize = 4;
+    const borderColor = theme.palette.text.primary;
     const updateXarrow = useXarrow();
 
     return (
         <>
             <Xarrow
-                start="eks_user"
+                start="admin"
                 startAnchor="bottom"
-                end="eks_main"
+                end="main"
                 endAnchor="left"
-                // labels={
-                //     <Typography variant="h4" sx={{ marginTop: 15 }}>
-                //         Kubectl
-                //     </Typography>
-                // }
-                color={theme.palette.text.primary}
+                strokeWidth={borderSize}
+                color={borderColor}
                 path="grid"
                 animateDrawing
                 showTail={false}
             />
             <Xarrow
-                start="eks_main"
-                end="eks_sub"
+                start="main"
+                end="sub"
                 animateDrawing
                 path="grid"
-                color={theme.palette.text.primary}
-                // showHead={false}
+                strokeWidth={borderSize}
+                color={borderColor}
                 showTail={false}
+            />
+
+            {sub.map((item) => (
+                <Xarrow
+                    key={item.id}
+                    start={item.id}
+                    startAnchor="right"
+                    end="controller"
+                    endAnchor="left"
+                    path="grid"
+                    showHead={null}
+                    strokeWidth={borderSize}
+                    color={borderColor}
+                    headSize={4}
+                />
+            ))}
+            <Xarrow
+                start="controller"
+                end="user"
+                strokeWidth={borderSize}
+                color={borderColor}
+                showHead={null}
             />
         </>
     );

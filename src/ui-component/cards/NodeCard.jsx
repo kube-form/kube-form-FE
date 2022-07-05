@@ -28,7 +28,7 @@ function NodeCard({ id, content, index }) {
                     item
                     id={id}
                 >
-                    <Box sx={{ p: 0.5, m: 0.3 }}>
+                    <Box sx={{ p: 1, m: 0.3 }}>
                         <List sx={{ py: 0 }}>
                             <ListItem
                                 alignItems="center"
@@ -85,41 +85,40 @@ NodeCard.propTypes = {
 
 const ImageContainerCard = styled(Grid)(({ theme }) => ({
     position: 'relative',
-    border: `2px solid ${theme.palette.grey[500]}`,
+    // border: `2px solid ${theme.palette.grey[500]}`,
     borderRadius: 3,
-    padding: 8,
     flexDirection: 'column',
 
-    backgroundColor: (props) =>
-        props.isDragging
-            ? theme.palette.primary[200]
-            : theme.palette.secondary[200],
+    // backgroundColor: (props) =>
+    //     props.isDragging
+    //         ? theme.palette.primary[200]
+    //         : theme.palette.secondary[200],
 
     zIndex: 99,
     // color: '#fff',
     overflow: 'hidden',
 
     // '& .ContainerCardImage': {},
-    // '&:after': {
-    //     content: '""',
-    //     position: 'absolute',
-    //     width: 210,
-    //     height: 210,
-    //     background: `linear-gradient(210.04deg, ${theme.palette.primary.dark} -50.94%, rgba(144, 202, 249, 0) 83.49%)`,
-    //     borderRadius: '50%',
-    //     top: -30,
-    //     right: -180,
-    // },
-    // '&:before': {
-    //     content: '""',
-    //     position: 'absolute',
-    //     width: 210,
-    //     height: 210,
-    //     background: `linear-gradient(140.9deg, ${theme.palette.primary.dark} -14.02%, rgba(144, 202, 249, 0) 70.50%)`,
-    //     borderRadius: '50%',
-    //     top: -160,
-    //     right: -130,
-    // },
+    '&:after': {
+        content: '""',
+        position: 'absolute',
+        width: 210,
+        height: 210,
+        background: `linear-gradient(210.04deg, ${theme.palette.primary.dark} -50.94%, rgba(144, 202, 249, 0) 83.49%)`,
+        borderRadius: '50%',
+        top: -30,
+        right: -180,
+    },
+    '&:before': {
+        content: '""',
+        position: 'absolute',
+        width: 210,
+        height: 210,
+        background: `linear-gradient(140.9deg, ${theme.palette.primary.dark} -14.02%, rgba(144, 202, 249, 0) 70.50%)`,
+        borderRadius: '50%',
+        top: -160,
+        right: -130,
+    },
 }));
 
 export default NodeCard;
