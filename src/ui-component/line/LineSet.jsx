@@ -1,7 +1,6 @@
 import React from 'react';
 import Xarrow, { useXarrow } from 'react-xarrows';
 import { useTheme } from '@mui/material/styles';
-import { Typography } from '@mui/material';
 import usePods from 'hooks/usePods';
 
 function LineSet() {

@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 import usePods from 'hooks/usePods';
-import { gridSpacing } from 'store/constant';
 import { v4 as uuid } from 'uuid';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
-import NodeContainer from 'ui-component/middleTab/NodeContainer';
-import RightView from 'ui-component/middleTab/RightView';
+import NodeContainer from 'ui-component/node/NodeContainer';
 import { Grid, Box } from '@material-ui/core';
-import ContainerCard from 'ui-component/cards/ContainerCard';
 import MainWorkerNode from 'ui-component/node/MainWorkerNode';
 import { Xwrapper } from 'react-xarrows';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
