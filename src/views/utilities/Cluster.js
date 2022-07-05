@@ -10,11 +10,11 @@ import { Grid } from '@material-ui/core';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import NodeContainer from 'ui-component/middleTab/NodeContainer';
 
-import RightView from 'ui-component/middleTab/RightView';
 // import { Column } from 'ui-component/middleTab/Column';
-import CableIcon from '@mui/icons-material/Cable';
 
-import LineTo, { SteppedLineTo } from 'react-lineto';
+import RightView from 'ui-component/middleTab/RightView';
+// import CableIcon from '@mui/icons-material/Cable';
+// import Xarrow, { useXarrow, Xwrapper } from 'react-xarrows';
 
 const Items = [
     {
@@ -109,54 +109,24 @@ export default function Cluster() {
     }, []);
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            <Grid container>
+            <Grid
+                container
+                justifyContent="center"
+                alignItems="center"
+                xs={{ m: 10 }}
+            >
                 <Grid item xs={gridSpacing}>
                     admin img + arrow
                 </Grid>
                 <Grid item xs={gridSpacing}>
                     main
                 </Grid>
-                <Grid item xs={gridSpacing}>
+                <Grid item xs={gridSpacing * 2}>
                     <NodeContainer />
                     {/* <Column items={pods.sub} droppableId="sub" /> */}
                 </Grid>
-                <Grid item xs={gridSpacing}>
-                    <CableIcon
-                        className="Cable"
-                        sx={{
-                            m: 2,
-                            fontSize: 50,
-                            color: theme.palette.secondary[200],
-                        }}
-                    />
-                    <div className="test">test</div>
-                </Grid>
-                {console.log(pods.sub)}
-                {pods.sub.map((item) => (
-                    <SteppedLineTo
-                        delay={0}
-                        borderColor="#000"
-                        borderStyle="solid"
-                        // 점선 : dashed
-                        key={item.id}
-                        from="test"
-                        to={item.id}
-                        orientation="h"
-                    />
-                ))}
-                {pods.sub.map((item) => (
-                    <LineTo
-                        delay={0}
-                        borderColor="#000"
-                        borderStyle="solid"
-                        // 점선 : dashed
-                        key={item.id}
-                        from="test"
-                        to={item.id}
-                        orientation="h"
-                    />
-                ))}
             </Grid>
+
             <Grid item xs={12}>
                 <WaitContainer />
             </Grid>

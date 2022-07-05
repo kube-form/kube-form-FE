@@ -26,8 +26,9 @@ function NodeCard({ id, content, index }) {
                     ref={provided.innerRef}
                     isdragging={snapshot.isdragging}
                     item
+                    id={id}
                 >
-                    <Box sx={{ p: 2 }}>
+                    <Box sx={{ p: 0.5, m: 0.3 }}>
                         <List sx={{ py: 0 }}>
                             <ListItem
                                 alignItems="center"
@@ -84,11 +85,15 @@ NodeCard.propTypes = {
 
 const ImageContainerCard = styled(Grid)(({ theme }) => ({
     position: 'relative',
-    border: '2px solid lightgrey',
+    border: `2px solid ${theme.palette.grey[500]}`,
     borderRadius: 3,
     padding: 8,
-    marginBottom: 8,
     flexDirection: 'column',
+
+    backgroundColor: (props) =>
+        props.isDragging
+            ? theme.palette.primary[200]
+            : theme.palette.secondary[200],
 
     zIndex: 99,
     // color: '#fff',
