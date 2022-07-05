@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { Draggable } from 'react-beautiful-dnd';
 
-function ContainerCard({ id, content, index }) {
+function NodeCard({ id, content, index }) {
     const theme = useTheme();
 
     return (
@@ -26,12 +26,9 @@ function ContainerCard({ id, content, index }) {
                     ref={provided.innerRef}
                     isdragging={snapshot.isdragging}
                     item
-                    lg={3}
-                    md={3}
-                    sm={3}
-                    xs={3}
+                    id={id}
                 >
-                    <Box sx={{ p: 2 }}>
+                    <Box sx={{ p: 1, m: 0.3 }}>
                         <List sx={{ py: 0 }}>
                             <ListItem
                                 alignItems="center"
@@ -80,20 +77,28 @@ function ContainerCard({ id, content, index }) {
     );
 }
 
-ContainerCard.propTypes = {
+NodeCard.propTypes = {
     index: PropTypes.number.isRequired,
     content: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
 };
 
 const ImageContainerCard = styled(Grid)(({ theme }) => ({
-    // backgroundColor: theme.palette.secondary.dark,
-    borderRadius: 10,
+    position: 'relative',
+    // border: `2px solid ${theme.palette.grey[500]}`,
+    borderRadius: 3,
+    flexDirection: 'column',
+
+    // backgroundColor: (props) =>
+    //     props.isDragging
+    //         ? theme.palette.primary[200]
+    //         : theme.palette.secondary[200],
+
+    zIndex: 99,
     // color: '#fff',
     overflow: 'hidden',
-    position: 'relative',
 
-    '& .ContainerCardImage': {},
+    // '& .ContainerCardImage': {},
     '&:after': {
         content: '""',
         position: 'absolute',
@@ -116,4 +121,4 @@ const ImageContainerCard = styled(Grid)(({ theme }) => ({
     },
 }));
 
-export default ContainerCard;
+export default NodeCard;

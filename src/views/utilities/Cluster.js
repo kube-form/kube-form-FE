@@ -1,10 +1,15 @@
 import React, { useEffect } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 
-import { v4 as uuid } from 'uuid';
-import { Grid } from '@material-ui/core';
 import usePods from 'hooks/usePods';
+import { v4 as uuid } from 'uuid';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
+import NodeContainer from 'ui-component/node/NodeContainer';
+import { Grid, Box } from '@material-ui/core';
+import MainWorkerNode from 'ui-component/node/MainWorkerNode';
+import { Xwrapper } from 'react-xarrows';
+import LeftUserNode from 'ui-component/node/LeftUserNode';
+import LineSet from 'ui-component/line/LineSet';
 
 const Items = [
     {
@@ -96,11 +101,45 @@ export default function Cluster() {
         getDummyData();
     }, []);
 
+    useEffect(() => {}, [window.innerWidth]);
+
     return (
-        <DragDropContext onDragEnd={onDragEnd}>
-            <Grid item xs={12}>
-                <WaitContainer />
-            </Grid>
-        </DragDropContext>
+        <Xwrapper>
+            <DragDropContext onDragEnd={onDragEnd}>
+                <Box py={2}>
+                    <Grid container>
+                        <Grid
+                            item
+                            xs={2}
+                            direction="column"
+                            style={{
+                                display: 'flex',
+                                alignItems: 'flex-start',
+                            }}
+                        >
+                            <Box sx={{ minHeight: 100 }} />
+                            <LeftUserNode className="admin" />
+                        </Grid>
+                        <Grid
+                            item
+                            xs={4}
+                            alignItems="center"
+                            style={{ display: 'flex' }}
+                        >
+                            <MainWorkerNode className="main" />
+                        </Grid>
+                        <Grid item xs={6} id="sub">
+                            <NodeContainer />
+                        </Grid>
+                    </Grid>
+                </Box>
+
+                <LineSet />
+
+                <Grid item xs={12}>
+                    <WaitContainer />
+                </Grid>
+            </DragDropContext>
+        </Xwrapper>
     );
 }

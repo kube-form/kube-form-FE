@@ -14,7 +14,7 @@ import { gridSpacing } from 'store/constant';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 
 import MainCard from 'ui-component/cards/MainCard';
-import ContainerCard from 'ui-component/cards/ContaienrCard';
+import ContainerCard from 'ui-component/cards/ContaienrWaitCard';
 
 const ROWPERPAGE = 8;
 
@@ -22,8 +22,8 @@ function WaitContainer() {
     const { wait } = usePods();
     const [page, setPage] = useState(1);
 
-    const handlePage = (e) => {
-        setPage(parseInt(e.target.outerText, 10));
+    const handlePage = (e, value) => {
+        setPage(value);
     };
 
     return (
