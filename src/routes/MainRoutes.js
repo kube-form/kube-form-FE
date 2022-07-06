@@ -11,7 +11,13 @@ const DashboardDefault = Loadable(
 
 // utilities routing
 
-const UtilsCluster = Loadable(lazy(() => import('views/utilities/Cluster')));
+const UtilsCluster = Loadable(
+    lazy(() => import('views/utilities/cluster/Cluster')),
+);
+const UtilsClusterStatus = Loadable(
+    lazy(() => import('views/utilities/cluster/ClusterStatus')),
+);
+
 const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
 const UtilsMaterialIcons = Loadable(
     lazy(() => import('views/utilities/MaterialIcons')),
@@ -51,8 +57,12 @@ const MainRoutes = {
             element: <DashboardDefault />,
         },
         {
-            path: '/kube-form-FE/utils/cluster',
+            path: '/kube-form-FE/utils/cluster/register',
             element: <UtilsCluster />,
+        },
+        {
+            path: '/kube-form-FE/utils/cluster/status',
+            element: <UtilsClusterStatus />,
         },
         {
             path: '/kube-form-FE/utils/util-shadow',

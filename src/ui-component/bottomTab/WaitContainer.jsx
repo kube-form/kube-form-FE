@@ -52,8 +52,7 @@ function WaitContainer() {
                                 item
                                 xs={11}
                                 container
-                                rowSpacing={1}
-                                columnSpacing={1}
+                                spacing={gridSpacing}
                                 ref={provided.innerRef}
                                 isDraggingOver={snapshot.isDraggingOver}
                                 {...provided.droppableProps}

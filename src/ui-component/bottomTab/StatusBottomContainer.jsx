@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Box, Tabs, Tab } from '@mui/material';
 import MainCard from 'ui-component/cards/MainCard';
 import NetworkPanel from 'ui-component/bottomTabPannel/NetworkPanel';
+import SummaryPanel from 'ui-component/bottomTabPannel/SummaryPanel';
 import PropTypes from 'prop-types';
 
 const TABSDATA = ['summary', 'network', 'test', 'dongha', 'youngjae'];
@@ -28,11 +29,16 @@ function StatusBottomContainer() {
                     aria-label="status_tabs"
                 >
                     {TABSDATA.map((item, index) => (
-                        <Tab label={item} {...allyProps(index)} />
+                        <Tab
+                            label={item}
+                            {...allyProps(index)}
+                            disabled={index > 3}
+                        />
                     ))}
                 </Tabs>
             </Box>
             <NetworkPanel value={value} index={0} />
+            <SummaryPanel value={value} index={1} />
         </MainCard>
     );
 }

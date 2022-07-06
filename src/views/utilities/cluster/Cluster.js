@@ -7,7 +7,7 @@ import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import NodeContainer from 'ui-component/node/NodeContainer';
 import { Grid, Box } from '@material-ui/core';
 import MainWorkerNode from 'ui-component/node/MainWorkerNode';
-import { Xwrapper } from 'react-xarrows';
+import { useXarrow, Xwrapper } from 'react-xarrows';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
 import LineSet from 'ui-component/line/LineSet';
 
@@ -52,6 +52,7 @@ const Items = [
 
 export default function Cluster() {
     const pods = usePods();
+    const updateXarrow = useXarrow();
 
     const getDummyData = async () => {
         setTimeout(() => {
@@ -105,7 +106,11 @@ export default function Cluster() {
 
     return (
         <Xwrapper>
-            <DragDropContext onDragEnd={onDragEnd}>
+            <DragDropContext
+                onDragEnd={onDragEnd}
+                onDragStart={updateXarrow}
+                onDragUpdate={updateXarrow}
+            >
                 <Box py={2}>
                     <Grid container>
                         <Grid
