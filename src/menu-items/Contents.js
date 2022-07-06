@@ -53,7 +53,7 @@ const contents = {
                     breadcrumbs: false,
                 },
                 {
-                    id: 'cluster-register',
+                    id: 'cluster-status',
                     title: 'Status',
                     type: 'item',
                     url: '/utils/cluster/status',

@@ -12,7 +12,7 @@ import NavCollapse from '../NavCollapse';
 
 // ==============================|| SIDEBAR MENU LIST GROUP ||============================== //
 
-const NavGroup = ({ item, logined }) => {
+const NavGroup = ({ item }) => {
     const theme = useTheme();
 
     // menu list collapse & items
@@ -21,14 +21,7 @@ const NavGroup = ({ item, logined }) => {
             case 'collapse':
                 return <NavCollapse key={menu.id} menu={menu} level={1} />;
             case 'item':
-                return (
-                    <NavItem
-                        key={menu.id}
-                        item={menu}
-                        level={1}
-                        logined={logined.isLoggedIn}
-                    />
-                );
+                return <NavItem key={menu.id} item={menu} level={1} />;
             default:
                 return (
                     <Typography
@@ -55,29 +48,18 @@ const NavGroup = ({ item, logined }) => {
                             gutterBottom
                         >
                             {item.title}
-                            {item.caption &&
-                                (logined ? (
-                                    <Typography
-                                        variant="caption"
-                                        sx={{
-                                            ...theme.typography.subMenuCaption,
-                                        }}
-                                        display="block"
-                                    >
-                                        환영합니다
-                                    </Typography>
-                                ) : (
-                                    <Typography
-                                        variant="caption"
-                                        sx={{
-                                            ...theme.typography.subMenuCaption,
-                                        }}
-                                        display="block"
-                                        gutterBottom
-                                    >
-                                        {item.caption}
-                                    </Typography>
-                                ))}
+                            {item.caption && (
+                                <Typography
+                                    variant="caption"
+                                    sx={{
+                                        ...theme.typography.subMenuCaption,
+                                    }}
+                                    display="block"
+                                    gutterBottom
+                                >
+                                    {item.caption}
+                                </Typography>
+                            )}
                         </Typography>
                     )
                 }

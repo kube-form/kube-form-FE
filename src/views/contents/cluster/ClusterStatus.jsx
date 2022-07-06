@@ -6,6 +6,7 @@ import MainWorkerNode from 'ui-component/node/MainWorkerNode';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
 import LineSet from 'ui-component/line/LineSet';
 import StatusBottomContainer from 'ui-component/bottomTab/StatusBottomContainer';
+import LoadingComponent from 'ui-component/node/LoadingComponent';
 
 export default function Cluster() {
     return (
@@ -21,7 +22,8 @@ export default function Cluster() {
                             alignItems: 'flex-start',
                         }}
                     >
-                        <Box sx={{ minHeight: 100 }} />
+                        <LoadingComponent />
+                        {/* <Box sx={{ minHeight: 100 }} /> */}
                         <LeftUserNode className="admin" />
                     </Grid>
                     <Grid

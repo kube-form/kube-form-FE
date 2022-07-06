@@ -9,16 +9,16 @@ const DashboardDefault = Loadable(
     lazy(() => import('views/dashboard/Default')),
 );
 
-// utilities routing
+// contents routing
 
 const UtilsCluster = Loadable(
-    lazy(() => import('views/utilities/cluster/Cluster')),
+    lazy(() => import('views/contents/cluster/Cluster')),
 );
 const UtilsClusterStatus = Loadable(
-    lazy(() => import('views/utilities/cluster/ClusterStatus')),
+    lazy(() => import('views/contents/cluster/ClusterStatus')),
 );
 
-const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
+const UtilsShadow = Loadable(lazy(() => import('views/contents/Shadow')));
 const UtilsMaterialIcons = Loadable(
     lazy(() => import('views/contents/MaterialIcons')),
 );

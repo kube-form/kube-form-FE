@@ -10,12 +10,7 @@ import MainWorkerNode from 'ui-component/node/MainWorkerNode';
 import { useXarrow, Xwrapper } from 'react-xarrows';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
 import LineSet from 'ui-component/line/LineSet';
-<<<<<<< HEAD:src/views/contents/cluster/Cluster.js
 import WorkerNodeNumStatus from 'ui-component/node/WorkerNodeNumStatus';
-=======
-import CountNodes from 'ui-component/node/CountNodes';
-import LoadingComponent from 'ui-component/node/LoadingComponent';
->>>>>>> origin/master:src/views/contents/Cluster.js
 
 const Items = [
     {
@@ -128,12 +123,7 @@ export default function Cluster() {
                                 alignItems: 'flex-start',
                             }}
                         >
-<<<<<<< HEAD:src/views/contents/cluster/Cluster.js
                             <WorkerNodeNumStatus />
-=======
-                            <LoadingComponent />
-                            <CountNodes />
->>>>>>> origin/master:src/views/contents/Cluster.js
                             <LeftUserNode className="admin" />
                         </Grid>
                         <Grid
