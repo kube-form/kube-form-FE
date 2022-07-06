@@ -28,7 +28,7 @@ function NodeCard({ id, content, index }) {
                     item
                     id={id}
                 >
-                    <Box sx={{ p: 1, m: 0.3 }}>
+                    <Box sx={{ p: 2 }}>
                         <List sx={{ py: 0 }}>
                             <ListItem
                                 alignItems="center"
@@ -84,19 +84,9 @@ NodeCard.propTypes = {
 };
 
 const ImageContainerCard = styled(Grid)(({ theme }) => ({
-    position: 'relative',
-    // border: `2px solid ${theme.palette.grey[500]}`,
-    borderRadius: 3,
-    flexDirection: 'column',
-
-    // backgroundColor: (props) =>
-    //     props.isDragging
-    //         ? theme.palette.primary[200]
-    //         : theme.palette.secondary[200],
-
-    zIndex: 99,
-    // color: '#fff',
+    borderRadius: 10,
     overflow: 'hidden',
+    position: 'relative',
 
     // '& .ContainerCardImage': {},
     '&:after': {
@@ -106,18 +96,18 @@ const ImageContainerCard = styled(Grid)(({ theme }) => ({
         height: 210,
         background: `linear-gradient(210.04deg, ${theme.palette.primary.dark} -50.94%, rgba(144, 202, 249, 0) 83.49%)`,
         borderRadius: '50%',
-        top: -30,
-        right: -180,
+        top: 40,
+        right: -150,
     },
     '&:before': {
         content: '""',
         position: 'absolute',
         width: 210,
         height: 210,
-        background: `linear-gradient(140.9deg, ${theme.palette.primary.dark} -14.02%, rgba(144, 202, 249, 0) 70.50%)`,
+        background: `linear-gradient(210.9deg, ${theme.palette.primary.dark} -14.02%, rgba(144, 202, 249, 0) 70.50%)`,
         borderRadius: '50%',
-        top: -160,
-        right: -130,
+        top: -120,
+        left: -170,
     },
 }));
 
