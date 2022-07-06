@@ -3,17 +3,10 @@ import { Box, Tabs, Tab } from '@mui/material';
 import MainCard from 'ui-component/cards/MainCard';
 import NetworkPanel from 'ui-component/bottomTabPannel/NetworkPanel';
 import SummaryPanel from 'ui-component/bottomTabPannel/SummaryPanel';
-import PropTypes from 'prop-types';
 import TestPannel from 'ui-component/bottomTabPannel/TestPannel';
+import { tabAllyProps } from 'utils/util';
 
 const TABSDATA = ['summary', 'network', 'test'];
-
-function allyProps(index) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
 
 function StatusBottomContainer() {
     const [value, setValue] = useState(0);
@@ -32,7 +25,7 @@ function StatusBottomContainer() {
                     {TABSDATA.map((item, index) => (
                         <Tab
                             label={item}
-                            {...allyProps(index)}
+                            {...tabAllyProps(index)}
                             disabled={index > 3}
                         />
                     ))}
@@ -44,9 +37,5 @@ function StatusBottomContainer() {
         </MainCard>
     );
 }
-
-allyProps.propTypes = {
-    index: PropTypes.number.isRequired,
-};
 
 export default StatusBottomContainer;

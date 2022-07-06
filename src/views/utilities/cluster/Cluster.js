@@ -10,6 +10,7 @@ import MainWorkerNode from 'ui-component/node/MainWorkerNode';
 import { useXarrow, Xwrapper } from 'react-xarrows';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
 import LineSet from 'ui-component/line/LineSet';
+import WorkerNodeNumStatus from 'ui-component/node/WorkerNodeNumStatus';
 
 const Items = [
     {
@@ -108,8 +109,8 @@ export default function Cluster() {
         <Xwrapper>
             <DragDropContext
                 onDragEnd={onDragEnd}
-                onDragStart={updateXarrow}
-                onDragUpdate={updateXarrow}
+                // onDragStart={updateXarrow}
+                // onDragUpdate={updateXarrow}
             >
                 <Box py={2}>
                     <Grid container>
@@ -122,7 +123,7 @@ export default function Cluster() {
                                 alignItems: 'flex-start',
                             }}
                         >
-                            <Box sx={{ minHeight: 100 }} />
+                            <WorkerNodeNumStatus />
                             <LeftUserNode className="admin" />
                         </Grid>
                         <Grid
