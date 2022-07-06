@@ -3,7 +3,7 @@ import usePods from 'hooks/usePods';
 
 import { gridSpacing } from 'store/constant';
 import { useTheme } from '@mui/material/styles';
-import { Grid, Box } from '@mui/material';
+import { Grid, Box, CardActionArea } from '@mui/material';
 
 import styled from '@emotion/styled';
 
@@ -12,6 +12,7 @@ import NodeCard from 'ui-component/cards/NodeCard';
 
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import HailIcon from '@mui/icons-material/Hail';
+import SubCard from 'ui-component/cards/SubCard';
 
 function NodeContainer() {
     const { sub } = usePods();
@@ -45,6 +46,7 @@ function NodeContainer() {
                     </Droppable>
                 </ColContainer>
             </Grid>
+
             <Grid item xs={3} alignContent="center" jusitfyContent="center">
                 <AccountTreeIcon
                     // ref={controllerRef}

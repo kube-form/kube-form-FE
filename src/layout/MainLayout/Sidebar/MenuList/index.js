@@ -9,11 +9,11 @@ import NavGroup from './NavGroup';
 
 // ==============================|| SIDEBAR MENU LIST ||============================== //
 
-function MenuList() {
+function MenuList({ logined }) {
     const navItems = menuItem.items.map((item) => {
         switch (item.type) {
             case 'group':
-                return <NavGroup key={item.id} item={item} />;
+                return <NavGroup key={item.id} item={item} logined={logined} />;
             default:
                 return (
                     <Typography
