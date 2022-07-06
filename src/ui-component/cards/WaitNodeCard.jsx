@@ -20,7 +20,7 @@ function ContainerWaitCard({ id, content, index }) {
     return (
         <Draggable key={id} draggableId={id} index={index}>
             {(provided, snapshot) => (
-                <ImageContainerCard
+                <Grid
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}
@@ -31,7 +31,7 @@ function ContainerWaitCard({ id, content, index }) {
                     sm={3}
                     xs={3}
                 >
-                    <Box sx={{ p: 2 }}>
+                    <ImageContainerCard sx={{ p: 2 }}>
                         <List sx={{ py: 0 }}>
                             <ListItem
                                 alignItems="center"
@@ -73,8 +73,8 @@ function ContainerWaitCard({ id, content, index }) {
                                 />
                             </ListItem>
                         </List>
-                    </Box>
-                </ImageContainerCard>
+                    </ImageContainerCard>
+                </Grid>
             )}
         </Draggable>
     );
@@ -86,10 +86,9 @@ ContainerWaitCard.propTypes = {
     id: PropTypes.string.isRequired,
 };
 
-const ImageContainerCard = styled(Grid)(({ theme }) => ({
+const ImageContainerCard = styled(Box)(({ theme }) => ({
     // backgroundColor: theme.palette.secondary.dark,
     borderRadius: 10,
-    // color: '#fff',
     overflow: 'hidden',
     position: 'relative',
 
@@ -101,18 +100,18 @@ const ImageContainerCard = styled(Grid)(({ theme }) => ({
         height: 210,
         background: `linear-gradient(210.04deg, ${theme.palette.primary.dark} -50.94%, rgba(144, 202, 249, 0) 83.49%)`,
         borderRadius: '50%',
-        top: -30,
-        right: -180,
+        top: 40,
+        right: -150,
     },
     '&:before': {
         content: '""',
         position: 'absolute',
         width: 210,
         height: 210,
-        background: `linear-gradient(140.9deg, ${theme.palette.primary.dark} -14.02%, rgba(144, 202, 249, 0) 70.50%)`,
+        background: `linear-gradient(210.9deg, ${theme.palette.primary.dark} -14.02%, rgba(144, 202, 249, 0) 70.50%)`,
         borderRadius: '50%',
-        top: -160,
-        right: -130,
+        top: -120,
+        left: -170,
     },
 }));
 

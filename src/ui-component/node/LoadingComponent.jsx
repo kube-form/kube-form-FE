@@ -8,7 +8,7 @@ import { styled, useTheme } from '@mui/material/styles';
 export default function LoadingComponent() {
     const [loading, setLoading] = useState(false);
     const theme = useTheme();
-    const [done, setDone] = useState('fail');
+    const [done, setDone] = useState();
 
     const handleClick = () => {
         setLoading(true);
@@ -17,7 +17,7 @@ export default function LoadingComponent() {
     switch (done) {
         case 'success':
             return (
-                <Box>
+                <Box sx={{ minHeight: 100 }}>
                     <Typography
                         variant="subtitle1"
                         color={theme.palette.success.dark}
@@ -29,12 +29,14 @@ export default function LoadingComponent() {
         case 'fail':
             return (
                 <Box
+                    sx={{ minHeight: 100 }}
                     display="flex"
-                    alignItems="center"
-                    justifyContent="center"
                     color={theme.palette.error.dark}
                 >
-                    <ErrorOutlineIcon fontSize="small" />
+                    <ErrorOutlineIcon
+                        sx={{ marginRight: 1 }}
+                        fontSize="small"
+                    />
                     <Typography
                         variant="subtitle1"
                         color={theme.palette.error.dark}
@@ -45,7 +47,7 @@ export default function LoadingComponent() {
             );
         default:
             return (
-                <Box sx={{ '& > button': { m: 1 } }}>
+                <Box sx={{ '& > button': { m: 1 }, minHeight: 100 }}>
                     <LoadingButton
                         onClick={handleClick}
                         loading={loading}

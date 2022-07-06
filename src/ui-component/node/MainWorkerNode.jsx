@@ -2,6 +2,7 @@ import { Card, CardActionArea, Typography, CardContent } from '@mui/material';
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
+import { gridSpacing } from 'store/constant';
 
 function MainWorkerNode({ className }) {
     const theme = useTheme();
@@ -14,6 +15,7 @@ function MainWorkerNode({ className }) {
                 zIndex: 99,
             }}
             className={className}
+            spacing={gridSpacing}
             id={className}
         >
             <CardActionArea>
