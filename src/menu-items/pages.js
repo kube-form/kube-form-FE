@@ -7,11 +7,12 @@ const icons = {
 };
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
+// const logined = useAuth();
 
 const pages = {
     id: 'pages',
     title: 'Pages',
-    caption: 'Pages Caption',
+    caption: '로그인 하면 k8s를 직접 구성할 수 있습니다.',
     type: 'group',
     children: [
         {

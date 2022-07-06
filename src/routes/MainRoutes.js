@@ -11,13 +11,13 @@ const DashboardDefault = Loadable(
 
 // utilities routing
 
-const UtilsCluster = Loadable(lazy(() => import('views/utilities/Cluster')));
-const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
+const UtilsCluster = Loadable(lazy(() => import('views/contents/Cluster')));
+const UtilsShadow = Loadable(lazy(() => import('views/contents/Shadow')));
 const UtilsMaterialIcons = Loadable(
-    lazy(() => import('views/utilities/MaterialIcons')),
+    lazy(() => import('views/contents/MaterialIcons')),
 );
 const UtilsTablerIcons = Loadable(
-    lazy(() => import('views/utilities/TablerIcons')),
+    lazy(() => import('views/contents/TablerIcons')),
 );
 
 // sample page routing
@@ -26,13 +26,13 @@ const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 // custom
 
 const IAMSetting = Loadable(
-    lazy(() => import('views/utilities/iam/IamSettingPage')),
+    lazy(() => import('views/contents/iam/IamSettingPage')),
 );
 const IAMRegister = Loadable(
-    lazy(() => import('views/utilities/iam/IamRegisterPage')),
+    lazy(() => import('views/contents/iam/IamRegisterPage')),
 );
 const IAMUpdate = Loadable(
-    lazy(() => import('views/utilities/iam/IamUpdatePage')),
+    lazy(() => import('views/contents/iam/IamUpdatePage')),
 );
 const NotFound = Loadable(lazy(() => import('views/NotFound')));
 

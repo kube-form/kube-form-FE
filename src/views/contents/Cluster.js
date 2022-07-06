@@ -10,6 +10,8 @@ import MainWorkerNode from 'ui-component/node/MainWorkerNode';
 import { Xwrapper } from 'react-xarrows';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
 import LineSet from 'ui-component/line/LineSet';
+import CountNodes from 'ui-component/node/CountNodes';
+import LoadingComponent from 'ui-component/node/LoadingComponent';
 
 const Items = [
     {
@@ -117,7 +119,8 @@ export default function Cluster() {
                                 alignItems: 'flex-start',
                             }}
                         >
-                            <Box sx={{ minHeight: 100 }} />
+                            <LoadingComponent />
+                            <CountNodes />
                             <LeftUserNode className="admin" />
                         </Grid>
                         <Grid
