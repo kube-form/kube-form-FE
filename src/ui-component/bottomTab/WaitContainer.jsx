@@ -14,7 +14,7 @@ import { gridSpacing } from 'store/constant';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 
 import MainCard from 'ui-component/cards/MainCard';
-import ContainerCard from 'ui-component/cards/ContaienrWaitCard';
+import ContainerCard from 'ui-component/cards/WaitNodeCard';
 
 const ROWPERPAGE = 8;
 

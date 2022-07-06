@@ -4,8 +4,9 @@ import MainCard from 'ui-component/cards/MainCard';
 import NetworkPanel from 'ui-component/bottomTabPannel/NetworkPanel';
 import SummaryPanel from 'ui-component/bottomTabPannel/SummaryPanel';
 import PropTypes from 'prop-types';
+import TestPannel from 'ui-component/bottomTabPannel/TestPannel';
 
-const TABSDATA = ['summary', 'network', 'test', 'dongha', 'youngjae'];
+const TABSDATA = ['summary', 'network', 'test'];
 
 function allyProps(index) {
     return {
@@ -39,6 +40,7 @@ function StatusBottomContainer() {
             </Box>
             <NetworkPanel value={value} index={0} />
             <SummaryPanel value={value} index={1} />
+            <TestPannel value={value} index={2} />
         </MainCard>
     );
 }

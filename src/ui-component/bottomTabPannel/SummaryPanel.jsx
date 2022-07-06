@@ -1,17 +1,9 @@
-import {
-    Avatar,
-    Box,
-    CardContent,
-    List,
-    ListItem,
-    ListItemAvatar,
-    ListItemText,
-    Typography,
-} from '@mui/material';
+import { Box, CardContent, List, ListItem } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import CheckIcon from '@mui/icons-material/Check';
+import WarningIcon from '@mui/icons-material/Warning';
 import {
     StatusListItemAvatar,
     StatusListItemTitleSubTitle,
@@ -50,7 +42,7 @@ function SummaryPanel({ value, index }) {
                             content="running"
                         />
                         <StatusListItemAvatar
-                            icon={<CheckIcon color="warning" />}
+                            icon={<WarningIcon color="warning" />}
                             content="warning"
                             sx={{ color: theme.palette.warning.dark }}
                         />

@@ -20,7 +20,7 @@ function NodeCard({ id, content, index }) {
     return (
         <Draggable key={id} draggableId={id} index={index}>
             {(provided, snapshot) => (
-                <ImageContainerCard
+                <Grid
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}
@@ -28,7 +28,7 @@ function NodeCard({ id, content, index }) {
                     item
                     id={id}
                 >
-                    <Box sx={{ p: 2 }}>
+                    <ImageContainerCard sx={{ p: 2 }}>
                         <List sx={{ py: 0 }}>
                             <ListItem
                                 alignItems="center"
@@ -70,8 +70,8 @@ function NodeCard({ id, content, index }) {
                                 />
                             </ListItem>
                         </List>
-                    </Box>
-                </ImageContainerCard>
+                    </ImageContainerCard>
+                </Grid>
             )}
         </Draggable>
     );
@@ -83,7 +83,7 @@ NodeCard.propTypes = {
     id: PropTypes.string.isRequired,
 };
 
-const ImageContainerCard = styled(Grid)(({ theme }) => ({
+const ImageContainerCard = styled(Box)(({ theme }) => ({
     borderRadius: 10,
     overflow: 'hidden',
     position: 'relative',
