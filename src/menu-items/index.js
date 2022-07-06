@@ -2,7 +2,7 @@ import useAuth from 'hooks/useAuth';
 
 import dashboard from './dashboard';
 import pages from './pages';
-import utilities from './utilities';
+import contents from './Contents';
 import other from './other';
 
 // ==============================|| MENU ITEMS ||============================== //
@@ -13,10 +13,10 @@ import other from './other';
 const MenuItems = () => {
     const auth = useAuth();
     if (auth.isLoggedIn) {
-        return { items: [dashboard, utilities, other] };
+        return { items: [dashboard, contents, other] };
     }
     return {
-        items: [dashboard, pages, utilities, other],
+        items: [dashboard, pages, contents, other],
     };
 };
 

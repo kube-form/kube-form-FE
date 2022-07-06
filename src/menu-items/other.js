@@ -11,18 +11,18 @@ const other = {
     type: 'group',
     children: [
         {
-            id: 'sample-page',
-            title: 'Sample Page',
+            id: 'sample',
+            title: 'Sample',
             type: 'item',
             url: '/sample-page',
             icon: icons.IconBrandChrome,
             breadcrumbs: false,
         },
         {
-            id: 'documentation',
-            title: 'Documentation',
+            id: 'github-page',
+            title: 'Github Page',
             type: 'item',
-            url: 'https://codedthemes.gitbook.io/berry/',
+            url: 'https://github.com/kube-form',
             icon: icons.IconHelp,
             external: true,
             target: true,
