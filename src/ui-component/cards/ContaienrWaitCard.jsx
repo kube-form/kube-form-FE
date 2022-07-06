@@ -20,7 +20,7 @@ function ContainerWaitCard({ id, content, index }) {
     return (
         <Draggable key={id} draggableId={id} index={index}>
             {(provided, snapshot) => (
-                <ImageContainerCard
+                <Grid
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}
@@ -31,7 +31,7 @@ function ContainerWaitCard({ id, content, index }) {
                     sm={3}
                     xs={3}
                 >
-                    <Box sx={{ p: 2 }}>
+                    <ImageContainerCard sx={{ p: 2 }}>
                         <List sx={{ py: 0 }}>
                             <ListItem
                                 alignItems="center"
@@ -73,8 +73,8 @@ function ContainerWaitCard({ id, content, index }) {
                                 />
                             </ListItem>
                         </List>
-                    </Box>
-                </ImageContainerCard>
+                    </ImageContainerCard>
+                </Grid>
             )}
         </Draggable>
     );
@@ -86,10 +86,9 @@ ContainerWaitCard.propTypes = {
     id: PropTypes.string.isRequired,
 };
 
-const ImageContainerCard = styled(Grid)(({ theme }) => ({
+const ImageContainerCard = styled(Box)(({ theme }) => ({
     // backgroundColor: theme.palette.secondary.dark,
     borderRadius: 10,
-    // color: '#fff',
     overflow: 'hidden',
     position: 'relative',
 
