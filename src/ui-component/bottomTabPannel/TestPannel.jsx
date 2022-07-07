@@ -9,7 +9,7 @@ import {
     StatusListItemTitleSubTitle,
 } from 'ui-component/bottomTabComponents';
 
-function NetworkPanel({ value, index }) {
+function TestPannel({ value, index }) {
     const theme = useTheme();
     return (
         <Box
@@ -53,9 +53,9 @@ function NetworkPanel({ value, index }) {
     );
 }
 
-NetworkPanel.propTypes = {
+TestPannel.propTypes = {
     value: PropTypes.number.isRequired,
     index: PropTypes.number.isRequired,
 };
 
-export default NetworkPanel;
+export default TestPannel;

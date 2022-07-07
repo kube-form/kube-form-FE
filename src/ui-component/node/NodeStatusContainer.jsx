@@ -7,7 +7,6 @@ import { Grid, Box } from '@mui/material';
 
 import styled from '@emotion/styled';
 
-import { Droppable } from 'react-beautiful-dnd';
 import NodeCard from 'ui-component/cards/NodeCard';
 
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
@@ -23,29 +22,18 @@ function NodeContainer() {
                 <ColContainer
                     style={{ minHeight: 400, backgroundColor: '#fff' }}
                 >
-                    <Droppable droppableId="sub">
-                        {(provided, snapshot) => (
-                            <TaskList
-                                ref={provided.innerRef}
-                                isDraggingOver={snapshot.isDraggingOver}
-                                {...provided.droppableProps}
-                                theme={theme}
-                            >
-                                {sub.map((item, index) => (
-                                    <NodeCard
-                                        key={item.id}
-                                        index={index}
-                                        id={item.id}
-                                        content={item.content}
-                                    />
-                                ))}
-                                {provided.placeholder}
-                            </TaskList>
-                        )}
-                    </Droppable>
+                    <TaskList theme={theme}>
+                        {sub.map((item, index) => (
+                            <NodeCard
+                                key={item.id}
+                                index={index}
+                                id={item.id}
+                                content={item.content}
+                            />
+                        ))}
+                    </TaskList>
                 </ColContainer>
             </Grid>
-
             <Grid item xs={3} alignContent="center" jusitfyContent="center">
                 <AccountTreeIcon
                     // ref={controllerRef}

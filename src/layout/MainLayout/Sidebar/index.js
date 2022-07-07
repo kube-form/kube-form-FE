@@ -1,5 +1,7 @@
 import React from 'react';
 
+import useAuth from 'hooks/useAuth';
+
 import PropTypes from 'prop-types';
 
 // material-ui
@@ -21,6 +23,8 @@ import MenuCard from './MenuCard';
 function Sidebar({ drawerOpen, drawerToggle, window }) {
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+    const logined = useAuth();
+    console.log(logined);
 
     const drawer = (
         <>
@@ -40,7 +44,7 @@ function Sidebar({ drawerOpen, drawerToggle, window }) {
                         paddingRight: '16px',
                     }}
                 >
-                    <MenuList />
+                    <MenuList logined={logined} />
                     <MenuCard />
                 </PerfectScrollbar>
             </BrowserView>

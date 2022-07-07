@@ -16,18 +16,18 @@ function LineSet() {
                 start="admin"
                 startAnchor="bottom"
                 end="main"
+                showHead={false}
                 endAnchor="left"
                 strokeWidth={borderSize}
                 color={borderColor}
                 path="grid"
-                animateDrawing
                 showTail={false}
             />
             <Xarrow
                 start="main"
                 end="sub"
-                animateDrawing
                 path="grid"
+                showHead={false}
                 strokeWidth={borderSize}
                 color={borderColor}
                 showTail={false}

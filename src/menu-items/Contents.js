@@ -11,9 +11,9 @@ const icons = {
 
 // ==============================|| UTILITIES MENU ITEMS ||============================== //
 
-const utilities = {
-    id: 'utilities',
-    title: 'Utilities',
+const contents = {
+    id: 'contents',
+    title: 'Contents',
     type: 'group',
     children: [
         {
@@ -41,10 +41,25 @@ const utilities = {
         {
             id: 'util-cluster',
             title: 'Cluster',
-            type: 'item',
-            url: '/utils/cluster',
+            type: 'collapse',
+            url: 'type',
             icon: icons.IconDragDrop,
-            breadcrumbs: false,
+            children: [
+                {
+                    id: 'cluster-register',
+                    title: 'Register',
+                    type: 'item',
+                    url: '/utils/cluster/register',
+                    breadcrumbs: false,
+                },
+                {
+                    id: 'cluster-status',
+                    title: 'Status',
+                    type: 'item',
+                    url: '/utils/cluster/status',
+                    breadcrumbs: false,
+                },
+            ],
         },
         {
             id: 'util-shadow',
@@ -79,4 +94,4 @@ const utilities = {
     ],
 };
 
-export default utilities;
+export default contents;

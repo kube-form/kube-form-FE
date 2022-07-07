@@ -13,7 +13,7 @@ import {
 import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import LockIcon from '@mui/icons-material/Lock';
-import getMomentFromNow from 'utils/dateUtils';
+import { getMomentFromNow } from 'utils/util';
 
 function IAMListItem({ accessKeyId, updated, detail }) {
     const theme = useTheme();

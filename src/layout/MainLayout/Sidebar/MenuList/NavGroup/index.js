@@ -51,7 +51,9 @@ const NavGroup = ({ item }) => {
                             {item.caption && (
                                 <Typography
                                     variant="caption"
-                                    sx={{ ...theme.typography.subMenuCaption }}
+                                    sx={{
+                                        ...theme.typography.subMenuCaption,
+                                    }}
                                     display="block"
                                     gutterBottom
                                 >
