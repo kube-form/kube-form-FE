@@ -65,9 +65,11 @@ function WaitContainer() {
                                     .map((item, index) => (
                                         <ContainerCard
                                             key={item.id}
-                                            index={index}
                                             id={item.id}
-                                            content={item.content}
+                                            index={index}
+                                            image={item.image}
+                                            name={item.name}
+                                            url={item.url}
                                         />
                                     ))}
                                 {provided.placeholder}

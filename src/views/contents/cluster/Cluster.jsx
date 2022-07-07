@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
+import axios from 'axios';
 
 import usePods from 'hooks/usePods';
 import { v4 as uuid } from 'uuid';
@@ -11,54 +12,18 @@ import { useXarrow, Xwrapper } from 'react-xarrows';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
 import LineSet from 'ui-component/line/LineSet';
 import WorkerNodeNumStatus from 'ui-component/node/WorkerNodeNumStatus';
-
-const Items = [
-    {
-        id: uuid(),
-        content: 'Tomcat',
-    },
-    {
-        id: uuid(),
-        content: 'Java',
-    },
-    {
-        id: uuid(),
-        content: 'Debian',
-    },
-    {
-        id: uuid(),
-        content: 'PHP',
-    },
-    {
-        id: uuid(),
-        content: 'MySQL',
-    },
-    {
-        id: uuid(),
-        content: 'Ubuntu',
-    },
-    {
-        id: uuid(),
-        content: 'React',
-    },
-    {
-        id: uuid(),
-        content: 'Node.js',
-    },
-    {
-        id: uuid(),
-        content: 'Flask',
-    },
-];
+import { getDockerImages } from 'api/cluster';
 
 export default function Cluster() {
     const pods = usePods();
+    const { data, isLoading } = getDockerImages();
     const updateXarrow = useXarrow();
 
-    const getDummyData = async () => {
-        setTimeout(() => {
-            pods.setWait(Items);
-        }, 1000);
+    const getWaitImages = async () => {
+        if (data) {
+            console.log(data);
+            pods.setWait(data.map((item) => ({ ...item, id: uuid() })));
+        }
     };
 
     const onDragEnd = (result) => {
@@ -100,11 +65,13 @@ export default function Cluster() {
     };
 
     useEffect(() => {
-        getDummyData();
-    }, []);
+        getWaitImages();
+    }, [data]);
 
-    useEffect(() => {}, [window.innerWidth]);
-
+    // TODO;
+    if (isLoading) {
+        return <>loading</>;
+    }
     return (
         <Xwrapper>
             <DragDropContext

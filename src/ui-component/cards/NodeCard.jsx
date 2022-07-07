@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { Draggable } from 'react-beautiful-dnd';
 
-function NodeCard({ id, content, index }) {
+function NodeCard({ id, index, image, name, url }) {
     const theme = useTheme();
 
     return (
@@ -40,7 +40,7 @@ function NodeCard({ id, content, index }) {
                                         <img
                                             className="ContainerCardImage"
                                             alt={`${index}_container_image`}
-                                            src={`https://picsum.photos/id/${index}/50/50`}
+                                            src={image}
                                         />
                                     </Avatar>
                                 </ListItemAvatar>
@@ -52,7 +52,7 @@ function NodeCard({ id, content, index }) {
                                     }}
                                     primary={
                                         <Typography variant="h4" noWrap>
-                                            {content}
+                                            {name}
                                         </Typography>
                                     }
                                     secondary={
@@ -64,7 +64,7 @@ function NodeCard({ id, content, index }) {
                                             }}
                                             noWrap
                                         >
-                                            {id}
+                                            {url}
                                         </Typography>
                                     }
                                 />
@@ -79,8 +79,10 @@ function NodeCard({ id, content, index }) {
 
 NodeCard.propTypes = {
     index: PropTypes.number.isRequired,
-    content: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
 };
 
 const ImageContainerCard = styled(Box)(({ theme }) => ({
@@ -88,7 +90,10 @@ const ImageContainerCard = styled(Box)(({ theme }) => ({
     overflow: 'hidden',
     position: 'relative',
 
-    // '& .ContainerCardImage': {},
+    '& .ContainerCardImage': {
+        width: 40,
+        height: 40,
+    },
     '&:after': {
         content: '""',
         position: 'absolute',
