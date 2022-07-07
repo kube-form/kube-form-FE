@@ -128,9 +128,12 @@ export default function Cluster() {
                                 alignItems: 'flex-start',
                             }}
                         >
+<<<<<<< HEAD:src/views/contents/cluster/Cluster.js
                             <WorkerNodeNumStatus />
+=======
                             <LoadingComponent />
                             <CountNodes />
+>>>>>>> origin/master:src/views/contents/Cluster.js
                             <LeftUserNode className="admin" />
                         </Grid>
                         <Grid
