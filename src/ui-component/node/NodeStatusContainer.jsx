@@ -9,8 +9,8 @@ import styled from '@emotion/styled';
 
 import NodeCard from 'ui-component/cards/NodeCard';
 
-import AccountTreeIcon from '@mui/icons-material/AccountTree';
-import HailIcon from '@mui/icons-material/Hail';
+import IngressControllerNode from './IngressControllerNode';
+import RightUserNode from './RightUserNode';
 
 function NodeContainer() {
     const { sub } = usePods();
@@ -34,27 +34,11 @@ function NodeContainer() {
                     </TaskList>
                 </ColContainer>
             </Grid>
-            <Grid item xs={3} alignContent="center" jusitfyContent="center">
-                <AccountTreeIcon
-                    // ref={controllerRef}
-                    id="controller"
-                    sx={{
-                        ml: 8,
-                        fontSize: 50,
-                        color: theme.palette.secondary[200],
-                    }}
-                />
+            <Grid item xs={3}>
+                <IngressControllerNode />
             </Grid>
-            <Grid item xs={3} alignContent="center" jusitfyContent="center">
-                <HailIcon
-                    // ref={userRef}
-                    id="user"
-                    sx={{
-                        ml: 5,
-                        fontSize: 50,
-                        color: theme.palette.secondary[200],
-                    }}
-                />
+            <Grid item xs={3}>
+                <RightUserNode />
             </Grid>
         </Grid>
     );
