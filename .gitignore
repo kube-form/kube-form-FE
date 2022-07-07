@@ -103,3 +103,4 @@ build
 .env
 
 yarn.lock
+.firebase

@@ -1,7 +1,7 @@
 {
     "name": "kube-form-FE",
     "version": "0.0.1",
-    "homepage": "https://kube-form.github.io/kube-form-FE",
+    "homepage": "https://kube-form.github.io",
     "private": true,
     "dependencies": {
         "@emotion/cache": "^11.9.3",

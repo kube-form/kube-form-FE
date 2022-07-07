@@ -8,7 +8,7 @@ import { styled, useTheme } from '@mui/material/styles';
 export default function LoadingComponent() {
     const [loading, setLoading] = useState(false);
     const theme = useTheme();
-    const [done, setDone] = useState();
+    const [done, setDone] = useState('fail');
 
     const handleClick = () => {
         setLoading(true);

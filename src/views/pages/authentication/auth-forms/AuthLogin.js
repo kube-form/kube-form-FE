@@ -51,7 +51,8 @@ function FirebaseLogin({ ...others }) {
 
     const googleHandler = async () => {
         await auth.firebaseGoogleSignIn();
-        navigate(config.basename);
+        // go home
+        navigate('/');
     };
 
     const [showPassword, setShowPassword] = useState(false);

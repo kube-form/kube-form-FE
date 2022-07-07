@@ -23,8 +23,6 @@ import MenuCard from './MenuCard';
 function Sidebar({ drawerOpen, drawerToggle, window }) {
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
-    const logined = useAuth();
-    console.log(logined);
 
     const drawer = (
         <>
@@ -44,7 +42,7 @@ function Sidebar({ drawerOpen, drawerToggle, window }) {
                         paddingRight: '16px',
                     }}
                 >
-                    <MenuList logined={logined} />
+                    <MenuList />
                     <MenuCard />
                 </PerfectScrollbar>
             </BrowserView>

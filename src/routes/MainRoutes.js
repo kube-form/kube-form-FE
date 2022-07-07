@@ -45,56 +45,56 @@ const NotFound = Loadable(lazy(() => import('views/NotFound')));
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
-    path: '/kube-form-FE',
+    path: '',
     element: <MainLayout />,
     children: [
         {
-            path: '/kube-form-FE',
+            path: '',
             element: <DashboardDefault />,
         },
         {
-            path: '/kube-form-FE/dashboard/default',
+            path: '/dashboard/default',
             element: <DashboardDefault />,
         },
         {
-            path: '/kube-form-FE/utils/cluster/register',
+            path: '/utils/cluster/register',
             element: <UtilsCluster />,
         },
         {
-            path: '/kube-form-FE/utils/cluster/status',
+            path: '/utils/cluster/status',
             element: <UtilsClusterStatus />,
         },
         {
-            path: '/kube-form-FE/utils/util-shadow',
+            path: '/utils/util-shadow',
             element: <UtilsShadow />,
         },
         {
-            path: '/kube-form-FE/icons/tabler-icons',
+            path: '/icons/tabler-icons',
             element: <UtilsTablerIcons />,
         },
         {
-            path: '/kube-form-FE/icons/material-icons',
+            path: '/icons/material-icons',
             element: <UtilsMaterialIcons />,
         },
         {
-            path: '/kube-form-FE/sample-page',
+            path: '/sample-page',
             element: <SamplePage />,
         },
         // custom path
         {
-            path: '/kube-form-FE/iam/setting',
+            path: '/iam/setting',
             element: <IAMSetting />,
         },
         {
-            path: '/kube-form-FE/iam/register',
+            path: '/iam/register',
             element: <IAMRegister />,
         },
         {
-            path: '/kube-form-FE/iam/update',
+            path: '/iam/update',
             element: <IAMUpdate />,
         },
         {
-            path: '/kube-form-FE/*',
+            path: '/*',
             element: <NotFound />,
         },
     ],
