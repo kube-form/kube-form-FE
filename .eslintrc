@@ -20,14 +20,14 @@
         ],
         "no-console": "off",
         "react/jsx-props-no-spreading": "off",
-        "react/jsx-no-useless-fragment": "warn",
-        "react/forbid-prop-types": "warn",
-        "react/function-component-definition": "warn",
-        "react/require-default-props": "warn",
-        "react/no-unstable-nested-components": "warn",
-        "react/prop-types": "warn",
-        "react/destructuring-assignment": "warn",
-        "no-param-reassign": "warn",
-        "no-unused-vars": "warn"
+        "react/jsx-no-useless-fragment": "off",
+        "react/forbid-prop-types": "off",
+        "react/function-component-definition": "off",
+        "react/require-default-props": "off",
+        "react/no-unstable-nested-components": "off",
+        "react/prop-types": "off",
+        "react/destructuring-assignment": "off",
+        "no-param-reassign": "off",
+        "no-unused-vars": "off"
     }
 }
