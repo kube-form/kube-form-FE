@@ -2,7 +2,6 @@
     "name": "kube-form-FE",
     "version": "0.0.1",
     "homepage": "https://kube-form.github.io",
-    "proxy": "https://jb95qkw1hh.execute-api.ap-northeast-2.amazonaws.com",
     "private": true,
     "dependencies": {
         "@emotion/cache": "^11.9.3",
