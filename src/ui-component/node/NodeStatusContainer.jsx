@@ -13,7 +13,9 @@ import IngressControllerNode from './IngressControllerNode';
 import RightUserNode from './RightUserNode';
 
 function NodeContainer() {
-    const { sub } = usePods();
+    const pod = usePods();
+    console.warn(1111, pod);
+    const sub = [];
     const theme = useTheme();
 
     return (

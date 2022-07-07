@@ -24,6 +24,7 @@ function StatusBottomContainer() {
                 >
                     {TABSDATA.map((item, index) => (
                         <Tab
+                            key={item}
                             label={item}
                             {...tabAllyProps(index)}
                             disabled={index > 3}
