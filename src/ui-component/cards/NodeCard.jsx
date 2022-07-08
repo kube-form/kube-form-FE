@@ -89,6 +89,12 @@ const ImageContainerCard = styled(Box)(({ theme }) => ({
     borderRadius: 10,
     overflow: 'hidden',
     position: 'relative',
+    zIndex: 99,
+    backgroundColor: theme.palette.orange.light,
+    // marginBottom: 5,
+    // '& .ContainerCardImage:last-child': {
+    //     marginBottom: 0,
+    // },
 
     '& .ContainerCardImage': {
         width: 40,

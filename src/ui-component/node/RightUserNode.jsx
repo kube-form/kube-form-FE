@@ -9,7 +9,20 @@ function RightUserNode() {
     const theme = useTheme();
 
     return (
-        <Card id="user">
+        <Card
+            variant="outlined"
+            id="user"
+            sx={{
+                ml: 3,
+                zIndex: 99,
+                minWidth: 85,
+                transition: 'border 0.3s',
+                '&:hover': {
+                    borderColor: theme.palette.secondary[200],
+                    boxShadow: 2,
+                },
+            }}
+        >
             <CardActionArea>
                 <Box
                     alignItems="center"

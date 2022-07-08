@@ -13,6 +13,8 @@ import LineSet from 'ui-component/line/LineSet';
 import WorkerNodeNumStatus from 'ui-component/node/WorkerNodeNumStatus';
 import CountNodes from 'ui-component/node/CountNodes';
 import LoadingComponent from 'ui-component/node/LoadingComponent';
+import { Card } from '@mui/material';
+import { useTheme } from '@mui/styles';
 
 const Items = [
     {
@@ -56,6 +58,7 @@ const Items = [
 export default function Cluster() {
     const pods = usePods();
     const updateXarrow = useXarrow();
+    const theme = useTheme();
 
     const getDummyData = async () => {
         setTimeout(() => {

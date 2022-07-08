@@ -1,56 +1,61 @@
 import React from 'react';
 import usePods from 'hooks/usePods';
 
-import { gridSpacing } from 'store/constant';
 import { useTheme } from '@mui/material/styles';
-import { Grid, Box } from '@mui/material';
+import { Grid, Box, Button, Typography } from '@mui/material';
 
 import styled from '@emotion/styled';
 
 import { Droppable } from 'react-beautiful-dnd';
 import NodeCard from 'ui-component/cards/NodeCard';
+
 import IngressControllerNode from './IngressControllerNode';
-import RightUserNode from './RightUserNode';
 
 function NodeContainer() {
     const { sub } = usePods();
     const theme = useTheme();
 
     return (
-        <Grid container spacing={gridSpacing} alignItems="center">
-            <Grid item xs={6}>
-                <ColContainer
-                    style={{ minHeight: 400, backgroundColor: '#fff' }}
-                >
-                    <Droppable droppableId="sub">
-                        {(provided, snapshot) => (
-                            <TaskList
-                                ref={provided.innerRef}
-                                isDraggingOver={snapshot.isDraggingOver}
-                                {...provided.droppableProps}
-                                theme={theme}
-                            >
-                                {sub.map((item, index) => (
-                                    <NodeCard
-                                        key={item.id}
-                                        id={item.id}
-                                        index={index}
-                                        image={item.image}
-                                        name={item.name}
-                                        url={item.url}
-                                    />
-                                ))}
-                                {provided.placeholder}
-                            </TaskList>
-                        )}
-                    </Droppable>
-                </ColContainer>
+        <Grid container alignItems="center">
+            <Grid
+                item
+                xs={8}
+                style={{
+                    minHeight: 400,
+                    minWidth: 200,
+                    backgroundColor: theme.palette.grey[50],
+                }}
+            >
+                <Typography sx={{ m: 2 }} variant="h3">
+                    worker node1
+                </Typography>
+
+                <Droppable droppableId="sub">
+                    {(provided, snapshot) => (
+                        <TaskList
+                            ref={provided.innerRef}
+                            isDraggingOver={snapshot.isDraggingOver}
+                            {...provided.droppableProps}
+                            theme={theme}
+                            alignContent="center"
+                        >
+                            {sub.map((item, index) => (
+                                <NodeCard
+                                    key={item.id}
+                                    index={index}
+                                    id={item.id}
+                                    content={item.content}
+                                />
+                            ))}
+                            {provided.placeholder}
+                        </TaskList>
+                    )}
+                </Droppable>
             </Grid>
-            <Grid item xs={3}>
-                <IngressControllerNode />
-            </Grid>
-            <Grid item xs={3}>
-                <RightUserNode />
+            <Grid item xs={4}>
+                <Box padding={3}>
+                    <IngressControllerNode />
+                </Box>
             </Grid>
         </Grid>
     );
@@ -65,11 +70,9 @@ const TaskList = styled(Box)`
     background-color: ${(props) =>
         props.isDraggingOver
             ? props.theme.palette.success.light
-            : props.theme.palette.primary};
+            : props.theme.palette.primary[200]};
     flex-grow: 1;
     min-height: 400px;
 
     /* z-index: 99; */
 `;
-
-const ColContainer = styled(Grid)(({ theme }) => ({}));

@@ -6,18 +6,26 @@ import usePods from 'hooks/usePods';
 import { v4 as uuid } from 'uuid';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import NodeContainer from 'ui-component/node/NodeContainer';
-import { Grid, Box } from '@material-ui/core';
+import { Grid, Box, Button } from '@material-ui/core';
+
 import MainWorkerNode from 'ui-component/node/MainWorkerNode';
 import { useXarrow, Xwrapper } from 'react-xarrows';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
 import LineSet from 'ui-component/line/LineSet';
 import WorkerNodeNumStatus from 'ui-component/node/WorkerNodeNumStatus';
 import { getDockerImages } from 'api/cluster';
+import MainCard from 'ui-component/cards/MainCard';
+import { useTheme } from 'styled-components';
+import ClusterMainCard from 'ui-component/cards/ClusterMainCard';
+import AnimateButton from 'ui-component/extended/AnimateButton';
+import RightUserNode from 'ui-component/node/RightUserNode';
+import { Stack } from '@mui/material';
 
 export default function Cluster() {
     const pods = usePods();
     const { data, isLoading } = getDockerImages();
     const updateXarrow = useXarrow();
+    const theme = useTheme();
 
     const getWaitImages = async () => {
         if (data) {
@@ -73,46 +81,76 @@ export default function Cluster() {
         return <>loading</>;
     }
     return (
-        <Xwrapper>
-            <DragDropContext
-                onDragEnd={onDragEnd}
-                // onDragStart={updateXarrow}
-                // onDragUpdate={updateXarrow}
-            >
-                <Box py={2}>
-                    <Grid container>
-                        <Grid
-                            item
-                            xs={2}
-                            direction="column"
-                            style={{
-                                display: 'flex',
-                                alignItems: 'flex-start',
-                            }}
-                        >
-                            <WorkerNodeNumStatus />
-                            <LeftUserNode className="admin" />
+        <ClusterMainCard>
+            <Xwrapper>
+                <DragDropContext
+                    onDragEnd={onDragEnd}
+                    // onDragStart={updateXarrow}
+                    // onDragUpdate={updateXarrow}
+                >
+                    <Box py={2}>
+                        <Grid container>
+                            <Grid
+                                item
+                                xs={2}
+                                direction="column"
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'flex-start',
+                                }}
+                            >
+                                <WorkerNodeNumStatus />
+                                <LeftUserNode className="admin" />
+                            </Grid>
+                            <Grid
+                                item
+                                xs={3}
+                                alignItems="center"
+                                style={{ display: 'flex' }}
+                            >
+                                <MainWorkerNode className="main" />
+                            </Grid>
+                            <Grid item xs={5} id="sub">
+                                <NodeContainer />
+                            </Grid>
+
+                            <Grid
+                                item
+                                xs={2}
+                                direction="column"
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <RightUserNode />
+                                <Stack>
+                                    <Box minHeight={200} />
+
+                                    <Grid
+                                        sx={{
+                                            gridAutoFlow: 'true',
+                                        }}
+                                    >
+                                        <AnimateButton>
+                                            <Button variant="contained">
+                                                submit
+                                            </Button>
+                                        </AnimateButton>
+                                    </Grid>
+                                </Stack>
+                            </Grid>
                         </Grid>
-                        <Grid
-                            item
-                            xs={4}
-                            alignItems="center"
-                            style={{ display: 'flex' }}
-                        >
-                            <MainWorkerNode className="main" />
-                        </Grid>
-                        <Grid item xs={6} id="sub">
-                            <NodeContainer />
-                        </Grid>
+                    </Box>
+
+                    <LineSet />
+
+                    <Grid item xs={12}>
+                        <WaitContainer />
                     </Grid>
-                </Box>
-
-                <LineSet />
-
-                <Grid item xs={12}>
-                    <WaitContainer />
-                </Grid>
-            </DragDropContext>
-        </Xwrapper>
+                </DragDropContext>
+            </Xwrapper>
+        </ClusterMainCard>
     );
 }

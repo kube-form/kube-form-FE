@@ -50,6 +50,7 @@ function LineSet() {
             <Xarrow
                 start="controller"
                 end="user"
+                path="grid"
                 strokeWidth={borderSize}
                 color={borderColor}
                 showHead={null}
