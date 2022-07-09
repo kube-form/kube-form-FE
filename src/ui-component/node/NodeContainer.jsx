@@ -2,7 +2,8 @@ import React from 'react';
 import usePods from 'hooks/usePods';
 
 import { useTheme } from '@mui/material/styles';
-import { Grid, Box, Button, Typography } from '@mui/material';
+import { Grid, Box, Typography, Divider } from '@mui/material';
+import { gridSpacing } from 'store/constant';
 
 import styled from '@emotion/styled';
 
@@ -16,7 +17,7 @@ function NodeContainer() {
     const theme = useTheme();
 
     return (
-        <Grid container alignItems="center">
+        <Grid container spacing={gridSpacing} alignItems="center">
             <Grid
                 item
                 xs={8}
@@ -25,11 +26,16 @@ function NodeContainer() {
                     minWidth: 200,
                     backgroundColor: theme.palette.grey[50],
                 }}
+                id="workernode1"
             >
-                <Typography sx={{ m: 2 }} variant="h3">
-                    worker node1
-                </Typography>
-
+                <Grid item xs={12}>
+                    <Typography sx={{ m: 2 }} variant="h3">
+                        worker node 1
+                    </Typography>
+                </Grid>
+                <Grid item xs={12} minHeight={15}>
+                    <Divider />
+                </Grid>
                 <Droppable droppableId="sub">
                     {(provided, snapshot) => (
                         <TaskList
@@ -38,13 +44,17 @@ function NodeContainer() {
                             {...provided.droppableProps}
                             theme={theme}
                             alignContent="center"
+                            rowSpacing={1}
+                            container
                         >
                             {sub.map((item, index) => (
                                 <NodeCard
                                     key={item.id}
                                     index={index}
                                     id={item.id}
-                                    content={item.content}
+                                    image={item.image}
+                                    name={item.name}
+                                    url={item.url}
                                 />
                             ))}
                             {provided.placeholder}
@@ -63,14 +73,14 @@ function NodeContainer() {
 
 export default NodeContainer;
 
-const TaskList = styled(Box)`
+const TaskList = styled(Grid)`
     border-radius: 10px;
     padding: 15px;
     transition: background-color 0.5s ease;
     background-color: ${(props) =>
         props.isDraggingOver
             ? props.theme.palette.success.light
-            : props.theme.palette.primary[200]};
+            : 'transparent'};
     flex-grow: 1;
     min-height: 400px;
 

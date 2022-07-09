@@ -9,7 +9,7 @@ import {
     StatusListItemTitleSubTitle,
 } from 'ui-component/bottomTabComponents';
 
-function NetworkPanel({ value, index }) {
+function UpdateLogPanel({ value, index }) {
     const theme = useTheme();
     return (
         <Box
@@ -22,18 +22,18 @@ function NetworkPanel({ value, index }) {
                 <List>
                     <ListItem>
                         <StatusListItemTitleSubTitle
-                            title="VPC"
-                            content="vpc-01a48279b85f653da (test)"
+                            title="Instance ID"
+                            content="i-jid92124y812947981j (test)"
                         />
                         <StatusListItemTitleSubTitle
-                            title="클러스터 IP 주소 패밀리"
-                            content="IPv4"
+                            title="public IPv4 address"
+                            content="i-jid92124y812947981j (test)"
                         />
                     </ListItem>
                     <ListItem>
                         <StatusListItemTitleSubTitle
-                            title="서비스c IPv4 범위"
-                            content="172.20.0.0/16"
+                            title="public IPv4 address"
+                            content="i-jid92124y812947981j (test)"
                         />
                     </ListItem>
                     <ListItem>
@@ -53,9 +53,9 @@ function NetworkPanel({ value, index }) {
     );
 }
 
-NetworkPanel.propTypes = {
+UpdateLogPanel.propTypes = {
     value: PropTypes.number.isRequired,
     index: PropTypes.number.isRequired,
 };
 
-export default NetworkPanel;
+export default UpdateLogPanel;

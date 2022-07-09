@@ -6,7 +6,7 @@ import usePods from 'hooks/usePods';
 import { v4 as uuid } from 'uuid';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import NodeContainer from 'ui-component/node/NodeContainer';
-import { Grid, Box, Button } from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 
 import MainWorkerNode from 'ui-component/node/MainWorkerNode';
 import { useXarrow, Xwrapper } from 'react-xarrows';
@@ -14,12 +14,9 @@ import LeftUserNode from 'ui-component/node/LeftUserNode';
 import LineSet from 'ui-component/line/LineSet';
 import WorkerNodeNumStatus from 'ui-component/node/WorkerNodeNumStatus';
 import { getDockerImages } from 'api/cluster';
-import MainCard from 'ui-component/cards/MainCard';
 import { useTheme } from 'styled-components';
 import ClusterMainCard from 'ui-component/cards/ClusterMainCard';
-import AnimateButton from 'ui-component/extended/AnimateButton';
 import RightUserNode from 'ui-component/node/RightUserNode';
-import { Stack } from '@mui/material';
 
 export default function Cluster() {
     const pods = usePods();
@@ -125,21 +122,6 @@ export default function Cluster() {
                                 }}
                             >
                                 <RightUserNode />
-                                <Stack>
-                                    <Box minHeight={200} />
-
-                                    <Grid
-                                        sx={{
-                                            gridAutoFlow: 'true',
-                                        }}
-                                    >
-                                        <AnimateButton>
-                                            <Button variant="contained">
-                                                submit
-                                            </Button>
-                                        </AnimateButton>
-                                    </Grid>
-                                </Stack>
                             </Grid>
                         </Grid>
                     </Box>

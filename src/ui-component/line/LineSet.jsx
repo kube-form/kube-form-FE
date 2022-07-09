@@ -25,7 +25,7 @@ function LineSet() {
             />
             <Xarrow
                 start="main"
-                end="sub"
+                end="workernode1"
                 path="grid"
                 showHead={false}
                 strokeWidth={borderSize}
@@ -49,6 +49,7 @@ function LineSet() {
             ))}
             <Xarrow
                 start="controller"
+                startAnchor="right"
                 end="user"
                 path="grid"
                 strokeWidth={borderSize}

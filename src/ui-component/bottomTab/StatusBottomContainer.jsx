@@ -6,7 +6,7 @@ import SummaryPanel from 'ui-component/bottomTabPannel/SummaryPanel';
 import TestPannel from 'ui-component/bottomTabPannel/TestPannel';
 import { tabAllyProps } from 'utils/util';
 
-const TABSDATA = ['summary', 'network', 'test'];
+const TABSDATA = ['summary', 'network', 'loging', 'updatelog'];
 
 function StatusBottomContainer() {
     const [value, setValue] = useState(0);
@@ -27,14 +27,14 @@ function StatusBottomContainer() {
                             key={item}
                             label={item}
                             {...tabAllyProps(index)}
-                            disabled={index > 3}
+                            disabled={index > 4}
                         />
                     ))}
                 </Tabs>
             </Box>
-            <NetworkPanel value={value} index={0} />
-            <SummaryPanel value={value} index={1} />
-            <TestPannel value={value} index={2} />
+            <SummaryPanel value={value} index={0} />
+            <TestPannel value={value} index={1} />
+            <NetworkPanel value={value} index={2} />
         </MainCard>
     );
 }

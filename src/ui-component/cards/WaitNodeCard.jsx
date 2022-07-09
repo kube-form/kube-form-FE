@@ -32,6 +32,7 @@ function ContainerWaitCard({ id, index, image, name, url }) {
                     xs={3}
                 >
                     <ImageContainerCard
+                        nerCard
                         sx={{
                             p: 1,
                             transition: 'transform 0.3s, border 0.3s',
