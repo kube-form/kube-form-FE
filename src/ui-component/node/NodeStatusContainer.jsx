@@ -24,7 +24,7 @@ function NodeContainer() {
                 <ColContainer
                     style={{ minHeight: 400, backgroundColor: '#fff' }}
                 >
-                    <TaskList theme={theme}>
+                    <TaskList theme={theme} id="workernode1">
                         {sub.map((item, index) => (
                             <NodeCard
                                 key={item.id}

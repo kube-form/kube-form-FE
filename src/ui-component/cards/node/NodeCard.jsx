@@ -27,6 +27,7 @@ function NodeCard({ id, index, image, name, url }) {
                     isdragging={snapshot.isdragging}
                     item
                     id={id}
+                    xs={12}
                 >
                     <ImageContainerCard sx={{ p: 2 }}>
                         <List sx={{ py: 0 }}>
@@ -51,7 +52,11 @@ function NodeCard({ id, index, image, name, url }) {
                                         mb: 0.45,
                                     }}
                                     primary={
-                                        <Typography variant="h4" noWrap>
+                                        <Typography
+                                            variant="h4"
+                                            noWrap
+                                            sx={{ color: '#FFF' }}
+                                        >
                                             {name}
                                         </Typography>
                                     }
@@ -89,6 +94,7 @@ const ImageContainerCard = styled(Box)(({ theme }) => ({
     borderRadius: 10,
     overflow: 'hidden',
     position: 'relative',
+    backgroundColor: theme.palette.dark.main,
 
     '& .ContainerCardImage': {
         width: 40,
@@ -97,22 +103,22 @@ const ImageContainerCard = styled(Box)(({ theme }) => ({
     '&:after': {
         content: '""',
         position: 'absolute',
-        width: 210,
-        height: 210,
-        background: `linear-gradient(210.04deg, ${theme.palette.primary.dark} -50.94%, rgba(144, 202, 249, 0) 83.49%)`,
+        width: 200,
+        height: 200,
+        background: `linear-gradient(210.04deg, ${theme.palette.primary.dark} -80.94%, rgba(144, 202, 249, 0) 83.49%)`,
         borderRadius: '50%',
-        top: 40,
-        right: -150,
+        top: 30,
+        right: -110,
     },
     '&:before': {
         content: '""',
         position: 'absolute',
-        width: 210,
-        height: 210,
+        width: 200,
+        height: 200,
         background: `linear-gradient(210.9deg, ${theme.palette.primary.dark} -14.02%, rgba(144, 202, 249, 0) 70.50%)`,
         borderRadius: '50%',
-        top: -120,
-        left: -170,
+        top: -110,
+        left: -70,
     },
 }));
 

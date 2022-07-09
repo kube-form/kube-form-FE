@@ -1,6 +1,5 @@
 import {
     Pagination,
-    Button,
     CardContent,
     Grid,
     Typography,
@@ -12,7 +11,6 @@ import { Droppable } from 'react-beautiful-dnd';
 
 import usePods from 'hooks/usePods';
 import { gridSpacing } from 'store/constant';
-import AnimateButton from 'ui-component/extended/AnimateButton';
 
 import MainCard from 'ui-component/cards/MainCard';
 import ContainerCard from 'ui-component/cards/node/WaitNodeCard';
