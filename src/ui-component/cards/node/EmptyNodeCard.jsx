@@ -21,6 +21,13 @@ function EmptyNodeCard({ handleOpen }) {
         <Grid item lg={3} md={3} sm={3} xs={3}>
             <CardActionArea sx={{ borderRadius: 2 }} onClick={handleOpen}>
                 <ImageContainerCard sx={{ p: 2 }}>
+                    <Typography
+                        fontSize="small"
+                        variant="caption"
+                        color={theme.palette.text.primary}
+                    >
+                        Container
+                    </Typography>
                     <List sx={{ py: 0 }}>
                         <ListItem
                             alignItems="center"
