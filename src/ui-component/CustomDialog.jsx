@@ -31,7 +31,13 @@ const CustomModal = ({ open, handleClose }) => {
                 }}
                 validationSchema={Yup.object().shape({
                     name: Yup.string().max(255).required('Name is required'),
-                    url: Yup.string().max(255).required('Url is required'),
+                    url: Yup.string()
+                        .max(255)
+                        .matches(
+                            /[a-z]+\/+[a-z]+:[a-z, 0-9]+/,
+                            'user:image:tag format',
+                        )
+                        .required('Url is required'),
                 })}
                 onSubmit={async (
                     values,

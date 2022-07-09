@@ -62,7 +62,7 @@ function WaitContainer() {
                             {(provided, snapshot) => (
                                 <Grid
                                     item
-                                    xs={11}
+                                    xs={12}
                                     container
                                     spacing={gridSpacing}
                                     ref={provided.innerRef}
@@ -89,20 +89,6 @@ function WaitContainer() {
                                 </Grid>
                             )}
                         </Droppable>
-                        <Grid
-                            item
-                            xs={1}
-                            alignContent="center"
-                            jusitfyContent="center"
-                            textAlign="center"
-                            sx={{ display: 'flex', alignItems: 'center' }}
-                        >
-                            <AnimateButton>
-                                <Button variant="contained" fullWidth>
-                                    submit
-                                </Button>
-                            </AnimateButton>
-                        </Grid>
                         <Grid
                             item
                             xs={12}
