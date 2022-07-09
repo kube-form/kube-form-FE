@@ -3,8 +3,9 @@ import { Box, Tabs, Tab } from '@mui/material';
 import MainCard from 'ui-component/cards/MainCard';
 import NetworkPanel from 'ui-component/bottomTabPannel/NetworkPanel';
 import SummaryPanel from 'ui-component/bottomTabPannel/SummaryPanel';
-import TestPannel from 'ui-component/bottomTabPannel/TestPannel';
+import LoggingPannel from 'ui-component/bottomTabPannel/LogginPannel';
 import { tabAllyProps } from 'utils/util';
+import UpdateLogPanel from 'ui-component/bottomTabPannel/UpdateLogPanel';
 
 const TABSDATA = ['summary', 'network', 'loging', 'updatelog'];
 
@@ -34,7 +35,8 @@ function StatusBottomContainer() {
             </Box>
             <SummaryPanel value={value} index={0} />
             <NetworkPanel value={value} index={1} />
-            <TestPannel value={value} index={2} />
+            <LoggingPannel value={value} index={2} />
+            <UpdateLogPanel value={value} index={3} />
         </MainCard>
     );
 }
