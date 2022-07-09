@@ -38,9 +38,16 @@ const usePods = () => {
         }
     };
 
-    // const addWait = () => {
-    //     wait.push(pod);
-    // }
+    const addWait = (pod) => {
+        try {
+            dispatch({
+                type: actionTypes.POD_ADD_WAIT,
+                payload: pod,
+            });
+        } catch (e) {
+            console.warn('add wait error', e);
+        }
+    };
 
     // remove mainIdx: sub pod index
     const removeMain = (mainIdx) => {
@@ -67,6 +74,7 @@ const usePods = () => {
     return {
         ...container,
         initAll,
+        addWait,
         reorder,
         setWait,
         addSubFromWait,

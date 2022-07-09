@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
-import axios from 'axios';
 
 import usePods from 'hooks/usePods';
 import { v4 as uuid } from 'uuid';
@@ -21,12 +20,12 @@ import RightUserNode from 'ui-component/node/RightUserNode';
 export default function Cluster() {
     const pods = usePods();
     const { data, isLoading } = getDockerImages();
+
     const updateXarrow = useXarrow();
     const theme = useTheme();
 
     const getWaitImages = async () => {
         if (data) {
-            console.log(data);
             pods.setWait(data.map((item) => ({ ...item, id: uuid() })));
         }
     };

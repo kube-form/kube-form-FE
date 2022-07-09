@@ -7,7 +7,7 @@ import { Grid, Box } from '@mui/material';
 
 import styled from '@emotion/styled';
 
-import NodeCard from 'ui-component/cards/NodeCard';
+import NodeCard from 'ui-component/cards/node/NodeCard';
 
 import IngressControllerNode from './IngressControllerNode';
 import RightUserNode from './RightUserNode';

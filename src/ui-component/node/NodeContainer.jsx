@@ -8,8 +8,7 @@ import { gridSpacing } from 'store/constant';
 import styled from '@emotion/styled';
 
 import { Droppable } from 'react-beautiful-dnd';
-import NodeCard from 'ui-component/cards/NodeCard';
-
+import NodeCard from 'ui-component/cards/node/NodeCard';
 import IngressControllerNode from './IngressControllerNode';
 
 function NodeContainer() {
