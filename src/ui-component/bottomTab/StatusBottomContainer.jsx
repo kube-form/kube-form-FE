@@ -3,11 +3,11 @@ import { Box, Tabs, Tab } from '@mui/material';
 import MainCard from 'ui-component/cards/MainCard';
 import NetworkPanel from 'ui-component/bottomTabPannel/NetworkPanel';
 import SummaryPanel from 'ui-component/bottomTabPannel/SummaryPanel';
-import LoggingPannel from 'ui-component/bottomTabPannel/LogginPannel';
+import LoggingPannel from 'ui-component/bottomTabPannel/LoggingPanel';
 import { tabAllyProps } from 'utils/util';
 import UpdateLogPanel from 'ui-component/bottomTabPannel/UpdateLogPanel';
 
-const TABSDATA = ['summary', 'network', 'loging', 'updatelog'];
+const TABSDATA = ['Summary', 'Network', 'Loging', 'Update Log'];
 
 function StatusBottomContainer() {
     const [value, setValue] = useState(0);
