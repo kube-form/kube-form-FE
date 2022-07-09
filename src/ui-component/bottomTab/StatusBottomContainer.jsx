@@ -33,8 +33,8 @@ function StatusBottomContainer() {
                 </Tabs>
             </Box>
             <SummaryPanel value={value} index={0} />
-            <TestPannel value={value} index={1} />
-            <NetworkPanel value={value} index={2} />
+            <NetworkPanel value={value} index={1} />
+            <TestPannel value={value} index={2} />
         </MainCard>
     );
 }

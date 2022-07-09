@@ -1,11 +1,9 @@
 import React from 'react';
-
+import { Box, Button } from '@material-ui/core';
+import { Card, CardActionArea, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Box, Typography, Card, CardActionArea } from '@mui/material';
 
-import HailIcon from '@mui/icons-material/Hail';
-
-function RightUserNode() {
+function SubmitBtn() {
     const theme = useTheme();
 
     return (
@@ -13,14 +11,15 @@ function RightUserNode() {
             variant="outlined"
             id="user"
             sx={{
-                ml: 3,
                 zIndex: 99,
-                minWidth: 85,
+                width: 85,
+                borderRadius: '1px solid',
                 transition: 'border 0.3s',
                 '&:hover': {
-                    borderColor: theme.palette.secondary[200],
-                    boxShadow: 2,
+                    boxShadow: 1,
                 },
+                marginBottom: 3,
+                backgroundColor: theme.palette.primary.main,
             }}
         >
             <CardActionArea>
@@ -33,17 +32,11 @@ function RightUserNode() {
                         padding: 1,
                     }}
                 >
-                    <Typography variant="subtitle1">User</Typography>
-                    <HailIcon
-                        sx={{
-                            fontSize: 40,
-                            color: theme.palette.secondary[800],
-                        }}
-                    />
+                    <Typography variant="subtitle1">Submit</Typography>
                 </Box>
             </CardActionArea>
         </Card>
     );
 }
 
-export default RightUserNode;
+export default SubmitBtn;

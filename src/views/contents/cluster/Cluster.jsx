@@ -5,7 +5,7 @@ import usePods from 'hooks/usePods';
 import { v4 as uuid } from 'uuid';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import NodeContainer from 'ui-component/node/NodeContainer';
-import { Grid, Box } from '@material-ui/core';
+import { Grid, Box, Button } from '@material-ui/core';
 
 import MainWorkerNode from 'ui-component/node/MainWorkerNode';
 import { useXarrow, Xwrapper } from 'react-xarrows';
@@ -16,6 +16,7 @@ import { getDockerImages } from 'api/cluster';
 import { useTheme } from 'styled-components';
 import ClusterMainCard from 'ui-component/cards/ClusterMainCard';
 import RightUserNode from 'ui-component/node/RightUserNode';
+import SubmitBtn from 'ui-component/node/SubmitBtn';
 
 export default function Cluster() {
     const pods = usePods();
@@ -126,7 +127,20 @@ export default function Cluster() {
                     </Box>
 
                     <LineSet />
-
+                    <Grid
+                        item
+                        xs={12}
+                        style={{
+                            display: 'flex',
+                        }}
+                    >
+                        <Grid item xs={10}>
+                            <Box />
+                        </Grid>
+                        <Grid item xs={2}>
+                            <SubmitBtn />
+                        </Grid>
+                    </Grid>
                     <Grid item xs={12}>
                         <WaitContainer />
                     </Grid>
