@@ -26,7 +26,7 @@ function UpdateLogPanel({ value, index }) {
                             content="i-jid92124y812947981j (test)"
                         />
                         <StatusListItemTitleSubTitle
-                            ti 32tle="public IPv4 address"
+                            title="public IPv4 address"
                             content="i-jid92124y812947981j (test)"
                         />
                     </ListItem>
