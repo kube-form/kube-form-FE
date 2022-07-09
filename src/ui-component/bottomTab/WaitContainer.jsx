@@ -14,7 +14,8 @@ import { gridSpacing } from 'store/constant';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 
 import MainCard from 'ui-component/cards/MainCard';
-import ContainerCard from 'ui-component/cards/WaitNodeCard';
+import ContainerCard from 'ui-component/cards/node/WaitNodeCard';
+import EmptyNodeCard from 'ui-component/cards/node/EmptyNodeCard';
 
 const ROWPERPAGE = 8;
 
@@ -72,6 +73,7 @@ function WaitContainer() {
                                             url={item.url}
                                         />
                                     ))}
+                                <EmptyNodeCard />
                                 {provided.placeholder}
                             </Grid>
                         )}
