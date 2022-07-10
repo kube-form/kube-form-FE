@@ -11,6 +11,7 @@ import {
     Divider,
     TablePagination,
     TableContainer,
+    Avatar,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
@@ -18,26 +19,27 @@ import React, { useState } from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 import WarningIcon from '@mui/icons-material/Warning';
 import { v4 as uuid } from 'uuid';
-import MainCard from 'ui-component/cards/MainCard';
+import ErrorIcon from '@mui/icons-material/Error';
+import DoneIcon from '@mui/icons-material/Done';
 
 const DUMMYDATA = [
-    { id: uuid(), date: '2022-02-04', type: 'funny', status: 'status' },
-    { id: uuid(), date: '2022-02-05', type: 'sleep', status: 'status4' },
-    { id: uuid(), date: '2022-02-06', type: 'happy', status: 'status3' },
-    { id: uuid(), date: '2022-02-07', type: 'kkkkkk', status: 'status2' },
-    { id: uuid(), date: '2022-02-08', type: 'kkk', status: 'status1' },
-    { id: uuid(), date: '2022-02-08', type: 'kkk', status: 'status1' },
-    { id: uuid(), date: '2022-02-08', type: 'kkk', status: 'status1' },
-    { id: uuid(), date: '2022-02-08', type: 'kkk', status: 'status1' },
-    { id: uuid(), date: '2022-02-08', type: 'kkk', status: 'status1' },
-    { id: uuid(), date: '2022-02-08', type: 'kkk', status: 'status1' },
-    { id: uuid(), date: '2022-02-08', type: 'kkk', status: 'status1' },
-    { id: uuid(), date: '2022-02-08', type: 'kkk', status: 'status1' },
-    { id: uuid(), date: '2022-02-08', type: 'kkk', status: 'status1' },
-    { id: uuid(), date: '2022-02-08', type: 'kkk', status: 'status1' },
-    { id: uuid(), date: '2022-02-08', type: 'kkk', status: 'status1' },
-    { id: uuid(), date: '2022-02-08', type: 'kkk', status: 'status1' },
-    { id: uuid(), date: '2022-02-08', type: 'kkk', status: 'status1' },
+    { id: uuid(), date: '2022-07-10', type: 'update', status: 1 },
+    { id: uuid(), date: '2022-07-09', type: 'update', status: 0 },
+    { id: uuid(), date: '2022-07-09', type: 'generate', status: 1 },
+    { id: uuid(), date: '2022-07-08', type: 'delete', status: 1 },
+    { id: uuid(), date: '2022-06-30', type: 'update', status: 1 },
+    { id: uuid(), date: '2022-06-30', type: 'update', status: 1 },
+    { id: uuid(), date: '2022-06-30', type: 'update', status: 1 },
+    { id: uuid(), date: '2022-06-30', type: 'generate', status: 0 },
+    { id: uuid(), date: '2022-06-29', type: 'update', status: 1 },
+    { id: uuid(), date: '2022-06-29', type: 'update', status: 0 },
+    { id: uuid(), date: '2022-06-27', type: 'update', status: 1 },
+    { id: uuid(), date: '2022-06-27', type: 'update', status: 1 },
+    { id: uuid(), date: '2022-06-27', type: 'generate', status: 1 },
+    { id: uuid(), date: '2022-06-27', type: 'delete', status: 1 },
+    { id: uuid(), date: '2022-06-27', type: 'update', status: 1 },
+    { id: uuid(), date: '2022-06-25', type: 'generate', status: 1 },
+    { id: uuid(), date: '2022-06-24', type: 'generate', status: 1 },
 ];
 
 function UpdateLogPanel({ value, index }) {
@@ -53,6 +55,12 @@ function UpdateLogPanel({ value, index }) {
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
+    };
+
+    const getTypeColor = (item) => {
+        if (item === 'update') return theme.palette.info.dark;
+        if (item === 'delete') return theme.palette.error.dark;
+        return theme.palette.success.dark;
     };
 
     return (
@@ -91,8 +99,73 @@ function UpdateLogPanel({ value, index }) {
                                 <TableRow key={item.id}>
                                     <TableCell>{item.id}</TableCell>
                                     <TableCell>{item.date}</TableCell>
-                                    <TableCell>{item.type}</TableCell>
-                                    <TableCell>{item.status}</TableCell>
+                                    <TableCell>
+                                        <Typography
+                                            sx={{
+                                                color: getTypeColor(item.type),
+                                                fontWeight:
+                                                    theme.typography
+                                                        .fontWeightBold,
+                                            }}
+                                        >
+                                            {item.type}
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        {item.status ? (
+                                            <Box sx={{ display: 'flex' }}>
+                                                <Avatar
+                                                    sx={{
+                                                        width: 22,
+                                                        height: 22,
+                                                        mr: 1,
+                                                        bgcolor: 'transparent',
+                                                        color: theme.palette
+                                                            .success.dark,
+                                                    }}
+                                                >
+                                                    <DoneIcon />
+                                                </Avatar>
+                                                <Typography
+                                                    sx={{
+                                                        color: theme.palette
+                                                            .success.dark,
+                                                        fontWeight:
+                                                            theme.typography
+                                                                .fontWeightBold,
+                                                    }}
+                                                >
+                                                    success
+                                                </Typography>
+                                            </Box>
+                                        ) : (
+                                            <Box sx={{ display: 'flex' }}>
+                                                <Avatar
+                                                    sx={{
+                                                        width: 22,
+                                                        height: 22,
+                                                        mr: 1,
+                                                        bgcolor: 'transparent',
+                                                        color: theme.palette
+                                                            .error.dark,
+                                                    }}
+                                                >
+                                                    <ErrorIcon />
+                                                </Avatar>
+                                                <Typography
+                                                    sx={{
+                                                        color: theme.palette
+                                                            .error.dark,
+                                                        fontWeight:
+                                                            theme.typography
+                                                                .fontWeightBold,
+                                                    }}
+                                                >
+                                                    error
+                                                </Typography>
+                                            </Box>
+                                        )}
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

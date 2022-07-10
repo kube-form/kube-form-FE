@@ -29,7 +29,7 @@ function LoggingPanel({ value, index }) {
             <CardHeader title="Logging" />
             <Divider />
             <CardContent>
-                <Grid container>
+                <Grid container sx={{ flexGrow: 1 }}>
                     <Grid item xs={12} sm={6} md={4}>
                         <ListItem>
                             <StatusListItemTitleSubTitle

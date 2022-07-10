@@ -11,14 +11,19 @@ import {
     Button,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import React from 'react';
+import React, { useState } from 'react';
 import LockIcon from '@mui/icons-material/Lock';
 import { getMomentFromNow } from 'utils/util';
 
 function IAMListItem({ accessKeyId, updated, detail }) {
     const theme = useTheme();
+    const [isHidden, setHidden] = useState(false);
+    const handleDelete = () => {
+        setHidden(true);
+    };
+
     return (
-        <ListItem>
+        <ListItem sx={{ display: isHidden ? 'none' : 'flex' }}>
             <Grid
                 container
                 sx={{ justifyContent: { xs: 'none', sm: 'space-between' } }}
@@ -113,7 +118,12 @@ function IAMListItem({ accessKeyId, updated, detail }) {
                     }}
                 >
                     <Box>
-                        <Button variant="contained" color="error" size="small">
+                        <Button
+                            variant="contained"
+                            color="error"
+                            size="small"
+                            onClick={handleDelete}
+                        >
                             Delete
                         </Button>
                     </Box>

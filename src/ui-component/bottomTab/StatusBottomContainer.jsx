@@ -16,7 +16,7 @@ function StatusBottomContainer() {
     };
 
     return (
-        <MainCard content={false}>
+        <MainCard content={false} sx={{ marginY: 4 }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs
                     value={value}

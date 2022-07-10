@@ -36,11 +36,12 @@ const DUMMYDATA = [
 function IamSettingPage() {
     return (
         <MainCard title="IAM Setting">
-            <Box py={1}>
+            <Box py={2}>
                 <Typography>
-                    대충 설명하는 글대충 설명하는 글대충 설명하는 글대충
-                    설명하는 글대충 설명하는 글대충 설명하는 글대충 설명하는
-                    글대충 설명하는 글대충 설명하는 글대충 설명하는 글
+                    Secrets are environment variables that are encrypted. Anyone
+                    with collaborator access to this repository can use these
+                    secrets for Actions. Secrets are not passed to workflows
+                    that are triggered by a pull request from a fork.
                 </Typography>
             </Box>
             <List>

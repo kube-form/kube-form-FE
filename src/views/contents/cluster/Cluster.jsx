@@ -123,10 +123,9 @@ export default function Cluster() {
                             >
                                 <RightUserNode />
                             </Grid>
+                            <LineSet />
                         </Grid>
                     </Box>
-
-                    <LineSet />
                     <Grid
                         item
                         xs={12}

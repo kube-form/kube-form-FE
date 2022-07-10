@@ -1,4 +1,11 @@
-import { Box, CardContent, Divider, Grid, Typography } from '@mui/material';
+import {
+    Box,
+    CardContent,
+    Divider,
+    Grid,
+    Typography,
+    CardHeader,
+} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -18,12 +25,14 @@ function NetworkPanel({ value, index }) {
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
         >
+            <CardHeader title="세부 정보" />
+            <Divider />
             <CardContent>
-                <Typography variant="h3">Networking</Typography>
-                <Divider />
-                <Grid container xs={12} sx={{ flexGrow: 1 }}>
+                <Grid container sx={{ flexGrow: 1 }}>
                     <Grid
                         item
+                        xs={12}
+                        sm={6}
                         md={3}
                         sx={{
                             padding: 1,
@@ -44,6 +53,8 @@ function NetworkPanel({ value, index }) {
                     </Grid>
                     <Grid
                         item
+                        xs={12}
+                        sm={6}
                         md={3}
                         sx={{
                             padding: 1,
@@ -58,6 +69,8 @@ function NetworkPanel({ value, index }) {
                     </Grid>
                     <Grid
                         item
+                        xs={12}
+                        sm={6}
                         md={3}
                         sx={{
                             padding: 1,
@@ -74,6 +87,8 @@ function NetworkPanel({ value, index }) {
                     </Grid>
                     <Grid
                         item
+                        xs={12}
+                        sm={6}
                         md={3}
                         sx={{
                             padding: 1,
