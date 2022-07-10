@@ -160,13 +160,13 @@ function ProfileSection() {
                                 ...theme.typography.mediumAvatar,
                                 margin: '8px 0 8px 8px !important',
                                 cursor: 'pointer',
-                                bgcolor: stringToColor(auth.user.name),
+                                // bgcolor: stringToColor(auth.user.name),
                             }}
                             ref={anchorRef}
                             aria-controls={open ? 'menu-list-grow' : undefined}
                             aria-haspopup="true"
                             color="inherit"
-                            {...stringAvatar(auth.user.name)}
+                            // {...stringAvatar(auth.user.name)}
                         />
                     )
                 }

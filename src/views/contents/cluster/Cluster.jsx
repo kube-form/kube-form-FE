@@ -18,16 +18,34 @@ import ClusterMainCard from 'ui-component/cards/ClusterMainCard';
 import RightUserNode from 'ui-component/node/RightUserNode';
 import SubmitBtn from 'ui-component/node/SubmitBtn';
 
+const DUMMYDATA = [
+    {
+        url: 'mysql:latest',
+        image: 'https://kube-form.s3.ap-northeast-2.amazonaws.com/dockerImages/mysql.png',
+        name: 'mysql:latest',
+    },
+    {
+        url: 'node:latest',
+        image: 'https://kube-form.s3.ap-northeast-2.amazonaws.com/dockerImages/node.png',
+        name: 'node:latest',
+    },
+    {
+        url: 'nginx:latest',
+        image: 'https://kube-form.s3.ap-northeast-2.amazonaws.com/dockerImages/nginx.png',
+        name: 'nginx:latest',
+    },
+];
+
 export default function Cluster() {
     const pods = usePods();
-    const { data, isLoading } = getDockerImages();
+    // const { data, isLoading } = getDockerImages();
 
     const updateXarrow = useXarrow();
     const theme = useTheme();
 
     const getWaitImages = async () => {
-        if (data) {
-            pods.setWait(data.map((item) => ({ ...item, id: uuid() })));
+        if (DUMMYDATA) {
+            pods.setWait(DUMMYDATA.map((item) => ({ ...item, id: uuid() })));
         }
     };
 
@@ -71,12 +89,12 @@ export default function Cluster() {
 
     useEffect(() => {
         getWaitImages();
-    }, [data]);
+    }, [DUMMYDATA]);
 
     // TODO;
-    if (isLoading) {
-        return <>loading</>;
-    }
+    // if (isLoading) {
+    //     return <>loading</>;
+    // }
     return (
         <ClusterMainCard>
             <Xwrapper>
@@ -123,10 +141,9 @@ export default function Cluster() {
                             >
                                 <RightUserNode />
                             </Grid>
+                            <LineSet />
                         </Grid>
                     </Box>
-
-                    <LineSet />
                     <Grid
                         item
                         xs={12}
