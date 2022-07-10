@@ -97,7 +97,7 @@ function IAMListItem({ accessKeyId, updated, detail }) {
                             size="small"
                             component={Link}
                             to={{
-                                pathname: '/kube-form-FE/iam/update',
+                                pathname: '/iam/update',
                                 // query: { accessKeyId: { accessKeyId } },
                                 search: `?accessKeyId=${accessKeyId}`,
                             }}
