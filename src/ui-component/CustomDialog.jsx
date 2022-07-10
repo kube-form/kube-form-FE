@@ -34,7 +34,7 @@ const CustomModal = ({ open, handleClose }) => {
                     url: Yup.string()
                         .max(255)
                         .matches(
-                            /[a-z]+\/+[a-z]+:[a-z, 0-9]+/,
+                            /[a-z, 0-9]+\/+[a-z, 0-9]+:[a-z, 0-9]+/,
                             'user:image:tag format',
                         )
                         .required('Url is required'),
