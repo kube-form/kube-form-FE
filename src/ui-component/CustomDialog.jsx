@@ -16,6 +16,7 @@ import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import usePods from 'hooks/usePods';
+import { v4 as uuid } from 'uuid';
 
 const CustomModal = ({ open, handleClose }) => {
     const theme = useTheme();
@@ -35,7 +36,7 @@ const CustomModal = ({ open, handleClose }) => {
                         .max(255)
                         .matches(
                             /[a-z, 0-9]+\/+[a-z, 0-9]+:[a-z, 0-9]+/,
-                            'user:image:tag format',
+                            'user/image:tag format',
                         )
                         .required('Url is required'),
                 })}
@@ -47,6 +48,7 @@ const CustomModal = ({ open, handleClose }) => {
                         addWait({
                             ...values,
                             image: `https://kube-form.s3.ap-northeast-2.amazonaws.com/dockerImages/custom.png`,
+                            id: uuid(),
                         });
                         handleClose();
                     } catch (err) {
