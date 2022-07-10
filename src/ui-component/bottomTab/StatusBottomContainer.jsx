@@ -7,7 +7,7 @@ import LoggingPannel from 'ui-component/bottomTabPannel/LoggingPanel';
 import { tabAllyProps } from 'utils/util';
 import UpdateLogPanel from 'ui-component/bottomTabPannel/UpdateLogPanel';
 
-const TABSDATA = ['Summary', 'Network', 'Loging', 'Update Log'];
+const TABSDATA = ['Overview', 'Network', 'Loging', 'Update history'];
 
 function StatusBottomContainer() {
     const [value, setValue] = useState(0);

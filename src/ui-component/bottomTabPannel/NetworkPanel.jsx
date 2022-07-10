@@ -43,11 +43,11 @@ function NetworkPanel({ value, index }) {
                             content="vpc-01a48279b85f653da"
                         />
                         <StatusListItemTitleSubTitle
-                            title="클러스터 IP 주소 패밀리"
+                            title="Cluster IP address family"
                             content="IPv4"
                         />
                         <StatusListItemTitleSubTitle
-                            title="서비스c IPv4 범위"
+                            title="Service IPv4 range"
                             content="172.20.0.0/16"
                         />
                     </Grid>
@@ -61,7 +61,7 @@ function NetworkPanel({ value, index }) {
                         }}
                     >
                         <StatusListItemTitleSubTitle
-                            title="서브넷"
+                            title="Subnets"
                             content="subnet-06939c498092bfa2d"
                         />
                         <StatusListItemTitleSubTitle content="subnet-02e493624d0935356" />
@@ -77,11 +77,11 @@ function NetworkPanel({ value, index }) {
                         }}
                     >
                         <StatusListItemTitleSubTitle
-                            title="클러스터 보안 그룹"
+                            title="Cluster security group"
                             content="sg-08ad717c0205a4716"
                         />
                         <StatusListItemTitleSubTitle
-                            title="추가 보안 그룹"
+                            title="Additional security groups"
                             content="sg-093dbaad9dc2cf13d"
                         />
                     </Grid>
@@ -95,12 +95,12 @@ function NetworkPanel({ value, index }) {
                         }}
                     >
                         <StatusListItemTitleSubTitle
-                            title="API 서버 엔드포인트 액세스"
+                            title="API server endpoint access"
                             content="Public"
                         />
                         <StatusListItemTitleSubTitle
-                            title="퍼블릭 액세스 소스 허용 목록"
-                            content="0.0.0.0/0(모든 트래픽에 개방됨)"
+                            title="Public access source allowlist"
+                            content="0.0.0.0/0(open to all traffic)"
                         />
                     </Grid>
                 </Grid>

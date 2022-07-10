@@ -78,10 +78,14 @@ function UpdateLogPanel({ value, index }) {
                         <TableHead>
                             <TableRow>
                                 <TableCell>
-                                    <Typography variant="h6">ID</Typography>
+                                    <Typography variant="h6">
+                                        Update ID
+                                    </Typography>
                                 </TableCell>
                                 <TableCell>
-                                    <Typography variant="h6">Date</Typography>
+                                    <Typography variant="h6">
+                                        Submission time
+                                    </Typography>
                                 </TableCell>
                                 <TableCell>
                                     <Typography variant="h6">Type</Typography>

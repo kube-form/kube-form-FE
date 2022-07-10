@@ -26,21 +26,21 @@ function LoggingPanel({ value, index }) {
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
         >
-            <CardHeader title="Logging" />
+            <CardHeader title="Control plane logging" />
             <Divider />
             <CardContent>
                 <Grid container sx={{ flexGrow: 1 }}>
                     <Grid item xs={12} sm={6} md={4}>
                         <ListItem>
                             <StatusListItemTitleSubTitle
-                                title="API 서버"
-                                content="비활성화됨"
+                                title="API server"
+                                content="Disabled"
                             />
                         </ListItem>
                         <ListItem>
                             <StatusListItemTitleSubTitle
-                                title="감사"
-                                content="비활성화됨"
+                                title="Audit"
+                                content="Disabled"
                             />
                         </ListItem>
                     </Grid>
@@ -48,21 +48,21 @@ function LoggingPanel({ value, index }) {
                         <ListItem>
                             <StatusListItemTitleSubTitle
                                 title="Authenticator"
-                                content="비활성화됨"
+                                content="Disabled"
                             />
                         </ListItem>
                         <ListItem>
                             <StatusListItemTitleSubTitle
-                                title="컨트롤러 관리자"
-                                content="비활성화됨"
+                                title="Controller manager"
+                                content="Disabled"
                             />
                         </ListItem>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
                         <ListItem>
                             <StatusListItemTitleSubTitle
-                                title="스케줄러"
-                                content="비활성화됨"
+                                title="Scheduler"
+                                content="Disabled"
                             />
                         </ListItem>
                     </Grid>
