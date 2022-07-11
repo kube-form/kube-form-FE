@@ -7,6 +7,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
+import { IconExternalLink } from '@tabler/icons';
 
 export function StatusListItemTitleSubTitle({ title, content, sx }) {
     const theme = useTheme();
@@ -104,6 +105,27 @@ export function StatusListItemBase({ title, content, sx }) {
     );
 }
 
+export function StatusLinkTypography({ children, sx }) {
+    const theme = useTheme();
+    return (
+        <Typography
+            py={0.4}
+            sx={{
+                color: theme.palette.info.main,
+                cursor: 'pointer',
+                alignItems: 'end',
+            }}
+        >
+            {children}
+            <IconExternalLink
+                style={{ 'vertical-align': 'bottom', marginLeft: 1 }}
+                width={20}
+                height={20}
+            />
+        </Typography>
+    );
+}
+
 StatusListItemTitleSubTitle.propTypes = {
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
@@ -126,10 +148,16 @@ StatusListItemAvatar.defaultProps = {
 
 StatusListItemBase.propTypes = {
     title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
+    content: PropTypes.string || PropTypes.node,
     sx: PropTypes.object,
 };
 
 StatusListItemBase.defaultProps = {
     sx: {},
+    content: '',
+};
+
+StatusLinkTypography.propTypes = {
+    children: PropTypes.node.isRequired,
+    sx: PropTypes.object,
 };

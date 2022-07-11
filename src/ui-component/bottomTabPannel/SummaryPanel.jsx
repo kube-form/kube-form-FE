@@ -31,15 +31,7 @@ function SummaryPanel({ value, index }) {
             <Divider />
             <CardContent>
                 <Grid container sx={{ flexGrow: 1 }}>
-                    <Grid
-                        item
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        sx={{
-                            padding: 1,
-                        }}
-                    >
+                    <Grid item xs={12} sm={6} md={4}>
                         <StatusListItemTitleSubTitle
                             title="API server endpoint"
                             content="https://33E9A2E4C9132EAD55695D10CEE49677.gr7.ap-northeast-2.eks.amazonaws.com"
@@ -50,15 +42,7 @@ function SummaryPanel({ value, index }) {
                         />
                     </Grid>
 
-                    <Grid
-                        item
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        sx={{
-                            padding: 1,
-                        }}
-                    >
+                    <Grid item xs={12} sm={6} md={4}>
                         <StatusListItemTitleSubTitle
                             title="OpenID Connect provider URL"
                             content="https://oidc.eks.ap-northeast-2.amazonaws.com/id/33E9A2E4C9132EAD55695D10CEE49677"
@@ -68,15 +52,7 @@ function SummaryPanel({ value, index }) {
                             content="arn:aws:iam::170777615631:role/kubeform-eks-V78qavNc20220703123922484400000003 "
                         />
                     </Grid>
-                    <Grid
-                        item
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        sx={{
-                            padding: 1,
-                        }}
-                    >
+                    <Grid item xs={12} sm={6} md={4}>
                         <StatusListItemTitleSubTitle
                             title="Created"
                             content="July 3, 2022, 21:39 (UTC+09:00) (test)"

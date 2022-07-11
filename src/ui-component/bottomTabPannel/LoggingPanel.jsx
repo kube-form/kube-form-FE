@@ -61,6 +61,7 @@ function LoggingPanel({ value, index }) {
                                 fontWeight: theme.typography.fontWeightBold,
                                 color: theme.palette.grey[500],
                                 borderColor: theme.palette.grey[500],
+                                bgcolor: theme.palette.background.default,
                             }}
                             variant="outlined"
                         >
