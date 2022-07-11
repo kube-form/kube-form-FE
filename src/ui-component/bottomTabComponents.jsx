@@ -71,6 +71,39 @@ export function StatusListItemAvatar({ icon, content, sx }) {
     );
 }
 
+export function StatusListItemBase({ title, content, sx }) {
+    const theme = useTheme();
+    return (
+        <ListItemText
+            primary={
+                <Typography
+                    variant="body1"
+                    noWrap
+                    sx={{
+                        color: theme.palette.grey[700],
+                    }}
+                >
+                    {title}
+                </Typography>
+            }
+            secondary={
+                <Typography
+                    variant="body1"
+                    sx={{
+                        color: theme.palette.dark[900],
+                        mt: 0.5,
+                        ...sx,
+                        overflow: 'hidden',
+                    }}
+                    nowrap
+                >
+                    {content}
+                </Typography>
+            }
+        />
+    );
+}
+
 StatusListItemTitleSubTitle.propTypes = {
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
@@ -88,5 +121,15 @@ StatusListItemAvatar.propTypes = {
 };
 
 StatusListItemAvatar.defaultProps = {
+    sx: {},
+};
+
+StatusListItemBase.propTypes = {
+    title: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    sx: PropTypes.object,
+};
+
+StatusListItemBase.defaultProps = {
     sx: {},
 };
