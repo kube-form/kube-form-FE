@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { Draggable } from 'react-beautiful-dnd';
 
-function ContainerWaitCard({ id, content, index }) {
+function ContainerWaitCard({ id, index, image, name, url }) {
     const theme = useTheme();
 
     return (
@@ -31,19 +31,50 @@ function ContainerWaitCard({ id, content, index }) {
                     sm={3}
                     xs={3}
                 >
-                    <ImageContainerCard sx={{ p: 2 }}>
-                        <List sx={{ py: 0 }}>
+                    <ImageContainerCard
+                        nerCard
+                        sx={{
+                            p: 1,
+                            transition: 'transform 0.3s, border 0.3s',
+                            '&:hover': {
+                                transform: 'translateY(-2px)',
+                                boxShadow: 3,
+                            },
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                pb: 0.5,
+                                gap: 0.5,
+                            }}
+                        >
+                            <Typography
+                                fontSize="small"
+                                variant="caption"
+                                color={theme.palette.text.hint}
+                            >
+                                Container
+                            </Typography>
+                        </Box>
+                        <List sx={{ py: 0, p: 1 }}>
                             <ListItem
                                 alignItems="center"
                                 disableGutters
                                 sx={{ py: 0 }}
                             >
                                 <ListItemAvatar>
-                                    <Avatar>
+                                    <Avatar
+                                        sx={{
+                                            border: '2px solid',
+                                            borderColor: `${theme.palette.dark.light}`,
+                                        }}
+                                    >
                                         <img
                                             className="ContainerCardImage"
                                             alt={`${index}_container_image`}
-                                            src={`https://picsum.photos/id/${index}/50/50`}
+                                            src={image}
                                         />
                                     </Avatar>
                                 </ListItemAvatar>
@@ -54,8 +85,12 @@ function ContainerWaitCard({ id, content, index }) {
                                         mb: 0.45,
                                     }}
                                     primary={
-                                        <Typography variant="h4" noWrap>
-                                            {content}
+                                        <Typography
+                                            variant="h4"
+                                            noWrap
+                                            color="#FFF"
+                                        >
+                                            {name}
                                         </Typography>
                                     }
                                     secondary={
@@ -67,7 +102,7 @@ function ContainerWaitCard({ id, content, index }) {
                                             }}
                                             noWrap
                                         >
-                                            {id}
+                                            {url}
                                         </Typography>
                                     }
                                 />
@@ -82,36 +117,41 @@ function ContainerWaitCard({ id, content, index }) {
 
 ContainerWaitCard.propTypes = {
     index: PropTypes.number.isRequired,
-    content: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
 };
 
 const ImageContainerCard = styled(Box)(({ theme }) => ({
-    // backgroundColor: theme.palette.secondary.dark,
     borderRadius: 10,
     overflow: 'hidden',
     position: 'relative',
+    backgroundColor: theme.palette.dark.main,
 
-    '& .ContainerCardImage': {},
+    '& .ContainerCardImage': {
+        width: 40,
+        height: 40,
+    },
     '&:after': {
         content: '""',
         position: 'absolute',
-        width: 210,
-        height: 210,
-        background: `linear-gradient(210.04deg, ${theme.palette.primary.dark} -50.94%, rgba(144, 202, 249, 0) 83.49%)`,
+        width: 200,
+        height: 200,
+        background: `linear-gradient(210.04deg, ${theme.palette.primary.dark} -80.94%, rgba(144, 202, 249, 0) 83.49%)`,
         borderRadius: '50%',
-        top: 40,
-        right: -150,
+        top: 50,
+        right: -120,
     },
     '&:before': {
         content: '""',
         position: 'absolute',
-        width: 210,
-        height: 210,
+        width: 200,
+        height: 200,
         background: `linear-gradient(210.9deg, ${theme.palette.primary.dark} -14.02%, rgba(144, 202, 249, 0) 70.50%)`,
         borderRadius: '50%',
-        top: -120,
-        left: -170,
+        top: -110,
+        left: -80,
     },
 }));
 

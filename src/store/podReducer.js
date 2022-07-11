@@ -17,6 +17,8 @@ const podReducer = (state = initialState, action) => {
             return { ...state, sub: action.payload };
         case actionTypes.POD_SET_MAIN:
             return { ...state, main: action.payload };
+        case actionTypes.POD_ADD_WAIT:
+            return { ...state, wait: [...state.wait, action.payload] };
         default:
             return state;
     }

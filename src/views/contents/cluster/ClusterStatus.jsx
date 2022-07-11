@@ -7,6 +7,7 @@ import LeftUserNode from 'ui-component/node/LeftUserNode';
 import LineSet from 'ui-component/line/LineSet';
 import StatusBottomContainer from 'ui-component/bottomTab/StatusBottomContainer';
 import LoadingComponent from 'ui-component/node/LoadingComponent';
+import RightUserNode from 'ui-component/node/RightUserNode';
 
 export default function Cluster() {
     return (
@@ -23,19 +24,30 @@ export default function Cluster() {
                         }}
                     >
                         <LoadingComponent />
-                        {/* <Box sx={{ minHeight: 100 }} /> */}
                         <LeftUserNode className="admin" />
                     </Grid>
                     <Grid
                         item
-                        xs={4}
+                        xs={3}
                         alignItems="center"
                         style={{ display: 'flex' }}
                     >
                         <MainWorkerNode className="main" />
                     </Grid>
-                    <Grid item xs={6} id="sub">
+                    <Grid item xs={5} id="sub">
                         <NodeStatusContainer />
+                    </Grid>
+                    <Grid
+                        item
+                        xs={2}
+                        direction="column"
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <RightUserNode />
                     </Grid>
                 </Grid>
             </Box>
@@ -43,7 +55,6 @@ export default function Cluster() {
             <LineSet />
 
             <Grid item xs={12}>
-                {/* <WaitContainer /> */}
                 <StatusBottomContainer />
             </Grid>
         </>

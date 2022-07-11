@@ -23,19 +23,6 @@ const usePods = () => {
         setWait(result);
     };
 
-    // wait -> main 일단 한 개로 고려
-    const addMainFromWait = (waitIdx) => {
-        try {
-            const item = container.wait[waitIdx];
-            dispatch({
-                type: actionTypes.POD_SET_MAIN,
-                payload: [{ ...item, id: uuid() }],
-            });
-        } catch (e) {
-            console.warn('wait out of index', e);
-        }
-    };
-
     // wait -> sub
     const addSubFromWait = (waitIdx) => {
         try {
@@ -48,6 +35,17 @@ const usePods = () => {
             });
         } catch (e) {
             console.warn('wait out of index', e);
+        }
+    };
+
+    const addWait = (pod) => {
+        try {
+            dispatch({
+                type: actionTypes.POD_ADD_WAIT,
+                payload: pod,
+            });
+        } catch (e) {
+            console.warn('add wait error', e);
         }
     };
 
@@ -76,10 +74,10 @@ const usePods = () => {
     return {
         ...container,
         initAll,
+        addWait,
         reorder,
         setWait,
         addSubFromWait,
-        addMainFromWait,
         removeSub,
         removeMain,
     };

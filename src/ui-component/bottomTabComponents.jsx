@@ -24,8 +24,9 @@ export function StatusListItemTitleSubTitle({ title, content, sx }) {
                         color: theme.palette.grey[500],
                         mt: 0.5,
                         ...sx,
+                        overflow: 'hidden',
                     }}
-                    noWrap
+                    nowrap
                 >
                     {content}
                 </Typography>

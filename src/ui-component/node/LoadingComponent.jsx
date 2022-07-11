@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
 import CachedIcon from '@mui/icons-material/Cached';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
@@ -10,14 +10,35 @@ export default function LoadingComponent() {
     const theme = useTheme();
     const [done, setDone] = useState();
 
+    const [test, useTest] = useState(0);
+    const onClick = () => {
+        useTest((item) => (item + 1) % 3);
+    };
     const handleClick = () => {
         setLoading(true);
-        setTimeout(() => setLoading(false), 3000);
+        setTimeout(() => {
+            setLoading(false);
+            onClick();
+        }, 3000);
     };
+
+    useEffect(() => {
+        if (test === 0) {
+            setLoading(false);
+            setDone(null);
+        } else if (test === 1) {
+            setLoading(false);
+            setDone('success');
+        } else {
+            setLoading(false);
+            setDone('fail');
+        }
+    }, [test]);
+
     switch (done) {
         case 'success':
             return (
-                <Box sx={{ minHeight: 100 }}>
+                <Box sx={{ minHeight: 100 }} onClick={onClick}>
                     <Typography
                         variant="subtitle1"
                         color={theme.palette.success.dark}
@@ -29,6 +50,7 @@ export default function LoadingComponent() {
         case 'fail':
             return (
                 <Box
+                    onClick={onClick}
                     sx={{ minHeight: 100 }}
                     display="flex"
                     color={theme.palette.error.dark}

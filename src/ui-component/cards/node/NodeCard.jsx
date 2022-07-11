@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { Draggable } from 'react-beautiful-dnd';
 
-function NodeCard({ id, content, index }) {
+function NodeCard({ id, index, image, name, url }) {
     const theme = useTheme();
 
     return (
@@ -27,6 +27,7 @@ function NodeCard({ id, content, index }) {
                     isdragging={snapshot.isdragging}
                     item
                     id={id}
+                    xs={12}
                 >
                     <ImageContainerCard sx={{ p: 2 }}>
                         <List sx={{ py: 0 }}>
@@ -40,7 +41,7 @@ function NodeCard({ id, content, index }) {
                                         <img
                                             className="ContainerCardImage"
                                             alt={`${index}_container_image`}
-                                            src={`https://picsum.photos/id/${index}/50/50`}
+                                            src={image}
                                         />
                                     </Avatar>
                                 </ListItemAvatar>
@@ -51,8 +52,12 @@ function NodeCard({ id, content, index }) {
                                         mb: 0.45,
                                     }}
                                     primary={
-                                        <Typography variant="h4" noWrap>
-                                            {content}
+                                        <Typography
+                                            variant="h4"
+                                            noWrap
+                                            sx={{ color: '#FFF' }}
+                                        >
+                                            {name}
                                         </Typography>
                                     }
                                     secondary={
@@ -64,7 +69,7 @@ function NodeCard({ id, content, index }) {
                                             }}
                                             noWrap
                                         >
-                                            {id}
+                                            {url}
                                         </Typography>
                                     }
                                 />
@@ -79,35 +84,41 @@ function NodeCard({ id, content, index }) {
 
 NodeCard.propTypes = {
     index: PropTypes.number.isRequired,
-    content: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
 };
 
 const ImageContainerCard = styled(Box)(({ theme }) => ({
     borderRadius: 10,
     overflow: 'hidden',
     position: 'relative',
+    backgroundColor: theme.palette.dark.main,
 
-    // '& .ContainerCardImage': {},
+    '& .ContainerCardImage': {
+        width: 40,
+        height: 40,
+    },
     '&:after': {
         content: '""',
         position: 'absolute',
-        width: 210,
-        height: 210,
-        background: `linear-gradient(210.04deg, ${theme.palette.primary.dark} -50.94%, rgba(144, 202, 249, 0) 83.49%)`,
+        width: 200,
+        height: 200,
+        background: `linear-gradient(210.04deg, ${theme.palette.primary.dark} -80.94%, rgba(144, 202, 249, 0) 83.49%)`,
         borderRadius: '50%',
-        top: 40,
-        right: -150,
+        top: 30,
+        right: -110,
     },
     '&:before': {
         content: '""',
         position: 'absolute',
-        width: 210,
-        height: 210,
+        width: 200,
+        height: 200,
         background: `linear-gradient(210.9deg, ${theme.palette.primary.dark} -14.02%, rgba(144, 202, 249, 0) 70.50%)`,
         borderRadius: '50%',
-        top: -120,
-        left: -170,
+        top: -110,
+        left: -70,
     },
 }));
 

@@ -1,4 +1,11 @@
-import { Box, CardContent, List, ListItem } from '@mui/material';
+import {
+    Box,
+    CardContent,
+    Divider,
+    Grid,
+    Typography,
+    CardHeader,
+} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -18,36 +25,85 @@ function NetworkPanel({ value, index }) {
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
         >
+            <CardHeader title="세부 정보" />
+            <Divider />
             <CardContent>
-                <List>
-                    <ListItem>
+                <Grid container sx={{ flexGrow: 1 }}>
+                    <Grid
+                        item
+                        xs={12}
+                        sm={6}
+                        md={3}
+                        sx={{
+                            padding: 1,
+                        }}
+                    >
                         <StatusListItemTitleSubTitle
-                            title="Instance ID"
-                            content="i-jid92124y812947981j (test)"
+                            title="VPC"
+                            content="vpc-01a48279b85f653da"
                         />
                         <StatusListItemTitleSubTitle
-                            title="public IPv4 address"
-                            content="i-jid92124y812947981j (test)"
+                            title="Cluster IP address family"
+                            content="IPv4"
                         />
-                    </ListItem>
-                    <ListItem>
                         <StatusListItemTitleSubTitle
-                            title="public IPv4 address"
-                            content="i-jid92124y812947981j (test)"
+                            title="Service IPv4 range"
+                            content="172.20.0.0/16"
                         />
-                    </ListItem>
-                    <ListItem>
-                        <StatusListItemAvatar
-                            icon={<CheckIcon color="success" />}
-                            content="running"
+                    </Grid>
+                    <Grid
+                        item
+                        xs={12}
+                        sm={6}
+                        md={3}
+                        sx={{
+                            padding: 1,
+                        }}
+                    >
+                        <StatusListItemTitleSubTitle
+                            title="Subnets"
+                            content="subnet-06939c498092bfa2d"
                         />
-                        <StatusListItemAvatar
-                            icon={<WarningIcon color="warning" />}
-                            content="warning"
-                            sx={{ color: theme.palette.warning.dark }}
+                        <StatusListItemTitleSubTitle content="subnet-02e493624d0935356" />
+                        <StatusListItemTitleSubTitle content="subnet-0ffdbbfb0361c2bcd " />
+                    </Grid>
+                    <Grid
+                        item
+                        xs={12}
+                        sm={6}
+                        md={3}
+                        sx={{
+                            padding: 1,
+                        }}
+                    >
+                        <StatusListItemTitleSubTitle
+                            title="Cluster security group"
+                            content="sg-08ad717c0205a4716"
                         />
-                    </ListItem>
-                </List>
+                        <StatusListItemTitleSubTitle
+                            title="Additional security groups"
+                            content="sg-093dbaad9dc2cf13d"
+                        />
+                    </Grid>
+                    <Grid
+                        item
+                        xs={12}
+                        sm={6}
+                        md={3}
+                        sx={{
+                            padding: 1,
+                        }}
+                    >
+                        <StatusListItemTitleSubTitle
+                            title="API server endpoint access"
+                            content="Public"
+                        />
+                        <StatusListItemTitleSubTitle
+                            title="Public access source allowlist"
+                            content="0.0.0.0/0(open to all traffic)"
+                        />
+                    </Grid>
+                </Grid>
             </CardContent>
         </Box>
     );

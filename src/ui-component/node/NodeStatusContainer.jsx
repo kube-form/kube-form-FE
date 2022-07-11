@@ -1,60 +1,70 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import usePods from 'hooks/usePods';
 
 import { gridSpacing } from 'store/constant';
 import { useTheme } from '@mui/material/styles';
-import { Grid, Box } from '@mui/material';
+import { Grid, Typography, Divider, Box } from '@mui/material';
 
 import styled from '@emotion/styled';
 
-import NodeCard from 'ui-component/cards/NodeCard';
+import StatusNodeCard from 'ui-component/cards/node/StatusNodeCard';
 
-import AccountTreeIcon from '@mui/icons-material/AccountTree';
-import HailIcon from '@mui/icons-material/Hail';
+import IngressControllerNode from './IngressControllerNode';
+import RightUserNode from './RightUserNode';
 
 function NodeContainer() {
     const { sub } = usePods();
+
     const theme = useTheme();
+
+    // useEffect(() => {
+    //     sub = [...pod.sub];
+    // }, [pod.sub]);
 
     return (
         <Grid container spacing={gridSpacing} alignItems="center">
-            <Grid item xs={6}>
-                <ColContainer
-                    style={{ minHeight: 400, backgroundColor: '#fff' }}
+            <Grid
+                item
+                xs={8}
+                style={{
+                    minHeight: 400,
+                    minWidth: 200,
+                    backgroundColor: theme.palette.grey[50],
+                }}
+                id="workernode1"
+            >
+                <Grid item xs={12}>
+                    <Typography sx={{ m: 2 }} variant="h3">
+                        worker node 1
+                    </Typography>
+                </Grid>
+                <Grid item xs={12} minHeight={15}>
+                    <Divider />
+                </Grid>
+                <TaskList
+                    theme={theme}
+                    rowSpacing={1}
+                    container
+                    alignContent="center"
                 >
-                    <TaskList theme={theme}>
-                        {sub.map((item, index) => (
-                            <NodeCard
+                    {sub.map((item, index) => {
+                        return (
+                            <StatusNodeCard
                                 key={item.id}
                                 index={index}
                                 id={item.id}
-                                content={item.content}
+                                image={item.image}
+                                name={item.name}
+                                url={item.url}
                             />
-                        ))}
-                    </TaskList>
-                </ColContainer>
+                        );
+                    })}
+                </TaskList>
             </Grid>
-            <Grid item xs={3} alignContent="center" jusitfyContent="center">
-                <AccountTreeIcon
-                    // ref={controllerRef}
-                    id="controller"
-                    sx={{
-                        ml: 8,
-                        fontSize: 50,
-                        color: theme.palette.secondary[200],
-                    }}
-                />
-            </Grid>
-            <Grid item xs={3} alignContent="center" jusitfyContent="center">
-                <HailIcon
-                    // ref={userRef}
-                    id="user"
-                    sx={{
-                        ml: 5,
-                        fontSize: 50,
-                        color: theme.palette.secondary[200],
-                    }}
-                />
+            <Grid item xs={4}>
+                <Box padding={3}>
+                    <IngressControllerNode />
+                </Box>
             </Grid>
         </Grid>
     );
@@ -62,7 +72,7 @@ function NodeContainer() {
 
 export default NodeContainer;
 
-const TaskList = styled(Box)`
+const TaskList = styled(Grid)`
     border-radius: 10px;
     padding: 15px;
     transition: background-color 0.5s ease;
@@ -75,5 +85,3 @@ const TaskList = styled(Box)`
 
     /* z-index: 99; */
 `;
-
-const ColContainer = styled(Grid)(({ theme }) => ({}));
