@@ -44,7 +44,21 @@ function SummaryPanel({ value, index }) {
             <Divider />
             <CardContent>
                 <Grid container sx={{ flexGrow: 1 }}>
-                    <Grid item xs={12} sm={6} md={4}>
+                    <Grid
+                        item
+                        xs={12}
+                        sm={6}
+                        md={4}
+                        sx={{
+                            borderRight: {
+                                xs: 'none',
+                                sm: `1px solid ${theme.palette.grey[100]}`,
+                                md: `1px solid ${theme.palette.grey[100]}`,
+                                lg: `1px solid ${theme.palette.grey[100]}`,
+                                xl: `1px solid ${theme.palette.grey[100]}`,
+                            },
+                        }}
+                    >
                         <ListItem>
                             <StatusListItemBase
                                 title="API server endpoint"
@@ -63,7 +77,21 @@ function SummaryPanel({ value, index }) {
                         </ListItem>
                     </Grid>
 
-                    <Grid item xs={12} sm={6} md={4}>
+                    <Grid
+                        item
+                        xs={12}
+                        sm={6}
+                        md={4}
+                        sx={{
+                            borderRight: {
+                                xs: 'none',
+                                sm: `1px solid ${theme.palette.grey[100]}`,
+                                md: `1px solid ${theme.palette.grey[100]}`,
+                                lg: `1px solid ${theme.palette.grey[100]}`,
+                                xl: `1px solid ${theme.palette.grey[100]}`,
+                            },
+                        }}
+                    >
                         <ListItem>
                             <StatusListItemBase
                                 title="OpenID Connect provider URL"
