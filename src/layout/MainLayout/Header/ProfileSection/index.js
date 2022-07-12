@@ -280,7 +280,7 @@ function ProfileSection() {
                                         }}
                                     >
                                         <Box sx={{ p: 2 }}>
-                                            <UpgradePlanCard />
+                                            {/* <UpgradePlanCard /> */}
                                             <Divider />
                                             <Card
                                                 sx={{
@@ -399,7 +399,7 @@ function ProfileSection() {
                                                         handleListItemClick(
                                                             event,
                                                             0,
-                                                            '/kube-form-FE/iam/setting',
+                                                            '/iam/setting',
                                                         )
                                                     }
                                                 >

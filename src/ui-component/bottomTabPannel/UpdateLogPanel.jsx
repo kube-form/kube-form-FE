@@ -69,8 +69,21 @@ function UpdateLogPanel({ value, index }) {
             hidden={value !== index}
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
+            sx={{ bgcolor: theme.palette.background.default }}
         >
-            <CardHeader title="Update Log" />
+            <CardHeader
+                title={
+                    <Typography
+                        sx={{ fontWeight: theme.typography.fontWeightBold }}
+                        variant="h3"
+                    >
+                        Update Log
+                    </Typography>
+                }
+                sx={{
+                    bgcolor: theme.palette.grey[100],
+                }}
+            />
             <Divider />
             <CardContent>
                 <TableContainer>
