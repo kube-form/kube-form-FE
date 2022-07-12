@@ -7,8 +7,6 @@ import {
     Grid,
     Divider,
     Typography,
-    Menu,
-    MenuItem,
     IconButton,
     Link,
     Autocomplete,
@@ -17,8 +15,6 @@ import {
     List,
     ListItemButton,
     Collapse,
-    ListItemIcon,
-    ListItemText,
     Stack,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -27,7 +23,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import { StatusListItemTitleSubTitle } from 'ui-component/bottomTabComponents';
-import { ExpandLess, ExpandMore, StarBorder } from '@material-ui/icons';
+import { ExpandLess, ExpandMore } from '@material-ui/icons';
 
 const RESOURCEDATA = [
     {
@@ -113,8 +109,8 @@ const propertyFilm = [{ name: 'null', type: 'null' }];
 function ResourcePanel({ value, index }) {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
-    const [subval, setSubval] = useState({ open: {} });
-    const [selectedIndex, setSelectedIndex] = useState(1);
+    const [subval, setSubval] = useState({ [`WorkLoads`]: 'true' });
+    const [selectedIndex, setSelectedIndex] = useState(0);
 
     const handleClick = (event) => {
         setOpen(!open);
@@ -136,22 +132,17 @@ function ResourcePanel({ value, index }) {
             <CardContent>
                 <Grid container sx={{ flexGrow: 1 }}>
                     {open ? (
-                        <>
-                            <Grid item xs={12} sm={4} md={4} lg={1}>
-                                <IconButton
-                                    edge="start"
-                                    color="inherit"
-                                    aria-label="menu"
-                                    sx={{ mr: 2 }}
-                                    onClick={handleClick}
-                                >
-                                    <MenuIcon />
-                                </IconButton>
-                            </Grid>
-                            {/* <Grid item xs={12} sm={2} md={4}>
-                                ASDF
-                            </Grid> */}
-                        </>
+                        <Grid item xs={12} sm={4} md={4} lg={1}>
+                            <IconButton
+                                edge="start"
+                                color="inherit"
+                                aria-label="menu"
+                                sx={{ mr: 2 }}
+                                onClick={handleClick}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                        </Grid>
                     ) : (
                         <Grid item xs={12} sm={4} md={4} lg={3}>
                             <Box
@@ -194,13 +185,10 @@ function ResourcePanel({ value, index }) {
                                         )}
                                     </ListItemButton>
 
-                                    {console.log(item)}
-
                                     <Collapse
                                         in={subval[item.id]}
                                         timeout="auto"
                                         unmountOnExit
-                                        // onSelect={subval[`${'WorkLoad'}`]}
                                     >
                                         <Stack disablePadding>
                                             {item.contents.map(
