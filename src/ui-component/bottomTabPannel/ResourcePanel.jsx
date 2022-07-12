@@ -14,6 +14,12 @@ import {
     Autocomplete,
     TextField,
     Chip,
+    List,
+    ListItemButton,
+    Collapse,
+    ListItemIcon,
+    ListItemText,
+    Stack,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -21,19 +27,20 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import { StatusListItemTitleSubTitle } from 'ui-component/bottomTabComponents';
+import { ExpandLess, ExpandMore, StarBorder } from '@material-ui/icons';
 
 const RESOURCEDATA = [
     {
-        id: 'WorkLoad',
+        id: 'WorkLoads',
         contents: [
             'PodTemplate',
-            '포드',
-            'ReplicaSet',
-            '배포',
-            'StatefulSet',
+            'Pods',
+            'ReplicaSets',
+            'Deployments',
+            'StatefulSets',
             'DaemonSets',
-            '작업',
-            'CronJob',
+            'Jobs',
+            'CronJobs',
             'PriorityClasses',
             'HorizontalPodAutoscalers',
         ],
@@ -41,10 +48,10 @@ const RESOURCEDATA = [
     {
         id: 'Cluster',
         contents: [
-            'node',
-            'namespace',
+            'Nodes',
+            'Namespaces',
             'APIServices',
-            '리스',
+            'Leases',
             'RuntimeClasses',
             'FlowSchemas',
             'PriorityLevelConfigurations',
@@ -53,16 +60,36 @@ const RESOURCEDATA = [
     {
         id: 'ServiceAndNetworking',
         contents: [
-            'Service',
-            'EndPoint',
+            'Services',
+            'EndPoints',
             'EndpointSlices',
             'Receive',
             'IngressClasses',
         ],
     },
-    { id: 'Auth', contents: ['ServiceAccounts'] },
-
-    { id: '구성 및 스토리지', contents: ['ConfigMap'] },
+    {
+        id: 'Config and Storage',
+        contents: [
+            'ConfigMap',
+            'Secrets',
+            'PersistentVolumeClaims',
+            'PersistentVolumes',
+            'StorageClasses',
+            'VolumeAttachment',
+            'CSIDrivers',
+            'CSINodes',
+        ],
+    },
+    { id: 'Authentication', contents: ['ServiceAccounts'] },
+    {
+        id: 'Authorization',
+        contents: [
+            'ClusterRoles',
+            'ClusterRoleBindings',
+            'Roles',
+            'RoleBindings',
+        ],
+    },
     {
         id: 'Policy',
         contents: [
@@ -72,15 +99,31 @@ const RESOURCEDATA = [
             'PodSecurityPolicies',
         ],
     },
+    {
+        id: 'Extensions',
+        contents: [
+            'CustomResourceDefinitions',
+            'MutatingWebhookConfigurations',
+            'ValidatingWebhookConfigurations',
+        ],
+    },
 ];
 const propertyFilm = [{ name: 'null', type: 'null' }];
 
 function ResourcePanel({ value, index }) {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
+    const [subval, setSubval] = useState({ open: {} });
+    const [selectedIndex, setSelectedIndex] = useState(1);
 
     const handleClick = (event) => {
         setOpen(!open);
+    };
+    const handleChange = (key) => () => {
+        setSubval({ [key]: !subval[key] });
+    };
+    const handleListItemClick = (event, idx) => {
+        setSelectedIndex(idx);
     };
 
     return (
@@ -93,19 +136,24 @@ function ResourcePanel({ value, index }) {
             <CardContent>
                 <Grid container sx={{ flexGrow: 1 }}>
                     {open ? (
-                        <Grid item>
-                            <IconButton
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                                sx={{ mr: 2 }}
-                                onClick={handleClick}
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                        </Grid>
+                        <>
+                            <Grid item xs={12} sm={4} md={4} lg={1}>
+                                <IconButton
+                                    edge="start"
+                                    color="inherit"
+                                    aria-label="menu"
+                                    sx={{ mr: 2 }}
+                                    onClick={handleClick}
+                                >
+                                    <MenuIcon />
+                                </IconButton>
+                            </Grid>
+                            {/* <Grid item xs={12} sm={2} md={4}>
+                                ASDF
+                            </Grid> */}
+                        </>
                     ) : (
-                        <Grid item xs={12} sm={4} md={3}>
+                        <Grid item xs={12} sm={4} md={4} lg={3}>
                             <Box
                                 display="flex"
                                 alignItems="center"
@@ -116,7 +164,7 @@ function ResourcePanel({ value, index }) {
                                     color={theme.palette.primary[800]}
                                     component="div"
                                 >
-                                    리소스 유형
+                                    Resource types
                                 </Typography>
                                 <IconButton
                                     edge="start"
@@ -129,32 +177,73 @@ function ResourcePanel({ value, index }) {
                                 </IconButton>
                             </Box>
                             {RESOURCEDATA.map((item) => (
-                                <Box>
-                                    <StatusListItemTitleSubTitle
-                                        title={item.id}
-                                        content=""
-                                    />
-                                    {console.log(item.contents)}
-                                    {item.contents.map((content) => (
-                                        <Typography>{content}</Typography>
-                                    ))}
-                                </Box>
+                                <List key={item.id}>
+                                    <ListItemButton
+                                        onClick={handleChange(item.id)}
+                                        key={item.id}
+                                    >
+                                        <StatusListItemTitleSubTitle
+                                            title={item.id}
+                                            content=""
+                                            key={item.id}
+                                        />
+                                        {subval[item.id] ? (
+                                            <ExpandLess />
+                                        ) : (
+                                            <ExpandMore />
+                                        )}
+                                    </ListItemButton>
+
+                                    {console.log(item)}
+
+                                    <Collapse
+                                        in={subval[item.id]}
+                                        timeout="auto"
+                                        unmountOnExit
+                                        // onSelect={subval[`${'WorkLoad'}`]}
+                                    >
+                                        <Stack disablePadding>
+                                            {item.contents.map(
+                                                (content, idx) => (
+                                                    <ListItemButton
+                                                        sx={{ pl: 4 }}
+                                                        key={content}
+                                                        selected={
+                                                            selectedIndex ===
+                                                            idx
+                                                        }
+                                                        onClick={(event) =>
+                                                            handleListItemClick(
+                                                                event,
+                                                                idx,
+                                                            )
+                                                        }
+                                                    >
+                                                        <Typography>
+                                                            {content}
+                                                        </Typography>
+                                                    </ListItemButton>
+                                                ),
+                                            )}
+                                        </Stack>
+                                    </Collapse>
+                                </List>
                             ))}
                         </Grid>
                     )}
 
-                    <Grid item xs={12} sm={8} md={9}>
-                        <CardHeader title="워크로드: PodTemplates (0)" />
+                    <Grid item xs={12} sm={8} md={8} lg={9}>
+                        <CardHeader title="Workloads: PodTemplates (0)" />
                         <Typography sx={{ m: 1 }}>
-                            포드 템플릿은 포드 생성을 위한 사양으로, 배포, 작업
-                            및 DaemonSets와 같은 워크로드 리소스에 포함되어
-                            있습니다.
+                            Pod templates are specifications to create Pods.
+                            They are included in workload resources such as
+                            Deployments, Jobs, and DaemonSets.
                         </Typography>
                         <Link
                             href="https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates"
                             sx={{ margin: 2 }}
                         >
-                            자세히 알아보기
+                            Learn more
                         </Link>
                         <Autocomplete
                             multiple
@@ -203,15 +292,6 @@ function ResourcePanel({ value, index }) {
                             </Grid>
                         </Grid>
                     </Grid>
-
-                    {/* <Grid item xs={12} sm={6} md={5}>
-                        <ListItem>
-                            <StatusListItemTitleSubTitle
-                                title="Scheduler"
-                                content="Disabled"
-                            />
-                        </ListItem>
-                    </Grid> */}
                 </Grid>
             </CardContent>
         </Box>

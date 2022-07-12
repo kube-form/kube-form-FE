@@ -13,7 +13,7 @@ const TABSDATA = [
     'Network',
     'Loging',
     'Update history',
-    'Resource',
+    'Resources',
 ];
 
 function StatusBottomContainer() {
@@ -41,12 +41,13 @@ function StatusBottomContainer() {
                         ))}
                     </Tabs>
                 </Box>
+
+                <SummaryPanel value={value} index={0} />
+                <NetworkPanel value={value} index={1} />
+                <LoggingPannel value={value} index={2} />
+                <UpdateLogPanel value={value} index={3} />
+                <ResourcePanel value={value} index={4} />
             </MainCard>
-            <SummaryPanel value={value} index={0} />
-            <NetworkPanel value={value} index={1} />
-            <LoggingPannel value={value} index={2} />
-            <UpdateLogPanel value={value} index={3} />
-            <ResourcePanel value={value} index={4} />
         </>
     );
 }
