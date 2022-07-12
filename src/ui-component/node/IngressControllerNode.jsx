@@ -40,8 +40,8 @@ function IngressControllerNode() {
                     }}
                 >
                     <HubIcon
+                        fontSize="large"
                         sx={{
-                            fontSize: 50,
                             color: theme.palette.secondary[200],
                         }}
                     />
