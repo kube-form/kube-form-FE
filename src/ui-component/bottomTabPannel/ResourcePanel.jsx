@@ -232,7 +232,7 @@ function ResourcePanel({ value, index }) {
                         </Grid>
                     )}
 
-                    <Grid item xs={12} sm={8} md={8} lg={9}>
+                    <Grid item xs={12} sm={8} md={8} lg={open ? 11 : 9}>
                         <CardHeader title="Workloads: PodTemplates (0)" />
                         <Typography sx={{ m: 1 }}>
                             Pod templates are specifications to create Pods.
