@@ -233,18 +233,20 @@ function ResourcePanel({ value, index }) {
                     )}
 
                     <Grid item xs={12} sm={8} md={8} lg={open ? 11 : 9}>
-                        <CardHeader title="Workloads: PodTemplates (0)" />
-                        <Typography sx={{ m: 1 }}>
-                            Pod templates are specifications to create Pods.
-                            They are included in workload resources such as
-                            Deployments, Jobs, and DaemonSets.
-                        </Typography>
-                        <Link
-                            href="https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates"
-                            sx={{ margin: 2 }}
-                        >
-                            Learn more
-                        </Link>
+                        <Box sx={{ bgcolor: theme.palette.grey[100] }}>
+                            <CardHeader title="Workloads: PodTemplates (0)" />
+                            <Typography sx={{ m: 1 }}>
+                                Pod templates are specifications to create Pods.
+                                They are included in workload resources such as
+                                Deployments, Jobs, and DaemonSets.
+                            </Typography>
+                            <Link
+                                href="https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates"
+                                sx={{ margin: 2 }}
+                            >
+                                Learn more
+                            </Link>
+                        </Box>
                         <Autocomplete
                             multiple
                             id="tags-filled"
