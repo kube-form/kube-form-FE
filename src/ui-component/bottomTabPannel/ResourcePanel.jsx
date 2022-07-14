@@ -23,7 +23,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import { StatusListItemTitleSubTitle } from 'ui-component/bottomTabComponents';
-import { ExpandLess, ExpandMore } from '@material-ui/icons';
+import { IconChevronDown, IconChevronUp } from '@tabler/icons';
 
 const RESOURCEDATA = [
     {
@@ -179,9 +179,23 @@ function ResourcePanel({ value, index }) {
                                             key={item.id}
                                         />
                                         {subval[item.id] ? (
-                                            <ExpandLess />
+                                            <IconChevronUp
+                                                stroke={1.5}
+                                                size="1rem"
+                                                style={{
+                                                    marginTop: 'auto',
+                                                    marginBottom: 'auto',
+                                                }}
+                                            />
                                         ) : (
-                                            <ExpandMore />
+                                            <IconChevronDown
+                                                stroke={1.5}
+                                                size="1rem"
+                                                style={{
+                                                    marginTop: 'auto',
+                                                    marginBottom: 'auto',
+                                                }}
+                                            />
                                         )}
                                     </ListItemButton>
 
@@ -194,6 +208,7 @@ function ResourcePanel({ value, index }) {
                                             {item.contents.map(
                                                 (content, idx) => (
                                                     <ListItemButton
+                                                        id={idx}
                                                         sx={{ pl: 4 }}
                                                         key={content}
                                                         selected={
