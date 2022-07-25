@@ -69,10 +69,12 @@ export default function Cluster() {
             // setItems(reorder(items, source.index, destination.index));
         }
         if (start === 'wait') {
-            if (finish === 'main') {
-                pods.addMainFromWait(source.index);
-            } else if (finish === 'sub') {
-                pods.addSubFromWait(source.index);
+            if (finish === 'sub0') {
+                pods.addSubFromWait(0, source.index);
+            } else if (finish === 'sub1') {
+                pods.addSubFromWait(1, source.index);
+            } else if (finish === 'sub2') {
+                pods.addSubFromWait(2, source.index);
             } else if (start === finish) {
                 pods.reorder(source.index, destination.index);
             }
@@ -81,8 +83,8 @@ export default function Cluster() {
         if (finish === 'remove' || finish === 'wait') {
             if (start === 'main') {
                 pods.removeMain(source.index);
-            } else if (start === 'sub') {
-                pods.removeSub(source.index);
+            } else if (start === 'sub0') {
+                pods.removeSub(0, source.index);
             }
         }
     };
@@ -126,7 +128,14 @@ export default function Cluster() {
                                 <MainWorkerNode className="main" />
                             </Grid>
                             <Grid item xs={5} id="sub">
-                                <NodeContainer />
+                                {Array(pods.workerNodeCnt + 1)
+                                    .fill(1)
+                                    .map((item, index) => (
+                                        <NodeContainer
+                                            id={index}
+                                            nodeIndex={index}
+                                        />
+                                    ))}
                             </Grid>
 
                             <Grid

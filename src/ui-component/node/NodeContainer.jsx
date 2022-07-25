@@ -11,8 +11,8 @@ import { Droppable } from 'react-beautiful-dnd';
 import NodeCard from 'ui-component/cards/node/NodeCard';
 import IngressControllerNode from './IngressControllerNode';
 
-function NodeContainer() {
-    const { sub } = usePods();
+function NodeContainer({ nodeIndex }) {
+    const sub = usePods().sub[nodeIndex];
     const theme = useTheme();
 
     return (
@@ -25,17 +25,17 @@ function NodeContainer() {
                     minWidth: 200,
                     backgroundColor: theme.palette.grey[50],
                 }}
-                id="workernode1"
+                id={`workernode${nodeIndex}`}
             >
                 <Grid item xs={12}>
                     <Typography sx={{ m: 2 }} variant="h3">
-                        worker node 1
+                        worker node {nodeIndex}
                     </Typography>
                 </Grid>
                 <Grid item xs={12} minHeight={15}>
                     <Divider />
                 </Grid>
-                <Droppable droppableId="sub">
+                <Droppable droppableId={`sub${nodeIndex}`}>
                     {(provided, snapshot) => (
                         <TaskList
                             ref={provided.innerRef}
@@ -62,9 +62,7 @@ function NodeContainer() {
                 </Droppable>
             </Grid>
             <Grid item xs={4}>
-                <Box padding={3}>
-                    <IngressControllerNode />
-                </Box>
+                <Box padding={3}>{/* <IngressControllerNode /> */}</Box>
             </Grid>
         </Grid>
     );
