@@ -17,6 +17,7 @@ import { useTheme } from 'styled-components';
 import ClusterMainCard from 'ui-component/cards/ClusterMainCard';
 import RightUserNode from 'ui-component/node/RightUserNode';
 import SubmitBtn from 'ui-component/node/SubmitBtn';
+import IngressControllerNode from 'ui-component/node/IngressControllerNode';
 
 const DUMMYDATA = [
     {
@@ -85,6 +86,10 @@ export default function Cluster() {
                 pods.removeMain(source.index);
             } else if (start === 'sub0') {
                 pods.removeSub(0, source.index);
+            } else if (start === 'sub1') {
+                pods.removeSub(1, source.index);
+            } else if (start === 'sub2') {
+                pods.removeSub(2, source.index);
             }
         }
     };
@@ -100,11 +105,7 @@ export default function Cluster() {
     return (
         <ClusterMainCard>
             <Xwrapper>
-                <DragDropContext
-                    onDragEnd={onDragEnd}
-                    // onDragStart={updateXarrow}
-                    // onDragUpdate={updateXarrow}
-                >
+                <DragDropContext onDragEnd={onDragEnd}>
                     <Box py={2}>
                         <Grid container>
                             <Grid
@@ -127,7 +128,7 @@ export default function Cluster() {
                             >
                                 <MainWorkerNode className="main" />
                             </Grid>
-                            <Grid item xs={5} id="sub">
+                            <Grid item xs={4} id="sub">
                                 {Array(pods.workerNodeCnt + 1)
                                     .fill(1)
                                     .map((item, index) => (
@@ -137,7 +138,20 @@ export default function Cluster() {
                                         />
                                     ))}
                             </Grid>
-
+                            <Grid
+                                item
+                                xs={1}
+                                direction="column"
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Box padding={3}>
+                                    <IngressControllerNode />
+                                </Box>
+                            </Grid>
                             <Grid
                                 item
                                 xs={2}
@@ -153,6 +167,7 @@ export default function Cluster() {
                             <LineSet />
                         </Grid>
                     </Box>
+
                     <Grid
                         item
                         xs={12}

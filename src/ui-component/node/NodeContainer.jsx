@@ -9,7 +9,6 @@ import styled from '@emotion/styled';
 
 import { Droppable } from 'react-beautiful-dnd';
 import NodeCard from 'ui-component/cards/node/NodeCard';
-import IngressControllerNode from './IngressControllerNode';
 
 function NodeContainer({ nodeIndex }) {
     const sub = usePods().sub[nodeIndex];
@@ -21,7 +20,7 @@ function NodeContainer({ nodeIndex }) {
                 item
                 xs={8}
                 style={{
-                    minHeight: 400,
+                    minHeight: 200,
                     minWidth: 200,
                     backgroundColor: theme.palette.grey[50],
                 }}
@@ -60,9 +59,6 @@ function NodeContainer({ nodeIndex }) {
                         </TaskList>
                     )}
                 </Droppable>
-            </Grid>
-            <Grid item xs={4}>
-                <Box padding={3}>{/* <IngressControllerNode /> */}</Box>
             </Grid>
         </Grid>
     );

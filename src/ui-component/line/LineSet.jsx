@@ -23,36 +23,40 @@ function LineSet() {
                 path="grid"
                 showTail={false}
             />
-            {Array(workerNodeCnt)
+            {Array(workerNodeCnt + 1)
                 .fill(1)
                 .map((item, index) => (
                     <Xarrow
                         start="main"
                         end={`workernode${index}`}
                         path="grid"
+                        startAnchor="right"
+                        endAnchor="left"
                         showHead={false}
                         strokeWidth={borderSize}
                         color={borderColor}
                         showTail={false}
                     />
                 ))}
-            {Array(workerNodeCnt)
+            {Array(workerNodeCnt + 1)
                 .fill(1)
-                .forEach((item, index) => {
-                    sub[index].map((childItem) => (
-                        <Xarrow
-                            key={item.id}
-                            start={item.id}
-                            startAnchor="right"
-                            end="controller"
-                            endAnchor="left"
-                            path="grid"
-                            showHead={null}
-                            strokeWidth={borderSize}
-                            color={borderColor}
-                            headSize={4}
-                        />
-                    ));
+                .map((item, index) => {
+                    return sub[index].map((childItem) => {
+                        return (
+                            <Xarrow
+                                key={childItem.id}
+                                start={childItem.id}
+                                startAnchor="right"
+                                end="controller"
+                                endAnchor="left"
+                                path="grid"
+                                showHead={null}
+                                strokeWidth={borderSize}
+                                color={borderColor}
+                                headSize={4}
+                            />
+                        );
+                    });
                 })}
 
             <Xarrow
