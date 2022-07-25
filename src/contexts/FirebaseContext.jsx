@@ -43,6 +43,7 @@ export function FirebaseProvider({ children }) {
                                 id: user.uid,
                                 email: user.email,
                                 name: user.displayName || 'test',
+                                photoURL: user.photoURL,
                             },
                         },
                     });
