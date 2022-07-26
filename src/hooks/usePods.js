@@ -37,7 +37,6 @@ const usePods = () => {
                 payload: subs,
             });
         } catch (e) {
-            alert('duplicated container');
             console.warn('wait out of index', e);
         }
     };
