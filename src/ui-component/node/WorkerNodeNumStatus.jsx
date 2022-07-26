@@ -6,30 +6,27 @@ import {
     Select,
     InputLabel,
 } from '@mui/material';
+import usePods from 'hooks/usePods';
 import React, { useState } from 'react';
 
 function WorkerNodeNumStatus() {
-    const [value, setValue] = useState(0);
+    const { setWorkerNodeCnt, workerNodeCnt } = usePods();
 
     const handleChange = (event) => {
-        setValue(0);
+        setWorkerNodeCnt(parseInt(event.target.value, 10));
     };
 
     return (
-        <Box sx={{ minHeight: 100 }}>
+        <Box sx={{ minHeight: 80 }}>
             <FormControl fullWidth>
                 <Box>
                     <Typography variant="h4" noWrap>
                         worker node num
                     </Typography>
-                    {/* <InputLabel id="selectContainer-label">
-                        Worker Node Num
-                    </InputLabel> */}
 
                     <Select
                         id="selectContainer"
-                        value={value}
-                        // label="Worker Node Num"
+                        value={workerNodeCnt}
                         onChange={handleChange}
                         fullWidth
                     >

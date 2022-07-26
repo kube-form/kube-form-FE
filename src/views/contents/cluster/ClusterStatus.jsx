@@ -8,8 +8,11 @@ import LineSet from 'ui-component/line/LineSet';
 import StatusBottomContainer from 'ui-component/bottomTab/StatusBottomContainer';
 import LoadingComponent from 'ui-component/node/LoadingComponent';
 import RightUserNode from 'ui-component/node/RightUserNode';
+import usePods from 'hooks/usePods';
+import IngressControllerNode from 'ui-component/node/IngressControllerNode';
 
 export default function Cluster() {
+    const { workerNodeCnt } = usePods();
     return (
         <>
             <Box py={2}>
@@ -34,8 +37,29 @@ export default function Cluster() {
                     >
                         <MainWorkerNode className="main" />
                     </Grid>
-                    <Grid item xs={5} id="sub">
-                        <NodeStatusContainer />
+                    <Grid item xs={4} id="sub">
+                        {Array(workerNodeCnt + 1)
+                            .fill(1)
+                            .map((item, index) => (
+                                <NodeStatusContainer
+                                    id={index}
+                                    nodeIndex={index}
+                                />
+                            ))}
+                    </Grid>
+                    <Grid
+                        item
+                        xs={1}
+                        direction="column"
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Box padding={3}>
+                            <IngressControllerNode />
+                        </Box>
                     </Grid>
                     <Grid
                         item

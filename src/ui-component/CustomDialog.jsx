@@ -27,6 +27,7 @@ const CustomModal = ({ open, handleClose }) => {
             <Formik
                 initialValues={{
                     name: '',
+                    port: '',
                     url: '',
                     submit: null,
                 }}
@@ -39,6 +40,7 @@ const CustomModal = ({ open, handleClose }) => {
                             'user/image:tag format',
                         )
                         .required('Url is required'),
+                    port: Yup.string().max(255).required('Port is required'),
                 })}
                 onSubmit={async (
                     values,
@@ -98,11 +100,37 @@ const CustomModal = ({ open, handleClose }) => {
                             </FormControl>
                             <FormControl
                                 fullWidth
+                                error={Boolean(touched.port && errors.port)}
+                                sx={{ ...theme.typography.customInput }}
+                            >
+                                <InputLabel htmlFor="outlined-adornment-port-login">
+                                    Port
+                                </InputLabel>
+                                <OutlinedInput
+                                    id="outlined-adornment-port-login"
+                                    type="text"
+                                    value={values.port}
+                                    name="port"
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    label="Port"
+                                />
+                                {touched.port && errors.port && (
+                                    <FormHelperText
+                                        error
+                                        id="standard-weight-helper-text-port-login"
+                                    >
+                                        {errors.port}
+                                    </FormHelperText>
+                                )}
+                            </FormControl>
+                            <FormControl
+                                fullWidth
                                 error={Boolean(touched.url && errors.url)}
                                 sx={{ ...theme.typography.customInput }}
                             >
                                 <InputLabel htmlFor="outlined-adornment-url-login">
-                                    Url
+                                    docker URL
                                 </InputLabel>
                                 <OutlinedInput
                                     id="outlined-adornment-url-login"
@@ -111,7 +139,7 @@ const CustomModal = ({ open, handleClose }) => {
                                     name="url"
                                     onBlur={handleBlur}
                                     onChange={handleChange}
-                                    label="Url"
+                                    label="docker URL"
                                 />
                                 {touched.url && errors.url && (
                                     <FormHelperText

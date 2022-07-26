@@ -121,7 +121,6 @@ function ProfileSection() {
             children: `${name[0]}${name[1]}`,
         };
     };
-
     const prevOpen = useRef(open);
     useEffect(() => {
         if (prevOpen.current === true && open === false) {
@@ -166,7 +165,7 @@ function ProfileSection() {
                             aria-controls={open ? 'menu-list-grow' : undefined}
                             aria-haspopup="true"
                             color="inherit"
-                            // {...stringAvatar(auth.user.name)}
+                            src={auth.user.photoURL} // {...stringAvatar(auth.user.name)}
                         />
                     )
                 }

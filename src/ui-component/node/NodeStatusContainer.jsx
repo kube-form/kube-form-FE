@@ -12,14 +12,10 @@ import StatusNodeCard from 'ui-component/cards/node/StatusNodeCard';
 import IngressControllerNode from './IngressControllerNode';
 import RightUserNode from './RightUserNode';
 
-function NodeContainer() {
-    const { sub } = usePods();
+function NodeContainer({ nodeIndex }) {
+    const sub = usePods().sub[nodeIndex];
 
     const theme = useTheme();
-
-    // useEffect(() => {
-    //     sub = [...pod.sub];
-    // }, [pod.sub]);
 
     return (
         <Grid container spacing={gridSpacing} alignItems="center">
@@ -27,15 +23,17 @@ function NodeContainer() {
                 item
                 xs={8}
                 style={{
-                    minHeight: 400,
+                    minHeight: 200,
                     minWidth: 200,
                     backgroundColor: theme.palette.grey[50],
+                    marginTop: 24,
+                    marginBottom: 24,
                 }}
-                id="workernode1"
+                id={`workernode${nodeIndex}`}
             >
                 <Grid item xs={12}>
                     <Typography sx={{ m: 2 }} variant="h3">
-                        worker node 1
+                        worker node {nodeIndex}
                     </Typography>
                 </Grid>
                 <Grid item xs={12} minHeight={15}>
@@ -61,11 +59,6 @@ function NodeContainer() {
                     })}
                 </TaskList>
             </Grid>
-            <Grid item xs={4}>
-                <Box padding={3}>
-                    <IngressControllerNode />
-                </Box>
-            </Grid>
         </Grid>
     );
 }
@@ -81,7 +74,7 @@ const TaskList = styled(Grid)`
             ? props.theme.palette.success.light
             : props.theme.palette.primary};
     flex-grow: 1;
-    min-height: 400px;
+    min-height: 200px;
 
     /* z-index: 99; */
 `;

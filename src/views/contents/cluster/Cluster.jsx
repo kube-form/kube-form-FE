@@ -5,7 +5,7 @@ import usePods from 'hooks/usePods';
 import { v4 as uuid } from 'uuid';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import NodeContainer from 'ui-component/node/NodeContainer';
-import { Grid, Box, Button } from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 
 import MainWorkerNode from 'ui-component/node/MainWorkerNode';
 import { useXarrow, Xwrapper } from 'react-xarrows';
@@ -14,9 +14,9 @@ import LineSet from 'ui-component/line/LineSet';
 import WorkerNodeNumStatus from 'ui-component/node/WorkerNodeNumStatus';
 import { getDockerImages } from 'api/cluster';
 import { useTheme } from 'styled-components';
-import ClusterMainCard from 'ui-component/cards/ClusterMainCard';
 import RightUserNode from 'ui-component/node/RightUserNode';
 import SubmitBtn from 'ui-component/node/SubmitBtn';
+import IngressControllerNode from 'ui-component/node/IngressControllerNode';
 
 const DUMMYDATA = [
     {
@@ -69,10 +69,12 @@ export default function Cluster() {
             // setItems(reorder(items, source.index, destination.index));
         }
         if (start === 'wait') {
-            if (finish === 'main') {
-                pods.addMainFromWait(source.index);
-            } else if (finish === 'sub') {
-                pods.addSubFromWait(source.index);
+            if (finish === 'sub0') {
+                pods.addSubFromWait(0, source.index);
+            } else if (finish === 'sub1') {
+                pods.addSubFromWait(1, source.index);
+            } else if (finish === 'sub2') {
+                pods.addSubFromWait(2, source.index);
             } else if (start === finish) {
                 pods.reorder(source.index, destination.index);
             }
@@ -81,8 +83,12 @@ export default function Cluster() {
         if (finish === 'remove' || finish === 'wait') {
             if (start === 'main') {
                 pods.removeMain(source.index);
-            } else if (start === 'sub') {
-                pods.removeSub(source.index);
+            } else if (start === 'sub0') {
+                pods.removeSub(0, source.index);
+            } else if (start === 'sub1') {
+                pods.removeSub(1, source.index);
+            } else if (start === 'sub2') {
+                pods.removeSub(2, source.index);
             }
         }
     };
@@ -96,13 +102,9 @@ export default function Cluster() {
     //     return <>loading</>;
     // }
     return (
-        <ClusterMainCard>
+        <>
             <Xwrapper>
-                <DragDropContext
-                    onDragEnd={onDragEnd}
-                    // onDragStart={updateXarrow}
-                    // onDragUpdate={updateXarrow}
-                >
+                <DragDropContext onDragEnd={onDragEnd}>
                     <Box py={2}>
                         <Grid container>
                             <Grid
@@ -125,10 +127,30 @@ export default function Cluster() {
                             >
                                 <MainWorkerNode className="main" />
                             </Grid>
-                            <Grid item xs={5} id="sub">
-                                <NodeContainer />
+                            <Grid item xs={4} id="sub">
+                                {Array(pods.workerNodeCnt + 1)
+                                    .fill(1)
+                                    .map((item, index) => (
+                                        <NodeContainer
+                                            id={index}
+                                            nodeIndex={index}
+                                        />
+                                    ))}
                             </Grid>
-
+                            <Grid
+                                item
+                                xs={1}
+                                direction="column"
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Box padding={3}>
+                                    <IngressControllerNode />
+                                </Box>
+                            </Grid>
                             <Grid
                                 item
                                 xs={2}
@@ -144,6 +166,7 @@ export default function Cluster() {
                             <LineSet />
                         </Grid>
                     </Box>
+
                     <Grid
                         item
                         xs={12}
@@ -163,6 +186,6 @@ export default function Cluster() {
                     </Grid>
                 </DragDropContext>
             </Xwrapper>
-        </ClusterMainCard>
+        </>
     );
 }

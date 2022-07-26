@@ -24,14 +24,17 @@ const usePods = () => {
     };
 
     // wait -> sub
-    const addSubFromWait = (waitIdx) => {
+    const addSubFromWait = (subNodeIndex, waitIdx) => {
         try {
             const item = container.wait[waitIdx];
-            const sub = [...container.sub];
-            sub.push({ ...item, id: uuid() });
+            const subs = [...container.sub];
+            if (subs[subNodeIndex].find(({ url }) => url === item.url)) {
+                throw new Error('duplicate container');
+            }
+            subs[subNodeIndex].push({ ...item, id: uuid() });
             dispatch({
                 type: actionTypes.POD_SET_SUB,
-                payload: sub,
+                payload: subs,
             });
         } catch (e) {
             console.warn('wait out of index', e);
@@ -49,25 +52,30 @@ const usePods = () => {
         }
     };
 
-    // remove mainIdx: sub pod index
-    const removeMain = (mainIdx) => {
-        const main = [...container.main];
+    // remove subIdx: sub pod index
+    const removeSub = (subNodeIndex, subIdx) => {
+        const subs = [...container.sub];
+
         try {
-            main.splice(mainIdx, 1);
-            dispatch({ type: actionTypes.POD_SET_MAIN, payload: main });
+            subs[subNodeIndex].splice(subIdx, 1);
+            dispatch({ type: actionTypes.POD_SET_SUB, payload: subs });
         } catch (e) {
             console.warn('sub out of index', e);
         }
     };
 
-    // remove subIdx: sub pod index
-    const removeSub = (subIdx) => {
-        const sub = [...container.sub];
+    // set worker node set
+    const setWorkerNodeCnt = (cnt) => {
         try {
-            sub.splice(subIdx, 1);
-            dispatch({ type: actionTypes.POD_SET_SUB, payload: sub });
+            if (cnt <= -1 || cnt >= 3) {
+                throw new Error('invalid worker node cnt');
+            }
+            dispatch({
+                type: actionTypes.POD_SET_WORKER_NODE_CNT,
+                payload: cnt,
+            });
         } catch (e) {
-            console.warn('sub out of index', e);
+            console.warn('worker node cnt invalid');
         }
     };
 
@@ -79,7 +87,7 @@ const usePods = () => {
         setWait,
         addSubFromWait,
         removeSub,
-        removeMain,
+        setWorkerNodeCnt,
     };
 };
 
