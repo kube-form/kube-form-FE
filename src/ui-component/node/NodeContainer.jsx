@@ -23,6 +23,8 @@ function NodeContainer({ nodeIndex }) {
                     minHeight: 200,
                     minWidth: 200,
                     backgroundColor: theme.palette.grey[50],
+                    marginTop: 24,
+                    marginBottom: 24,
                 }}
                 id={`workernode${nodeIndex}`}
             >
@@ -75,7 +77,7 @@ const TaskList = styled(Grid)`
             ? props.theme.palette.success.light
             : 'transparent'};
     flex-grow: 1;
-    min-height: 400px;
+    min-height: 200px;
 
     /* z-index: 99; */
 `;

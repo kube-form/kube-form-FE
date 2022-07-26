@@ -4,7 +4,7 @@ export const initialState = {
     main: [],
     sub: [[], [], []],
     wait: [],
-    workerNodeCnt: 1,
+    workerNodeCnt: 0,
 };
 
 // eslint-disable-next-line default-param-last

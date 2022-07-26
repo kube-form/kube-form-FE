@@ -5,7 +5,7 @@ import usePods from 'hooks/usePods';
 import { v4 as uuid } from 'uuid';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import NodeContainer from 'ui-component/node/NodeContainer';
-import { Grid, Box, Button } from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 
 import MainWorkerNode from 'ui-component/node/MainWorkerNode';
 import { useXarrow, Xwrapper } from 'react-xarrows';
@@ -14,7 +14,6 @@ import LineSet from 'ui-component/line/LineSet';
 import WorkerNodeNumStatus from 'ui-component/node/WorkerNodeNumStatus';
 import { getDockerImages } from 'api/cluster';
 import { useTheme } from 'styled-components';
-import ClusterMainCard from 'ui-component/cards/ClusterMainCard';
 import RightUserNode from 'ui-component/node/RightUserNode';
 import SubmitBtn from 'ui-component/node/SubmitBtn';
 import IngressControllerNode from 'ui-component/node/IngressControllerNode';
@@ -103,7 +102,7 @@ export default function Cluster() {
     //     return <>loading</>;
     // }
     return (
-        <ClusterMainCard>
+        <>
             <Xwrapper>
                 <DragDropContext onDragEnd={onDragEnd}>
                     <Box py={2}>
@@ -187,6 +186,6 @@ export default function Cluster() {
                     </Grid>
                 </DragDropContext>
             </Xwrapper>
-        </ClusterMainCard>
+        </>
     );
 }

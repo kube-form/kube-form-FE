@@ -17,7 +17,7 @@ function WorkerNodeNumStatus() {
     };
 
     return (
-        <Box sx={{ minHeight: 100 }}>
+        <Box sx={{ minHeight: 80 }}>
             <FormControl fullWidth>
                 <Box>
                     <Typography variant="h4" noWrap>
