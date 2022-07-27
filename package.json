@@ -5,6 +5,10 @@
     "proxy": "https://jb95qkw1hh.execute-api.ap-northeast-2.amazonaws.com",
     "private": true,
     "dependencies": {
+        "@aws-crypto/client-browser": "^3.1.1",
+        "@aws-crypto/client-node": "^3.1.1",
+        "@aws-crypto/kms-keyring": "^3.1.0",
+        "@aws-sdk/client-kms": "^3.132.0",
         "@emotion/cache": "^11.9.3",
         "@emotion/react": "^11.9.3",
         "@emotion/styled": "^11.9.3",
