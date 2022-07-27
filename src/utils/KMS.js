@@ -6,10 +6,6 @@ import {
     CommitmentPolicy,
 } from '@aws-crypto/client-browser';
 
-const name = document.getElementById('name');
-const age = document.getElementById('age');
-const userForm = document.getElementById('user-form');
-
 const { encrypt, decrypt } = buildClient(
     CommitmentPolicy.REQUIRE_ENCRYPT_REQUIRE_DECRYPT,
 );
@@ -41,8 +37,4 @@ const encryptData = async (plainText) => {
     }
 };
 
-userForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    console.log(name.value, age.value);
-    encryptData(name.value);
-});
+export default encryptData;
