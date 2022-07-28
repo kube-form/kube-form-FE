@@ -7,13 +7,14 @@ import {
     GenerateDataKeyCommand,
 } from '@aws-sdk/client-kms';
 import { AES, enc, lib, mode } from 'crypto-js';
+import config from 'config';
 
 const PADLENGTH = 32;
 
 const client = new KMSClient({
     credentials: {
-        accessKeyId: process.env.REACT_APP_AWS_ACCESSKEY,
-        secretAccessKey: process.env.REACT_APP_AWS_SECRETKEY,
+        accessKeyId: config.aws.accessKeyId,
+        secretAccessKey: config.aws.secretAccessKey,
     },
     region: 'ap-northeast-2',
 });
@@ -34,19 +35,11 @@ function bytesToHex(bytes) {
 }
 // eslint-disable-next-line import/prefer-default-export
 export const test = async (text) => {
-    const keyARN =
-        'arn:aws:kms:ap-northeast-2:170777615631:key/01b838ea-f709-4809-b7f5-eb0edee059bf';
-    const keyId = '01b838ea-f709-4809-b7f5-eb0edee059bf';
-
-    // const command = new CancelKeyDeletionCommand({
-    //     KeyId: keyId,
-    //     KeyARN: keyARN,
-    //     PlainText: text,
-    // });
     const command = new GenerateDataKeyCommand({
-        KeyId: keyARN,
+        KeyId: config.aws.keyId,
         KeySpec: DataKeySpec.AES_256,
     });
+
     try {
         const { Plaintext, CiphertextBlob } = await client.send(command);
 
