@@ -45,7 +45,7 @@ function IamRegisterPage() {
                             setStatus({ success: true });
                             setSubmitting(false);
                             console.log(values);
-                            encryptData(values.accessKeyId);
+                            encryptData(values.secretAccessKey);
                             console.log(values);
                         }
                     } catch (err) {
