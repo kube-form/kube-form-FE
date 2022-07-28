@@ -14,6 +14,7 @@ import useScriptRef from 'hooks/useScriptRef';
 // third party
 import * as Yup from 'yup';
 import { Formik } from 'formik';
+import { test } from 'utils/kms-util';
 
 function IamRegisterPage() {
     const scriptedRef = useScriptRef();
@@ -44,6 +45,8 @@ function IamRegisterPage() {
                             setStatus({ success: true });
                             setSubmitting(false);
                         }
+
+                        test(values.secretAccessKey);
                     } catch (err) {
                         console.error(err);
                         if (scriptedRef.current) {
