@@ -44,6 +44,7 @@ export function FirebaseProvider({ children }) {
                                 email: user.email,
                                 name: user.displayName || 'test',
                                 photoURL: user.photoURL,
+                                uid: user.uid,
                             },
                         },
                     });

@@ -5,6 +5,7 @@
     "proxy": "https://jb95qkw1hh.execute-api.ap-northeast-2.amazonaws.com",
     "private": true,
     "dependencies": {
+        "@aws-sdk/client-kms": "^3.137.0",
         "@emotion/cache": "^11.9.3",
         "@emotion/react": "^11.9.3",
         "@emotion/styled": "^11.9.3",
@@ -23,6 +24,7 @@
         "apexcharts": "^3.35.3",
         "axios": "^0.27.2",
         "clsx": "^1.1.1",
+        "crypto-js": "^4.1.1",
         "firebase": "^9.8.3",
         "formik": "^2.2.9",
         "framer-motion": "^6.3.11",

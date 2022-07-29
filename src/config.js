@@ -16,6 +16,12 @@ const config = {
         appId: process.env.REACT_APP_FIREBASE_APPID,
         measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
     },
+
+    aws: {
+        accessKeyId: process.env.REACT_APP_AWS_ACCESSKEY,
+        secretAccessKey: process.env.REACT_APP_AWS_SECRETKEY,
+        keyId: process.env.REACT_APP_AWS_KEYID,
+    },
 };
 
 export default config;

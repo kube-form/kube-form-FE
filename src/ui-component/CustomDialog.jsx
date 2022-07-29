@@ -17,10 +17,13 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import usePods from 'hooks/usePods';
 import { v4 as uuid } from 'uuid';
+import { postDockerImage, putDockerImage } from 'api/cluster';
+import useAuth from 'hooks/useAuth';
 
 const CustomModal = ({ open, handleClose }) => {
     const theme = useTheme();
     const { addWait } = usePods();
+    const { user } = useAuth();
 
     return (
         <Dialog open={open} onClose={handleClose}>
@@ -47,6 +50,12 @@ const CustomModal = ({ open, handleClose }) => {
                     { setErrors, setStatus, setSubmitting },
                 ) => {
                     try {
+                        const { data } = await postDockerImage({
+                            url: values.url,
+                            port: values.port,
+                            name: values.name,
+                            image: values.name,
+                        });
                         addWait({
                             ...values,
                             image: `https://kube-form.s3.ap-northeast-2.amazonaws.com/dockerImages/custom.png`,
