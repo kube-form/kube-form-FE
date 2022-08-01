@@ -35,8 +35,8 @@ function RightUserNode() {
                 >
                     <Typography variant="subtitle1">User</Typography>
                     <HailIcon
+                        fontSize="large"
                         sx={{
-                            fontSize: 40,
                             color: theme.palette.secondary[800],
                         }}
                     />
