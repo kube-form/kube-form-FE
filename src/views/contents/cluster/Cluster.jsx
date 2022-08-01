@@ -115,6 +115,8 @@ export default function Cluster() {
     // if (isLoading) {
     //     return <>loading</>;
     // }
+
+    console.log(pods.sub);
     return (
         <>
             <Xwrapper>
@@ -162,7 +164,20 @@ export default function Cluster() {
                                 }}
                             >
                                 <Box padding={3}>
-                                    <IngressControllerNode />
+                                    {
+                                        // sub[0]에서 docker 개수만큼 controller 생성
+                                        pods.sub[0].length ? (
+                                            pods.sub[0].map((item) => (
+                                                <IngressControllerNode
+                                                    name={
+                                                        item ? item.name : null
+                                                    }
+                                                />
+                                            ))
+                                        ) : (
+                                            <IngressControllerNode />
+                                        )
+                                    }
                                 </Box>
                             </Grid>
                             <Grid

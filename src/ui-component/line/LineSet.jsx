@@ -58,7 +58,6 @@ function LineSet() {
                         );
                     });
                 })}
-
             <Xarrow
                 start="controller"
                 startAnchor="right"
@@ -68,6 +67,7 @@ function LineSet() {
                 color={borderColor}
                 showHead={null}
             />
+            )
         </>
     );
 }
