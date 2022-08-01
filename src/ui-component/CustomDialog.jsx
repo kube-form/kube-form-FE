@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Button,
     Dialog,
@@ -19,6 +19,7 @@ import usePods from 'hooks/usePods';
 import { v4 as uuid } from 'uuid';
 import { postDockerImage, putDockerImage } from 'api/cluster';
 import useAuth from 'hooks/useAuth';
+import { useDropzone } from 'react-dropzone';
 
 const CustomModal = ({ open, handleClose }) => {
     const theme = useTheme();
