@@ -39,9 +39,8 @@ function IamSettingPage() {
     const { user } = useAuth();
 
     const { data, error } = getIAMUser({ fuid: user.uid });
-    if (!data && !error) {
-        return <div>1</div>;
-    }
+
+    const isLoading = !data && !error;
     return (
         <MainCard title="IAM Setting">
             <Box py={2}>
@@ -53,13 +52,15 @@ function IamSettingPage() {
                 </Typography>
             </Box>
             <List>
-                <IAMListItem
-                    key={data.accessKey}
-                    fuid={user.uid}
-                    accessKeyId={data.accessKey}
-                    updated={Date.now()}
-                    detail="AWS"
-                />
+                {!isLoading && (
+                    <IAMListItem
+                        key={data.accessKey}
+                        fuid={user.uid}
+                        accessKeyId={data.accessKey}
+                        updated={Date.now()}
+                        detail="AWS"
+                    />
+                )}
             </List>
         </MainCard>
     );
