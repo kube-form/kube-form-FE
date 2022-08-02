@@ -101,7 +101,7 @@ function FirebaseLogin({ ...others }) {
                         </Button>
                     </AnimateButton>
                 </Grid>
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
                     <Box
                         sx={{
                             alignItems: 'center',
@@ -136,8 +136,8 @@ function FirebaseLogin({ ...others }) {
                             orientation="horizontal"
                         />
                     </Box>
-                </Grid>
-                <Grid
+                </Grid> */}
+                {/* <Grid
                     item
                     xs={12}
                     container
@@ -149,10 +149,10 @@ function FirebaseLogin({ ...others }) {
                             Sign in with Email address
                         </Typography>
                     </Box>
-                </Grid>
+                </Grid> */}
             </Grid>
 
-            <Formik
+            {/* <Formik
                 initialValues={{
                     email: 'test@test.test',
                     password: 'test1234',
@@ -329,7 +329,7 @@ function FirebaseLogin({ ...others }) {
                         </Box>
                     </form>
                 )}
-            </Formik>
+            </Formik> */}
         </>
     );
 }
