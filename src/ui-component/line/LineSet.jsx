@@ -45,7 +45,7 @@ function LineSet() {
                         return (
                             <Xarrow
                                 key={childItem.id}
-                                start={childItem.id}
+                                start={childItem.draggableId}
                                 startAnchor="right"
                                 end="controller"
                                 endAnchor="left"

@@ -80,6 +80,7 @@ function WaitContainer() {
                                                 image={item.image}
                                                 name={item.name}
                                                 url={item.url}
+                                                draggableId={item.draggableId}
                                             />
                                         ))}
                                     <EmptyNodeCard handleOpen={handleOpen} />

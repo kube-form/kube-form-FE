@@ -18,38 +18,11 @@ import RightUserNode from 'ui-component/node/RightUserNode';
 import SubmitBtn from 'ui-component/node/SubmitBtn';
 import IngressControllerNode from 'ui-component/node/IngressControllerNode';
 import useAuth from 'hooks/useAuth';
-import { useFileChange } from 'hooks/useFileChange';
-
-const DUMMYDATA = [
-    {
-        url: 'mysql:latest',
-        image: 'https://kube-form.s3.ap-northeast-2.amazonaws.com/dockerImages/mysql.png',
-        name: 'mysql:latest',
-    },
-    {
-        url: 'node:latest',
-        image: 'https://kube-form.s3.ap-northeast-2.amazonaws.com/dockerImages/node.png',
-        name: 'node:latest',
-    },
-    {
-        url: 'nginx:latest',
-        image: 'https://kube-form.s3.ap-northeast-2.amazonaws.com/dockerImages/nginx.png',
-        name: 'nginx:latest',
-    },
-];
 
 export default function Cluster() {
     const pods = usePods();
     const { data, isLoading } = getDockerImages();
     const { user } = useAuth();
-    const {
-        fileError,
-        fileName,
-        fileContents,
-        fileType,
-        fileDispatch,
-        handleFileChange,
-    } = useFileChange();
 
     const updateXarrow = useXarrow();
     const theme = useTheme();
@@ -59,7 +32,9 @@ export default function Cluster() {
         //     pods.setWait(DUMMYDATA.map((item) => ({ ...item, id: uuid() })));
         // }
         if (!isLoading) {
-            pods.setWait(data.map((item) => ({ ...item, id: uuid() })));
+            pods.setWait(
+                data.map((item) => ({ ...item, draggableId: uuid() })),
+            );
         }
     };
 
@@ -197,34 +172,6 @@ export default function Cluster() {
                     </Grid>
                     <Grid item xs={12}>
                         <WaitContainer />
-                        <div>
-                            <form
-                                onSubmit={async (e) => {
-                                    e.preventDefault();
-                                    try {
-                                        if (fileType && fileContents) {
-                                            const filePath = await uploadToS3({
-                                                fileType,
-                                                fileContents,
-                                                objectKey: `${user.uid}/test.png`,
-                                            });
-                                        }
-                                    } catch (err) {
-                                        console.log('error is', err);
-                                    }
-                                }}
-                            >
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    id="picture"
-                                    name="picture"
-                                    className="hidden"
-                                    onChange={handleFileChange}
-                                />
-                                <button type="submit">submit</button>
-                            </form>
-                        </div>
                     </Grid>
                 </DragDropContext>
             </Xwrapper>

@@ -14,11 +14,11 @@ import {
 } from '@mui/material';
 import { Draggable } from 'react-beautiful-dnd';
 
-function NodeCard({ id, index, image, name, url }) {
+function NodeCard({ id, index, image, name, url, draggableId }) {
     const theme = useTheme();
 
     return (
-        <Draggable key={id} draggableId={id} index={index}>
+        <Draggable key={id} draggableId={draggableId} index={index}>
             {(provided, snapshot) => (
                 <Grid
                     {...provided.draggableProps}

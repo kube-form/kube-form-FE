@@ -51,10 +51,11 @@ function NodeContainer({ nodeIndex }) {
                                 <NodeCard
                                     key={item.id}
                                     index={index}
-                                    id={item.id}
+                                    id={item.draggableId}
                                     image={item.image}
                                     name={item.name}
                                     url={item.url}
+                                    draggableId={item.draggableId}
                                 />
                             ))}
                             {provided.placeholder}

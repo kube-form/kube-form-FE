@@ -14,11 +14,11 @@ import {
 } from '@mui/material';
 import { Draggable } from 'react-beautiful-dnd';
 
-function ContainerWaitCard({ id, index, image, name, url }) {
+function ContainerWaitCard({ id, index, image, name, url, draggableId }) {
     const theme = useTheme();
 
     return (
-        <Draggable key={id} draggableId={id} index={index}>
+        <Draggable key={id} draggableId={draggableId} index={index}>
             {(provided, snapshot) => (
                 <Grid
                     {...provided.draggableProps}
@@ -119,6 +119,7 @@ ContainerWaitCard.propTypes = {
     index: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    draggableId: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
 };

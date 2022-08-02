@@ -31,7 +31,7 @@ const usePods = () => {
             if (subs[subNodeIndex].find(({ url }) => url === item.url)) {
                 throw new Error('duplicate container');
             }
-            subs[subNodeIndex].push({ ...item, id: uuid() });
+            subs[subNodeIndex].push({ ...item, draggableId: uuid() });
             dispatch({
                 type: actionTypes.POD_SET_SUB,
                 payload: subs,

@@ -6,6 +6,7 @@ const initialFileState = {
     fileSize: null,
     fileType: null,
     fileContents: null,
+    filePreview: `https://kube-form.s3.ap-northeast-2.amazonaws.com/dockerImages/custom.png`,
 };
 
 const MAX_FILE_SIZE_BYTES = 1000000;
@@ -21,6 +22,7 @@ export function fileChangeReducer(_state, action) {
         case 'FILE_CHANGE_SUCCESS': {
             return {
                 fileError: null,
+                filePreview: action.filePreview,
                 fileName: action.fileName,
                 fileSize: action.fileSize,
                 fileType: action.fileType,
@@ -46,17 +48,15 @@ export function fileChangeReducer(_state, action) {
 
 export function useFileChange() {
     const [
-        { fileError, fileContents, fileName, fileSize, fileType },
+        { fileError, fileContents, fileName, fileSize, fileType, filePreview },
         fileDispatch,
     ] = useReducer(fileChangeReducer, initialFileState);
 
-    const handleFileChange = (event) => {
-        const fileObj = event.target.files && event.target.files[0];
+    const handleFileChange = async (file) => {
+        const fileObj = file;
         if (!fileObj) {
             return;
         }
-
-        console.log('fileObj is', fileObj);
 
         const [type] = fileObj.type.split('/');
         if (!type || type !== 'image') {
@@ -77,15 +77,13 @@ export function useFileChange() {
             return;
         }
 
-        // eslint-disable-next-line no-param-reassign
-        event.target.value = '';
-
         fileDispatch({
             type: 'FILE_CHANGE_SUCCESS',
             fileName: fileObj.name,
             fileSize: fileObj.size,
             fileType: fileObj.type,
             fileContents: fileObj,
+            filePreview: await URL.createObjectURL(fileObj),
         });
     };
 
@@ -97,5 +95,6 @@ export function useFileChange() {
         fileSize,
         handleFileChange,
         fileDispatch,
+        filePreview,
     };
 }

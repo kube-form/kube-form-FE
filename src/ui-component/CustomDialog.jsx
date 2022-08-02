@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
     Button,
     Dialog,
@@ -10,6 +10,7 @@ import {
     OutlinedInput,
     FormHelperText,
     useTheme,
+    Avatar,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 // third party
@@ -17,14 +18,34 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import usePods from 'hooks/usePods';
 import { v4 as uuid } from 'uuid';
-import { postDockerImage, putDockerImage } from 'api/cluster';
+import { postDockerImage, putDockerImage, uploadToS3 } from 'api/cluster';
 import useAuth from 'hooks/useAuth';
 import { useDropzone } from 'react-dropzone';
+import styled from '@emotion/styled';
+import { useFileChange } from 'hooks/useFileChange';
 
 const CustomModal = ({ open, handleClose }) => {
     const theme = useTheme();
     const { addWait } = usePods();
     const { user } = useAuth();
+    const {
+        fileError,
+        fileName,
+        fileContents,
+        fileType,
+        fileDispatch,
+        handleFileChange,
+        filePreview,
+    } = useFileChange();
+    const onDrop = useCallback((acceptedFiles) => {
+        handleFileChange(acceptedFiles[0]);
+    }, []);
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        onDrop,
+        accept: {
+            'image/jpeg': ['.jpeg', '.png', '.jpg'],
+        },
+    });
 
     return (
         <Dialog open={open} onClose={handleClose}>
@@ -40,7 +61,7 @@ const CustomModal = ({ open, handleClose }) => {
                     url: Yup.string()
                         .max(255)
                         .matches(
-                            /[a-z, 0-9]+\/+[a-z, 0-9]+:[a-z, 0-9]+/,
+                            /[a-z, 0-9]+\/+[a-z, 0-9]+/,
                             'user/image:tag format',
                         )
                         .required('Url is required'),
@@ -51,16 +72,29 @@ const CustomModal = ({ open, handleClose }) => {
                     { setErrors, setStatus, setSubmitting },
                 ) => {
                     try {
+                        let imageFile = null;
+                        if (fileType && fileContents) {
+                            imageFile = `${user.uid}/${uuid()}`;
+                            const filePath = await uploadToS3({
+                                fileType,
+                                fileContents,
+                                objectKey: imageFile,
+                            });
+                        }
+
                         const { data } = await postDockerImage({
                             url: values.url,
                             port: values.port,
                             name: values.name,
-                            image: values.name,
+                            image: imageFile || 'custom.png',
                         });
                         addWait({
                             ...values,
-                            image: `https://kube-form.s3.ap-northeast-2.amazonaws.com/dockerImages/custom.png`,
+                            image: `https://kube-form.s3.ap-northeast-2.amazonaws.com/dockerImages/${
+                                imageFile || 'custom.png'
+                            }`,
                             id: uuid(),
+                            draggableId: uuid(),
                         });
                         handleClose();
                     } catch (err) {
@@ -160,6 +194,38 @@ const CustomModal = ({ open, handleClose }) => {
                                     </FormHelperText>
                                 )}
                             </FormControl>
+                            <FormControl
+                                fullWidth
+                                sx={{ ...theme.typography.customInput }}
+                            >
+                                <DropZone
+                                    {...getRootProps({ className: 'dropzone' })}
+                                >
+                                    <Avatar
+                                        sx={{ width: 100, height: 100 }}
+                                        className="leftPreview"
+                                    >
+                                        <img
+                                            alt="uploadImg"
+                                            src={filePreview}
+                                            onLoad={() => {
+                                                URL.revokeObjectURL(
+                                                    filePreview,
+                                                );
+                                            }}
+                                        />
+                                    </Avatar>
+                                    <input {...getInputProps()} />
+                                    {isDragActive ? (
+                                        <p>Drop the files here ...</p>
+                                    ) : (
+                                        <p>
+                                            Drag & drop some files here, click
+                                            to select files
+                                        </p>
+                                    )}
+                                </DropZone>
+                            </FormControl>
                         </DialogContent>
                         <DialogActions>
                             <Button
@@ -185,6 +251,26 @@ const CustomModal = ({ open, handleClose }) => {
         </Dialog>
     );
 };
+
+const DropZone = styled.div`
+    display: flex;
+    text-align: center;
+    padding: 1rem;
+    border: 3px dashed #eeeeee;
+    background-color: #fafafa;
+    color: #bdbdbd;
+    cursor: pointer;
+    align-items: center;
+
+    & .leftPreview {
+        margin-right: 3rem;
+
+        & img {
+            width: 100px;
+            height: 100px;
+        }
+    }
+`;
 
 CustomModal.propTypes = {
     open: PropTypes.bool.isRequired,

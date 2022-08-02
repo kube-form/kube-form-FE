@@ -93,10 +93,6 @@ const MainRoutes = {
             path: '/iam/update',
             element: <IAMUpdate />,
         },
-        {
-            path: '/*',
-            element: <NotFound />,
-        },
     ],
 };
 
