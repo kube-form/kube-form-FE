@@ -15,7 +15,7 @@ import React, { useState } from 'react';
 import LockIcon from '@mui/icons-material/Lock';
 import { getMomentFromNow } from 'utils/util';
 
-function IAMListItem({ accessKeyId, updated, detail }) {
+function IAMListItem({ accessKeyId, updated, detail, fuid }) {
     const theme = useTheme();
     const [isHidden, setHidden] = useState(false);
     const handleDelete = () => {
@@ -88,32 +88,6 @@ function IAMListItem({ accessKeyId, updated, detail }) {
                     sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: { xs: 'none', sm: 'end' },
-                    }}
-                >
-                    <Box>
-                        <Button
-                            variant="contained"
-                            size="small"
-                            component={Link}
-                            to={{
-                                pathname: '/iam/update',
-                                // query: { accessKeyId: { accessKeyId } },
-                                search: `?accessKeyId=${accessKeyId}`,
-                            }}
-                        >
-                            Update
-                        </Button>
-                    </Box>
-                </Grid>
-                <Grid
-                    item
-                    xs={3}
-                    sm={1}
-                    md={1}
-                    sx={{
-                        display: 'flex',
-                        alignItems: 'center',
                         justifyContent: { xs: 'none', sm: 'space-between' },
                     }}
                 >
@@ -137,6 +111,7 @@ IAMListItem.propTypes = {
     accessKeyId: PropTypes.string.isRequired,
     updated: PropTypes.string.isRequired,
     detail: PropTypes.string.isRequired,
+    fuid: PropTypes.string.isRequired,
 };
 
 export default IAMListItem;

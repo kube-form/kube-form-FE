@@ -15,10 +15,13 @@ import useScriptRef from 'hooks/useScriptRef';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { test } from 'utils/kms-util';
+import useAuth from 'hooks/useAuth';
+import { postIAMUser } from 'api/cluster';
 
 function IamRegisterPage() {
     const scriptedRef = useScriptRef();
     const theme = useTheme();
+    const { user } = useAuth();
 
     return (
         <MainCard title="IAM Register">
@@ -45,8 +48,13 @@ function IamRegisterPage() {
                             setStatus({ success: true });
                             setSubmitting(false);
                         }
-
-                        test(values.secretAccessKey);
+                        const res = await postIAMUser({
+                            uid: user.uid,
+                            accessKeyId: values.accessKeyId,
+                            secretAccessKey: values.secretAccessKey,
+                        });
+                        console.log(res.data);
+                        // test(values.secretAccessKey);
                     } catch (err) {
                         console.error(err);
                         if (scriptedRef.current) {

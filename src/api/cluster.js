@@ -3,7 +3,6 @@ import useSWR from 'swr';
 import API from './base';
 
 const getFetcher = (url) => API.get(url).then((res) => res.data);
-const putFetcher = (url) => API.get(url).then((res) => res.data);
 
 export const getDockerImages = () => useSWR(`/dockerImages`, getFetcher);
 export const putDockerImage = ({ objectKey }) =>
@@ -17,6 +16,8 @@ export const postDockerImage = ({ url, port, name, image }) =>
         name,
         image,
     });
+
+export const deleteDockerImage = ({ id }) => API.delete(`/dockerImages/${id}`);
 
 export const uploadToS3 = async ({ fileType, fileContents, objectKey }) => {
     const { data: presignedPostUrl } = await putDockerImage({ objectKey });
@@ -41,3 +42,14 @@ export const uploadToS3 = async ({ fileType, fileContents, objectKey }) => {
 
     return presignedPostUrl.filePath;
 };
+
+export const getIAMUser = ({ fuid }) => useSWR(`/IAM/${fuid}`, getFetcher);
+
+export const postIAMUser = ({ uid, accessKeyId, secretAccessKey }) =>
+    API.post(`/IAM`, {
+        fuid: uid,
+        accessKey: accessKeyId,
+        secretKey: secretAccessKey,
+    });
+
+export const deleteIAMUser = ({ fuid }) => API.delete(`/IAM/${fuid}`);

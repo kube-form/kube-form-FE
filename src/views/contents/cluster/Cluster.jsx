@@ -33,7 +33,11 @@ export default function Cluster() {
         // }
         if (!isLoading) {
             pods.setWait(
-                data.map((item) => ({ ...item, draggableId: uuid() })),
+                data.map((item) => ({
+                    ...item,
+                    draggableId: uuid(),
+                    id: String.apply(item.id),
+                })),
             );
         }
     };

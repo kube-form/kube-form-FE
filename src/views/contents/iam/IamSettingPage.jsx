@@ -2,6 +2,8 @@ import { Typography, Box, List } from '@mui/material';
 import React from 'react';
 import MainCard from 'ui-component/cards/MainCard';
 import IAMListItem from 'ui-component/cards/IAMListItem';
+import { getIAMUser } from 'api/cluster';
+import useAuth from 'hooks/useAuth';
 
 const DUMMYDATA = [
     {
@@ -34,6 +36,12 @@ const DUMMYDATA = [
 ];
 
 function IamSettingPage() {
+    const { user } = useAuth();
+
+    const { data, error } = getIAMUser({ fuid: user.uid });
+    if (!data && !error) {
+        return <div>1</div>;
+    }
     return (
         <MainCard title="IAM Setting">
             <Box py={2}>
@@ -45,14 +53,13 @@ function IamSettingPage() {
                 </Typography>
             </Box>
             <List>
-                {DUMMYDATA.map((item) => (
-                    <IAMListItem
-                        key={item.accessKeyId}
-                        accessKeyId={item.accessKeyId}
-                        updated={item.updated}
-                        detail={item.detail}
-                    />
-                ))}
+                <IAMListItem
+                    key={data.accessKey}
+                    fuid={user.uid}
+                    accessKeyId={data.accessKey}
+                    updated={Date.now()}
+                    detail="AWS"
+                />
             </List>
         </MainCard>
     );
