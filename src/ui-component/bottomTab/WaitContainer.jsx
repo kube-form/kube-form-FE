@@ -74,7 +74,7 @@ function WaitContainer() {
                                         )
                                         .map((item, index) => (
                                             <ContainerCard
-                                                key={item.id}
+                                                key={item.draggableId}
                                                 id={item.id}
                                                 index={index}
                                                 image={item.image}

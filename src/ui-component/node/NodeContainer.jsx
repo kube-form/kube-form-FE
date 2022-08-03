@@ -40,7 +40,8 @@ function NodeContainer({ nodeIndex }) {
                     {(provided, snapshot) => (
                         <TaskList
                             ref={provided.innerRef}
-                            isDraggingOver={snapshot.isDraggingOver}
+                            // isDraggingOver={snapshot.isDraggingOver}
+                            isdraggingover={snapshot.isDraggingOver}
                             {...provided.droppableProps}
                             theme={theme}
                             alignContent="center"
@@ -49,7 +50,7 @@ function NodeContainer({ nodeIndex }) {
                         >
                             {sub.map((item, index) => (
                                 <NodeCard
-                                    key={item.id}
+                                    key={item.draggableId}
                                     index={index}
                                     id={item.draggableId}
                                     image={item.image}
@@ -74,7 +75,7 @@ const TaskList = styled(Grid)`
     padding: 15px;
     transition: background-color 0.5s ease;
     background-color: ${(props) =>
-        props.isDraggingOver
+        props.isdraggingover
             ? props.theme.palette.success.light
             : 'transparent'};
     flex-grow: 1;

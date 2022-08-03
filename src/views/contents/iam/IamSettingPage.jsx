@@ -41,6 +41,7 @@ function IamSettingPage() {
     const { data, error } = getIAMUser({ fuid: user.uid });
 
     const isLoading = !data && !error;
+
     return (
         <MainCard title="IAM Setting">
             <Box py={2}>

@@ -14,11 +14,13 @@ import { useTheme } from '@mui/material/styles';
 import React, { useState } from 'react';
 import LockIcon from '@mui/icons-material/Lock';
 import { getMomentFromNow } from 'utils/util';
+import { deleteIAMUser } from 'api/cluster';
 
 function IAMListItem({ accessKeyId, updated, detail, fuid }) {
     const theme = useTheme();
     const [isHidden, setHidden] = useState(false);
-    const handleDelete = () => {
+    const handleDelete = async () => {
+        const res = await deleteIAMUser({ fuid });
         setHidden(true);
     };
 

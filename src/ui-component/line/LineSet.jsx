@@ -28,6 +28,8 @@ function LineSet() {
                 .map((item, index) => (
                     <Xarrow
                         start="main"
+                        // eslint-disable-next-line react/no-array-index-key
+                        key={`workernode${index}`}
                         end={`workernode${index}`}
                         path="grid"
                         startAnchor="right"
@@ -38,26 +40,24 @@ function LineSet() {
                         showTail={false}
                     />
                 ))}
-            {Array(workerNodeCnt + 1)
-                .fill(1)
-                .map((item, index) => {
-                    return sub[index].map((childItem) => {
-                        return (
-                            <Xarrow
-                                key={childItem.id}
-                                start={childItem.draggableId}
-                                startAnchor="right"
-                                end="controller"
-                                endAnchor="left"
-                                path="grid"
-                                showHead={null}
-                                strokeWidth={borderSize}
-                                color={borderColor}
-                                headSize={4}
-                            />
-                        );
-                    });
-                })}
+            {sub.map((item, index) => {
+                return item.map((childItem) => {
+                    return (
+                        <Xarrow
+                            key={childItem.draggableId}
+                            start={childItem.draggableId}
+                            startAnchor="right"
+                            end="controller"
+                            endAnchor="left"
+                            path="grid"
+                            showHead={null}
+                            strokeWidth={borderSize}
+                            color={borderColor}
+                            headSize={4}
+                        />
+                    );
+                });
+            })}
 
             <Xarrow
                 start="controller"

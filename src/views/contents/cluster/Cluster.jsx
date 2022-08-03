@@ -21,7 +21,7 @@ import useAuth from 'hooks/useAuth';
 
 export default function Cluster() {
     const pods = usePods();
-    const { data, isLoading } = getDockerImages();
+    const { data, error } = getDockerImages();
     const { user } = useAuth();
 
     const updateXarrow = useXarrow();
@@ -31,7 +31,7 @@ export default function Cluster() {
         // if (DUMMYDATA) {
         //     pods.setWait(DUMMYDATA.map((item) => ({ ...item, id: uuid() })));
         // }
-        if (!isLoading) {
+        if (data && !error) {
             pods.setWait(
                 data.map((item) => ({
                     ...item,
@@ -90,6 +90,11 @@ export default function Cluster() {
         getWaitImages();
     }, [data]);
 
+    window.addEventListener('resize', (event) => {
+        console.log(1212121);
+        updateXarrow();
+    });
+
     // TODO;
     // if (isLoading) {
     //     return <>loading</>;
@@ -97,7 +102,11 @@ export default function Cluster() {
     return (
         <>
             <Xwrapper>
-                <DragDropContext onDragEnd={onDragEnd}>
+                <DragDropContext
+                    onDragEnd={onDragEnd}
+                    onDragUpdate={() => updateXarrow}
+                    onDragStart={() => updateXarrow}
+                >
                     <Box py={2}>
                         <Grid container>
                             <Grid
