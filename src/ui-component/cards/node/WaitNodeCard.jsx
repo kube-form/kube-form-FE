@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { Draggable } from 'react-beautiful-dnd';
 
-function ContainerWaitCard({ id, index, image, name, url, draggableId }) {
+function ContainerWaitCard({ id, index, image, name, url, draggableId, port }) {
     const theme = useTheme();
 
     return (
@@ -102,7 +102,7 @@ function ContainerWaitCard({ id, index, image, name, url, draggableId }) {
                                             }}
                                             noWrap
                                         >
-                                            {url}
+                                            {port}
                                         </Typography>
                                     }
                                 />

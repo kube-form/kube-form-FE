@@ -7,6 +7,7 @@ const config = {
     fontFamily: `'Roboto', sans-serif`,
     borderRadius: 12,
 
+    API_URL: process.env.REACT_APP_PROXY,
     firebase: {
         apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
         authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,

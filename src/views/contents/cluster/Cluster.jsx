@@ -97,6 +97,7 @@ export default function Cluster() {
     };
 
     useEffect(() => {
+        onResize();
         window.addEventListener('resize', onResize);
         return () => {
             window.removeEventListener('resize', onResize);
@@ -107,6 +108,8 @@ export default function Cluster() {
     // if (isLoading) {
     //     return <>loading</>;
     // }
+
+    console.log(data, 3);
     return (
         <>
             <Xwrapper>

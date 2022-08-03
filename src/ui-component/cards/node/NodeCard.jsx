@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { Draggable } from 'react-beautiful-dnd';
 
-function NodeCard({ id, index, image, name, url, draggableId }) {
+function NodeCard({ id, index, image, name, url, draggableId, port }) {
     const theme = useTheme();
 
     return (
@@ -69,7 +69,7 @@ function NodeCard({ id, index, image, name, url, draggableId }) {
                                             }}
                                             noWrap
                                         >
-                                            {url}
+                                            {port}
                                         </Typography>
                                     }
                                 />
@@ -88,6 +88,7 @@ NodeCard.propTypes = {
     image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
+    port: PropTypes.string.isRequired,
 };
 
 const ImageContainerCard = styled(Box)(({ theme }) => ({

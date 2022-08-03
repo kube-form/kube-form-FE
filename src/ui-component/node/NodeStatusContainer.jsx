@@ -54,6 +54,7 @@ function NodeContainer({ nodeIndex }) {
                                 image={item.image}
                                 name={item.name}
                                 url={item.url}
+                                port={item.port}
                                 draggableId={item.draggableId}
                             />
                         );

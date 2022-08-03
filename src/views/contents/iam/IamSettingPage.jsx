@@ -40,7 +40,7 @@ function IamSettingPage() {
 
     const { data, error } = getIAMUser({ fuid: user.uid });
 
-    const isLoading = !data && !error;
+    const isLoading = !data && error;
 
     return (
         <MainCard title="IAM Setting">
@@ -53,7 +53,7 @@ function IamSettingPage() {
                 </Typography>
             </Box>
             <List>
-                {!isLoading && (
+                {data && (
                     <IAMListItem
                         key={data.accessKey}
                         fuid={user.uid}
