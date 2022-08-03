@@ -90,10 +90,18 @@ export default function Cluster() {
         getWaitImages();
     }, [data]);
 
-    window.addEventListener('resize', (event) => {
-        console.log(1212121);
-        updateXarrow();
-    });
+    const onResize = () => {
+        setTimeout(() => {
+            updateXarrow();
+        }, 400);
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', onResize);
+        return () => {
+            window.removeEventListener('resize', onResize);
+        };
+    }, []);
 
     // TODO;
     // if (isLoading) {
@@ -104,8 +112,8 @@ export default function Cluster() {
             <Xwrapper>
                 <DragDropContext
                     onDragEnd={onDragEnd}
-                    onDragUpdate={() => updateXarrow}
-                    onDragStart={() => updateXarrow}
+                    // onDragUpdate={() => updateXarrow}
+                    // onDragStart={() => updateXarrow}
                 >
                     <Box py={2}>
                         <Grid container>
