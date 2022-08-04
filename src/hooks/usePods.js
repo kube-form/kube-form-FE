@@ -86,7 +86,7 @@ const usePods = () => {
 
     const setControllerCnt = () => {
         const subs = [...container.sub];
-        const cnt = container.controllerCnt;
+        const count = container.controllerCnt;
         const flag = false;
         try {
             subs.forEach((item) =>
@@ -95,11 +95,11 @@ const usePods = () => {
                     flag
                         ? dispatch({
                               type: actionTypes.POD_SET_CONTROLLER_CNT,
-                              payload: cnt,
+                              payload: count,
                           })
                         : dispatch({
                               type: actionTypes.POD_SET_CONTROLLER_CNT,
-                              payload: cnt + 1,
+                              payload: count + 1,
                           }),
                 ),
             );
@@ -108,17 +108,26 @@ const usePods = () => {
         }
     };
 
-    const addReplicasCnt = (id) => {
+    const addControllerList = () => {
         const subs = [...container.sub];
-
+        const list = {};
         try {
             if (!subs) {
                 throw new Error('invalid controller cnt');
             }
 
+            subs.forEach((item) =>
+                // eslint-disable-next-line no-return-assign
+                item.forEach((child) =>
+                    list[child.id] === undefined
+                        ? (list[child.id] = 0)
+                        : (list[child.id] += 1),
+                ),
+            );
+
             dispatch({
-                type: actionTypes.POD_ADD_REPLICAS_CNT,
-                payload: id,
+                type: actionTypes.POD_ADD_CONTROLLER_LIST,
+                payload: list,
             });
         } catch (e) {
             console.log(e);
@@ -136,7 +145,7 @@ const usePods = () => {
         removeSub,
         setWorkerNodeCnt,
         setControllerCnt,
-        addReplicasCnt,
+        addControllerList,
     };
 };
 

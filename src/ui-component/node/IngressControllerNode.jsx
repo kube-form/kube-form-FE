@@ -15,11 +15,12 @@ import HubIcon from '@mui/icons-material/Hub';
 function IngressControllerNode({ name }) {
     const theme = useTheme();
 
+    console.log(name);
+
     return (
         <Card
             variant="outlined"
-            // name={name === 'null' ? name : 'controller'}
-            name="controller"
+            name={name}
             sx={{
                 zIndex: 99,
                 minWidth: 80,

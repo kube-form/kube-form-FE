@@ -5,7 +5,7 @@ import usePods from 'hooks/usePods';
 
 function LineSet() {
     const theme = useTheme();
-    const { sub, workerNodeCnt } = usePods();
+    const { sub, workerNodeCnt, controllerCnt } = usePods();
     const borderSize = 4;
     const borderColor = theme.palette.text.primary;
     const updateXarrow = useXarrow();
@@ -43,30 +43,41 @@ function LineSet() {
                 .map((item, index) => {
                     return sub[index].map((childItem) => {
                         return (
+                            console.log(childItem.name),
+                            (
+                                <Xarrow
+                                    key={childItem.id}
+                                    start={childItem.id}
+                                    startAnchor="right"
+                                    end={childItem.name}
+                                    endAnchor="left"
+                                    path="grid"
+                                    showHead={null}
+                                    strokeWidth={borderSize}
+                                    color="red"
+                                    headSize={4}
+                                />
+                            )
+                        );
+                    });
+                })}
+            {Array(workerNodeCnt + 1)
+                .fill(1)
+                .map((item, index) => {
+                    return sub[index].map((childItem) => {
+                        return (
                             <Xarrow
-                                key={childItem.id}
-                                start={childItem.id}
+                                start={childItem.name}
                                 startAnchor="right"
-                                end="controller"
-                                endAnchor="left"
+                                end="user"
                                 path="grid"
-                                showHead={null}
                                 strokeWidth={borderSize}
                                 color={borderColor}
-                                headSize={4}
+                                showHead={null}
                             />
                         );
                     });
                 })}
-            <Xarrow
-                start="controller"
-                startAnchor="right"
-                end="user"
-                path="grid"
-                strokeWidth={borderSize}
-                color={borderColor}
-                showHead={null}
-            />
             )
         </>
     );

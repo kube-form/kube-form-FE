@@ -86,12 +86,16 @@ export default function Cluster() {
         if (start === 'wait') {
             if (finish === 'sub0') {
                 pods.addSubFromWait(0, source.index);
-                controllerList.push(pods.sub[0].name);
-                console.log(pods.sub[0][0].name);
+                pods.addControllerList();
+                console.log(pods.controllerList);
             } else if (finish === 'sub1') {
                 pods.addSubFromWait(1, source.index);
+                pods.addControllerList();
+                console.log(pods.controllerList);
             } else if (finish === 'sub2') {
                 pods.addSubFromWait(2, source.index);
+                pods.addControllerList();
+                console.log(pods.controllerList);
             } else if (start === finish) {
                 pods.reorder(source.index, destination.index);
             }
@@ -173,12 +177,26 @@ export default function Cluster() {
                                     {pods.sub[0].length ? (
                                         pods.sub[0].map((item) => (
                                             <IngressControllerNode
-                                                name={item ? item.id : 'null'}
+                                                name={item ? item.name : 'none'}
                                             />
                                         ))
                                     ) : (
                                         <IngressControllerNode />
                                     )}
+                                    {/* {Array(pods.controllerCnt)
+                                        .fill(pods.sub)
+                                        .map((item, index) => {
+                                            console.log(item[index].name);
+                                            return (
+                                                <IngressControllerNode
+                                                    name={
+                                                        item
+                                                            ? item[0][0].name
+                                                            : 'none'
+                                                    }
+                                                />
+                                            );
+                                        })} */}
                                 </Box>
                             </Grid>
                             <Grid
