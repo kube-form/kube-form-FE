@@ -79,6 +79,29 @@ const usePods = () => {
         }
     };
 
+    const setControllerCnt = () => {
+        const subs = [...container.sub];
+        const list = {};
+
+        try {
+            if (subs.length() < 0) {
+                throw new Error('invalid controller cnt');
+            }
+
+            subs.forEach((item) =>
+                // eslint-disable-next-line no-return-assign
+                item.forEach((child) => (list[child.id] += 1)),
+            );
+
+            dispatch({
+                type: actionTypes.POD_SET_CONTROLLER_CNT_ARR,
+                payload: list,
+            });
+        } catch (e) {
+            console.warn('controller cnt invalid');
+        }
+    };
+
     return {
         ...container,
         initAll,
@@ -88,6 +111,7 @@ const usePods = () => {
         addSubFromWait,
         removeSub,
         setWorkerNodeCnt,
+        setControllerCnt,
     };
 };
 
