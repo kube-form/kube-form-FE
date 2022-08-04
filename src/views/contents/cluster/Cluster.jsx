@@ -12,7 +12,7 @@ import { useXarrow, Xwrapper } from 'react-xarrows';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
 import LineSet from 'ui-component/line/LineSet';
 import WorkerNodeNumStatus from 'ui-component/node/WorkerNodeNumStatus';
-import { getDockerImages, uploadToS3 } from 'api/cluster';
+import { getDockerImages } from 'api/cluster';
 import { useTheme } from 'styled-components';
 import RightUserNode from 'ui-component/node/RightUserNode';
 import SubmitBtn from 'ui-component/node/SubmitBtn';
@@ -36,7 +36,7 @@ export default function Cluster() {
                 data.map((item) => ({
                     ...item,
                     draggableId: uuid(),
-                    id: String.apply(item.id),
+                    id: item.id,
                 })),
             );
         }
@@ -109,7 +109,6 @@ export default function Cluster() {
     //     return <>loading</>;
     // }
 
-    console.log(data, 3);
     return (
         <>
             <Xwrapper>
@@ -161,7 +160,14 @@ export default function Cluster() {
                                 }}
                             >
                                 <Box padding={3}>
-                                    <IngressControllerNode />
+                                    {Object.keys(pods.ingressStatus).map(
+                                        (item) => (
+                                            <IngressControllerNode
+                                                key={item}
+                                                id={item}
+                                            />
+                                        ),
+                                    )}
                                 </Box>
                             </Grid>
                             <Grid

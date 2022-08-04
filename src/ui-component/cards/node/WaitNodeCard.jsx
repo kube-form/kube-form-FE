@@ -117,7 +117,10 @@ function ContainerWaitCard({ id, index, image, name, url, draggableId, port }) {
 
 ContainerWaitCard.propTypes = {
     index: PropTypes.number.isRequired,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.oneOfType([
+        PropTypes.string.isRequired,
+        PropTypes.number.isRequired,
+    ]),
     image: PropTypes.string.isRequired,
     draggableId: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
