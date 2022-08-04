@@ -12,7 +12,6 @@ export const POD_SET_MAIN = '@pod/SET_MAIN'; // one
 export const POD_SET_SUB = '@pod/SET_SUB';
 export const POD_ADD_WAIT = '@pod/ADD_WAIT';
 export const POD_SET_WORKER_NODE_CNT = '@pod/SET_WORKER_NODE_CNT';
-export const POD_SET_CONTROLLER_CNT_ARR = '@pod/SET_CONTROLLER_CNT_ARR';
 
 export const LOGIN = '@account/LOGIN';
 export const LOGOUT = '@account/LOGOUT';
