@@ -50,10 +50,12 @@ function NodeContainer({ nodeIndex }) {
                             <StatusNodeCard
                                 key={item.id}
                                 index={index}
-                                id={item.id}
+                                id={item.draggableId}
                                 image={item.image}
                                 name={item.name}
                                 url={item.url}
+                                port={item.port}
+                                draggableId={item.draggableId}
                             />
                         );
                     })}

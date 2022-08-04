@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as actionTypes from 'store/actions';
 import { v4 as uuid } from 'uuid';
@@ -27,14 +28,19 @@ const usePods = () => {
     const addSubFromWait = (subNodeIndex, waitIdx) => {
         try {
             const item = container.wait[waitIdx];
+            console.log(item);
             const subs = [...container.sub];
             if (subs[subNodeIndex].find(({ url }) => url === item.url)) {
                 throw new Error('duplicate container');
             }
-            subs[subNodeIndex].push({ ...item, id: uuid() });
+            subs[subNodeIndex].push({ ...item, draggableId: uuid() });
+            const ingressStatus = { ...container.ingressStatus };
+            ingressStatus[item.id] = ingressStatus[item.id]
+                ? ingressStatus[item.id] + 1
+                : 1;
             dispatch({
                 type: actionTypes.POD_SET_SUB,
-                payload: subs,
+                payload: { subs, ingressStatus },
             });
         } catch (e) {
             console.warn('wait out of index', e);

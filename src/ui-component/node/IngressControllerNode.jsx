@@ -12,13 +12,15 @@ import {
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import HubIcon from '@mui/icons-material/Hub';
 
-function IngressControllerNode() {
+function IngressControllerNode({ id }) {
     const theme = useTheme();
+
+    console.log(id);
 
     return (
         <Card
             variant="outlined"
-            id="controller"
+            id={`controller${id}`}
             sx={{
                 zIndex: 99,
                 minWidth: 80,

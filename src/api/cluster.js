@@ -3,7 +3,6 @@ import useSWR from 'swr';
 import API from './base';
 
 const getFetcher = (url) => API.get(url).then((res) => res.data);
-const putFetcher = (url) => API.get(url).then((res) => res.data);
 
 export const getDockerImages = () => useSWR(`/dockerImages`, getFetcher);
 export const putDockerImage = ({ objectKey }) =>
@@ -18,21 +17,39 @@ export const postDockerImage = ({ url, port, name, image }) =>
         image,
     });
 
+export const deleteDockerImage = ({ id }) => API.delete(`/dockerImages/${id}`);
+
 export const uploadToS3 = async ({ fileType, fileContents, objectKey }) => {
     const { data: presignedPostUrl } = await putDockerImage({ objectKey });
-    // console.log(presignedPostUrl);
-    // return 1;
+
     const formData = new FormData();
-    // formData.append('Content-Type', fileType);
-    // Object.entries(presignedPostUrl.fields).forEach(([k, v]) => {
-    //     formData.append(k, v);
-    // });
+    formData.append('Content-Type', fileType);
+
     formData.append('file', fileContents); // The file has be the last element
 
-    console.log(formData, fileContents, presignedPostUrl);
-    const response = await axios.put(presignedPostUrl.url, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-    });
+    // const response = await axios.put(presignedPostUrl.url, formData, {
+    //     headers: { 'Content-Type': 'multipart/form-data' },
+    // });
+    const response = await fetch(
+        new Request(presignedPostUrl.url, {
+            method: 'PUT',
+            body: fileContents,
+            headers: new Headers({
+                'content-Type': 'image/*',
+            }),
+        }),
+    );
 
     return presignedPostUrl.filePath;
 };
+
+export const getIAMUser = ({ fuid }) => useSWR(`/IAM/${fuid}`, getFetcher);
+
+export const postIAMUser = ({ uid, accessKeyId, secretAccessKey }) =>
+    API.post(`/IAM`, {
+        fuid: uid,
+        accessKey: accessKeyId,
+        secretKey: secretAccessKey,
+    });
+
+export const deleteIAMUser = ({ fuid }) => API.delete(`/IAM/${fuid}`);
