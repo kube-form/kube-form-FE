@@ -28,10 +28,15 @@ const usePods = () => {
         try {
             const item = container.wait[waitIdx];
             const subs = [...container.sub];
+
             if (subs[subNodeIndex].find(({ url }) => url === item.url)) {
                 throw new Error('duplicate container');
             }
-            subs[subNodeIndex].push({ ...item, id: uuid() });
+            subs[subNodeIndex].push({
+                ...item,
+                id: uuid(),
+                NodeNum: subNodeIndex,
+            });
             dispatch({
                 type: actionTypes.POD_SET_SUB,
                 payload: subs,
@@ -79,6 +84,48 @@ const usePods = () => {
         }
     };
 
+    const setControllerCnt = () => {
+        const subs = [...container.sub];
+        const cnt = container.controllerCnt;
+        const flag = false;
+        try {
+            subs.forEach((item) =>
+                // eslint-disable-next-line no-return-assign
+                item.forEach((child) =>
+                    flag
+                        ? dispatch({
+                              type: actionTypes.POD_SET_CONTROLLER_CNT,
+                              payload: cnt,
+                          })
+                        : dispatch({
+                              type: actionTypes.POD_SET_CONTROLLER_CNT,
+                              payload: cnt + 1,
+                          }),
+                ),
+            );
+        } catch (e) {
+            console.warn('wait out of index', e);
+        }
+    };
+
+    const addReplicasCnt = (id) => {
+        const subs = [...container.sub];
+
+        try {
+            if (!subs) {
+                throw new Error('invalid controller cnt');
+            }
+
+            dispatch({
+                type: actionTypes.POD_ADD_REPLICAS_CNT,
+                payload: id,
+            });
+        } catch (e) {
+            console.log(e);
+            console.warn('controller cnt invalid');
+        }
+    };
+
     return {
         ...container,
         initAll,
@@ -89,6 +136,7 @@ const usePods = () => {
         removeSub,
         setWorkerNodeCnt,
         setControllerCnt,
+        addReplicasCnt,
     };
 };
 

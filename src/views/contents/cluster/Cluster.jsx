@@ -53,6 +53,7 @@ export default function Cluster() {
 
     const updateXarrow = useXarrow();
     const theme = useTheme();
+    const controllerList = [];
 
     const getWaitImages = async () => {
         // if (DUMMYDATA) {
@@ -85,6 +86,8 @@ export default function Cluster() {
         if (start === 'wait') {
             if (finish === 'sub0') {
                 pods.addSubFromWait(0, source.index);
+                controllerList.push(pods.sub[0].name);
+                console.log(pods.sub[0][0].name);
             } else if (finish === 'sub1') {
                 pods.addSubFromWait(1, source.index);
             } else if (finish === 'sub2') {
@@ -92,6 +95,7 @@ export default function Cluster() {
             } else if (start === finish) {
                 pods.reorder(source.index, destination.index);
             }
+            pods.setControllerCnt();
             // copy(Items, items, source, destination);
         }
         if (finish === 'remove' || finish === 'wait') {
@@ -115,8 +119,10 @@ export default function Cluster() {
     // if (isLoading) {
     //     return <>loading</>;
     // }
+    console.log(pods);
+    console.log(pods.controllerCnt);
+    console.log(controllerList);
 
-    console.log(pods.sub);
     return (
         <>
             <Xwrapper>
@@ -164,20 +170,15 @@ export default function Cluster() {
                                 }}
                             >
                                 <Box padding={3}>
-                                    {
-                                        // sub[0]에서 docker 개수만큼 controller 생성
-                                        pods.sub[0].length ? (
-                                            pods.sub[0].map((item) => (
-                                                <IngressControllerNode
-                                                    name={
-                                                        item ? item.name : null
-                                                    }
-                                                />
-                                            ))
-                                        ) : (
-                                            <IngressControllerNode />
-                                        )
-                                    }
+                                    {pods.sub[0].length ? (
+                                        pods.sub[0].map((item) => (
+                                            <IngressControllerNode
+                                                name={item ? item.id : 'null'}
+                                            />
+                                        ))
+                                    ) : (
+                                        <IngressControllerNode />
+                                    )}
                                 </Box>
                             </Grid>
                             <Grid

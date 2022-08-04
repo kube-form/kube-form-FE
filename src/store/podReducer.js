@@ -5,6 +5,7 @@ export const initialState = {
     sub: [[], [], []],
     wait: [],
     workerNodeCnt: 0,
+    controllerCnt: 0,
 };
 
 // eslint-disable-next-line default-param-last
@@ -22,6 +23,13 @@ const podReducer = (state = initialState, action) => {
             return { ...state, wait: [...state.wait, action.payload] };
         case actionTypes.POD_SET_WORKER_NODE_CNT:
             return { ...state, workerNodeCnt: action.payload };
+        case actionTypes.POD_SET_CONTROLLER_CNT:
+            return { ...state, controllerCnt: action.payload };
+        case actionTypes.POD_ADD_REPLICAS_CNT:
+            return {
+                ...state,
+                controllerList: action.payload,
+            };
         default:
             return state;
     }
