@@ -28,12 +28,16 @@ const usePods = () => {
     const addSubFromWait = (subNodeIndex, waitIdx) => {
         try {
             const item = container.wait[waitIdx];
-            console.log(item);
             const subs = [...container.sub];
-            if (subs[subNodeIndex].find(({ url }) => url === item.url)) {
+            if (subs[subNodeIndex].find(({ id }) => id === item.id)) {
                 throw new Error('duplicate container');
             }
             subs[subNodeIndex].push({ ...item, draggableId: uuid() });
+
+            // subs[subNodeIndex] = subs[subNodeIndex].sort(
+            //     (a, b) => parseInt(a.id, 10) - parseInt(b.id, 10),
+            // );
+
             const ingressStatus = { ...container.ingressStatus };
             ingressStatus[item.id] = ingressStatus[item.id]
                 ? ingressStatus[item.id] + 1
@@ -61,10 +65,20 @@ const usePods = () => {
     // remove subIdx: sub pod index
     const removeSub = (subNodeIndex, subIdx) => {
         const subs = [...container.sub];
+        const item = subs[subNodeIndex][subIdx];
+        const ingressStatus = { ...container.ingressStatus };
 
+        if (ingressStatus[item.id] === 1) {
+            delete ingressStatus[item.id];
+        } else {
+            ingressStatus[item.id] -= 1;
+        }
         try {
             subs[subNodeIndex].splice(subIdx, 1);
-            dispatch({ type: actionTypes.POD_SET_SUB, payload: subs });
+            dispatch({
+                type: actionTypes.POD_SET_SUB,
+                payload: { subs, ingressStatus },
+            });
         } catch (e) {
             console.warn('sub out of index', e);
         }

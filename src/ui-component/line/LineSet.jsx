@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Xarrow, { useXarrow } from 'react-xarrows';
 import { useTheme } from '@mui/material/styles';
 import usePods from 'hooks/usePods';
+import { generateColor, generatePercent } from 'utils/line/lineUtil';
 
 function LineSet() {
     const theme = useTheme();
+    const [isLoading, setLoading] = useState(true);
     const { sub, workerNodeCnt, ingressStatus } = usePods();
     const borderSize = 4;
     const borderColor = theme.palette.text.primary;
     const updateXarrow = useXarrow();
+
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 100);
+    }, [sub]);
+
+    if (isLoading) {
+        return <></>;
+    }
 
     return (
         <>
@@ -41,23 +54,26 @@ function LineSet() {
                     />
                 ))}
             <>
-                {sub.map((item, index) => {
-                    return item.map((childItem) => {
+                {sub
+                    .flat()
+                    .sort((a, b) => parseInt(a, 10) - parseInt(b, 10))
+                    .map((item) => {
                         return (
                             <Xarrow
-                                start={childItem.draggableId}
+                                start={item.draggableId}
                                 startAnchor="right"
-                                end={`controller${childItem.id}`}
+                                end={`controller${item.id}`}
                                 endAnchor="left"
                                 path="grid"
                                 showHead={null}
                                 strokeWidth={borderSize}
-                                color={borderColor}
                                 headSize={4}
+                                // color={borderColor}
+                                color={generateColor(item.name)}
+                                gridBreak={generatePercent(item.id)}
                             />
                         );
-                    });
-                })}
+                    })}
             </>
             <>
                 {Object.keys(ingressStatus).map((item) => {
@@ -72,6 +88,7 @@ function LineSet() {
                             strokeWidth={borderSize}
                             color={borderColor}
                             showHead={null}
+                            // color={generateColor(item)}
                         />
                     );
                 })}

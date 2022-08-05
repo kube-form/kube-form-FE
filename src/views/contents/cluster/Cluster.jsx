@@ -160,8 +160,13 @@ export default function Cluster() {
                                 }}
                             >
                                 <Box padding={3}>
-                                    {Object.keys(pods.ingressStatus).map(
-                                        (item) => (
+                                    {Object.keys(pods.ingressStatus)
+                                        .sort(
+                                            (a, b) =>
+                                                parseInt(a, 10) -
+                                                parseInt(b, 10),
+                                        )
+                                        .map((item) => (
                                             <>
                                                 <Box height={30} />
                                                 <IngressControllerNode
@@ -169,8 +174,7 @@ export default function Cluster() {
                                                     id={item}
                                                 />
                                             </>
-                                        ),
-                                    )}
+                                        ))}
                                 </Box>
                             </Grid>
                             <Grid
