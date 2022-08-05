@@ -15,9 +15,9 @@ export const generateColor = (input) => {
     return colour;
 };
 
-// (20, 80, 10), 균형감이 있지만 범위 한정으로 컨테이너 개수가 늘어나면 겹치게 됨.
+// (20, 80, 5), 균형감이 있지만 범위 한정으로 컨테이너 개수가 늘어나면 겹치게 됨.
 export const generatePercent = (input) => {
     const x = Math.sin(input) * 10000;
-    const value = Math.floor((x - Math.floor(x)) * 6) * 10 + 20;
+    const value = Math.floor((x - Math.floor(x)) * 3) * 20 + 20;
     return `${value}%`;
 };

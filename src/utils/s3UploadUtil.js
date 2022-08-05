@@ -2,7 +2,7 @@ import AWS from 'aws-sdk';
 import config from 'config';
 
 AWS.config.update({
-    accessKeyId: config.aws.accessKeyID,
+    accessKeyId: config.aws.accessKeyId,
     secretAccessKey: config.aws.secretAccessKey,
 });
 
@@ -21,22 +21,20 @@ export const putObjectWrapper = (params) => {
     });
 };
 
-export const submitOnProfileImage = async ({ profileImage, uid, id }) => {
-    try {
-        if (profileImage) {
-            putObjectWrapper({
-                Body: profileImage,
-                Bucket: config.bucketName,
-                Key: `${uid}/${id}`,
+export const submitKubeSource = async ({ kubeSource, uid, id }) => {
+    if (kubeSource) {
+        putObjectWrapper({
+            ACL: 'public-read',
+            Body: JSON.stringify(kubeSource),
+            Bucket: config.bucketName,
+            Key: `kubeSources/${uid}/main.json`,
+            ContentType: 'application/json',
+        })
+            .then((res) => {
+                return res;
             })
-                .then((r) => {
-                    console.log(r);
-                })
-                .catch((e) => {
-                    console.log(e);
-                });
-        }
-    } catch (e) {
-        console.log(e);
+            .catch((err) => {
+                throw new Error(err);
+            });
     }
 };

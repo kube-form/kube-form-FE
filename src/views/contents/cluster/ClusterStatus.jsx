@@ -118,7 +118,7 @@ export default function Cluster() {
                             variant="contained"
                             size="large"
                             color="error"
-                            // eslint-disable-next-line no-restricted-globals
+                            // eslint-disable-next-line no-restricted-globals, no-alert
                             onClick={() => confirm('정말로 삭제하시겠습니까?')}
                         >
                             Delete

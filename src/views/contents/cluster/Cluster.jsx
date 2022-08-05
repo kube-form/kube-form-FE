@@ -5,8 +5,8 @@ import usePods from 'hooks/usePods';
 import { v4 as uuid } from 'uuid';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import NodeContainer from 'ui-component/node/NodeContainer';
-import { Grid, Box } from '@material-ui/core';
 
+import { submitKubeSource } from 'utils/s3UploadUtil';
 import MainWorkerNode from 'ui-component/node/MainWorkerNode';
 import { useXarrow, Xwrapper } from 'react-xarrows';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
@@ -18,7 +18,7 @@ import RightUserNode from 'ui-component/node/RightUserNode';
 import SubmitBtn from 'ui-component/node/SubmitBtn';
 import IngressControllerNode from 'ui-component/node/IngressControllerNode';
 import useAuth from 'hooks/useAuth';
-import { Button } from '@mui/material';
+import { Grid, Box, Button } from '@mui/material';
 
 export default function Cluster() {
     const pods = usePods();
@@ -85,6 +85,19 @@ export default function Cluster() {
                 pods.removeSub(2, source.index);
             }
         }
+    };
+
+    const onSubmit = async (e) => {
+        const kubeSource = {
+            user_id: user.uid,
+            node_group_num: pods.workerNodeCnt + 1,
+            container: pods.getSubmitFormat(),
+        };
+        const res = await submitKubeSource({
+            kubeSource,
+            uid: user.uid,
+            id: 'main',
+        });
     };
 
     useEffect(() => {
@@ -205,7 +218,11 @@ export default function Cluster() {
                         <Grid item xs={10} />
                         <Grid item xs={2}>
                             <Box my={2}>
-                                <Button variant="contained" size="large">
+                                <Button
+                                    variant="contained"
+                                    size="large"
+                                    onClick={onSubmit}
+                                >
                                     Submit
                                 </Button>
                             </Box>

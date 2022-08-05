@@ -9,12 +9,13 @@ export const putDockerImage = ({ objectKey }) =>
     API.put(`/dockerImages`, {
         objectKey,
     });
-export const postDockerImage = ({ url, port, name, image }) =>
+export const postDockerImage = ({ url, port, name, image, fuid }) =>
     API.post(`/dockerImages`, {
         url,
         port,
         name,
         image,
+        fuid,
     });
 
 export const deleteDockerImage = ({ id }) => API.delete(`/dockerImages/${id}`);

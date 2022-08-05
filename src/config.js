@@ -22,7 +22,7 @@ const config = {
         accessKeyId: process.env.REACT_APP_AWS_ACCESSKEY,
         secretAccessKey: process.env.REACT_APP_AWS_SECRETKEY,
         region: process.env.REACT_APP_AWS_REGION,
-        bucket: process.env.REACT_APP_AWS_BUCKET,
+        bucketName: process.env.REACT_APP_AWS_BUCKET,
         keyId: process.env.REACT_APP_AWS_KEYID,
     },
 };

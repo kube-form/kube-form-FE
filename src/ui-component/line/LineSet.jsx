@@ -36,41 +36,41 @@ function LineSet() {
                 path="grid"
                 showTail={false}
             />
-            {Array(workerNodeCnt + 1)
-                .fill(1)
-                .map((item, index) => (
-                    <Xarrow
-                        start="main"
-                        // eslint-disable-next-line react/no-array-index-key
-                        key={`workernode${index}`}
-                        end={`workernode${index}`}
-                        path="grid"
-                        startAnchor="right"
-                        endAnchor="left"
-                        showHead={false}
-                        strokeWidth={borderSize}
-                        color={borderColor}
-                        showTail={false}
-                    />
-                ))}
+            {[...Array(workerNodeCnt + 1)].map((item, index) => (
+                <Xarrow
+                    start="main"
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={`workernode${index}`}
+                    end={`workernode${index}`}
+                    path="grid"
+                    startAnchor="right"
+                    endAnchor="left"
+                    showHead={false}
+                    strokeWidth={borderSize}
+                    color={borderColor}
+                    showTail={false}
+                />
+            ))}
             <>
-                {sub.flat().map((item) => {
-                    return (
-                        <Xarrow
-                            key={`controllerToUser${item.draggableId}`}
-                            start={item.draggableId}
-                            startAnchor="right"
-                            end={`controller${item.id}`}
-                            endAnchor="left"
-                            path="grid"
-                            showHead={null}
-                            strokeWidth={borderSize}
-                            headSize={4}
-                            // color={borderColor}
-                            color={generateColor(item.url)}
-                            gridBreak={generatePercent(item.id)}
-                        />
-                    );
+                {[...Array(workerNodeCnt + 1)].map((_, index) => {
+                    return sub[index].map((item) => {
+                        return (
+                            <Xarrow
+                                key={`controllerToUser${item.draggableId}`}
+                                start={item.draggableId}
+                                startAnchor="right"
+                                end={`controller${item.id}`}
+                                endAnchor="left"
+                                path="grid"
+                                showHead={null}
+                                strokeWidth={borderSize}
+                                headSize={4}
+                                // color={borderColor}
+                                color={generateColor(item.url)}
+                                gridBreak={generatePercent(item.id)}
+                            />
+                        );
+                    });
                 })}
             </>
             <>

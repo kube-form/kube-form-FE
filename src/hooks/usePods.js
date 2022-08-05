@@ -99,6 +99,26 @@ const usePods = () => {
         }
     };
 
+    // register format
+    const getSubmitFormat = () => {
+        const subs = [...container.sub.slice(0, container.workerNodeCnt + 1)]
+            .flat()
+            .map((item) => ({ ...item, replicas: 1 }));
+        // const subs = [...Array(container.workerNodeCnt + 1)].map((_, index) =>
+        //     container.sub[index].map((item) => ({ ...item, replicas: 1 })),
+        // );
+        const res = subs.reduce((arr, item) => {
+            const index = arr.findIndex((element) => element.id === item.id);
+            if (index === -1) {
+                arr.push(item);
+            } else {
+                arr[index].replicas += 1;
+            }
+            return arr;
+        }, []);
+        return res;
+    };
+
     return {
         ...container,
         initAll,
@@ -108,6 +128,7 @@ const usePods = () => {
         addSubFromWait,
         removeSub,
         setWorkerNodeCnt,
+        getSubmitFormat,
     };
 };
 
