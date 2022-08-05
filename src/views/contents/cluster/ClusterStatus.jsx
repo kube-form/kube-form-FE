@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import NodeStatusContainer from 'ui-component/node/NodeStatusContainer';
-import { Grid, Box } from '@material-ui/core';
+import { Grid, Box, Button } from '@mui/material';
 import MainWorkerNode from 'ui-component/node/MainWorkerNode';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
 import LineSet from 'ui-component/line/LineSet';
@@ -36,6 +36,7 @@ export default function Cluster() {
                     <Grid
                         item
                         xs={2}
+                        container
                         direction="column"
                         style={{
                             display: 'flex',
@@ -48,6 +49,7 @@ export default function Cluster() {
                     <Grid
                         item
                         xs={3}
+                        container
                         alignItems="center"
                         style={{ display: 'flex' }}
                     >
@@ -55,7 +57,12 @@ export default function Cluster() {
                     </Grid>
                     <Grid item xs={4} id="sub">
                         {[...Array(workerNodeCnt + 1)].map((item, index) => (
-                            <NodeStatusContainer id={index} nodeIndex={index} />
+                            <NodeStatusContainer
+                                // eslint-disable-next-line react/no-array-index-key
+                                key={index}
+                                id={index}
+                                nodeIndex={index}
+                            />
                         ))}
                     </Grid>
                     <Grid
@@ -84,6 +91,7 @@ export default function Cluster() {
                     <Grid
                         item
                         xs={2}
+                        container
                         direction="column"
                         style={{
                             display: 'flex',
@@ -95,6 +103,29 @@ export default function Cluster() {
                     </Grid>
                 </Grid>
             </Box>
+
+            <Grid
+                xs={12}
+                container
+                style={{
+                    display: 'flex',
+                }}
+            >
+                <Grid item xs={10} />
+                <Grid item xs={2}>
+                    <Box my={2}>
+                        <Button
+                            variant="contained"
+                            size="large"
+                            color="error"
+                            // eslint-disable-next-line no-restricted-globals
+                            onClick={() => confirm('정말로 삭제하시겠습니까?')}
+                        >
+                            Delete
+                        </Button>
+                    </Box>
+                </Grid>
+            </Grid>
 
             <LineSet />
 

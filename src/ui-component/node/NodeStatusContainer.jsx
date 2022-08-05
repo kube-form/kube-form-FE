@@ -33,7 +33,7 @@ function NodeContainer({ nodeIndex }) {
             >
                 <Grid item xs={12}>
                     <Typography sx={{ m: 2 }} variant="h3">
-                        worker node {nodeIndex}
+                        worker node {nodeIndex + 1}
                     </Typography>
                 </Grid>
                 <Grid item xs={12} minHeight={15}>

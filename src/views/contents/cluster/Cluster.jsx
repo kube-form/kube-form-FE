@@ -192,28 +192,28 @@ export default function Cluster() {
                             >
                                 <RightUserNode />
                             </Grid>
-                            <LineSet />
                         </Grid>
                     </Box>
 
                     <Grid
-                        item
                         xs={12}
+                        container
                         style={{
                             display: 'flex',
                         }}
                     >
-                        <Grid item xs={10}>
-                            <Box />
-                        </Grid>
+                        <Grid item xs={10} />
                         <Grid item xs={2}>
                             <Box my={2}>
                                 <Button variant="contained" size="large">
-                                    submit
+                                    Submit
                                 </Button>
                             </Box>
                         </Grid>
                     </Grid>
+
+                    <LineSet />
+
                     <Grid item xs={12}>
                         <WaitContainer />
                     </Grid>
