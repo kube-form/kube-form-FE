@@ -40,38 +40,42 @@ function LineSet() {
                         showTail={false}
                     />
                 ))}
-            {sub.map((item, index) => {
-                return item.map((childItem) => {
+            <>
+                {sub.map((item, index) => {
+                    return item.map((childItem) => {
+                        return (
+                            <Xarrow
+                                start={childItem.draggableId}
+                                startAnchor="right"
+                                end={`controller${childItem.id}`}
+                                endAnchor="left"
+                                path="grid"
+                                showHead={null}
+                                strokeWidth={borderSize}
+                                color={borderColor}
+                                headSize={4}
+                            />
+                        );
+                    });
+                })}
+            </>
+            <>
+                {Object.keys(ingressStatus).map((item) => {
                     return (
                         <Xarrow
-                            key={childItem.draggableId}
-                            start={childItem.draggableId}
+                            // key={`controllerToUser${item}`}
+                            start={`controller${item}`}
                             startAnchor="right"
-                            end={`controller${childItem.id}`}
+                            end="user"
                             endAnchor="left"
                             path="grid"
-                            showHead={null}
                             strokeWidth={borderSize}
                             color={borderColor}
-                            headSize={4}
+                            showHead={null}
                         />
                     );
-                });
-            })}
-
-            {Object.keys(ingressStatus).map((item) => (
-                <Xarrow
-                    key={item}
-                    start={`controller${item}`}
-                    startAnchor="right"
-                    end="user"
-                    endAnchor="left"
-                    path="grid"
-                    strokeWidth={borderSize}
-                    color={borderColor}
-                    showHead={null}
-                />
-            ))}
+                })}
+            </>
         </>
     );
 }

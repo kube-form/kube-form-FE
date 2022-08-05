@@ -162,10 +162,13 @@ export default function Cluster() {
                                 <Box padding={3}>
                                     {Object.keys(pods.ingressStatus).map(
                                         (item) => (
-                                            <IngressControllerNode
-                                                key={item}
-                                                id={item}
-                                            />
+                                            <>
+                                                <Box height={30} />
+                                                <IngressControllerNode
+                                                    key={item}
+                                                    id={item}
+                                                />
+                                            </>
                                         ),
                                     )}
                                 </Box>
