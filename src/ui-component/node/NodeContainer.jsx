@@ -74,6 +74,7 @@ export default NodeContainer;
 const TaskList = styled(Grid)`
     border-radius: 10px;
     padding: 15px;
+    padding-bottom: 77px;
     transition: background-color 0.5s ease;
     background-color: ${(props) =>
         props.isdraggingover
