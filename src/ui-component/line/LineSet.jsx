@@ -57,6 +57,7 @@ function LineSet() {
                 {sub.flat().map((item) => {
                     return (
                         <Xarrow
+                            key={`controllerToUser${item.draggableId}`}
                             start={item.draggableId}
                             startAnchor="right"
                             end={`controller${item.id}`}
@@ -66,7 +67,7 @@ function LineSet() {
                             strokeWidth={borderSize}
                             headSize={4}
                             // color={borderColor}
-                            color={generateColor(item.name)}
+                            color={generateColor(item.url)}
                             gridBreak={generatePercent(item.id)}
                         />
                     );
@@ -76,7 +77,7 @@ function LineSet() {
                 {Object.keys(ingressStatus).map((item) => {
                     return (
                         <Xarrow
-                            // key={`controllerToUser${item}`}
+                            key={`controllerToUser${item}`}
                             start={`controller${item}`}
                             startAnchor="right"
                             end="user"

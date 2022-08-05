@@ -71,10 +71,6 @@ const TaskList = styled(Grid)`
     border-radius: 10px;
     padding: 15px;
     transition: background-color 0.5s ease;
-    background-color: ${(props) =>
-        props.isDraggingOver
-            ? props.theme.palette.success.light
-            : props.theme.palette.primary};
     flex-grow: 1;
     min-height: 200px;
 

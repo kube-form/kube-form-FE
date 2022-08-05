@@ -28,6 +28,7 @@ function IngressControllerNode({ id }) {
                     borderColor: theme.palette.secondary[200],
                     boxShadow: 2,
                 },
+                marginY: 5,
             }}
         >
             <CardActionArea>

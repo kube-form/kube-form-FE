@@ -18,6 +18,7 @@ import RightUserNode from 'ui-component/node/RightUserNode';
 import SubmitBtn from 'ui-component/node/SubmitBtn';
 import IngressControllerNode from 'ui-component/node/IngressControllerNode';
 import useAuth from 'hooks/useAuth';
+import { Button } from '@mui/material';
 
 export default function Cluster() {
     const pods = usePods();
@@ -123,6 +124,7 @@ export default function Cluster() {
                                 item
                                 xs={2}
                                 direction="column"
+                                container
                                 style={{
                                     display: 'flex',
                                     alignItems: 'flex-start',
@@ -135,24 +137,27 @@ export default function Cluster() {
                                 item
                                 xs={3}
                                 alignItems="center"
+                                container
                                 style={{ display: 'flex' }}
                             >
                                 <MainWorkerNode className="main" />
                             </Grid>
                             <Grid item xs={4} id="sub">
-                                {Array(pods.workerNodeCnt + 1)
-                                    .fill(1)
-                                    .map((item, index) => (
+                                {[...Array(pods.workerNodeCnt + 1)].map(
+                                    (item, index) => (
                                         <NodeContainer
                                             id={index}
+                                            // eslint-disable-next-line react/no-array-index-key
+                                            key={index}
                                             nodeIndex={index}
                                         />
-                                    ))}
+                                    ),
+                                )}
                             </Grid>
                             <Grid
                                 item
                                 xs={1}
-                                direction="column"
+                                container
                                 style={{
                                     display: 'flex',
                                     justifyContent: 'center',
@@ -167,13 +172,10 @@ export default function Cluster() {
                                                 parseInt(b, 10),
                                         )
                                         .map((item) => (
-                                            <>
-                                                <Box height={30} />
-                                                <IngressControllerNode
-                                                    key={item}
-                                                    id={item}
-                                                />
-                                            </>
+                                            <IngressControllerNode
+                                                key={item}
+                                                id={item}
+                                            />
                                         ))}
                                 </Box>
                             </Grid>
@@ -181,6 +183,7 @@ export default function Cluster() {
                                 item
                                 xs={2}
                                 direction="column"
+                                container
                                 style={{
                                     display: 'flex',
                                     justifyContent: 'center',
@@ -204,7 +207,11 @@ export default function Cluster() {
                             <Box />
                         </Grid>
                         <Grid item xs={2}>
-                            <SubmitBtn />
+                            <Box my={2}>
+                                <Button variant="contained" size="large">
+                                    submit
+                                </Button>
+                            </Box>
                         </Grid>
                     </Grid>
                     <Grid item xs={12}>

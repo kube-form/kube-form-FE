@@ -44,7 +44,7 @@ function WaitContainer() {
                             <Grid
                                 container
                                 alignContent="center"
-                                jusitfyContent="space-between"
+                                justifyContent="space-between"
                             >
                                 <Grid item>
                                     <Typography variant="h4">
@@ -64,7 +64,6 @@ function WaitContainer() {
                                     container
                                     spacing={gridSpacing}
                                     ref={provided.innerRef}
-                                    isDraggingOver={snapshot.isDraggingOver}
                                     {...provided.droppableProps}
                                 >
                                     {wait
@@ -93,7 +92,7 @@ function WaitContainer() {
                             item
                             xs={12}
                             alignContent="center"
-                            jusitfyContent="center"
+                            justifyContent="center"
                             textAlign="center"
                             sx={{
                                 display: 'flex',

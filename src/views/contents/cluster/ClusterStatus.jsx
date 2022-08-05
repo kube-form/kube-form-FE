@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import NodeStatusContainer from 'ui-component/node/NodeStatusContainer';
 import { Grid, Box } from '@material-ui/core';
@@ -10,9 +10,25 @@ import LoadingComponent from 'ui-component/node/LoadingComponent';
 import RightUserNode from 'ui-component/node/RightUserNode';
 import usePods from 'hooks/usePods';
 import IngressControllerNode from 'ui-component/node/IngressControllerNode';
+import { useXarrow } from 'react-xarrows';
 
 export default function Cluster() {
-    const { workerNodeCnt } = usePods();
+    const { workerNodeCnt, ingressStatus } = usePods();
+    const updateXarrow = useXarrow();
+
+    const onResize = () => {
+        setTimeout(() => {
+            updateXarrow();
+        }, 400);
+    };
+
+    useEffect(() => {
+        onResize();
+        window.addEventListener('resize', onResize);
+        return () => {
+            window.removeEventListener('resize', onResize);
+        };
+    }, []);
     return (
         <>
             <Box py={2}>
@@ -38,19 +54,14 @@ export default function Cluster() {
                         <MainWorkerNode className="main" />
                     </Grid>
                     <Grid item xs={4} id="sub">
-                        {Array(workerNodeCnt + 1)
-                            .fill(1)
-                            .map((item, index) => (
-                                <NodeStatusContainer
-                                    id={index}
-                                    nodeIndex={index}
-                                />
-                            ))}
+                        {[...Array(workerNodeCnt + 1)].map((item, index) => (
+                            <NodeStatusContainer id={index} nodeIndex={index} />
+                        ))}
                     </Grid>
                     <Grid
                         item
                         xs={1}
-                        direction="column"
+                        container
                         style={{
                             display: 'flex',
                             justifyContent: 'center',
@@ -58,7 +69,16 @@ export default function Cluster() {
                         }}
                     >
                         <Box padding={3}>
-                            <IngressControllerNode />
+                            {Object.keys(ingressStatus)
+                                .sort(
+                                    (a, b) => parseInt(a, 10) - parseInt(b, 10),
+                                )
+                                .map((item) => (
+                                    <IngressControllerNode
+                                        key={item}
+                                        id={item}
+                                    />
+                                ))}
                         </Box>
                     </Grid>
                     <Grid
