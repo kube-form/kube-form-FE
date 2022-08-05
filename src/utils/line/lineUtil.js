@@ -9,7 +9,7 @@ export const generateColor = (input) => {
     for (let i = 0; i < 3; i += 1) {
         // 강제로 0.5 곱해서 색을 좀 더 어둡게 함.
         // eslint-disable-next-line no-bitwise
-        const value = Math.floor(((hash >> (i * 8)) & 0xff) * 1);
+        const value = Math.floor(((hash >> (i * 8)) & 0xff) * 0.5);
         colour += `00${value.toString(16)}`.substr(-2);
     }
     return colour;

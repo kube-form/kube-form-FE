@@ -54,26 +54,23 @@ function LineSet() {
                     />
                 ))}
             <>
-                {sub
-                    .flat()
-                    .sort((a, b) => parseInt(a, 10) - parseInt(b, 10))
-                    .map((item) => {
-                        return (
-                            <Xarrow
-                                start={item.draggableId}
-                                startAnchor="right"
-                                end={`controller${item.id}`}
-                                endAnchor="left"
-                                path="grid"
-                                showHead={null}
-                                strokeWidth={borderSize}
-                                headSize={4}
-                                // color={borderColor}
-                                color={generateColor(item.name)}
-                                gridBreak={generatePercent(item.id)}
-                            />
-                        );
-                    })}
+                {sub.flat().map((item) => {
+                    return (
+                        <Xarrow
+                            start={item.draggableId}
+                            startAnchor="right"
+                            end={`controller${item.id}`}
+                            endAnchor="left"
+                            path="grid"
+                            showHead={null}
+                            strokeWidth={borderSize}
+                            headSize={4}
+                            // color={borderColor}
+                            color={generateColor(item.name)}
+                            gridBreak={generatePercent(item.id)}
+                        />
+                    );
+                })}
             </>
             <>
                 {Object.keys(ingressStatus).map((item) => {
