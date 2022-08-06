@@ -20,8 +20,11 @@ import {
     StatusLinkTypography,
 } from 'ui-component/bottomTabComponents';
 
-function NetworkPanel({ value, index }) {
+function NetworkPanel({ value, index, clusterData }) {
     const theme = useTheme();
+
+    console.log(clusterData.vpc_id);
+
     return (
         <Box
             role="tabpanel"
@@ -88,7 +91,7 @@ function NetworkPanel({ value, index }) {
                                 title="VPC"
                                 content={
                                     <StatusLinkTypography>
-                                        vpc-01a48279b85f653da
+                                        {clusterData.vpc_id.value}
                                     </StatusLinkTypography>
                                 }
                             />
@@ -247,7 +250,11 @@ function NetworkPanel({ value, index }) {
                                 }
                                 content={
                                     <StatusLinkTypography>
-                                        sg-08ad717c0205a4716
+                                        {
+                                            clusterData
+                                                .cluster_primary_security_group_id
+                                                .value
+                                        }
                                     </StatusLinkTypography>
                                 }
                             />

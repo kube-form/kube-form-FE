@@ -11,8 +11,9 @@ import RightUserNode from 'ui-component/node/RightUserNode';
 import usePods from 'hooks/usePods';
 import IngressControllerNode from 'ui-component/node/IngressControllerNode';
 
-export default function Cluster() {
+function ClusterStatus() {
     const { workerNodeCnt } = usePods();
+
     return (
         <>
             <Box py={2}>
@@ -84,3 +85,5 @@ export default function Cluster() {
         </>
     );
 }
+
+export default ClusterStatus;
