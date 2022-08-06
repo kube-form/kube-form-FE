@@ -15,7 +15,7 @@ import { gridSpacing } from 'store/constant';
 import MainCard from 'ui-component/cards/MainCard';
 import ContainerCard from 'ui-component/cards/node/WaitNodeCard';
 import EmptyNodeCard from 'ui-component/cards/node/EmptyNodeCard';
-import CustomDialog from 'ui-component/CustomDialog';
+import CustomDialog from 'ui-component/dialog/CustomDialog';
 
 const ROWPERPAGE = 7;
 

@@ -4,7 +4,8 @@ import API from './base';
 
 const getFetcher = (url) => API.get(url).then((res) => res.data);
 
-export const getDockerImages = () => useSWR(`/dockerImages`, getFetcher);
+export const getDockerImages = (fuid) =>
+    useSWR(`/dockerImages/${fuid}`, getFetcher);
 export const putDockerImage = ({ objectKey }) =>
     API.put(`/dockerImages`, {
         objectKey,

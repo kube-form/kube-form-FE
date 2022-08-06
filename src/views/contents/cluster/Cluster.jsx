@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import usePods from 'hooks/usePods';
@@ -17,16 +17,25 @@ import { useTheme } from 'styled-components';
 import RightUserNode from 'ui-component/node/RightUserNode';
 import SubmitBtn from 'ui-component/node/SubmitBtn';
 import IngressControllerNode from 'ui-component/node/IngressControllerNode';
+import ClusterSubmitDialog from 'ui-component/dialog/ClusterSubmitDialog';
 import useAuth from 'hooks/useAuth';
 import { Grid, Box, Button } from '@mui/material';
 
 export default function Cluster() {
     const pods = usePods();
-    const { data, error } = getDockerImages();
     const { user } = useAuth();
+    const { data, error } = getDockerImages(user.uid);
 
     const updateXarrow = useXarrow();
     const theme = useTheme();
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const getWaitImages = async () => {
         // if (DUMMYDATA) {
@@ -126,11 +135,7 @@ export default function Cluster() {
     return (
         <>
             <Xwrapper>
-                <DragDropContext
-                    onDragEnd={onDragEnd}
-                    // onDragUpdate={() => updateXarrow}
-                    // onDragStart={() => updateXarrow}
-                >
+                <DragDropContext onDragEnd={onDragEnd}>
                     <Box py={2}>
                         <Grid container>
                             <Grid
@@ -218,13 +223,11 @@ export default function Cluster() {
                         <Grid item xs={10} />
                         <Grid item xs={2}>
                             <Box my={2}>
-                                <Button
-                                    variant="contained"
-                                    size="large"
-                                    onClick={onSubmit}
-                                >
-                                    Submit
-                                </Button>
+                                <ClusterSubmitDialog
+                                    title="Cluster Creation Guidelines"
+                                    buttonText="Submit"
+                                    onSubmit={onSubmit}
+                                />
                             </Box>
                         </Grid>
                     </Grid>

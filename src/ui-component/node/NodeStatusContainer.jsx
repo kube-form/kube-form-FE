@@ -18,7 +18,7 @@ function NodeContainer({ nodeIndex }) {
     const theme = useTheme();
 
     return (
-        <Grid container spacingY={gridSpacing} alignItems="center">
+        <Grid container spacingy={gridSpacing} alignItems="center">
             <Grid
                 item
                 xs={8}
