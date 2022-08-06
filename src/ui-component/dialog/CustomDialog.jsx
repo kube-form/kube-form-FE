@@ -87,6 +87,7 @@ const CustomModal = ({ open, handleClose }) => {
                             port: values.port,
                             name: values.name,
                             image: imageFile || 'custom.png',
+                            fuid: user.uid,
                         });
                         addWait({
                             ...values,

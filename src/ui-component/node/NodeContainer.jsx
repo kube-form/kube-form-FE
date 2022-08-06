@@ -15,7 +15,7 @@ function NodeContainer({ nodeIndex }) {
     const theme = useTheme();
 
     return (
-        <Grid container spacing={gridSpacing} alignItems="center">
+        <Grid container spacingy={gridSpacing} alignItems="center">
             <Grid
                 item
                 xs={8}
@@ -30,7 +30,7 @@ function NodeContainer({ nodeIndex }) {
             >
                 <Grid item xs={12}>
                     <Typography sx={{ m: 2 }} variant="h3">
-                        worker node {nodeIndex}
+                        worker node {nodeIndex + 1}
                     </Typography>
                 </Grid>
                 <Grid item xs={12} minHeight={15}>
@@ -74,6 +74,7 @@ export default NodeContainer;
 const TaskList = styled(Grid)`
     border-radius: 10px;
     padding: 15px;
+    padding-bottom: 77px;
     transition: background-color 0.5s ease;
     background-color: ${(props) =>
         props.isdraggingover

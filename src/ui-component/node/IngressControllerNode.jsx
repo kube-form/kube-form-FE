@@ -8,14 +8,13 @@ import {
     CardContent,
     CardActionArea,
 } from '@mui/material';
+import PropTypes from 'prop-types';
 
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import HubIcon from '@mui/icons-material/Hub';
 
 function IngressControllerNode({ id }) {
     const theme = useTheme();
-
-    console.log(id);
 
     return (
         <Card
@@ -29,6 +28,7 @@ function IngressControllerNode({ id }) {
                     borderColor: theme.palette.secondary[200],
                     boxShadow: 2,
                 },
+                marginY: 5,
             }}
         >
             <CardActionArea>
@@ -55,5 +55,12 @@ function IngressControllerNode({ id }) {
         </Card>
     );
 }
+
+// IngressControllerNode.propTypes = {
+//     id: PropTypes.oneOf([
+//         PropTypes.string.isRequired,
+//         PropTypes.number.isRequired,
+//     ]),
+// };
 
 export default IngressControllerNode;

@@ -14,7 +14,7 @@ import useScriptRef from 'hooks/useScriptRef';
 // third party
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { test } from 'utils/kms-util';
+import { test } from 'utils/kmsUtil';
 import useAuth from 'hooks/useAuth';
 import { postIAMUser } from 'api/cluster';
 

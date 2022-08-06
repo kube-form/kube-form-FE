@@ -38,7 +38,7 @@ function ResourceTypesComponent({ type }) {
                 >
                     Learn more
                     <IconExternalLink
-                        style={{ 'vertical-align': 'top', marginLeft: 1 }}
+                        style={{ verticalAlign: 'top', marginLeft: 1 }}
                         width={20}
                         height={20}
                     />

@@ -2,7 +2,6 @@
     "name": "kube-form-FE",
     "version": "0.0.1",
     "homepage": "https://kube-form.github.io",
-    "proxy": "https://jb95qkw1hh.execute-api.ap-northeast-2.amazonaws.com",
     "private": true,
     "dependencies": {
         "@aws-sdk/client-kms": "^3.137.0",
@@ -22,6 +21,7 @@
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/user-event": "^14.2.0",
         "apexcharts": "^3.35.3",
+        "aws-sdk": "^2.1189.0",
         "axios": "^0.27.2",
         "clsx": "^1.1.1",
         "crypto-js": "^4.1.1",
