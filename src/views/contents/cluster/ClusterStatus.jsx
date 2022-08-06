@@ -12,7 +12,7 @@ import usePods from 'hooks/usePods';
 import IngressControllerNode from 'ui-component/node/IngressControllerNode';
 import { useXarrow } from 'react-xarrows';
 
-export default function Cluster() {
+function ClusterStatus() {
     const { workerNodeCnt, ingressStatus } = usePods();
     const updateXarrow = useXarrow();
 
@@ -135,3 +135,5 @@ export default function Cluster() {
         </>
     );
 }
+
+export default ClusterStatus;

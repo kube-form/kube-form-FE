@@ -18,8 +18,11 @@ import {
 } from 'ui-component/bottomTabComponents';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
-function SummaryPanel({ value, index }) {
+function SummaryPanel({ value, index, clusterData }) {
     const theme = useTheme();
+
+    const endpoint = clusterData.cluster_endpoint;
+
     return (
         <Box
             role="tabpanel"
@@ -64,7 +67,7 @@ function SummaryPanel({ value, index }) {
                                 title="API server endpoint"
                                 content={
                                     <StatusCopyTypography>
-                                        https://56358F15A728CB42EA8F8ED5A3F755B7.gr7.ap-northeast-2.eks.amazonaws.com
+                                        {endpoint.value}
                                     </StatusCopyTypography>
                                 }
                             />
@@ -108,7 +111,7 @@ function SummaryPanel({ value, index }) {
                                 content={
                                     <StatusCopyTypography>
                                         <StatusLinkTypography>
-                                            arn:aws:iam::170777615631:role/kubeform-eks-mVmxwnDs20220711045121592900000003
+                                            {clusterData.cluster_arn.value}
                                         </StatusLinkTypography>
                                     </StatusCopyTypography>
                                 }
@@ -131,7 +134,7 @@ function SummaryPanel({ value, index }) {
                                 title="Cluster ARN"
                                 content={
                                     <StatusCopyTypography>
-                                        arn:aws:eks:ap-northeast-2:170777615631:cluster/kubeform-eks-mVmxwnDs
+                                        {clusterData.cluster_arn.value}
                                     </StatusCopyTypography>
                                 }
                             />
@@ -168,7 +171,9 @@ function SummaryPanel({ value, index }) {
                                         </Typography>
                                     </Box>
                                 }
-                                content="eks.6"
+                                content={
+                                    clusterData.cluster_platform_version.value
+                                }
                             />
                         </ListItem>
                     </Grid>
@@ -181,6 +186,8 @@ function SummaryPanel({ value, index }) {
 SummaryPanel.propTypes = {
     value: PropTypes.number.isRequired,
     index: PropTypes.number.isRequired,
+
+    clusterData: PropTypes.object.isRequired,
 };
 
 export default SummaryPanel;
