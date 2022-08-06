@@ -11,6 +11,7 @@ import RightUserNode from 'ui-component/node/RightUserNode';
 import usePods from 'hooks/usePods';
 import IngressControllerNode from 'ui-component/node/IngressControllerNode';
 import { useXarrow } from 'react-xarrows';
+import IngressControllerWithDialog from 'ui-component/dialog/IngressControllerWithDialog';
 
 function ClusterStatus() {
     const { workerNodeCnt, ingressStatus } = usePods();
@@ -76,16 +77,13 @@ function ClusterStatus() {
                         }}
                     >
                         <Box padding={3}>
-                            {Object.keys(ingressStatus)
-                                .sort(
-                                    (a, b) => parseInt(a, 10) - parseInt(b, 10),
-                                )
-                                .map((item) => (
-                                    <IngressControllerNode
-                                        key={item}
-                                        id={item}
-                                    />
-                                ))}
+                            {Object.keys(ingressStatus).map((item) => (
+                                <IngressControllerWithDialog
+                                    key={item}
+                                    url="https://www.notion.so/Front-2e7850ada3b14943bc24d38522262569"
+                                    id={item}
+                                />
+                            ))}
                         </Box>
                     </Grid>
                     <Grid

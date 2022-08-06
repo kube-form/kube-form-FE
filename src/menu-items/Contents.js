@@ -47,7 +47,7 @@ const contents = {
             children: [
                 {
                     id: 'cluster-register',
-                    title: 'Register',
+                    title: 'Register / Update',
                     type: 'item',
                     url: '/utils/cluster/register',
                     breadcrumbs: false,

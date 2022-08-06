@@ -96,19 +96,6 @@ export default function Cluster() {
         }
     };
 
-    const onSubmit = async (e) => {
-        const kubeSource = {
-            user_id: user.uid,
-            node_group_num: pods.workerNodeCnt + 1,
-            container: pods.getSubmitFormat(),
-        };
-        const res = await submitKubeSource({
-            kubeSource,
-            uid: user.uid,
-            id: 'main',
-        });
-    };
-
     useEffect(() => {
         getWaitImages();
     }, [data]);
@@ -183,18 +170,14 @@ export default function Cluster() {
                                 }}
                             >
                                 <Box padding={3}>
-                                    {Object.keys(pods.ingressStatus)
-                                        .sort(
-                                            (a, b) =>
-                                                parseInt(a, 10) -
-                                                parseInt(b, 10),
-                                        )
-                                        .map((item) => (
+                                    {Object.keys(pods.ingressStatus).map(
+                                        (item) => (
                                             <IngressControllerNode
                                                 key={item}
                                                 id={item}
                                             />
-                                        ))}
+                                        ),
+                                    )}
                                 </Box>
                             </Grid>
                             <Grid
@@ -228,7 +211,6 @@ export default function Cluster() {
                                     buttonText="Submit"
                                     uid={user.uid}
                                     workerNodeCnt={pods.workerNodeCnt + 1}
-                                    onSubmit={onSubmit}
                                 />
                             </Box>
                         </Grid>
