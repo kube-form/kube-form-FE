@@ -21,13 +21,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 function SummaryPanel({ value, index, clusterData }) {
     const theme = useTheme();
 
-    console.log(clusterData);
-    console.log(clusterData.cluster_arn);
-    console.log(clusterData.cluster_endpoint);
-    const Endpoint = clusterData.cluster_endpoint;
-
-    const arr = Object.keys(clusterData);
-    const valueArr = Object.values(clusterData);
+    const endpoint = clusterData.cluster_endpoint;
 
     return (
         <Box
@@ -52,12 +46,6 @@ function SummaryPanel({ value, index, clusterData }) {
             />
             <Divider />
             <CardContent>
-                {arr.forEach((val, idx) => {
-                    console.log(val, idx);
-                })}
-                {valueArr.forEach((v, i) => {
-                    console.log(v, i);
-                })}
                 <Grid container sx={{ flexGrow: 1 }}>
                     <Grid
                         item
@@ -79,7 +67,7 @@ function SummaryPanel({ value, index, clusterData }) {
                                 title="API server endpoint"
                                 content={
                                     <StatusCopyTypography>
-                                        {Endpoint.value}
+                                        {endpoint.value}
                                     </StatusCopyTypography>
                                 }
                             />

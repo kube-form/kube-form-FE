@@ -146,9 +146,9 @@ const DummyData = Dummy.data;
 const Simple = {
     cluster: Dummy.data.cluster_data,
 };
-// const Test = {
-//     cluster_data: DummyData.cluster_data,
-// };
+const Test = {
+    cluster_data: DummyData.cluster_data,
+};
 
 const EntryPoints = DummyData.entry_points;
 const ClusterData = DummyData.cluster_data;
