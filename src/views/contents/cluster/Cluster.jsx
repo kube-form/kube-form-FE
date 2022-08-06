@@ -226,6 +226,8 @@ export default function Cluster() {
                                 <ClusterSubmitDialog
                                     title="Cluster Creation Guidelines"
                                     buttonText="Submit"
+                                    uid={user.uid}
+                                    workerNodeCnt={pods.workerNodeCnt + 1}
                                     onSubmit={onSubmit}
                                 />
                             </Box>
