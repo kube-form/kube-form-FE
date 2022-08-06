@@ -82,14 +82,17 @@ function NodeCard({ id, index, image, name, url, draggableId, port }) {
     );
 }
 
-NodeCard.propTypes = {
-    index: PropTypes.number.isRequired,
-    id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    port: PropTypes.string.isRequired,
-};
+// NodeCard.propTypes = {
+//     index: PropTypes.number.isRequired,
+//     id: PropTypes.string.isRequired,
+//     image: PropTypes.string.isRequired,
+//     name: PropTypes.string.isRequired,
+//     url: PropTypes.string.isRequired,
+//     port: PropTypes.oneOf([
+//         PropTypes.string.isRequired,
+//         PropTypes.number.isRequired,
+//     ]),
+// };
 
 const ImageContainerCard = styled(Box)(({ theme }) => ({
     borderRadius: 10,

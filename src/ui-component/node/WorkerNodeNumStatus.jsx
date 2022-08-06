@@ -33,7 +33,10 @@ function WorkerNodeNumStatus() {
                         {Array(3)
                             .fill(1)
                             .map((item, index) => (
-                                <MenuItem value={index}>{index + 1}</MenuItem>
+                                // eslint-disable-next-line react/no-array-index-key
+                                <MenuItem key={index} value={index}>
+                                    {index + 1}
+                                </MenuItem>
                             ))}
                     </Select>
                 </Box>

@@ -21,6 +21,8 @@ const config = {
     aws: {
         accessKeyId: process.env.REACT_APP_AWS_ACCESSKEY,
         secretAccessKey: process.env.REACT_APP_AWS_SECRETKEY,
+        region: process.env.REACT_APP_AWS_REGION,
+        bucketName: process.env.REACT_APP_AWS_BUCKET,
         keyId: process.env.REACT_APP_AWS_KEYID,
     },
 };

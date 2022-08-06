@@ -1,4 +1,5 @@
 import React, { lazy } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
 
 // project imports
 import MainLayout from 'layout/MainLayout';
@@ -44,56 +45,62 @@ const NotFound = Loadable(lazy(() => import('views/NotFound')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
-const MainRoutes = {
-    path: '',
-    element: <MainLayout />,
-    children: [
-        {
-            path: '',
-            element: <DashboardDefault />,
-        },
-        {
-            path: '/dashboard/default',
-            element: <DashboardDefault />,
-        },
-        {
-            path: '/utils/cluster/register',
-            element: <UtilsCluster />,
-        },
-        {
-            path: '/utils/cluster/status',
-            element: <UtilsClusterStatus />,
-        },
-        {
-            path: '/utils/util-shadow',
-            element: <UtilsShadow />,
-        },
-        {
-            path: '/icons/tabler-icons',
-            element: <UtilsTablerIcons />,
-        },
-        {
-            path: '/icons/material-icons',
-            element: <UtilsMaterialIcons />,
-        },
-        {
-            path: '/sample-page',
-            element: <SamplePage />,
-        },
-        // custom path
-        {
-            path: '/iam/setting',
-            element: <IAMSetting />,
-        },
-        {
-            path: '/iam/register',
-            element: <IAMRegister />,
-        },
-        {
-            path: '/iam/update',
-            element: <IAMUpdate />,
-        },
-    ],
+const MainRoutes = (isLoggedIn) => {
+    return {
+        path: '',
+        element: <MainLayout />,
+        children: [
+            {
+                path: '',
+                element: <DashboardDefault />,
+            },
+            {
+                path: '/dashboard/default',
+                element: <DashboardDefault />,
+            },
+            {
+                path: '/utils/cluster/register',
+                element: isLoggedIn ? <UtilsCluster /> : <Navigate to="/" />,
+            },
+            {
+                path: '/utils/cluster/status',
+                element: isLoggedIn ? (
+                    <UtilsClusterStatus />
+                ) : (
+                    <Navigate to="/" />
+                ),
+            },
+            {
+                path: '/utils/util-shadow',
+                element: <UtilsShadow />,
+            },
+            {
+                path: '/icons/tabler-icons',
+                element: <UtilsTablerIcons />,
+            },
+            {
+                path: '/icons/material-icons',
+                element: <UtilsMaterialIcons />,
+            },
+            {
+                path: '/sample-page',
+                element: <SamplePage />,
+            },
+            // custom path
+            {
+                path: '/iam/setting',
+                element: isLoggedIn ? <IAMSetting /> : <Navigate to="/" />,
+            },
+            {
+                path: '/iam/register',
+                element: isLoggedIn ? <IAMRegister /> : <Navigate to="/" />,
+            },
+            {
+                path: '/iam/update',
+                element: <IAMUpdate />,
+            },
+        ],
+    };
 };
 
 export default MainRoutes;

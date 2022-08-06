@@ -75,7 +75,6 @@ export function FirebaseProvider({ children }) {
                 // The signed-in user info.
                 const { user } = result;
                 // rm unused error
-                console.log(token, user);
             })
             .catch((error) => {
                 // Handle Errors here.

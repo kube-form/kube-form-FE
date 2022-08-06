@@ -1,6 +1,5 @@
 import React from 'react';
-import { Box, Button } from '@material-ui/core';
-import { Card, CardActionArea, Typography } from '@mui/material';
+import { Card, CardActionArea, Typography, Box, Button } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 function SubmitBtn() {
@@ -23,7 +22,7 @@ function SubmitBtn() {
             }}
         >
             <CardActionArea>
-                <Box
+                <Button
                     alignItems="center"
                     sx={{
                         display: 'flex',
@@ -32,8 +31,8 @@ function SubmitBtn() {
                         padding: 1,
                     }}
                 >
-                    <Typography variant="subtitle1">Submit</Typography>
-                </Box>
+                    Submit
+                </Button>
             </CardActionArea>
         </Card>
     );

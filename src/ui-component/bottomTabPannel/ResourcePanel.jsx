@@ -204,7 +204,7 @@ function ResourcePanel({ value, index }) {
                                         timeout="auto"
                                         unmountOnExit
                                     >
-                                        <Stack disablePadding>
+                                        <Stack>
                                             {item.contents.map(
                                                 (content, idx) => (
                                                     <ListItemButton
