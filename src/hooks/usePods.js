@@ -62,6 +62,18 @@ const usePods = () => {
         }
     };
 
+    const setAll = (data) => {
+        try {
+            console.log(data);
+            dispatch({
+                type: actionTypes.POD_SET_ALL,
+                payload: data,
+            });
+        } catch (e) {
+            console.warn('set All error', e);
+        }
+    };
+
     // remove subIdx: sub pod index
     const removeSub = (subNodeIndex, subIdx) => {
         const subs = [...container.sub];
@@ -125,6 +137,7 @@ const usePods = () => {
         addWait,
         reorder,
         setWait,
+        setAll,
         addSubFromWait,
         removeSub,
         setWorkerNodeCnt,

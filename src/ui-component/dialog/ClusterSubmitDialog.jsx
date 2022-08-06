@@ -20,7 +20,7 @@ import usePods from 'hooks/usePods';
 const ClusterSubmitDialog = ({ buttonText, title, uid, workerNodeCnt }) => {
     const theme = useTheme();
     const [value, setValue] = useState(INSTANCE_DATA[0]);
-    const { getSubmitFormat, sub } = usePods();
+    const { getSubmitFormat, sub, main, wait, ingressStatus } = usePods();
     const handleChange = (event) => {
         setValue(event.target.value);
     };
@@ -40,7 +40,12 @@ const ClusterSubmitDialog = ({ buttonText, title, uid, workerNodeCnt }) => {
             node_group_num: workerNodeCnt,
             instance_type: value,
             container: getSubmitFormat(),
-            tmp: sub,
+            client: {
+                main,
+                sub,
+                ingressStatus,
+                workerNodeCnt: workerNodeCnt - 1,
+            },
         };
         const res = await submitKubeSource({
             kubeSource,

@@ -27,6 +27,14 @@ const podReducer = (state = initialState, action) => {
             return { ...state, wait: [...state.wait, action.payload] };
         case actionTypes.POD_SET_WORKER_NODE_CNT:
             return { ...state, workerNodeCnt: action.payload };
+        case actionTypes.POD_SET_ALL:
+            return {
+                ...state,
+                main: action.payload.main,
+                sub: action.payload.sub,
+                workerNodeCnt: action.payload.workerNodeCnt,
+                ingressStatus: action.payload.ingressStatus,
+            };
         default:
             return state;
     }

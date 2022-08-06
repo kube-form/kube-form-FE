@@ -12,9 +12,12 @@ import usePods from 'hooks/usePods';
 import IngressControllerNode from 'ui-component/node/IngressControllerNode';
 import { useXarrow } from 'react-xarrows';
 import IngressControllerWithDialog from 'ui-component/dialog/IngressControllerWithDialog';
+import { getKubeSource } from 'utils/s3UploadUtil';
+import useAuth from 'hooks/useAuth';
 
 function ClusterStatus() {
-    const { workerNodeCnt, ingressStatus } = usePods();
+    const { user } = useAuth();
+    const { workerNodeCnt, ingressStatus, setAll } = usePods();
     const updateXarrow = useXarrow();
 
     const onResize = () => {
@@ -23,6 +26,18 @@ function ClusterStatus() {
         }, 400);
     };
 
+    useEffect(async () => {
+        try {
+            const data = await getKubeSource({
+                uid: user.uid,
+                id: 'main.json',
+            });
+            setAll(data?.client);
+        } catch (e) {
+            console.log(e);
+        }
+    }, []);
+
     useEffect(() => {
         onResize();
         window.addEventListener('resize', onResize);
@@ -30,6 +45,7 @@ function ClusterStatus() {
             window.removeEventListener('resize', onResize);
         };
     }, []);
+
     return (
         <>
             <Box py={2}>

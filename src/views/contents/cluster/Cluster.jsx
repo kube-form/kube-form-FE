@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import NodeContainer from 'ui-component/node/NodeContainer';
 
-import { submitKubeSource } from 'utils/s3UploadUtil';
+import { getKubeSource } from 'utils/s3UploadUtil';
 import MainWorkerNode from 'ui-component/node/MainWorkerNode';
 import { useXarrow, Xwrapper } from 'react-xarrows';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
@@ -105,6 +105,18 @@ export default function Cluster() {
             updateXarrow();
         }, 400);
     };
+
+    useEffect(async () => {
+        try {
+            const { client } = await getKubeSource({
+                uid: user.uid,
+                id: 'main.json',
+            });
+            pods.setAll(client);
+        } catch (e) {
+            console.log(e);
+        }
+    }, []);
 
     useEffect(() => {
         onResize();

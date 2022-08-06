@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
@@ -14,9 +15,22 @@ import themes from 'themes';
 import NavigationScroll from 'layout/NavigationScroll';
 import { FirebaseProvider } from 'contexts/FirebaseContext';
 
+import trackPathForAnalytics from 'TrackPageForAnalytics';
 // ==============================|| APP ||============================== //
 
 function App() {
+    const { pathname, search } = useLocation();
+    const analytics = useCallback(() => {
+        trackPathForAnalytics({
+            path: pathname,
+            search,
+            title: pathname.split('/')[1],
+        });
+    }, [pathname, search]);
+
+    useEffect(() => {
+        analytics();
+    }, [analytics]);
     const customization = useSelector((state) => state.customization);
 
     return (
