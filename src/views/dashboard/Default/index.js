@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react';
 // material-ui
 import { Grid } from '@mui/material';
 import useAuth from 'hooks/useAuth';
+import TotalNewsContainer from 'ui-component/dashboard/TotalNewsContainer';
+import TotalArnCard from 'ui-component/dashboard/TotalArnCard';
+import DUMMY_NEWS from 'data/news';
 
 // project imports
 import { gridSpacing } from 'store/constant';
@@ -10,7 +13,6 @@ import EarningCard from './EarningCard';
 import PopularCard from './PopularCard';
 import TotalOrderLineChartCard from './TotalOrderLineChartCard';
 import TotalGrowthBarChart from './TotalGrowthBarChart';
-import TotalArnCard from './TotalArnCard';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
@@ -69,7 +71,11 @@ function Dashboard() {
             <Grid item xs={12}>
                 <Grid container spacing={gridSpacing}>
                     <Grid item xs={12} md={8}>
-                        <TotalGrowthBarChart isLoading={isLoading} />
+                        {/* <TotalGrowthBarChart isLoading={isLoading} /> */}
+                        <TotalNewsContainer
+                            isLoading={isLoading}
+                            news={DUMMY_NEWS}
+                        />
                     </Grid>
                     <Grid item xs={12} md={4}>
                         <PopularCard isLoading={isLoading} />
