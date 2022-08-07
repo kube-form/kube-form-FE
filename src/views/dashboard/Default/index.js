@@ -3,7 +3,7 @@ import useAuth from 'hooks/useAuth';
 import usePods from 'hooks/usePods';
 // material-ui
 import { Grid } from '@mui/material';
-import useAuth from 'hooks/useAuth';
+
 import TotalNewsContainer from 'ui-component/dashboard/TotalNewsContainer';
 import TotalArnCard from 'ui-component/dashboard/TotalArnCard';
 import DUMMY_NEWS from 'data/news';
@@ -20,6 +20,8 @@ import NotLoginedStatusCard from './NotLoginedStatus';
 
 function Dashboard() {
     const [isLoading, setLoading] = useState(true);
+    const { user } = useAuth();
+    const pods = usePods();
     useEffect(() => {
         setLoading(false);
     }, []);
