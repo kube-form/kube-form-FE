@@ -4,6 +4,7 @@ import {
     Divider,
     Grid,
     Typography,
+    Link,
     CardHeader,
     Button,
     ListItem,
@@ -23,7 +24,15 @@ import {
 function NetworkPanel({ value, index, clusterData }) {
     const theme = useTheme();
 
+    const val = (input) => {
+        return input.value;
+    };
+
     console.log(clusterData.vpc_id);
+
+    const privateSubnets = clusterData.private_subnets;
+    const publicSubnets = clusterData.public_subnets;
+    console.log(privateSubnets);
 
     return (
         <Box
@@ -184,18 +193,36 @@ function NetworkPanel({ value, index, clusterData }) {
                     >
                         <ListItem>
                             <StatusListItemBase
-                                title="Subnets"
+                                title="Private Subnets"
                                 content={
                                     <>
-                                        <StatusLinkTypography>
-                                            subnet-08304342330e6dc0d
-                                        </StatusLinkTypography>
-                                        <StatusLinkTypography>
-                                            subnet-02e493624d0935356
-                                        </StatusLinkTypography>
-                                        <StatusLinkTypography>
-                                            subnet-0ffdbbfb0361c2bcd
-                                        </StatusLinkTypography>
+                                        {val(privateSubnets).map((item) => {
+                                            return (
+                                                <StatusLinkTypography
+                                                    key={item}
+                                                >
+                                                    {item}
+                                                </StatusLinkTypography>
+                                            );
+                                        })}
+                                    </>
+                                }
+                            />
+                        </ListItem>
+                        <ListItem>
+                            <StatusListItemBase
+                                title="public Subnets"
+                                content={
+                                    <>
+                                        {val(publicSubnets).map((item) => {
+                                            return (
+                                                <StatusLinkTypography
+                                                    key={item}
+                                                >
+                                                    {item}
+                                                </StatusLinkTypography>
+                                            );
+                                        })}
                                     </>
                                 }
                             />
@@ -291,11 +318,7 @@ function NetworkPanel({ value, index, clusterData }) {
                                         </Typography>
                                     </Box>
                                 }
-                                content={
-                                    <StatusLinkTypography>
-                                        sg-093dbaad9dc2cf13d
-                                    </StatusLinkTypography>
-                                }
+                                content="none"
                             />
                         </ListItem>
                     </Grid>
