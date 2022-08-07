@@ -11,9 +11,13 @@ import RightUserNode from 'ui-component/node/RightUserNode';
 import usePods from 'hooks/usePods';
 import IngressControllerNode from 'ui-component/node/IngressControllerNode';
 import { useXarrow } from 'react-xarrows';
+import IngressControllerWithDialog from 'ui-component/dialog/IngressControllerWithDialog';
+import { getKubeSource } from 'utils/s3UploadUtil';
+import useAuth from 'hooks/useAuth';
 
 function ClusterStatus() {
-    const { workerNodeCnt, ingressStatus } = usePods();
+    const { user } = useAuth();
+    const { workerNodeCnt, ingressStatus, setAll } = usePods();
     const updateXarrow = useXarrow();
 
     const onResize = () => {
@@ -22,6 +26,18 @@ function ClusterStatus() {
         }, 400);
     };
 
+    useEffect(async () => {
+        try {
+            const data = await getKubeSource({
+                uid: user.uid,
+                id: 'main.json',
+            });
+            setAll(data?.client);
+        } catch (e) {
+            console.log(e);
+        }
+    }, []);
+
     useEffect(() => {
         onResize();
         window.addEventListener('resize', onResize);
@@ -29,6 +45,7 @@ function ClusterStatus() {
             window.removeEventListener('resize', onResize);
         };
     }, []);
+
     return (
         <>
             <Box py={2}>
@@ -76,16 +93,13 @@ function ClusterStatus() {
                         }}
                     >
                         <Box padding={3}>
-                            {Object.keys(ingressStatus)
-                                .sort(
-                                    (a, b) => parseInt(a, 10) - parseInt(b, 10),
-                                )
-                                .map((item) => (
-                                    <IngressControllerNode
-                                        key={item}
-                                        id={item}
-                                    />
-                                ))}
+                            {Object.keys(ingressStatus).map((item) => (
+                                <IngressControllerWithDialog
+                                    key={item}
+                                    url="https://www.notion.so/Front-2e7850ada3b14943bc24d38522262569"
+                                    id={item}
+                                />
+                            ))}
                         </Box>
                     </Grid>
                     <Grid

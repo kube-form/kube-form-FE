@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import NodeContainer from 'ui-component/node/NodeContainer';
 
-import { submitKubeSource } from 'utils/s3UploadUtil';
+import { getKubeSource } from 'utils/s3UploadUtil';
 import MainWorkerNode from 'ui-component/node/MainWorkerNode';
 import { useXarrow, Xwrapper } from 'react-xarrows';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
@@ -96,19 +96,6 @@ export default function Cluster() {
         }
     };
 
-    const onSubmit = async (e) => {
-        const kubeSource = {
-            user_id: user.uid,
-            node_group_num: pods.workerNodeCnt + 1,
-            container: pods.getSubmitFormat(),
-        };
-        const res = await submitKubeSource({
-            kubeSource,
-            uid: user.uid,
-            id: 'main',
-        });
-    };
-
     useEffect(() => {
         getWaitImages();
     }, [data]);
@@ -118,6 +105,18 @@ export default function Cluster() {
             updateXarrow();
         }, 400);
     };
+
+    useEffect(async () => {
+        try {
+            const { client } = await getKubeSource({
+                uid: user.uid,
+                id: 'main.json',
+            });
+            pods.setAll(client);
+        } catch (e) {
+            console.log(e);
+        }
+    }, []);
 
     useEffect(() => {
         onResize();
@@ -183,18 +182,14 @@ export default function Cluster() {
                                 }}
                             >
                                 <Box padding={3}>
-                                    {Object.keys(pods.ingressStatus)
-                                        .sort(
-                                            (a, b) =>
-                                                parseInt(a, 10) -
-                                                parseInt(b, 10),
-                                        )
-                                        .map((item) => (
+                                    {Object.keys(pods.ingressStatus).map(
+                                        (item) => (
                                             <IngressControllerNode
                                                 key={item}
                                                 id={item}
                                             />
-                                        ))}
+                                        ),
+                                    )}
                                 </Box>
                             </Grid>
                             <Grid
@@ -226,7 +221,8 @@ export default function Cluster() {
                                 <ClusterSubmitDialog
                                     title="Cluster Creation Guidelines"
                                     buttonText="Submit"
-                                    onSubmit={onSubmit}
+                                    uid={user.uid}
+                                    workerNodeCnt={pods.workerNodeCnt + 1}
                                 />
                             </Box>
                         </Grid>

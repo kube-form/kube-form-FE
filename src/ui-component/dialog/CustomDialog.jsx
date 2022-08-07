@@ -89,14 +89,14 @@ const CustomModal = ({ open, handleClose }) => {
                             image: imageFile || 'custom.png',
                             fuid: user.uid,
                         });
-                        addWait({
-                            ...values,
-                            image: `https://kube-form.s3.ap-northeast-2.amazonaws.com/dockerImages/${
-                                imageFile || 'custom.png'
-                            }`,
-                            id: uuid(),
-                            draggableId: uuid(),
-                        });
+                        // addWait({
+                        //     ...values,
+                        //     image: `https://kube-form.s3.ap-northeast-2.amazonaws.com/dockerImages/${
+                        //         imageFile || 'custom.png'
+                        //     }`,
+                        //     id: uuid(),
+                        //     draggableId: uuid(),
+                        // });
                         handleClose();
                     } catch (err) {
                         setStatus({ success: false });
