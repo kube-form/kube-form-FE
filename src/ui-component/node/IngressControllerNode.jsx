@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import HubIcon from '@mui/icons-material/Hub';
 
-function IngressControllerNode({ id }) {
+function IngressControllerNode({ id, onClick }) {
     const theme = useTheme();
 
     return (
@@ -31,7 +31,7 @@ function IngressControllerNode({ id }) {
                 marginY: 5,
             }}
         >
-            <CardActionArea>
+            <CardActionArea onClick={onClick}>
                 <Box
                     alignItems="center"
                     sx={{
