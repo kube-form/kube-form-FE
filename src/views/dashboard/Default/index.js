@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-
+import useAuth from 'hooks/useAuth';
+import usePods from 'hooks/usePods';
 // material-ui
 import { Grid } from '@mui/material';
 
@@ -11,10 +12,13 @@ import TotalOrderLineChartCard from './TotalOrderLineChartCard';
 import TotalIncomeDarkCard from './TotalIncomeDarkCard';
 import TotalIncomeLightCard from './TotalIncomeLightCard';
 import TotalGrowthBarChart from './TotalGrowthBarChart';
+import NotLoginedStatusCard from './NotLoginedStatus';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 function Dashboard() {
+    const { user } = useAuth();
+    const pods = usePods();
     const [isLoading, setLoading] = useState(true);
     useEffect(() => {
         setLoading(false);
@@ -48,7 +52,10 @@ function Dashboard() {
                         <TotalGrowthBarChart isLoading={isLoading} />
                     </Grid>
                     <Grid item xs={12} md={4}>
-                        <PopularCard isLoading={isLoading} />
+                        {user && (
+                            <PopularCard isLoading={isLoading} data={pods} />
+                        )}
+                        {!user && <NotLoginedStatusCard />}
                     </Grid>
                 </Grid>
             </Grid>

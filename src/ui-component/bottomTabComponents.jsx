@@ -28,7 +28,6 @@ export function StatusListItemTitleSubTitle({ title, content, sx }) {
                     variant="subtitle2"
                     sx={{
                         color: theme.palette.grey[500],
-                        mt: 0.5,
                         ...sx,
                         overflow: 'hidden',
                     }}
@@ -114,13 +113,13 @@ export function StatusLinkTypography({ children, sx }) {
     const theme = useTheme();
     return (
         <Typography
-            py={0.4}
             sx={{
                 color: theme.palette.info.main,
                 cursor: 'pointer',
                 alignItems: 'top',
                 wordWrap: 'break-word',
-                lineHeight: 1.4,
+                lineHeight: 1.5,
+                textDecoration: 'underline',
             }}
         >
             {children}

@@ -38,7 +38,7 @@ export default function LoadingComponent() {
     switch (done) {
         case 'success':
             return (
-                <Box sx={{ minHeight: 80 }} onClick={onClick}>
+                <Box sx={{ minHeight: 80, pt: 3 }} onClick={onClick}>
                     <Typography
                         variant="subtitle1"
                         color={theme.palette.success.dark}
@@ -51,7 +51,7 @@ export default function LoadingComponent() {
             return (
                 <Box
                     onClick={onClick}
-                    sx={{ minHeight: 80 }}
+                    sx={{ minHeight: 80, pt: 3 }}
                     display="flex"
                     color={theme.palette.error.dark}
                 >
@@ -69,7 +69,7 @@ export default function LoadingComponent() {
             );
         default:
             return (
-                <Box sx={{ '& > button': { m: 1 }, minHeight: 80 }}>
+                <Box sx={{ '& > button': { m: 1 }, minHeight: 80, pt: 1.5 }}>
                     <LoadingButton
                         onClick={handleClick}
                         loading={loading}

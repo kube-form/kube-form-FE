@@ -146,9 +146,6 @@ const DummyData = Dummy.data;
 const Simple = {
     cluster: Dummy.data.cluster_data,
 };
-const Test = {
-    cluster_data: DummyData.cluster_data,
-};
 
 const EntryPoints = DummyData.entry_points;
 const ClusterData = DummyData.cluster_data;
@@ -157,7 +154,7 @@ const Arn = ClusterData.cluster_arn;
 // getClusterStatus();
 console.log('DummyData: ', DummyData);
 console.log('Simple:', Simple);
-console.log(DummyData.detail);
+console.log(DummyData.entry_points);
 
 function StatusBottomContainer() {
     const [value, setValue] = useState(0);
