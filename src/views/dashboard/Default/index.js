@@ -50,7 +50,7 @@ function Dashboard() {
                             <Grid item sm={6} xs={12} md={6} lg={12}>
                                 <TotalArnCard
                                     index={0}
-                                    isLoading={isLoading}
+                                    isLoading
                                     url="https://www.notion.so/Front-2e7850ada3b14943bc24d38522262569"
                                 />
                             </Grid>

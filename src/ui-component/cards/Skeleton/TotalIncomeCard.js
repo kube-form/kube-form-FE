@@ -8,12 +8,13 @@ import {
     ListItemText,
     Skeleton,
 } from '@mui/material';
+import styled from '@emotion/styled';
 
 // ==============================|| SKELETON - TOTAL INCOME DARK/LIGHT CARD ||============================== //
 
 function TotalIncomeCard() {
     return (
-        <Card sx={{ p: 2 }}>
+        <Warpper sx={{ p: 2 }}>
             <List sx={{ py: 0 }}>
                 <ListItem alignItems="center" disableGutters sx={{ py: 0 }}>
                     <ListItemAvatar>
@@ -30,8 +31,12 @@ function TotalIncomeCard() {
                     />
                 </ListItem>
             </List>
-        </Card>
+        </Warpper>
     );
 }
+
+const Warpper = styled(Card)`
+    filter: blur(2px);
+`;
 
 export default TotalIncomeCard;
