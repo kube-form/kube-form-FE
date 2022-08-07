@@ -156,7 +156,7 @@ export function StatusCopyTypography({ children, sx }) {
     const id = open ? 'simple-popover' : undefined;
 
     return (
-        <Box>
+        <Box display="block">
             <Popover
                 id={id}
                 anchorEl={anchorEl}
