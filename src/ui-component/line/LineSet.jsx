@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Xarrow, { useXarrow } from 'react-xarrows';
 import { useTheme } from '@mui/material/styles';
-import usePods from 'hooks/usePods';
 import { generateColor, generatePercent } from 'utils/line/lineUtil';
+import { useSelector } from 'react-redux';
 
 function LineSet() {
     const theme = useTheme();
     const [isLoading, setLoading] = useState(true);
-    const { sub, workerNodeCnt, ingressStatus } = usePods();
+    const { sub, workerNodeCnt } = useSelector((state) => state.pod);
     const borderSize = 4;
     const borderColor = theme.palette.text.primary;
     const updateXarrow = useXarrow();

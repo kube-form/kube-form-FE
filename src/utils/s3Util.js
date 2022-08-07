@@ -19,6 +19,12 @@ const binArrayToJson = (binArray) => {
     return JSON.parse(str);
 };
 
+const binArrayToJsonWithReduce = (binArray) =>
+    Array.from(binArray).reduce(
+        (res, item) => res + String.fromCharCode(parseInt(item, 10)),
+        '',
+    );
+
 export const putObjectWrapper = (params) => {
     return new Promise((resolve, reject) => {
         myBucket.putObject(params, (err, result) => {
@@ -31,7 +37,15 @@ export const putObjectWrapper = (params) => {
 export const getObjectWrapper = (params) => {
     return new Promise((resolve, reject) => {
         myBucket.getObject(params, (err, result) => {
-            console.log(params, err, result);
+            if (err) reject(err);
+            if (result) resolve(result);
+        });
+    });
+};
+
+export const deleteObjectWrpper = (params) => {
+    return new Promise((resolve, reject) => {
+        myBucket.deleteObject(params, (err, result) => {
             if (err) reject(err);
             if (result) resolve(result);
         });
@@ -65,12 +79,17 @@ export const getKubeSource = async ({ uid, id }) => {
             Key: `kubeSources/${uid}/main.json`,
         });
         return binArrayToJson(Body);
-        // .then((res) => {
-        //     return binArrayToJson(res.Body);
-        // })
-        // .catch((err) => {
-        //     throw new Error(err);
-        // });
+    }
+    throw new Error('not uid');
+};
+
+export const deleteKubeSource = async ({ uid, id }) => {
+    if (uid && id) {
+        const res = await deleteObjectWrpper({
+            Bucket: config.aws.bucketName,
+            Key: `kubeSources/${uid}/main.json`,
+        });
+        return res;
     }
     throw new Error('not uid');
 };

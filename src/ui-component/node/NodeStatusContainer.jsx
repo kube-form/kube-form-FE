@@ -12,8 +12,9 @@ import StatusNodeCard from 'ui-component/cards/node/StatusNodeCard';
 import IngressControllerNode from './IngressControllerNode';
 import RightUserNode from './RightUserNode';
 
-function NodeContainer({ nodeIndex }) {
-    const sub = usePods().sub[nodeIndex];
+function NodeContainer({ nodeIndex, sub }) {
+    // const sub = usePods().sub[nodeIndex];
+    console.log(sub, nodeIndex);
 
     const theme = useTheme();
 

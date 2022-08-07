@@ -12,12 +12,15 @@ import usePods from 'hooks/usePods';
 import IngressControllerNode from 'ui-component/node/IngressControllerNode';
 import { useXarrow } from 'react-xarrows';
 import IngressControllerWithDialog from 'ui-component/dialog/IngressControllerWithDialog';
-import { getKubeSource } from 'utils/s3UploadUtil';
+import { getKubeSource, deleteKubeSource } from 'utils/s3Util';
 import useAuth from 'hooks/useAuth';
+import ClusterDeleteButtonWithDialog from 'ui-component/dialog/ClusterDeleteButtonWithDialog';
+import { useSelector } from 'react-redux';
 
 function ClusterStatus() {
     const { user } = useAuth();
-    const { workerNodeCnt, ingressStatus, setAll, sub } = usePods();
+    const { setAll, setInit } = usePods();
+    const { sub, workerNodeCnt } = useSelector((state) => state.pod);
     const updateXarrow = useXarrow();
 
     const onResize = () => {
@@ -28,13 +31,14 @@ function ClusterStatus() {
 
     useEffect(async () => {
         try {
-            const data = await getKubeSource({
+            const { client } = await getKubeSource({
                 uid: user.uid,
                 id: 'main.json',
             });
-            setAll(data?.client);
+            setAll(client);
         } catch (e) {
             console.log(e);
+            setInit();
         }
     }, []);
 
@@ -45,6 +49,11 @@ function ClusterStatus() {
             window.removeEventListener('resize', onResize);
         };
     }, []);
+
+    const onDelete = async () => {
+        const res = await deleteKubeSource({ uid: user.uid, id: 'main.json' });
+        await setInit();
+    };
 
     return (
         <>
@@ -79,6 +88,7 @@ function ClusterStatus() {
                                 key={index}
                                 id={index}
                                 nodeIndex={index}
+                                sub={sub[index]}
                             />
                         ))}
                     </Grid>
@@ -143,15 +153,7 @@ function ClusterStatus() {
                 <Grid item xs={10} />
                 <Grid item xs={2}>
                     <Box my={2}>
-                        <Button
-                            variant="contained"
-                            size="large"
-                            color="error"
-                            // eslint-disable-next-line no-restricted-globals, no-alert
-                            onClick={() => confirm('정말로 삭제하시겠습니까?')}
-                        >
-                            Delete
-                        </Button>
+                        <ClusterDeleteButtonWithDialog onDelete={onDelete} />
                     </Box>
                 </Grid>
             </Grid>

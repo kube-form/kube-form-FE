@@ -64,13 +64,22 @@ const usePods = () => {
 
     const setAll = (data) => {
         try {
-            console.log(data);
             dispatch({
                 type: actionTypes.POD_SET_ALL,
                 payload: data,
             });
         } catch (e) {
             console.warn('set All error', e);
+        }
+    };
+
+    const setInit = () => {
+        try {
+            dispatch({
+                type: actionTypes.POD_SET_INIT,
+            });
+        } catch (e) {
+            console.warn('set Init error', e);
         }
     };
 
@@ -137,6 +146,7 @@ const usePods = () => {
         addWait,
         reorder,
         setWait,
+        setInit,
         setAll,
         addSubFromWait,
         removeSub,
