@@ -142,7 +142,7 @@ function TotalOrderLineChartCard({ isLoading }) {
                                                             mb: 0.75,
                                                         }}
                                                     >
-                                                        108hits
+                                                        108$
                                                     </Typography>
                                                 ) : (
                                                     <Typography
@@ -154,7 +154,7 @@ function TotalOrderLineChartCard({ isLoading }) {
                                                             mb: 0.75,
                                                         }}
                                                     >
-                                                        961hits
+                                                        961$
                                                     </Typography>
                                                 )}
                                             </Grid>
@@ -189,7 +189,7 @@ function TotalOrderLineChartCard({ isLoading }) {
                                                             .primary[200],
                                                     }}
                                                 >
-                                                    Total Users
+                                                    Total Cost
                                                 </Typography>
                                             </Grid>
                                         </Grid>

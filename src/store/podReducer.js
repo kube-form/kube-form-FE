@@ -36,7 +36,6 @@ const podReducer = (state = initialState, action) => {
                 ingressStatus: action.payload.ingressStatus,
             };
         case actionTypes.POD_SET_INIT:
-            console.log(actionTypes.POD_SET_INIT, initialState);
             return {
                 ...state,
                 main: initialState.main,

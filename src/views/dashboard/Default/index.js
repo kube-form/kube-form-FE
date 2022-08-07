@@ -15,6 +15,7 @@ import PopularCard from './PopularCard';
 import TotalOrderLineChartCard from './TotalOrderLineChartCard';
 import TotalGrowthBarChart from './TotalGrowthBarChart';
 import NotLoginedStatusCard from './NotLoginedStatus';
+import BajajAreaChartCard from './BajajAreaChartCard';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
@@ -43,6 +44,7 @@ function Dashboard() {
                             sx={{
                                 overflow: { md: 'none', lg: 'scroll' },
                                 maxHeight: { md: 'none', lg: 210 },
+                                scrollbarWidth: 'none',
                             }}
                         >
                             <Grid item sm={6} xs={12} md={6} lg={12}>
@@ -87,6 +89,7 @@ function Dashboard() {
                     </Grid>
                 </Grid>
             </Grid>
+            <BajajAreaChartCard />
         </Grid>
     );
 }
