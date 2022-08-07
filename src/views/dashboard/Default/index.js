@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-
+import useAuth from 'hooks/useAuth';
+import usePods from 'hooks/usePods';
 // material-ui
 import { Grid } from '@mui/material';
-import useAuth from 'hooks/useAuth';
+
 import TotalNewsContainer from 'ui-component/dashboard/TotalNewsContainer';
 import TotalArnCard from 'ui-component/dashboard/TotalArnCard';
 import DUMMY_NEWS from 'data/news';
@@ -13,13 +14,14 @@ import EarningCard from './EarningCard';
 import PopularCard from './PopularCard';
 import TotalOrderLineChartCard from './TotalOrderLineChartCard';
 import TotalGrowthBarChart from './TotalGrowthBarChart';
+import NotLoginedStatusCard from './NotLoginedStatus';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 function Dashboard() {
-    const { user } = useAuth();
-
     const [isLoading, setLoading] = useState(true);
+    const { user } = useAuth();
+    const pods = usePods();
     useEffect(() => {
         setLoading(false);
     }, []);
@@ -78,7 +80,10 @@ function Dashboard() {
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
-                        <PopularCard isLoading={isLoading} />
+                        {user && (
+                            <PopularCard isLoading={isLoading} data={pods} />
+                        )}
+                        {!user && <NotLoginedStatusCard />}
                     </Grid>
                 </Grid>
             </Grid>
