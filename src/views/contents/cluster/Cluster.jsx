@@ -182,14 +182,31 @@ export default function Cluster() {
                                 }}
                             >
                                 <Box padding={3}>
-                                    {Object.keys(pods.ingressStatus).map(
+                                    {pods.sub.flat() &&
+                                        Array.from(
+                                            new Set(
+                                                pods.sub
+                                                    .slice(
+                                                        0,
+                                                        pods.workerNodeCnt + 1,
+                                                    )
+                                                    .flat()
+                                                    .map((item) => item.id),
+                                            ),
+                                        ).map((item) => (
+                                            <IngressControllerNode
+                                                key={item}
+                                                id={item}
+                                            />
+                                        ))}
+                                    {/* {Object.keys(pods.ingressStatus).map(
                                         (item) => (
                                             <IngressControllerNode
                                                 key={item}
                                                 id={item}
                                             />
                                         ),
-                                    )}
+                                    )} */}
                                 </Box>
                             </Grid>
                             <Grid

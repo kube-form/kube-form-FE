@@ -74,7 +74,29 @@ function LineSet() {
                 })}
             </>
             <>
-                {Object.keys(ingressStatus).map((item) => {
+                {sub.flat() &&
+                    Array.from(
+                        new Set(
+                            sub
+                                .slice(0, workerNodeCnt + 1)
+                                .flat()
+                                .map((item) => item.id),
+                        ),
+                    ).map((item) => (
+                        <Xarrow
+                            key={`controllerToUser${item}`}
+                            start={`controller${item}`}
+                            startAnchor="right"
+                            end="user"
+                            endAnchor="left"
+                            path="grid"
+                            strokeWidth={borderSize}
+                            color={borderColor}
+                            showHead={null}
+                            // color={generateColor(item)}
+                        />
+                    ))}
+                {/* {Object.keys(ingressStatus).map((item) => {
                     return (
                         <Xarrow
                             key={`controllerToUser${item}`}
@@ -89,7 +111,7 @@ function LineSet() {
                             // color={generateColor(item)}
                         />
                     );
-                })}
+                })} */}
             </>
         </>
     );

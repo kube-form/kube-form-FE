@@ -17,7 +17,7 @@ import useAuth from 'hooks/useAuth';
 
 function ClusterStatus() {
     const { user } = useAuth();
-    const { workerNodeCnt, ingressStatus, setAll } = usePods();
+    const { workerNodeCnt, ingressStatus, setAll, sub } = usePods();
     const updateXarrow = useXarrow();
 
     const onResize = () => {
@@ -93,13 +93,28 @@ function ClusterStatus() {
                         }}
                     >
                         <Box padding={3}>
-                            {Object.keys(ingressStatus).map((item) => (
+                            {sub.flat() &&
+                                Array.from(
+                                    new Set(
+                                        sub
+                                            .slice(0, workerNodeCnt + 1)
+                                            .flat()
+                                            .map((item) => item.id),
+                                    ),
+                                ).map((item) => (
+                                    <IngressControllerWithDialog
+                                        key={item}
+                                        id={item}
+                                        url="https://www.notion.so/Front-2e7850ada3b14943bc24d38522262569"
+                                    />
+                                ))}
+                            {/* {Object.keys(ingressStatus).map((item) => (
                                 <IngressControllerWithDialog
                                     key={item}
                                     url="https://www.notion.so/Front-2e7850ada3b14943bc24d38522262569"
                                     id={item}
                                 />
-                            ))}
+                            ))} */}
                         </Box>
                     </Grid>
                     <Grid
