@@ -15,6 +15,8 @@ import IngressControllerWithDialog from 'ui-component/dialog/IngressControllerWi
 import { getKubeSource } from 'utils/s3UploadUtil';
 import useAuth from 'hooks/useAuth';
 
+import DUMMY_DATA from 'data/status';
+
 function ClusterStatus() {
     const { user } = useAuth();
     const { workerNodeCnt, ingressStatus, setAll } = usePods();
@@ -144,7 +146,7 @@ function ClusterStatus() {
             <LineSet />
 
             <Grid item xs={12}>
-                <StatusBottomContainer />
+                <StatusBottomContainer statusData={DUMMY_DATA} />
             </Grid>
         </>
     );

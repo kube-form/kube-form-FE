@@ -195,11 +195,12 @@ export function StatusCopyTypography({ children, sx }) {
             </Popover>
             <Typography
                 sx={{
-                    display: 'inline-block',
+                    display: 'block',
                     wordWrap: 'break-word',
                     lineHeight: 1.4,
                 }}
                 paragraph
+                noWrap
             >
                 <IconButton
                     aria-describedby={id}

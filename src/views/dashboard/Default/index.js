@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from 'hooks/useAuth';
 import usePods from 'hooks/usePods';
+import { useSelector } from 'react-redux';
 // material-ui
 import { Grid } from '@mui/material';
 
 import TotalNewsContainer from 'ui-component/dashboard/TotalNewsContainer';
 import TotalArnCard from 'ui-component/dashboard/TotalArnCard';
 import DUMMY_NEWS from 'data/news';
+import { getKubeSource } from 'utils/s3UploadUtil';
 
 // project imports
 import { gridSpacing } from 'store/constant';
@@ -14,17 +16,35 @@ import EarningCard from './EarningCard';
 import PopularCard from './PopularCard';
 import TotalOrderLineChartCard from './TotalOrderLineChartCard';
 import TotalGrowthBarChart from './TotalGrowthBarChart';
-import NotLoginedStatusCard from './NotLoginedStatus';
+import NotLoginedStatusCard from '../../../ui-component/dashboard/NotLoginedStatus';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 function Dashboard() {
     const [isLoading, setLoading] = useState(true);
     const { user } = useAuth();
-    const pods = usePods();
+    const { setAll } = usePods();
+    const pods = useSelector((state) => state.pod);
+
+    console.log(pods);
+    useEffect(async () => {
+        try {
+            const kubesource = await getKubeSource({
+                uid: user.uid,
+                id: 'main.json',
+            });
+            setAll(kubesource?.client);
+            console.log(kubesource.client);
+        } catch (err) {
+            console.log(err);
+        }
+    }, []);
+
     useEffect(() => {
         setLoading(false);
     }, []);
+
+    console.log(user);
 
     return (
         <Grid container spacing={gridSpacing}>
