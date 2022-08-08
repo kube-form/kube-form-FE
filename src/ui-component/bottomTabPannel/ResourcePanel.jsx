@@ -2,16 +2,9 @@ import React, { useState } from 'react';
 import {
     Box,
     CardContent,
-    CardHeader,
-    ListItem,
     Grid,
-    Divider,
     Typography,
     IconButton,
-    Link,
-    Autocomplete,
-    TextField,
-    Chip,
     List,
     ListItemButton,
     Collapse,
@@ -25,85 +18,8 @@ import PropTypes from 'prop-types';
 import ResourceTypesComponent from 'ui-component/ResourceTypesComponent';
 import { StatusListItemTitleSubTitle } from 'ui-component/bottomTabComponents';
 
-const RESOURCEDATA = [
-    {
-        id: 'WorkLoads',
-        contents: [
-            'PodTemplate',
-            'Pods',
-            'ReplicaSets',
-            'Deployments',
-            'StatefulSets',
-            'DaemonSets',
-            'Jobs',
-            'CronJobs',
-            'PriorityClasses',
-            'HorizontalPodAutoscalers',
-        ],
-    },
-    {
-        id: 'Cluster',
-        contents: [
-            'Nodes',
-            'Namespaces',
-            'APIServices',
-            'Leases',
-            'RuntimeClasses',
-            'FlowSchemas',
-            'PriorityLevelConfigurations',
-        ],
-    },
-    {
-        id: 'ServiceAndNetworking',
-        contents: [
-            'Services',
-            'EndPoints',
-            'EndpointSlices',
-            'Receive',
-            'IngressClasses',
-        ],
-    },
-    {
-        id: 'Config and Storage',
-        contents: [
-            'ConfigMap',
-            'Secrets',
-            'PersistentVolumeClaims',
-            'PersistentVolumes',
-            'StorageClasses',
-            'VolumeAttachment',
-            'CSIDrivers',
-            'CSINodes',
-        ],
-    },
-    { id: 'Authentication', contents: ['ServiceAccounts'] },
-    {
-        id: 'Authorization',
-        contents: [
-            'ClusterRoles',
-            'ClusterRoleBindings',
-            'Roles',
-            'RoleBindings',
-        ],
-    },
-    {
-        id: 'Policy',
-        contents: [
-            'ResourceQuotas',
-            'NetworkPolicies',
-            'PodDisruptionBudgets',
-            'PodSecurityPolicies',
-        ],
-    },
-    {
-        id: 'Extensions',
-        contents: [
-            'CustomResourceDefinitions',
-            'MutatingWebhookConfigurations',
-            'ValidatingWebhookConfigurations',
-        ],
-    },
-];
+import RESOURCE_DATA from 'data/resource';
+
 const propertyFilm = [{ name: 'null', type: 'null' }];
 
 function ResourcePanel({ value, index }) {
@@ -111,7 +27,7 @@ function ResourcePanel({ value, index }) {
     const [open, setOpen] = useState(false);
     const [subval, setSubval] = useState({ [`WorkLoads`]: 'true' });
     const [selectedIndex, setSelectedIndex] = useState();
-    console.log(subval);
+    // console.log(subval);
     const handleClick = (event) => {
         setOpen(!open);
     };
@@ -167,7 +83,7 @@ function ResourcePanel({ value, index }) {
                                     <CloseIcon />
                                 </IconButton>
                             </Box>
-                            {RESOURCEDATA.map((item) => (
+                            {RESOURCE_DATA.map((item) => (
                                 <List key={item.id}>
                                     <ListItemButton
                                         onClick={handleChange(item.id)}

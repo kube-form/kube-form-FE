@@ -19,8 +19,7 @@ import CustomDialog from 'ui-component/dialog/CustomDialog';
 
 const ROWPERPAGE = 7;
 
-function WaitContainer() {
-    const { wait } = usePods();
+function WaitContainer({ waitData }) {
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
         setOpen(true);
@@ -66,7 +65,7 @@ function WaitContainer() {
                                     ref={provided.innerRef}
                                     {...provided.droppableProps}
                                 >
-                                    {wait
+                                    {waitData
                                         .slice(
                                             (page - 1) * ROWPERPAGE,
                                             page * ROWPERPAGE,
@@ -104,7 +103,7 @@ function WaitContainer() {
                                 size="small"
                                 page={page}
                                 defaultPage={1}
-                                count={Math.ceil(wait.length / ROWPERPAGE)}
+                                count={Math.ceil(waitData.length / ROWPERPAGE)}
                                 onChange={handlePage}
                             />
                         </Grid>
