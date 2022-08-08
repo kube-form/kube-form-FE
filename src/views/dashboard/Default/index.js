@@ -7,6 +7,7 @@ import { Grid } from '@mui/material';
 import TotalNewsContainer from 'ui-component/dashboard/TotalNewsContainer';
 import TotalArnCard from 'ui-component/dashboard/TotalArnCard';
 import DUMMY_NEWS from 'data/news';
+import { getKubeSource } from 'utils/s3Util';
 
 // project imports
 import { gridSpacing } from 'store/constant';
@@ -23,6 +24,12 @@ function Dashboard() {
     const [isLoading, setLoading] = useState(true);
     const { user } = useAuth();
     const pods = usePods();
+
+    useEffect(() => {
+        getKubeSource({ uid: user.uid, id: 'a' }).then((res) =>
+            console.log(1111, res),
+        );
+    }, []);
     useEffect(() => {
         setLoading(false);
     }, []);
@@ -89,7 +96,6 @@ function Dashboard() {
                     </Grid>
                 </Grid>
             </Grid>
-            <BajajAreaChartCard />
         </Grid>
     );
 }

@@ -47,6 +47,7 @@ const ClusterSubmitDialog = ({ buttonText, title, uid, workerNodeCnt }) => {
                 workerNodeCnt: workerNodeCnt - 1,
             },
         };
+        // mutate()
         const res = await submitKubeSource({
             kubeSource,
             id: 'main',
