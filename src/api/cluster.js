@@ -19,7 +19,8 @@ export const postDockerImage = ({ url, port, name, image, fuid }) =>
         fuid,
     });
 
-export const deleteDockerImage = ({ id }) => API.delete(`/dockerImages/${id}`);
+export const deleteDockerImage = ({ id, uid }) =>
+    API.delete(`/dockerImages/${uid}/${id}`);
 
 export const uploadToS3 = async ({ fileType, fileContents, objectKey }) => {
     const { data: presignedPostUrl } = await putDockerImage({ objectKey });

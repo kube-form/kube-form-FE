@@ -6,6 +6,7 @@ import {
     Avatar,
     Box,
     Grid,
+    IconButton,
     List,
     ListItem,
     ListItemAvatar,
@@ -13,9 +14,33 @@ import {
     Typography,
 } from '@mui/material';
 import { Draggable } from 'react-beautiful-dnd';
+import CloseIcon from '@mui/icons-material/Close';
+import { deleteDockerImage, getDockerImages } from 'api/cluster';
+import useAuth from 'hooks/useAuth';
 
-function ContainerWaitCard({ id, index, image, name, url, draggableId, port }) {
+function ContainerWaitCard({
+    id,
+    index,
+    image,
+    name,
+    url,
+    draggableId,
+    port,
+    uid,
+}) {
     const theme = useTheme();
+    const { user } = useAuth();
+    const { data, mutate } = getDockerImages(user.uid);
+    const onDelete = async () => {
+        const tmp = [...data];
+        const idx = tmp.findIndex((item) => item.id === id);
+        if (idx === -1) {
+            return;
+        }
+        tmp.splice(idx, 1);
+        mutate([...tmp]);
+        const res = await deleteDockerImage({ id, uid: user.uid });
+    };
 
     return (
         <Draggable key={draggableId} draggableId={draggableId} index={index}>
@@ -46,6 +71,7 @@ function ContainerWaitCard({ id, index, image, name, url, draggableId, port }) {
                             sx={{
                                 display: 'flex',
                                 alignItems: 'center',
+                                justifyContent: 'space-between',
                                 pb: 0.5,
                                 gap: 0.5,
                             }}
@@ -57,6 +83,15 @@ function ContainerWaitCard({ id, index, image, name, url, draggableId, port }) {
                             >
                                 Container
                             </Typography>
+                            {/* <IconButton onClick={onDelete}>
+                                <CloseIcon
+                                    sx={{
+                                        width: 15,
+                                        height: 15,
+                                        color: theme.palette.common.white,
+                                    }}
+                                />
+                            </IconButton> */}
                         </Box>
                         <List sx={{ py: 0, p: 1 }}>
                             <ListItem
