@@ -8,7 +8,7 @@ import { Grid } from '@mui/material';
 import TotalNewsContainer from 'ui-component/dashboard/TotalNewsContainer';
 import TotalArnCard from 'ui-component/dashboard/TotalArnCard';
 import DUMMY_NEWS from 'data/news';
-import { getKubeSource } from 'utils/s3UploadUtil';
+import { getKubeSource } from 'utils/s3Util';
 
 // project imports
 import { gridSpacing } from 'store/constant';
@@ -60,12 +60,13 @@ function Dashboard() {
                             sx={{
                                 overflow: { md: 'none', lg: 'scroll' },
                                 maxHeight: { md: 'none', lg: 210 },
+                                scrollbarWidth: 'none',
                             }}
                         >
                             <Grid item sm={6} xs={12} md={6} lg={12}>
                                 <TotalArnCard
                                     index={0}
-                                    isLoading={isLoading}
+                                    isLoading
                                     url="https://www.notion.so/Front-2e7850ada3b14943bc24d38522262569"
                                 />
                             </Grid>

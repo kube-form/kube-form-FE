@@ -18,7 +18,12 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import usePods from 'hooks/usePods';
 import { v4 as uuid } from 'uuid';
-import { postDockerImage, putDockerImage, uploadToS3 } from 'api/cluster';
+import {
+    getDockerImages,
+    postDockerImage,
+    putDockerImage,
+    uploadToS3,
+} from 'api/cluster';
 import useAuth from 'hooks/useAuth';
 import { useDropzone } from 'react-dropzone';
 import styled from '@emotion/styled';
@@ -26,8 +31,8 @@ import { useFileChange } from 'hooks/useFileChange';
 
 const CustomModal = ({ open, handleClose }) => {
     const theme = useTheme();
-    const { addWait } = usePods();
     const { user } = useAuth();
+    const { data, mutate } = getDockerImages(user.uid);
     const {
         fileError,
         fileName,
@@ -82,13 +87,14 @@ const CustomModal = ({ open, handleClose }) => {
                             });
                         }
 
-                        const { data } = await postDockerImage({
+                        const res = await postDockerImage({
                             url: values.url,
                             port: values.port,
                             name: values.name,
                             image: imageFile || 'custom.png',
                             fuid: user.uid,
                         });
+                        mutate(`/dockerImages/${user.uid}`);
                         // addWait({
                         //     ...values,
                         //     image: `https://kube-form.s3.ap-northeast-2.amazonaws.com/dockerImages/${

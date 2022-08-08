@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 import WaitContainer from 'ui-component/bottomTab/WaitContainer';
 import NodeContainer from 'ui-component/node/NodeContainer';
 
-import { getKubeSource } from 'utils/s3UploadUtil';
+import { getKubeSource } from 'utils/s3Util';
 import MainWorkerNode from 'ui-component/node/MainWorkerNode';
 import { useXarrow, Xwrapper } from 'react-xarrows';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
@@ -183,14 +183,31 @@ export default function Cluster() {
                                 }}
                             >
                                 <Box padding={3}>
-                                    {Object.keys(pods.ingressStatus).map(
+                                    {pods.sub.flat() &&
+                                        Array.from(
+                                            new Set(
+                                                pods.sub
+                                                    .slice(
+                                                        0,
+                                                        pods.workerNodeCnt + 1,
+                                                    )
+                                                    .flat()
+                                                    .map((item) => item.id),
+                                            ),
+                                        ).map((item) => (
+                                            <IngressControllerNode
+                                                key={item}
+                                                id={item}
+                                            />
+                                        ))}
+                                    {/* {Object.keys(pods.ingressStatus).map(
                                         (item) => (
                                             <IngressControllerNode
                                                 key={item}
                                                 id={item}
                                             />
                                         ),
-                                    )}
+                                    )} */}
                                 </Box>
                             </Grid>
                             <Grid

@@ -142,7 +142,12 @@ function TotalOrderLineChartCard({ isLoading }) {
                                                             mb: 0.75,
                                                         }}
                                                     >
-                                                        108hits
+                                                        {ChartDataMonth.series[0].data.reduce(
+                                                            (res, item) =>
+                                                                res + item,
+                                                            0,
+                                                        )}
+                                                        $
                                                     </Typography>
                                                 ) : (
                                                     <Typography
@@ -154,11 +159,16 @@ function TotalOrderLineChartCard({ isLoading }) {
                                                             mb: 0.75,
                                                         }}
                                                     >
-                                                        961hits
+                                                        {ChartDataYear.series[0].data.reduce(
+                                                            (res, item) =>
+                                                                res + item,
+                                                            0,
+                                                        )}
+                                                        $
                                                     </Typography>
                                                 )}
                                             </Grid>
-                                            <Grid item>
+                                            {/* <Grid item>
                                                 <Avatar
                                                     sx={{
                                                         ...theme.typography
@@ -179,7 +189,7 @@ function TotalOrderLineChartCard({ isLoading }) {
                                                         }}
                                                     />
                                                 </Avatar>
-                                            </Grid>
+                                            </Grid> */}
                                             <Grid item xs={12}>
                                                 <Typography
                                                     sx={{
@@ -189,7 +199,7 @@ function TotalOrderLineChartCard({ isLoading }) {
                                                             .primary[200],
                                                     }}
                                                 >
-                                                    Total Users
+                                                    Total Cost
                                                 </Typography>
                                             </Grid>
                                         </Grid>

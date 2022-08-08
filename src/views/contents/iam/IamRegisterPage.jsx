@@ -6,6 +6,7 @@ import {
     Button,
     FormHelperText,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import MainCard from 'ui-component/cards/MainCard';
@@ -20,6 +21,7 @@ import { postIAMUser } from 'api/cluster';
 
 function IamRegisterPage() {
     const scriptedRef = useScriptRef();
+    const navigate = useNavigate();
     const theme = useTheme();
     const { user } = useAuth();
 
@@ -53,8 +55,7 @@ function IamRegisterPage() {
                             accessKeyId: values.accessKeyId,
                             secretAccessKey: values.secretAccessKey,
                         });
-                        console.log(res.data);
-                        // test(values.secretAccessKey);
+                        navigate('/iam/setting');
                     } catch (err) {
                         console.error(err);
                         if (scriptedRef.current) {

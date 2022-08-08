@@ -14,7 +14,7 @@ import {
     MenuItem,
 } from '@mui/material';
 import INSTANCE_DATA from 'data/instance';
-import { submitKubeSource } from 'utils/s3UploadUtil';
+import { submitKubeSource } from 'utils/s3Util';
 import usePods from 'hooks/usePods';
 
 const ClusterSubmitDialog = ({ buttonText, title, uid, workerNodeCnt }) => {
@@ -47,11 +47,13 @@ const ClusterSubmitDialog = ({ buttonText, title, uid, workerNodeCnt }) => {
                 workerNodeCnt: workerNodeCnt - 1,
             },
         };
+        // mutate()
         const res = await submitKubeSource({
             kubeSource,
             id: 'main',
             uid,
         });
+        handleClose();
     };
 
     return (
