@@ -30,7 +30,7 @@ import DashboardStatus from './chart-data/DashboardStatus';
 
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
-function PopularCard({ isLoading, data }) {
+function PopularCard({ isLoading, data, userName }) {
     const theme = useTheme();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -61,7 +61,7 @@ function PopularCard({ isLoading, data }) {
                                 >
                                     <Grid item>
                                         <Typography variant="h3">
-                                            Current Status
+                                            Cluster Status
                                         </Typography>
                                     </Grid>
                                     <Grid item>
@@ -71,7 +71,7 @@ function PopularCard({ isLoading, data }) {
                             </Grid>
                             <Grid item xs={12} sx={{ pt: '16px !important' }}>
                                 <Typography variant="h4">
-                                    Cluster Status
+                                    {userName}님의 Cluster Status
                                 </Typography>
                             </Grid>
                             <Grid item xs={12}>

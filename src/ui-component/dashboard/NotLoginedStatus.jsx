@@ -18,7 +18,11 @@ function NotLoginedStatusCard() {
     return (
         <MainCard content={false}>
             <CardContent>
-                <Grid container spacing={gridSpacing}>
+                <Grid
+                    container
+                    spacing={gridSpacing}
+                    sx={{ filter: 'blur(2px)' }}
+                >
                     <Grid item xs={12}>
                         <Grid
                             container
@@ -87,21 +91,9 @@ function NotLoginedStatusCard() {
                             </Grid>
                         </Grid>
                     </Grid>
-
-                    <Grid item xs={12}>
-                        <Grid
-                            container
-                            alignItems="center"
-                            spacing={gridSpacing}
-                            justifyContent="space-between"
-                        >
-                            <Grid item xs={12}>
-                                <Typography>
-                                    로그인 후 확인하실 수 있습니다.
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                </Grid>
+                <Grid item xs={12} textAlign="center" sx={{ mt: 3 }}>
+                    <Typography>로그인 후 확인하실 수 있습니다.</Typography>
                 </Grid>
             </CardContent>
             <CardActions sx={{ p: 1.25, pt: 0, justifyContent: 'center' }}>

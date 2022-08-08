@@ -98,7 +98,11 @@ function Dashboard() {
                     </Grid>
                     <Grid item xs={12} md={4}>
                         {user && (
-                            <PopularCard isLoading={isLoading} data={pods} />
+                            <PopularCard
+                                isLoading={isLoading}
+                                data={pods}
+                                userName={user.name}
+                            />
                         )}
                         {!user && <NotLoginedStatusCard />}
                     </Grid>
