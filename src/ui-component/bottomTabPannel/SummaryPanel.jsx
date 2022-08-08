@@ -34,12 +34,10 @@ function SummaryPanel({ value, index, clusterData }) {
         xl: `1px solid ${theme.palette.grey[100]}`,
     };
 
-    console.log(clusterData);
+    // console.log(clusterData);
     const TitleArr = Object.keys(clusterData);
     const endpoint = clusterData.cluster_endpoint;
     const AuthorityData = clusterData.cluster_certificate_authority_data;
-    console.log(TitleArr);
-    console.log(val(clusterData.cluster_oidc_issuer_url)[0].oidc[0].issuer);
 
     return (
         <Box
@@ -91,7 +89,14 @@ function SummaryPanel({ value, index, clusterData }) {
                         <ListItem>
                             <StatusListItemBase
                                 title={TitleArr[1]}
-                                content={AuthorityData.value[0].data}
+                                content={
+                                    <StatusCopyTypography
+                                        sx={{ height: 30 }}
+                                        noWrap
+                                    >
+                                        {AuthorityData.value[0].data}
+                                    </StatusCopyTypography>
+                                }
                             />
                         </ListItem>
                     </Grid>

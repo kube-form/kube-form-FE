@@ -14,13 +14,20 @@ import React from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 import WarningIcon from '@mui/icons-material/Warning';
 import {
-    StatusListItemAvatar,
     StatusListItemBase,
     StatusListItemTitleSubTitle,
 } from 'ui-component/bottomTabComponents';
 
 function LoggingPanel({ value, index }) {
     const theme = useTheme();
+
+    const borderRight = {
+        xs: 'none',
+        sm: `1px solid ${theme.palette.grey[100]}`,
+        md: `1px solid ${theme.palette.grey[100]}`,
+        lg: `1px solid ${theme.palette.grey[100]}`,
+        xl: `1px solid ${theme.palette.grey[100]}`,
+    };
 
     return (
         <Box
@@ -84,15 +91,7 @@ function LoggingPanel({ value, index }) {
                         md={4}
                         lg={4}
                         xl={4}
-                        sx={{
-                            borderRight: {
-                                xs: 'none',
-                                sm: `1px solid ${theme.palette.grey[100]}`,
-                                md: `1px solid ${theme.palette.grey[100]}`,
-                                lg: `1px solid ${theme.palette.grey[100]}`,
-                                xl: `1px solid ${theme.palette.grey[100]}`,
-                            },
-                        }}
+                        sx={{ borderRight }}
                     >
                         <ListItem>
                             <StatusListItemBase
@@ -114,15 +113,7 @@ function LoggingPanel({ value, index }) {
                         md={4}
                         lg={4}
                         xl={4}
-                        sx={{
-                            borderRight: {
-                                xs: 'none',
-                                sm: 'none',
-                                md: `1px solid ${theme.palette.grey[100]}`,
-                                lg: `1px solid ${theme.palette.grey[100]}`,
-                                xl: `1px solid ${theme.palette.grey[100]}`,
-                            },
-                        }}
+                        sx={{ borderRight }}
                     >
                         <ListItem>
                             <StatusListItemBase

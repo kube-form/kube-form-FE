@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from 'hooks/useAuth';
 import usePods from 'hooks/usePods';
+import { useSelector } from 'react-redux';
 // material-ui
 import { Grid } from '@mui/material';
 
@@ -15,21 +16,29 @@ import EarningCard from './EarningCard';
 import PopularCard from './PopularCard';
 import TotalOrderLineChartCard from './TotalOrderLineChartCard';
 import TotalGrowthBarChart from './TotalGrowthBarChart';
-import NotLoginedStatusCard from './NotLoginedStatus';
-import BajajAreaChartCard from './BajajAreaChartCard';
+import NotLoginedStatusCard from '../../../ui-component/dashboard/NotLoginedStatus';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 function Dashboard() {
     const [isLoading, setLoading] = useState(true);
     const { user } = useAuth();
-    const pods = usePods();
+    const { setAll } = usePods();
+    const pods = useSelector((state) => state.pod);
 
-    useEffect(() => {
-        getKubeSource({ uid: user.uid, id: 'a' }).then((res) =>
-            console.log(1111, res),
-        );
+    // console.log(user);
+    useEffect(async () => {
+        try {
+            const { client } = await getKubeSource({
+                uid: user.uid,
+                id: 'main.json',
+            });
+            setAll(client);
+        } catch (err) {
+            console.log(err);
+        }
     }, []);
+
     useEffect(() => {
         setLoading(false);
     }, []);
@@ -90,7 +99,11 @@ function Dashboard() {
                     </Grid>
                     <Grid item xs={12} md={4}>
                         {user && (
-                            <PopularCard isLoading={isLoading} data={pods} />
+                            <PopularCard
+                                isLoading={isLoading}
+                                data={pods}
+                                userName={user.name}
+                            />
                         )}
                         {!user && <NotLoginedStatusCard />}
                     </Grid>

@@ -51,6 +51,7 @@ export default function Cluster() {
             );
         }
     };
+    const waitData = pods.wait;
 
     const onDragEnd = (result) => {
         const { destination, source } = result;
@@ -248,7 +249,7 @@ export default function Cluster() {
                     <LineSet />
 
                     <Grid item xs={12}>
-                        <WaitContainer />
+                        <WaitContainer waitData={waitData} />
                     </Grid>
                 </DragDropContext>
             </Xwrapper>

@@ -17,6 +17,8 @@ import useAuth from 'hooks/useAuth';
 import ClusterDeleteButtonWithDialog from 'ui-component/dialog/ClusterDeleteButtonWithDialog';
 import { useSelector } from 'react-redux';
 
+import DUMMY_DATA from 'data/status';
+
 function ClusterStatus() {
     const { user } = useAuth();
     const { setAll, setInit } = usePods();
@@ -161,7 +163,7 @@ function ClusterStatus() {
             <LineSet />
 
             <Grid item xs={12}>
-                <StatusBottomContainer />
+                <StatusBottomContainer statusData={DUMMY_DATA} />
             </Grid>
         </>
     );
