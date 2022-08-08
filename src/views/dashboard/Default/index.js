@@ -26,15 +26,14 @@ function Dashboard() {
     const { setAll } = usePods();
     const pods = useSelector((state) => state.pod);
 
-    console.log(pods);
+    // console.log(user);
     useEffect(async () => {
         try {
-            const kubesource = await getKubeSource({
+            const { client } = await getKubeSource({
                 uid: user.uid,
                 id: 'main.json',
             });
-            setAll(kubesource?.client);
-            console.log(kubesource.client);
+            setAll(client);
         } catch (err) {
             console.log(err);
         }
@@ -43,8 +42,6 @@ function Dashboard() {
     useEffect(() => {
         setLoading(false);
     }, []);
-
-    console.log(user);
 
     return (
         <Grid container spacing={gridSpacing}>

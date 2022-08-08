@@ -42,7 +42,6 @@ function PopularCard({ isLoading, data }) {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    console.log(data);
 
     return (
         // eslint-disable-next-line react/jsx-no-useless-fragment

@@ -34,7 +34,7 @@ function SummaryPanel({ value, index, clusterData }) {
         xl: `1px solid ${theme.palette.grey[100]}`,
     };
 
-    console.log(clusterData);
+    // console.log(clusterData);
     const TitleArr = Object.keys(clusterData);
     const endpoint = clusterData.cluster_endpoint;
     const AuthorityData = clusterData.cluster_certificate_authority_data;
@@ -90,7 +90,10 @@ function SummaryPanel({ value, index, clusterData }) {
                             <StatusListItemBase
                                 title={TitleArr[1]}
                                 content={
-                                    <StatusCopyTypography sx={{ height: 30 }}>
+                                    <StatusCopyTypography
+                                        sx={{ height: 30 }}
+                                        noWrap
+                                    >
                                         {AuthorityData.value[0].data}
                                     </StatusCopyTypography>
                                 }

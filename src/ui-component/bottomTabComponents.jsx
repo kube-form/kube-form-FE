@@ -40,42 +40,6 @@ export function StatusListItemTitleSubTitle({ title, content, sx }) {
     );
 }
 
-export function StatusListItemAvatar({ icon, content, sx }) {
-    const theme = useTheme();
-    return (
-        <ListItemText
-            color="success"
-            primary={
-                <Typography variant="h4" noWrap>
-                    Instance Status
-                </Typography>
-            }
-            secondary={
-                <ListItemAvatar sx={{ mt: 1, display: 'flex' }}>
-                    <Avatar
-                        sx={{
-                            width: 22,
-                            height: 22,
-                            mr: 1,
-                            bgcolor: 'transparent',
-                        }}
-                    >
-                        {icon}
-                    </Avatar>
-                    <Typography
-                        sx={{
-                            color: theme.palette.success.dark,
-                            ...sx,
-                        }}
-                    >
-                        {content}
-                    </Typography>
-                </ListItemAvatar>
-            }
-        />
-    );
-}
-
 export function StatusListItemBase({ title, content, sx }) {
     const theme = useTheme();
     return (
@@ -117,6 +81,7 @@ export function StatusLinkTypography({ children, sx }) {
                 color: theme.palette.info.main,
                 cursor: 'pointer',
                 alignItems: 'top',
+                wordBreak: 'break-all',
                 wordWrap: 'break-word',
                 lineHeight: 1.5,
                 textDecoration: 'underline',
@@ -132,7 +97,7 @@ export function StatusLinkTypography({ children, sx }) {
     );
 }
 
-export function StatusCopyTypography({ children, sx }) {
+export function StatusCopyTypography({ children, noWrap }) {
     const theme = useTheme();
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -200,7 +165,7 @@ export function StatusCopyTypography({ children, sx }) {
                     lineHeight: 1.4,
                 }}
                 paragraph
-                noWrap
+                noWrap={noWrap}
             >
                 <IconButton
                     aria-describedby={id}
@@ -237,16 +202,6 @@ StatusListItemTitleSubTitle.propTypes = {
 };
 
 StatusListItemTitleSubTitle.defaultProps = {
-    sx: {},
-};
-
-StatusListItemAvatar.propTypes = {
-    icon: PropTypes.node.isRequired,
-    content: PropTypes.string.isRequired,
-    sx: PropTypes.object,
-};
-
-StatusListItemAvatar.defaultProps = {
     sx: {},
 };
 

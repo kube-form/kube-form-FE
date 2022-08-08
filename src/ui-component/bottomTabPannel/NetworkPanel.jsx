@@ -15,7 +15,6 @@ import React from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 import WarningIcon from '@mui/icons-material/Warning';
 import {
-    StatusListItemAvatar,
     StatusListItemTitleSubTitle,
     StatusListItemBase,
     StatusLinkTypography,
@@ -24,15 +23,20 @@ import {
 function NetworkPanel({ value, index, clusterData }) {
     const theme = useTheme();
 
+    const borderRight = {
+        xs: 'none',
+        sm: `1px solid ${theme.palette.grey[100]}`,
+        md: `1px solid ${theme.palette.grey[100]}`,
+        lg: `1px solid ${theme.palette.grey[100]}`,
+        xl: `1px solid ${theme.palette.grey[100]}`,
+    };
+
     const val = (input) => {
         return input.value;
     };
 
-    console.log(clusterData.vpc_id);
-
     const privateSubnets = clusterData.private_subnets;
     const publicSubnets = clusterData.public_subnets;
-    console.log(privateSubnets);
 
     return (
         <Box
@@ -80,27 +84,13 @@ function NetworkPanel({ value, index, clusterData }) {
             <Divider />
             <CardContent>
                 <Grid container sx={{ flexGrow: 1 }} spacing={0}>
-                    <Grid
-                        item
-                        xs={12}
-                        sm={6}
-                        md={3}
-                        sx={{
-                            borderRight: {
-                                xs: 'none',
-                                sm: `1px solid ${theme.palette.grey[100]}`,
-                                md: `1px solid ${theme.palette.grey[100]}`,
-                                lg: `1px solid ${theme.palette.grey[100]}`,
-                                xl: `1px solid ${theme.palette.grey[100]}`,
-                            },
-                        }}
-                    >
+                    <Grid item xs={12} sm={6} md={3} sx={{ borderRight }}>
                         <ListItem>
                             <StatusListItemBase
                                 title="VPC"
                                 content={
                                     <StatusLinkTypography>
-                                        {clusterData.vpc_id.value}
+                                        {val(clusterData.vpc_id)}
                                     </StatusLinkTypography>
                                 }
                             />
@@ -176,21 +166,7 @@ function NetworkPanel({ value, index, clusterData }) {
                             />
                         </ListItem>
                     </Grid>
-                    <Grid
-                        item
-                        xs={12}
-                        sm={6}
-                        md={3}
-                        sx={{
-                            borderRight: {
-                                xs: 'none',
-                                sm: `none`,
-                                md: `1px solid ${theme.palette.grey[100]}`,
-                                lg: `1px solid ${theme.palette.grey[100]}`,
-                                xl: `1px solid ${theme.palette.grey[100]}`,
-                            },
-                        }}
-                    >
+                    <Grid item xs={12} sm={6} md={3} sx={{ borderRight }}>
                         <ListItem>
                             <StatusListItemBase
                                 title="Private Subnets"
@@ -228,21 +204,7 @@ function NetworkPanel({ value, index, clusterData }) {
                             />
                         </ListItem>
                     </Grid>
-                    <Grid
-                        item
-                        xs={12}
-                        sm={6}
-                        md={3}
-                        sx={{
-                            borderRight: {
-                                xs: 'none',
-                                sm: `1px solid ${theme.palette.grey[100]}`,
-                                md: `1px solid ${theme.palette.grey[100]}`,
-                                lg: `1px solid ${theme.palette.grey[100]}`,
-                                xl: `1px solid ${theme.palette.grey[100]}`,
-                            },
-                        }}
-                    >
+                    <Grid item xs={12} sm={6} md={3} sx={{ borderRight }}>
                         <ListItem>
                             <StatusListItemBase
                                 title={
