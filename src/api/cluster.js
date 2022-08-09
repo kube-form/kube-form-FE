@@ -5,7 +5,7 @@ import API from './base';
 const getFetcher = (url) => API.get(url).then((res) => res.data);
 
 export const getDockerImages = (fuid) =>
-    useSWR(`/dockerImages/${fuid}`, getFetcher);
+    useSWR(`/dockerImages/${fuid.toLowerCase()}`, getFetcher);
 export const putDockerImage = ({ objectKey }) =>
     API.put(`/dockerImages`, {
         objectKey,
@@ -16,11 +16,11 @@ export const postDockerImage = ({ url, port, name, image, fuid }) =>
         port,
         name,
         image,
-        fuid,
+        fuid: fuid.toLowerCase(),
     });
 
 export const deleteDockerImage = ({ id, uid }) =>
-    API.delete(`/dockerImages/${uid}/${id}`);
+    API.delete(`/dockerImages/${uid.toLowerCase()}/${id}`);
 
 export const uploadToS3 = async ({ fileType, fileContents, objectKey }) => {
     const { data: presignedPostUrl } = await putDockerImage({ objectKey });
@@ -46,20 +46,29 @@ export const uploadToS3 = async ({ fileType, fileContents, objectKey }) => {
     return presignedPostUrl.filePath;
 };
 
-export const getIAMUser = ({ fuid }) => useSWR(`/IAM/${fuid}`, getFetcher);
+export const getIAMUser = ({ fuid }) =>
+    useSWR(`/IAM/${fuid.toLowerCase()}`, getFetcher);
 
 export const postIAMUser = ({ uid, accessKeyId, secretAccessKey }) =>
     API.post(`/IAM`, {
-        fuid: uid,
+        fuid: uid.toLowerCase(),
         accessKey: accessKeyId,
         secretKey: secretAccessKey,
     });
 
-export const deleteIAMUser = ({ fuid }) => API.delete(`/IAM/${fuid}`);
+export const deleteIAMUser = ({ fuid }) =>
+    API.delete(`/IAM/${fuid.toLowerCase()}`);
 
-export const getClusterStatus = (uid) => useSWR(`/cluster/${uid}`, getFetcher);
+export const getClusterStatus = (uid) => {
+    console.log(uid, 12121212121);
+    if (!uid) {
+        // throw new Error('uid is undefined');
+        return { data: { status: 'not', data: {} } };
+    }
+    return useSWR(`/cluster/${uid.toLowerCase()}`, getFetcher);
+};
 
 export const deleteClusterStatus = async (uid) => {
-    const res = await API.delete(`/cluster/${uid}`);
+    const res = await API.delete(`/cluster/${uid.toLowerCase()}`);
     console.log('delete', res);
 };

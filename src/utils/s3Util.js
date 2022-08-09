@@ -58,7 +58,7 @@ export const submitKubeSource = async ({ kubeSource, uid, id }) => {
             ACL: 'public-read',
             Body: JSON.stringify(kubeSource),
             Bucket: config.aws.bucketName,
-            Key: `kubeSources/${uid}/main.json`,
+            Key: `kubeSources/${uid.toLowerCase()}/main.json`,
             ContentType: 'application/json',
         });
         return res;
@@ -76,7 +76,7 @@ export const getKubeSource = async ({ uid, id }) => {
     if (uid && id) {
         const { Body } = await getObjectWrapper({
             Bucket: config.aws.bucketName,
-            Key: `kubeSources/${uid}/main.json`,
+            Key: `kubeSources/${uid.toLowerCase()}/main.json`,
         });
         return binArrayToJson(Body);
     }
@@ -87,7 +87,7 @@ export const deleteKubeSource = async ({ uid, id }) => {
     if (uid && id) {
         const res = await deleteObjectWrpper({
             Bucket: config.aws.bucketName,
-            Key: `kubeSources/${uid}/main.json`,
+            Key: `kubeSources/${uid.toLowerCase()}/main.json`,
         });
         return res;
     }
