@@ -81,7 +81,7 @@ const CustomModal = ({ open, handleClose }) => {
 
                         const res = await postDockerImage({
                             url: values.url,
-                            port: values.port,
+                            port: parseInt(values.port, 10),
                             name: values.name,
                             image: imageFile || 'custom.png',
                             fuid: user.uid,
