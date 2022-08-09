@@ -9,6 +9,7 @@ import TotalNewsContainer from 'ui-component/dashboard/TotalNewsContainer';
 import TotalArnCard from 'ui-component/dashboard/TotalArnCard';
 import DUMMY_NEWS from 'data/news';
 import { getKubeSource } from 'utils/s3Util';
+import { getClusterStatus } from 'api/cluster';
 
 // project imports
 import { gridSpacing } from 'store/constant';
@@ -25,6 +26,8 @@ function Dashboard() {
     const { user } = useAuth();
     const { setAll } = usePods();
     const pods = useSelector((state) => state.pod);
+
+    const { data } = getClusterStatus(user.uid);
 
     // console.log(user);
     useEffect(async () => {
@@ -63,44 +66,44 @@ function Dashboard() {
                                 scrollbarWidth: 'none',
                             }}
                         >
-                            {!user ? (
+                            {!user && data.data ? (
                                 <>
-                                    <Grid item sm={6} xs={12} md={6} lg={12}>
-                                        <TotalArnCard
-                                            index={0}
-                                            isLoading
-                                            url="https://www.notion.so/Front-2e7850ada3b14943bc24d38522262569"
-                                        />
-                                    </Grid>
-                                    <Grid item sm={6} xs={12} md={6} lg={12}>
-                                        <TotalArnCard
-                                            index={0}
-                                            isLoading
-                                            url="https://www.notion.so/Front-2e7850ada3b14943bc24d38522262569"
-                                        />
-                                    </Grid>
+                                    {data.data.entry_points.map(
+                                        (item, index) => (
+                                            <Grid
+                                                key={item.name}
+                                                item
+                                                sm={6}
+                                                xs={12}
+                                                md={6}
+                                                lg={12}
+                                            >
+                                                <TotalArnCard
+                                                    index={index % 3}
+                                                    isLoading={isLoading}
+                                                    name={item.name}
+                                                    url={item.entry_point}
+                                                />
+                                            </Grid>
+                                        ),
+                                    )}
                                 </>
                             ) : (
                                 <>
                                     <Grid item sm={6} xs={12} md={6} lg={12}>
                                         <TotalArnCard
                                             index={0}
-                                            isLoading={isLoading}
-                                            url="https://www.notion.so/Front-2e7850ada3b14943bc24d38522262569"
+                                            isLoading
+                                            name=""
+                                            url=""
                                         />
                                     </Grid>
                                     <Grid item sm={6} xs={12} md={6} lg={12}>
                                         <TotalArnCard
-                                            index={1}
-                                            isLoading={isLoading}
-                                            url="https://www.notion.so/Front-2e7850ada3b14943bc24d38522262569"
-                                        />
-                                    </Grid>
-                                    <Grid item sm={6} xs={12} md={6} lg={12}>
-                                        <TotalArnCard
-                                            index={2}
-                                            isLoading={isLoading}
-                                            url="https://www.notion.so/Front-2e7850ada3b14943bc24d38522262569"
+                                            index={0}
+                                            isLoading
+                                            name=""
+                                            url=""
                                         />
                                     </Grid>
                                 </>

@@ -73,7 +73,7 @@ const CardWrapper = styled(MainCard)(({ theme, index }) => ({
 
 // ==============================|| DASHBOARD - TOTAL INCOME DARK CARD ||============================== //
 
-function TotalArnCard({ isLoading, url, index }) {
+function TotalArnCard({ isLoading, url, index, name }) {
     const theme = useTheme();
 
     return (
@@ -131,8 +131,9 @@ function TotalArnCard({ isLoading, url, index }) {
                                             }}
                                             noWrap
                                         >
-                                            Ingress Controller {index + 1}
+                                            {/* Ingress Controller {index + 1} */}
                                             {/* $203k */}
+                                            {name}
                                         </Typography>
                                     }
                                     secondary={
@@ -163,6 +164,7 @@ function TotalArnCard({ isLoading, url, index }) {
 
 TotalArnCard.propTypes = {
     isLoading: PropTypes.bool.isRequired,
+    name: PropTypes.string.isRequired,
 };
 
 export default TotalArnCard;
