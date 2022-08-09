@@ -60,7 +60,6 @@ export const deleteIAMUser = ({ fuid }) =>
     API.delete(`/IAM/${fuid.toLowerCase()}`);
 
 export const getClusterStatus = (uid) => {
-    console.log(uid, 12121212121);
     if (!uid) {
         // throw new Error('uid is undefined');
         return { data: { status: 'not', data: {} } };

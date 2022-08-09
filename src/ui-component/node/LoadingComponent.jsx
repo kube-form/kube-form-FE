@@ -4,28 +4,70 @@ import CachedIcon from '@mui/icons-material/Cached';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { Box, Grid, CircularProgress, Typography } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
+import useAuth from 'hooks/useAuth';
+import { getClusterStatus } from 'api/cluster';
 
 export default function LoadingComponent({ status }) {
+    const { user } = useAuth();
     const [loading, setLoading] = useState(false);
     const theme = useTheme();
     const [done, setDone] = useState();
     const step = status.status;
 
-    console.log(step);
+    if (!user) {
+        return (
+            <Grid
+                item
+                sx={{ minHeight: 80, pt: 1, pb: 1 }}
+                // onClick={onClick}
+                display="flex"
+                alignItems="center"
+            >
+                <LoadingButton
+                    loading={loading}
+                    loadingIndicator={
+                        <CircularProgress color="inherit" size={16} />
+                    }
+                    variant="outlined"
+                >
+                    <CachedIcon />
+                </LoadingButton>
+            </Grid>
+        );
+    }
+
+    const { mutate } = getClusterStatus(user.uid);
 
     const handleDone = () => {
-        if (step === '생성 완료') {
-            setLoading(false);
+        // if (step === '생성 완료') {
+        //     setLoading(false);
+        //     setDone('complete');
+        // } else if (step === '생성 중') {
+        //     setLoading(false);
+        //     setDone('creating');
+        //     console.log(step);
+        // } else {
+        //     setLoading(false);
+        //     setDone('fail');
+        // }
+        mutate(`/cluster/${user.uid.toLowerCase()}`);
+    };
+
+    useEffect(() => {
+        if (!status.status) {
+            setDone('loading');
+            setLoading(true);
+            return;
+        }
+        setLoading(false);
+        if (status.status === '생성 완료') {
             setDone('complete');
-        } else if (step === '생성 중') {
-            setLoading(false);
+        } else if (status.status === '생성 중') {
             setDone('creating');
-            console.log(step);
         } else {
-            setLoading(false);
             setDone('fail');
         }
-    };
+    }, [status.status]);
 
     switch (done) {
         case 'complete':
@@ -43,7 +85,7 @@ export default function LoadingComponent({ status }) {
                     >
                         Success!
                     </Typography>
-                    <LoadingButton
+                    {/* <LoadingButton
                         onClick={handleDone}
                         loading={loading}
                         loadingIndicator={
@@ -52,7 +94,7 @@ export default function LoadingComponent({ status }) {
                         variant="outlined"
                     >
                         <CachedIcon />
-                    </LoadingButton>
+                    </LoadingButton> */}
                 </Grid>
             );
         case 'fail':
@@ -74,7 +116,7 @@ export default function LoadingComponent({ status }) {
                     >
                         Failed..
                     </Typography>
-                    <LoadingButton
+                    {/* <LoadingButton
                         onClick={handleDone}
                         loading={loading}
                         loadingIndicator={
@@ -84,7 +126,7 @@ export default function LoadingComponent({ status }) {
                         sx={{ ml: 1 }}
                     >
                         <CachedIcon />
-                    </LoadingButton>
+                    </LoadingButton> */}
                 </Grid>
             );
         case 'creating':
@@ -125,8 +167,7 @@ export default function LoadingComponent({ status }) {
                     alignItems="center"
                 >
                     <LoadingButton
-                        onClick={handleDone}
-                        loading={loading}
+                        loading
                         loadingIndicator={
                             <CircularProgress color="inherit" size={16} />
                         }

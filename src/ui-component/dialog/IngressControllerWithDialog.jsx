@@ -121,7 +121,8 @@ const IngressControllerWithDialog = ({ url, id }) => {
                             <ContentCopyIcon />
                         </IconButton>
                         <CopyContent component="span">
-                            <a href={url}>{url}</a>
+                            {/* <a href={url}>{url}</a> */}
+                            {url}
                         </CopyContent>
                     </CopyContentWrapper>
                 </DialogContent>
