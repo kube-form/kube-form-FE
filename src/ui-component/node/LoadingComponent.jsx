@@ -2,58 +2,67 @@ import React, { useState, useEffect } from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
 import CachedIcon from '@mui/icons-material/Cached';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, Grid, CircularProgress, Typography } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
 
-export default function LoadingComponent() {
+export default function LoadingComponent({ status }) {
     const [loading, setLoading] = useState(false);
     const theme = useTheme();
     const [done, setDone] = useState();
+    const step = status['status '];
 
-    const [test, useTest] = useState(0);
-    const onClick = () => {
-        useTest((item) => (item + 1) % 3);
-    };
-    const handleClick = () => {
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-            onClick();
-        }, 3000);
-    };
+    console.log(step);
 
-    useEffect(() => {
-        if (test === 0) {
+    const handleDone = () => {
+        if (step === '생성 완료') {
             setLoading(false);
-            setDone(null);
-        } else if (test === 1) {
+            setDone('complete');
+        } else if (step === '생성 중') {
             setLoading(false);
-            setDone('success');
+            setDone('creating');
+            console.log(step);
         } else {
             setLoading(false);
             setDone('fail');
         }
-    }, [test]);
+    };
 
     switch (done) {
-        case 'success':
+        case 'complete':
             return (
-                <Box sx={{ minHeight: 80, pt: 3 }} onClick={onClick}>
+                <Grid
+                    item
+                    sx={{ minHeight: 80, pt: 1, pb: 1 }}
+                    // onClick={onClick}
+                    display="flex"
+                    alignItems="center"
+                >
                     <Typography
                         variant="subtitle1"
                         color={theme.palette.success.dark}
                     >
                         Success!
                     </Typography>
-                </Box>
+                    <LoadingButton
+                        onClick={handleDone}
+                        loading={loading}
+                        loadingIndicator={
+                            <CircularProgress color="inherit" size={16} />
+                        }
+                        variant="outlined"
+                    >
+                        <CachedIcon />
+                    </LoadingButton>
+                </Grid>
             );
         case 'fail':
             return (
-                <Box
-                    onClick={onClick}
-                    sx={{ minHeight: 80, pt: 3 }}
+                <Grid
+                    item
+                    sx={{ minHeight: 80, pt: 1, pb: 1 }}
                     display="flex"
                     color={theme.palette.error.dark}
+                    alignItems="center"
                 >
                     <ErrorOutlineIcon
                         sx={{ marginRight: 1 }}
@@ -65,13 +74,58 @@ export default function LoadingComponent() {
                     >
                         Failed..
                     </Typography>
-                </Box>
+                    <LoadingButton
+                        onClick={handleDone}
+                        loading={loading}
+                        loadingIndicator={
+                            <CircularProgress color="inherit" size={16} />
+                        }
+                        variant="outlined"
+                        sx={{ ml: 1 }}
+                    >
+                        <CachedIcon />
+                    </LoadingButton>
+                </Grid>
+            );
+        case 'creating':
+            return (
+                <Grid
+                    item
+                    sx={{ minHeight: 80, pt: 1, pb: 1 }}
+                    // onClick={onClick}
+                    display="flex"
+                    alignItems="center"
+                    justifyItems="center"
+                >
+                    <Typography
+                        variant="subtitle1"
+                        color={theme.palette.success.light}
+                    >
+                        Creating...
+                    </Typography>
+                    <LoadingButton
+                        onClick={handleDone}
+                        loading={loading}
+                        loadingIndicator={
+                            <CircularProgress color="inherit" size={16} />
+                        }
+                        variant="outlined"
+                        sx={{ ml: 1 }}
+                    >
+                        <CachedIcon />
+                    </LoadingButton>
+                </Grid>
             );
         default:
             return (
-                <Box sx={{ '& > button': { m: 1 }, minHeight: 80, pt: 1.5 }}>
+                <Grid
+                    item
+                    sx={{ '& > button': { m: 1 }, minHeight: 80, pt: 1, pb: 1 }}
+                    display="flex"
+                    alignItems="center"
+                >
                     <LoadingButton
-                        onClick={handleClick}
+                        onClick={handleDone}
                         loading={loading}
                         loadingIndicator={
                             <CircularProgress color="inherit" size={16} />
@@ -80,7 +134,7 @@ export default function LoadingComponent() {
                     >
                         <CachedIcon />
                     </LoadingButton>
-                </Box>
+                </Grid>
             );
     }
 }
