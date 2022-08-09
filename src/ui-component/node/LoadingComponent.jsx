@@ -9,7 +9,7 @@ export default function LoadingComponent({ status }) {
     const [loading, setLoading] = useState(false);
     const theme = useTheme();
     const [done, setDone] = useState();
-    const step = status['status '];
+    const step = status.status;
 
     console.log(step);
 

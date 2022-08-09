@@ -19,6 +19,20 @@ function LineSet() {
         }, 100);
     }, [sub]);
 
+    const onResize = () => {
+        setTimeout(() => {
+            updateXarrow();
+        }, 400);
+    };
+
+    useEffect(() => {
+        onResize();
+        window.addEventListener('resize', onResize);
+        return () => {
+            window.removeEventListener('resize', onResize);
+        };
+    }, []);
+
     if (isLoading) {
         return <></>;
     }

@@ -21,30 +21,91 @@ import NotLoginedStatusCard from '../../../ui-component/dashboard/NotLoginedStat
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 function Dashboard() {
-    const [isLoading, setLoading] = useState(true);
-    const { user } = useAuth();
-    const { setAll } = usePods();
+    // const [isLoading, setLoading] = useState(true);
+    const { isLoggedIn, user } = useAuth();
+
+    if (!user) {
+        return (
+            <Grid container spacing={gridSpacing}>
+                <Grid item xs={12}>
+                    <Grid container spacing={gridSpacing}>
+                        <Grid item lg={4} md={6} sm={6} xs={12}>
+                            <EarningCard isLoading />
+                        </Grid>
+                        <Grid item lg={4} md={6} sm={6} xs={12}>
+                            <TotalOrderLineChartCard isLoading />
+                        </Grid>
+                        <Grid item lg={4} md={12} sm={12} xs={12}>
+                            <Grid
+                                container
+                                spacing={gridSpacing}
+                                sx={{
+                                    overflow: { md: 'none', lg: 'scroll' },
+                                    maxHeight: { md: 'none', lg: 210 },
+                                    scrollbarWidth: 'none',
+                                }}
+                            >
+                                <>
+                                    <Grid item sm={6} xs={12} md={6} lg={12}>
+                                        <TotalArnCard
+                                            index={0}
+                                            isLoading
+                                            name=""
+                                            url=""
+                                        />
+                                    </Grid>
+                                    <Grid item sm={6} xs={12} md={6} lg={12}>
+                                        <TotalArnCard
+                                            index={0}
+                                            isLoading
+                                            name=""
+                                            url=""
+                                        />
+                                    </Grid>
+                                </>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12}>
+                    <Grid container spacing={gridSpacing}>
+                        <Grid item xs={12} md={8}>
+                            <TotalNewsContainer isLoading news={DUMMY_NEWS} />
+                        </Grid>
+                        <Grid item xs={12} md={4}>
+                            <NotLoginedStatusCard />
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        );
+    }
+
+    const { setAll, setInit } = usePods();
     const pods = useSelector((state) => state.pod);
-    const { data } = getClusterStatus(user.uid);
+    const { data, error } = getClusterStatus(user?.uid);
 
-    console.log(data);
-
-    // console.log(user);
     useEffect(async () => {
         try {
+            // if (user) {
             const { client } = await getKubeSource({
                 uid: user.uid,
                 id: 'main.json',
             });
             setAll(client);
+            // } else {
+            // }
         } catch (err) {
             console.log(err);
+            setInit();
         }
-    }, []);
+    }, [isLoggedIn]);
 
-    useEffect(() => {
-        setLoading(!data);
-    }, []);
+    // useEffect(() => {
+    //     setLoading(!data?.status);
+    // }, [data]);
+
+    const isLoading = !data?.status;
 
     return (
         <Grid container spacing={gridSpacing}>
@@ -66,9 +127,9 @@ function Dashboard() {
                                 scrollbarWidth: 'none',
                             }}
                         >
-                            {!user && data.data ? (
+                            {user && data?.data?.data ? (
                                 <>
-                                    {data.data.entry_points.map(
+                                    {data.data.data.entry_points.map(
                                         (item, index) => (
                                             <Grid
                                                 key={item.name}
@@ -115,7 +176,6 @@ function Dashboard() {
             <Grid item xs={12}>
                 <Grid container spacing={gridSpacing}>
                     <Grid item xs={12} md={8}>
-                        {/* <TotalGrowthBarChart isLoading={isLoading} /> */}
                         <TotalNewsContainer
                             isLoading={isLoading}
                             news={DUMMY_NEWS}

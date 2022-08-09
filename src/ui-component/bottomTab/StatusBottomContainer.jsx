@@ -16,15 +16,14 @@ import DUMMY_DATA from 'data/status';
 const TABSDATA = [
     'Overview',
     'Network',
-    'Loging',
-    'Update history',
-    'Resources',
+    // 'Loging',
+    // 'Update history',
+    // 'Resources',
 ];
 
 const DummyData = DUMMY_DATA.data;
 
 const ClusterData = DummyData.cluster_data;
-console.log(DUMMY_DATA);
 
 function StatusBottomContainer({ statusData }) {
     const [value, setValue] = useState(0);

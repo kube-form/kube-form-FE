@@ -16,16 +16,19 @@ import {
     Typography,
 } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
+import usePods from 'hooks/usePods';
 
 function DashboardStatus({ data }) {
     const theme = useTheme();
+    const { workerNodeCnt } = usePods();
 
     // console.log(data);
 
     return (
         <>
-            {data.sub.map((node, idx) => (
-                <Box
+            {data.sub.slice(0, workerNodeCnt + 1).map((node, idx) => (
+                <Grid
+                    item
                     sx={{
                         border: `solid 2px ${theme.palette.grey[200]}`,
                         borderRadius: 4,
@@ -45,7 +48,7 @@ function DashboardStatus({ data }) {
                     {data.sub[idx].length ? (
                         node.map((docker) => {
                             return (
-                                <Grid item>
+                                <Grid item key={docker.id}>
                                     <ImageContainerCard sx={{ p: 2 }}>
                                         <List sx={{ py: 0 }}>
                                             <ListItem
@@ -110,7 +113,7 @@ function DashboardStatus({ data }) {
                             </Typography>
                         </Grid>
                     )}
-                </Box>
+                </Grid>
             ))}
         </>
     );

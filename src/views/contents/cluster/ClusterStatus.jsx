@@ -18,21 +18,14 @@ import ClusterDeleteButtonWithDialog from 'ui-component/dialog/ClusterDeleteButt
 import { useSelector } from 'react-redux';
 
 import DUMMY_DATA from 'data/status';
-import { getClusterStatus } from 'api/cluster';
+import { deleteClusterStatus, getClusterStatus } from 'api/cluster';
 
 function ClusterStatus() {
     const { user } = useAuth();
     const { setAll, setInit } = usePods();
     const { sub, workerNodeCnt } = useSelector((state) => state.pod);
     const updateXarrow = useXarrow();
-    const { data } = getClusterStatus(user.uid);
-    console.log(data);
-
-    const onResize = () => {
-        setTimeout(() => {
-            updateXarrow();
-        }, 400);
-    };
+    const { data } = getClusterStatus(user?.uid);
 
     useEffect(async () => {
         try {
@@ -47,16 +40,9 @@ function ClusterStatus() {
         }
     }, []);
 
-    useEffect(() => {
-        onResize();
-        window.addEventListener('resize', onResize);
-        return () => {
-            window.removeEventListener('resize', onResize);
-        };
-    }, []);
-
     const onDelete = async () => {
-        const res = await deleteKubeSource({ uid: user.uid, id: 'main.json' });
+        const res = await deleteClusterStatus(user.uid);
+        // const res = await deleteKubeSource({ uid: user.uid, id: 'main.json' });
         await setInit();
     };
 
@@ -74,9 +60,7 @@ function ClusterStatus() {
                             alignItems: 'flex-start',
                         }}
                     >
-                        {data?.data && (
-                            <LoadingComponent status={data.status} />
-                        )}
+                        {data && <LoadingComponent status={data} />}
                         <LeftUserNode className="admin" />
                     </Grid>
                     <Grid
@@ -116,13 +100,23 @@ function ClusterStatus() {
                                         sub
                                             .slice(0, workerNodeCnt + 1)
                                             .flat()
-                                            .map((item) => item.id),
+                                            .map((item) => ({
+                                                id: item.id,
+                                                name: item.name,
+                                            })),
                                     ),
                                 ).map((item) => (
+                                    // 나중에 꼭 말해서 수정해야함.
                                     <IngressControllerWithDialog
-                                        key={item}
-                                        id={item}
-                                        url="https://www.notion.so/Front-2e7850ada3b14943bc24d38522262569"
+                                        key={item.id}
+                                        id={item.id}
+                                        url={
+                                            data?.data?.data &&
+                                            data.data.data.entry_points.find(
+                                                (itemf) =>
+                                                    itemf.name === item.name,
+                                            ).entry_point
+                                        }
                                     />
                                 ))}
                             {/* {Object.keys(ingressStatus).map((item) => (

@@ -36,7 +36,7 @@ const ClusterSubmitDialog = ({ buttonText, title, uid, workerNodeCnt }) => {
 
     const onSubmit = async () => {
         const kubeSource = {
-            user_id: uid,
+            user_id: uid.toLowerCase(),
             node_group_num: workerNodeCnt,
             instance_type: value,
             container: getSubmitFormat(),
