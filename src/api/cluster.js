@@ -19,7 +19,8 @@ export const postDockerImage = ({ url, port, name, image, fuid }) =>
         fuid,
     });
 
-export const deleteDockerImage = ({ id }) => API.delete(`/dockerImages/${id}`);
+export const deleteDockerImage = ({ id, uid }) =>
+    API.delete(`/dockerImages/${uid}/${id}`);
 
 export const uploadToS3 = async ({ fileType, fileContents, objectKey }) => {
     const { data: presignedPostUrl } = await putDockerImage({ objectKey });
@@ -56,36 +57,9 @@ export const postIAMUser = ({ uid, accessKeyId, secretAccessKey }) =>
 
 export const deleteIAMUser = ({ fuid }) => API.delete(`/IAM/${fuid}`);
 
-export const getInfra = () => useSWR(`/infra`, getFetcher);
+export const getClusterStatus = (uid) => useSWR(`/cluster/${uid}`, getFetcher);
 
-export const postInfra = ({
-    userId,
-    accessKeyId,
-    secretAccessKey,
-    nodeGrouptNum,
-    container,
-}) =>
-    API.post(`/infra`, {
-        user_id: userId,
-        Encrypted_Access_Key_ID: accessKeyId,
-        Encrypted_Secret_Access_Key: secretAccessKey,
-        node_group_num: nodeGrouptNum,
-        container,
-    });
-
-export const getClusterStatus = () => useSWR(`/cluster`, getFetcher);
-
-export const postClusterStatus = ({
-    userId,
-    accessKeyId,
-    secretAccessKey,
-    nodeGrouptNum,
-    container,
-}) =>
-    API.post(`/cluster`, {
-        user_id: userId,
-        Encrypted_Access_Key_ID: accessKeyId,
-        Encrypted_Secret_Access_Key: secretAccessKey,
-        node_group_num: nodeGrouptNum,
-        container,
-    });
+export const deleteClusterStatus = async (uid) => {
+    const res = await API.delete(`/cluster/${uid}`);
+    console.log('delete', res);
+};
