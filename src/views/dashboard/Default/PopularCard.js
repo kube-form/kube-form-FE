@@ -24,6 +24,7 @@ import LoadingComponent from 'ui-component/node/LoadingComponent';
 // assets
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import DashboardStatus from './chart-data/DashboardStatus';
+
 // import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 // import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 // import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
@@ -32,7 +33,6 @@ import DashboardStatus from './chart-data/DashboardStatus';
 
 function PopularCard({ isLoading, data, userName, status }) {
     const theme = useTheme();
-
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
@@ -51,19 +51,17 @@ function PopularCard({ isLoading, data, userName, status }) {
                 <MainCard content={false}>
                     <CardContent>
                         <Grid container spacing={gridSpacing}>
-                            <Grid item sm={12} xs={12} md={12} lg={6}>
+                            <Grid item sm={12} xs={12} md={6} lg={6}>
                                 <Grid
                                     container
                                     alignContent="center"
                                     alignItems="center"
                                     justifyContent="space-between"
                                 >
-                                    <Grid item md={6} lg={6}>
+                                    <Grid item xs={12}>
                                         <Typography variant="h3">
                                             Cluster Status
                                         </Typography>
-                                    </Grid>
-                                    <Grid item md={6} lg={6}>
                                         <LoadingComponent status={status} />
                                     </Grid>
                                 </Grid>

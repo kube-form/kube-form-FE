@@ -26,7 +26,7 @@ function IamRegisterPage() {
     const theme = useTheme();
     const { user } = useAuth();
     const [isLoading, setLoading] = useState(false);
-
+    console.log(user);
     return (
         <>
             <Loading open={isLoading} />

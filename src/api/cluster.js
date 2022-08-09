@@ -50,7 +50,7 @@ export const getIAMUser = ({ fuid }) =>
     useSWR(`/IAM/${fuid.toLowerCase()}`, getFetcher);
 
 export const postIAMUser = ({ uid, accessKeyId, secretAccessKey }) =>
-    API.post(`/IAM`, {
+    API.post(`/IAM/${uid.toLowerCase()}`, {
         fuid: uid.toLowerCase(),
         accessKey: accessKeyId,
         secretKey: secretAccessKey,

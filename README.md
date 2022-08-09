@@ -32,13 +32,22 @@
 
 ## 🎉 Features
 
+-   **Login** - Social Login by firebase
+
+    -   Firebase를 활용해 인증과 통신을 진행하고, 구글만 로그인 제공업체로 사용함.
+
 -   **Drag and drop** - drag a Container Image to Worker Node
 
-    -   react-beautiful-dnd
+    -   react-beautiful-dnd 라이브러리를 사용하여 Drag & Drop 기능을 구현함.
         <img src="./assets/beautiful-dnd-img.gif"/>
+        위 이미지와 같은 컴포넌트 구조로 구성되어 있음.
+        -   웹 사이트 내에 구현해 둔 드래그 기능을 사용하여 사용자가 원하는 도커 이미지를 보기 좋게 워커노드에 옮겨 넣어 아키텍쳐를 구성하도록 함.
 
--   **asdf**
-    -   asdf
+-   **Register and Check Status** - API
+    -   서버에 전달하고, 요청할 데이터들을 SWR을 활용하여 통신함.
+        <img src="./assets/swr-img.png"/>
+    -   DND(Drag and Drop)로 구성된 클러스터 정보들을 json형태로 변환하여 서버로 전달함.
+        이때, 사용자의 IAM 유저와 함께 전달한다.
 
 ## 📖 About
 

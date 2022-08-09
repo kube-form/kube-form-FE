@@ -15,7 +15,6 @@ import WorkerNodeNumStatus from 'ui-component/node/WorkerNodeNumStatus';
 import { getDockerImages } from 'api/cluster';
 import { useTheme } from 'styled-components';
 import RightUserNode from 'ui-component/node/RightUserNode';
-import SubmitBtn from 'ui-component/node/SubmitBtn';
 import IngressControllerNode from 'ui-component/node/IngressControllerNode';
 import ClusterSubmitDialog from 'ui-component/dialog/ClusterSubmitDialog';
 import useAuth from 'hooks/useAuth';

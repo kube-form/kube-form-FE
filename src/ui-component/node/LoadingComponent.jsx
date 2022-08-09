@@ -141,7 +141,7 @@ export default function LoadingComponent({ status }) {
                 >
                     <Typography
                         variant="subtitle1"
-                        color={theme.palette.success.light}
+                        color={theme.palette.primary.dark}
                     >
                         Creating...
                     </Typography>

@@ -16,11 +16,14 @@ import {
 import INSTANCE_DATA from 'data/instance';
 import { submitKubeSource } from 'utils/s3Util';
 import usePods from 'hooks/usePods';
+import { useNavigate } from 'react-router-dom';
 
 const ClusterSubmitDialog = ({ buttonText, title, uid, workerNodeCnt }) => {
     const theme = useTheme();
     const [value, setValue] = useState(INSTANCE_DATA[0]);
     const { getSubmitFormat, sub, main, wait, ingressStatus } = usePods();
+    const navigate = useNavigate();
+
     const handleChange = (event) => {
         setValue(event.target.value);
     };
@@ -54,6 +57,7 @@ const ClusterSubmitDialog = ({ buttonText, title, uid, workerNodeCnt }) => {
             uid,
         });
         handleClose();
+        navigate('/utils/cluster/status');
     };
 
     return (
