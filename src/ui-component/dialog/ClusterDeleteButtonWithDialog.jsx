@@ -20,7 +20,7 @@ const ClusterDeleteButtonWithDialog = ({ onDelete }) => {
     };
     const onSubmit = async () => {
         try {
-            onDelete();
+            await onDelete();
             handleClose();
         } catch (e) {
             console.log(e);
