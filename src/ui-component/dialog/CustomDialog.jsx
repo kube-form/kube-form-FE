@@ -60,10 +60,7 @@ const CustomModal = ({ open, handleClose }) => {
                     name: Yup.string().max(255).required('Name is required'),
                     url: Yup.string()
                         .max(255)
-                        .matches(
-                            /[a-z, 0-9]+\/+[a-z, 0-9]+/,
-                            'user/image:tag format',
-                        )
+                        .matches(/[a-z, 0-9]/, 'user format')
                         .required('Url is required'),
                     port: Yup.string().max(255).required('Port is required'),
                 })}
