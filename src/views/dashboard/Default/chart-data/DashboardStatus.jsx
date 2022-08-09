@@ -27,9 +27,8 @@ function DashboardStatus({ data }) {
     return (
         <>
             {data.sub.slice(0, workerNodeCnt + 1).map((node, idx) => (
-                <Box
-                    // eslint-disable-next-line react/no-array-index-key
-                    key={idx}
+                <Grid
+                    item
                     sx={{
                         border: `solid 2px ${theme.palette.grey[200]}`,
                         borderRadius: 4,
@@ -114,7 +113,7 @@ function DashboardStatus({ data }) {
                             </Typography>
                         </Grid>
                     )}
-                </Box>
+                </Grid>
             ))}
         </>
     );

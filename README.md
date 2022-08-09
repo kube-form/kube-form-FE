@@ -34,6 +34,12 @@
 
 -   **Drag and drop** - drag a Container Image to Worker Node
 
+    -   react-beautiful-dnd
+        <img src="./assets/beautiful-dnd-img.gif"/>
+
+-   **asdf**
+    -   asdf
+
 ## 📖 About
 
 <img src="./assets/Dashboard.png"/>
