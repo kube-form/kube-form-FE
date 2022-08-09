@@ -14,7 +14,6 @@ import RightUserNode from './RightUserNode';
 
 function NodeContainer({ nodeIndex, sub }) {
     // const sub = usePods().sub[nodeIndex];
-    console.log(sub, nodeIndex);
 
     const theme = useTheme();
 

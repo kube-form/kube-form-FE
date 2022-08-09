@@ -18,7 +18,7 @@ import ClusterDeleteButtonWithDialog from 'ui-component/dialog/ClusterDeleteButt
 import { useSelector } from 'react-redux';
 
 import DUMMY_DATA from 'data/status';
-import { getClusterStatus } from 'api/cluster';
+import { deleteClusterStatus, getClusterStatus } from 'api/cluster';
 
 function ClusterStatus() {
     const { user } = useAuth();
@@ -26,13 +26,6 @@ function ClusterStatus() {
     const { sub, workerNodeCnt } = useSelector((state) => state.pod);
     const updateXarrow = useXarrow();
     const { data } = getClusterStatus(user.uid);
-    console.log(data);
-
-    const onResize = () => {
-        setTimeout(() => {
-            updateXarrow();
-        }, 400);
-    };
 
     useEffect(async () => {
         try {
@@ -47,16 +40,9 @@ function ClusterStatus() {
         }
     }, []);
 
-    useEffect(() => {
-        onResize();
-        window.addEventListener('resize', onResize);
-        return () => {
-            window.removeEventListener('resize', onResize);
-        };
-    }, []);
-
     const onDelete = async () => {
-        const res = await deleteKubeSource({ uid: user.uid, id: 'main.json' });
+        const res = await deleteClusterStatus(user.uid);
+        // const res = await deleteKubeSource({ uid: user.uid, id: 'main.json' });
         await setInit();
     };
 

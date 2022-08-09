@@ -8,7 +8,7 @@ import NodeContainer from 'ui-component/node/NodeContainer';
 
 import { getKubeSource } from 'utils/s3Util';
 import MainWorkerNode from 'ui-component/node/MainWorkerNode';
-import { useXarrow, Xwrapper } from 'react-xarrows';
+import { Xwrapper } from 'react-xarrows';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
 import LineSet from 'ui-component/line/LineSet';
 import WorkerNodeNumStatus from 'ui-component/node/WorkerNodeNumStatus';
@@ -26,7 +26,6 @@ export default function Cluster() {
     const { user } = useAuth();
     const { data, error } = getDockerImages(user.uid);
 
-    const updateXarrow = useXarrow();
     const theme = useTheme();
     const [open, setOpen] = useState(false);
 
@@ -101,12 +100,6 @@ export default function Cluster() {
         getWaitImages();
     }, [data]);
 
-    const onResize = () => {
-        setTimeout(() => {
-            updateXarrow();
-        }, 400);
-    };
-
     useEffect(async () => {
         try {
             const { client } = await getKubeSource({
@@ -117,14 +110,6 @@ export default function Cluster() {
         } catch (e) {
             console.log(e);
         }
-    }, []);
-
-    useEffect(() => {
-        onResize();
-        window.addEventListener('resize', onResize);
-        return () => {
-            window.removeEventListener('resize', onResize);
-        };
     }, []);
 
     // TODO;

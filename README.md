@@ -40,7 +40,7 @@
 
 ## 🚘 Install
 
-Clonse and install.
+Clone and install.
 
 ```
 git clone https://github.com/kube-form/kube-form-FE.git
