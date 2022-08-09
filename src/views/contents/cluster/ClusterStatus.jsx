@@ -18,12 +18,15 @@ import ClusterDeleteButtonWithDialog from 'ui-component/dialog/ClusterDeleteButt
 import { useSelector } from 'react-redux';
 
 import DUMMY_DATA from 'data/status';
+import { getClusterStatus } from 'api/cluster';
 
 function ClusterStatus() {
     const { user } = useAuth();
     const { setAll, setInit } = usePods();
     const { sub, workerNodeCnt } = useSelector((state) => state.pod);
     const updateXarrow = useXarrow();
+    const { data } = getClusterStatus(user.uid);
+    console.log(data);
 
     const onResize = () => {
         setTimeout(() => {
