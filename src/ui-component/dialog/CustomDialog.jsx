@@ -18,12 +18,7 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import usePods from 'hooks/usePods';
 import { v4 as uuid } from 'uuid';
-import {
-    getDockerImages,
-    postDockerImage,
-    putDockerImage,
-    uploadToS3,
-} from 'api/cluster';
+import { getDockerImages, postDockerImage, uploadToS3 } from 'api/cluster';
 import useAuth from 'hooks/useAuth';
 import { useDropzone } from 'react-dropzone';
 import styled from '@emotion/styled';
@@ -79,7 +74,7 @@ const CustomModal = ({ open, handleClose }) => {
                     try {
                         let imageFile = null;
                         if (fileType && fileContents) {
-                            imageFile = `${user.uid}/${uuid()}`;
+                            imageFile = `${user.uid.toLowerCase()}/${uuid()}`;
                             const filePath = await uploadToS3({
                                 fileType,
                                 fileContents,
