@@ -74,7 +74,9 @@ function ClusterStatus() {
                             alignItems: 'flex-start',
                         }}
                     >
-                        <LoadingComponent status={data.status} />
+                        {data?.data && (
+                            <LoadingComponent status={data.status} />
+                        )}
                         <LeftUserNode className="admin" />
                     </Grid>
                     <Grid
@@ -166,7 +168,7 @@ function ClusterStatus() {
             <LineSet />
 
             <Grid item xs={12}>
-                <StatusBottomContainer statusData={data.data} />
+                {data?.data && <StatusBottomContainer statusData={data.data} />}
             </Grid>
         </>
     );

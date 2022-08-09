@@ -9,35 +9,9 @@ export default function LoadingComponent({ status }) {
     const [loading, setLoading] = useState(false);
     const theme = useTheme();
     const [done, setDone] = useState();
-    const step = status;
+    const step = status['status '];
 
-    const [test, useTest] = useState(0);
-    const onClick = () => {
-        useTest((item) => (item + 1) % 4);
-    };
-    const handleClick = () => {
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-            onClick();
-        }, 3000);
-    };
-
-    useEffect(() => {
-        if (test === 0) {
-            setLoading(false);
-            setDone(null);
-        } else if (test === 1) {
-            setLoading(false);
-            setDone('success');
-        } else if (test === 2) {
-            setLoading(false);
-            setDone('creating');
-        } else {
-            setLoading(false);
-            setDone('fail');
-        }
-    }, [test]);
+    console.log(step);
 
     const handleDone = () => {
         if (step === 'success') {
@@ -46,6 +20,7 @@ export default function LoadingComponent({ status }) {
         } else if (step === '생성 중') {
             setLoading(false);
             setDone('creating');
+            console.log(step);
         } else {
             setLoading(false);
             setDone('fail');
@@ -58,7 +33,7 @@ export default function LoadingComponent({ status }) {
                 <Grid
                     item
                     sx={{ minHeight: 80, pt: 1, pb: 1 }}
-                    onClick={onClick}
+                    // onClick={onClick}
                     display="flex"
                     alignItems="center"
                 >
@@ -68,6 +43,16 @@ export default function LoadingComponent({ status }) {
                     >
                         Success!
                     </Typography>
+                    <LoadingButton
+                        onClick={handleDone}
+                        loading={loading}
+                        loadingIndicator={
+                            <CircularProgress color="inherit" size={16} />
+                        }
+                        variant="outlined"
+                    >
+                        <CachedIcon />
+                    </LoadingButton>
                 </Grid>
             );
         case 'fail':
@@ -89,7 +74,7 @@ export default function LoadingComponent({ status }) {
                         Failed..
                     </Typography>
                     <LoadingButton
-                        onClick={handleClick}
+                        onClick={handleDone}
                         loading={loading}
                         loadingIndicator={
                             <CircularProgress color="inherit" size={16} />
@@ -105,7 +90,7 @@ export default function LoadingComponent({ status }) {
             return (
                 <Grid
                     sx={{ minHeight: 80, pt: 1, pb: 1 }}
-                    onClick={onClick}
+                    // onClick={onClick}
                     display="flex"
                     alignItems="center"
                     justifyItems="center"
@@ -117,7 +102,7 @@ export default function LoadingComponent({ status }) {
                         Creating...
                     </Typography>
                     <LoadingButton
-                        onClick={handleClick}
+                        onClick={handleDone}
                         loading={loading}
                         loadingIndicator={
                             <CircularProgress color="inherit" size={16} />
@@ -137,7 +122,7 @@ export default function LoadingComponent({ status }) {
                     alignItems="center"
                 >
                     <LoadingButton
-                        onClick={handleClick}
+                        onClick={handleDone}
                         loading={loading}
                         loadingIndicator={
                             <CircularProgress color="inherit" size={16} />

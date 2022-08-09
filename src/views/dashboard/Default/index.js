@@ -9,7 +9,6 @@ import { getClusterStatus } from 'api/cluster';
 import { Grid } from '@mui/material';
 import TotalNewsContainer from 'ui-component/dashboard/TotalNewsContainer';
 import TotalArnCard from 'ui-component/dashboard/TotalArnCard';
-import { getClusterStatus } from 'api/cluster';
 
 // project imports
 import { gridSpacing } from 'store/constant';
@@ -26,9 +25,9 @@ function Dashboard() {
     const { user } = useAuth();
     const { setAll } = usePods();
     const pods = useSelector((state) => state.pod);
-    const { status } = getClusterStatus(user.uid);
+    const { data } = getClusterStatus(user.uid);
 
-    console.log(status);
+    console.log(data);
 
     // console.log(user);
     useEffect(async () => {
@@ -44,7 +43,7 @@ function Dashboard() {
     }, []);
 
     useEffect(() => {
-        setLoading(false);
+        setLoading(!data);
     }, []);
 
     return (
@@ -128,7 +127,7 @@ function Dashboard() {
                                 isLoading={isLoading}
                                 data={pods}
                                 userName={user.name}
-                                status={status}
+                                status={data}
                             />
                         )}
                         {!user && <NotLoginedStatusCard />}
