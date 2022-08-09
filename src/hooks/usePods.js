@@ -124,7 +124,7 @@ const usePods = () => {
     const getSubmitFormat = () => {
         const subs = [...container.sub.slice(0, container.workerNodeCnt + 1)]
             .flat()
-            .map((item) => ({ ...item, replicas: 1 }));
+            .map((item) => ({ ...item, replicas: 1, dockerURL: item.url }));
         // const subs = [...Array(container.workerNodeCnt + 1)].map((_, index) =>
         //     container.sub[index].map((item) => ({ ...item, replicas: 1 })),
         // );
