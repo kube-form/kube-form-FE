@@ -58,6 +58,7 @@ export default function LoadingComponent({ status }) {
         case 'fail':
             return (
                 <Grid
+                    item
                     sx={{ minHeight: 80, pt: 1, pb: 1 }}
                     display="flex"
                     color={theme.palette.error.dark}
@@ -89,6 +90,7 @@ export default function LoadingComponent({ status }) {
         case 'creating':
             return (
                 <Grid
+                    item
                     sx={{ minHeight: 80, pt: 1, pb: 1 }}
                     // onClick={onClick}
                     display="flex"
@@ -116,7 +118,8 @@ export default function LoadingComponent({ status }) {
             );
         default:
             return (
-                <Box
+                <Grid
+                    item
                     sx={{ '& > button': { m: 1 }, minHeight: 80, pt: 1, pb: 1 }}
                     display="flex"
                     alignItems="center"
@@ -131,7 +134,7 @@ export default function LoadingComponent({ status }) {
                     >
                         <CachedIcon />
                     </LoadingButton>
-                </Box>
+                </Grid>
             );
     }
 }
