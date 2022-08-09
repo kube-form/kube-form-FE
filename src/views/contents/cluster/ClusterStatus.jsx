@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import NodeStatusContainer from 'ui-component/node/NodeStatusContainer';
 import { Grid, Box, Button } from '@mui/material';
@@ -19,13 +19,28 @@ import { useSelector } from 'react-redux';
 
 import DUMMY_DATA from 'data/status';
 import { deleteClusterStatus, getClusterStatus } from 'api/cluster';
+import { SettingsInputComponentSharp } from '@material-ui/icons';
 
 function ClusterStatus() {
     const { user } = useAuth();
     const { setAll, setInit } = usePods();
+    const [tmp, setTmp] = useState();
     const { sub, workerNodeCnt } = useSelector((state) => state.pod);
     const updateXarrow = useXarrow();
     const { data } = getClusterStatus(user?.uid);
+
+    // useEffect(async () => {
+    //     try {
+    //         const { client } = await getKubeSource({
+    //             uid: user.uid,
+    //             id: 'main.json',
+    //         });
+    //         setAll(client);
+    //     } catch (e) {
+    //         console.log(e);
+    //         setInit();
+    //     }
+    // }, []);
 
     useEffect(async () => {
         try {
@@ -33,6 +48,11 @@ function ClusterStatus() {
                 uid: user.uid,
                 id: 'main.json',
             });
+
+            const tm = client.sub.flat();
+            setTmp(
+                tm.filter((a, i) => tm.findIndex((s) => s.id === a.id) === i),
+            );
             setAll(client);
         } catch (e) {
             console.log(e);
@@ -95,30 +115,34 @@ function ClusterStatus() {
                     >
                         <Box padding={3}>
                             {sub.flat() &&
+                                tmp &&
                                 Array.from(
                                     new Set(
                                         sub
                                             .slice(0, workerNodeCnt + 1)
                                             .flat()
-                                            .map((item) => ({
-                                                id: item.id,
-                                                name: item.name,
-                                            })),
+                                            .map((item) => item.id),
                                     ),
-                                ).map((item) => (
-                                    // 나중에 꼭 말해서 수정해야함.
-                                    <IngressControllerWithDialog
-                                        key={item.id}
-                                        id={item.id}
-                                        url={
-                                            data?.data?.data &&
-                                            data.data.data.entry_points.find(
-                                                (itemf) =>
-                                                    itemf.name === item.name,
-                                            ).entry_point
-                                        }
-                                    />
-                                ))}
+                                ).map((itemz) => {
+                                    const item = tmp.find(
+                                        (item1) => item1.id === itemz,
+                                    );
+                                    return (
+                                        // 나중에 꼭 말해서 수정해야함.
+                                        <IngressControllerWithDialog
+                                            key={item.id}
+                                            id={item.id}
+                                            url={
+                                                data?.data?.data &&
+                                                data.data.data.entry_points.find(
+                                                    (itemf) =>
+                                                        itemf.name ===
+                                                        item.name,
+                                                ).entry_point
+                                            }
+                                        />
+                                    );
+                                })}
                             {/* {Object.keys(ingressStatus).map((item) => (
                                 <IngressControllerWithDialog
                                     key={item}
