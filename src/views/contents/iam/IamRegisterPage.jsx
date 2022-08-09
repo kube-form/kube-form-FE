@@ -26,7 +26,6 @@ function IamRegisterPage() {
     const theme = useTheme();
     const { user } = useAuth();
     const [isLoading, setLoading] = useState(false);
-    console.log(user);
     return (
         <>
             <Loading open={isLoading} />
@@ -60,6 +59,7 @@ function IamRegisterPage() {
                                 accessKeyId: values.accessKeyId,
                                 secretAccessKey: values.secretAccessKey,
                             });
+                            console.log(res);
                             navigate('/iam/setting');
                         } catch (err) {
                             console.error(err);
