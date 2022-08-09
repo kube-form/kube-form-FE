@@ -14,9 +14,9 @@ export default function LoadingComponent({ status }) {
     console.log(step);
 
     const handleDone = () => {
-        if (step === 'success') {
+        if (step === '생성 완료') {
             setLoading(false);
-            setDone('success');
+            setDone('complete');
         } else if (step === '생성 중') {
             setLoading(false);
             setDone('creating');
@@ -28,7 +28,7 @@ export default function LoadingComponent({ status }) {
     };
 
     switch (done) {
-        case 'success':
+        case 'complete':
             return (
                 <Grid
                     item
