@@ -1,35 +1,44 @@
 # [kube-form](https://kube-form.web.app/)
 
-![kube-form](https://avatars.githubusercontent.com/u/106794419?s=200&v=4)
+<p align="center">
+    <a href="https://kube-form.web.app/">
+        <img src="./assets/kubeform.png">
+    </a>
+    <h3 align="center">
+        <a href="">Visit the live app</a>
+    </h3>
+    
+</p>
+<p align="center">
+    <a href="https://github.com/kube-form/kube-form-FE/issues"><img src="https://img.shields.io/github/issues/kube-form/kube-form-FE"/></a>
+    <a href="https://github.com/kube-form/kube-form-FE/blob/master/README.md">
+    <img src="https://img.shields.io/github/license/kube-form/kube-form-FE"/>
+    </a>
+    <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black"/>
+    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/>
+    <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/>
+    <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat-square&logo=Visual%20Studio%20Code&logoColor=white"/>
+</p>
 
-# 🗂 Contents
+## 🗂 Contents
 
 -   [Features](#-features)
 -   [About](#-about)
--   [Reviews](#-reviews)
--   [Demo Development](#-Demo_Development)
--   [Run](#-run)
+-   [Install](#-install)
+-   [Author](#-author)
 -   [Task](#-task)
 -   [Release](#-release)
 -   [License](#-license)
 
 ## 🎉 Features
 
--   [kube-form](https://chrome.google.com/webstore/detail/emogenius/heddhmefcmbkfoojdngpojbhkkglgcdg?hl=ko&authuser=0)
+-   **Drag and drop** - drag a Container Image to Worker Node
 
 ## 📖 About
 
-![summary](https://github.com/ha4219/emogenius/blob/dev/assets/readme/summary.png?raw=true)
+<img src="./assets/Dashboard.png"/>
 
--   kube-form
-
-## 🎯 Reviews
-
-![deploy_](https://github.com/ha4219/emogenius/blob/dev/assets/readme/1.png?raw=true)
-
-## 🚘 Demo Development
-
-![run_gif](https://github.com/ha4219/emogenius/blob/dev/assets/readme/run.gif?raw=true)
+## 🚘 Install
 
 Clonse and install.
 
@@ -52,25 +61,12 @@ npm start
 
 ## ✅ Acknowledgements
 
--   [x] Fine Tuning KoBERT
--   [x] Deploy Flask server
--   [x] Make Chrome Extension
--   [ ] Server Dockerfile 작성
--   [ ] Server 이전
+-   좋은 추억 만들어주신 [OIDC](https://oidc.co.kr/home) 주최자분들께 감사 인사드립니다.
 
 ## 🌋 Contributing
 
--   none
-
-<!-- <table>
-    <tr>
-        <td align="center"></td>
-        <td align="center"></td>
-        <td align="center"></td>
-        <td align="center"></td>
-    </tr>
-</talbe> -->
+-   I will not be accepting PR's on this repository. Feel free to fork and maintain your own version.
 
 ## 📄 License
 
-`KoBERT` 프로그램이 `Apache-2.0`를 따르기에 그대로 사용했습니다. 잘 못 올렸을 경우 알려주세요. 수정하겠습니다.
+-   This project is open source and available under the [MIT License](LICENSE).
