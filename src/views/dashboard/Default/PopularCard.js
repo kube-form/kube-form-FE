@@ -30,7 +30,7 @@ import DashboardStatus from './chart-data/DashboardStatus';
 
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
-function PopularCard({ isLoading, data, userName }) {
+function PopularCard({ isLoading, data, userName, status }) {
     const theme = useTheme();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -44,7 +44,6 @@ function PopularCard({ isLoading, data, userName }) {
     };
 
     return (
-        // eslint-disable-next-line react/jsx-no-useless-fragment
         <>
             {isLoading ? (
                 <SkeletonPopularCard />
@@ -65,7 +64,7 @@ function PopularCard({ isLoading, data, userName }) {
                                         </Typography>
                                     </Grid>
                                     <Grid item>
-                                        <LoadingComponent />
+                                        <LoadingComponent status={status} />
                                     </Grid>
                                 </Grid>
                             </Grid>

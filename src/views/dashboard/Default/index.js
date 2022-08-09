@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import useAuth from 'hooks/useAuth';
 import usePods from 'hooks/usePods';
 import { useSelector } from 'react-redux';
-// material-ui
-import { Grid } from '@mui/material';
-
-import TotalNewsContainer from 'ui-component/dashboard/TotalNewsContainer';
-import TotalArnCard from 'ui-component/dashboard/TotalArnCard';
 import DUMMY_NEWS from 'data/news';
 import { getKubeSource } from 'utils/s3Util';
+import { getClusterStatus } from 'api/cluster';
+// material-ui
+import { Grid } from '@mui/material';
+import TotalNewsContainer from 'ui-component/dashboard/TotalNewsContainer';
+import TotalArnCard from 'ui-component/dashboard/TotalArnCard';
 
 // project imports
 import { gridSpacing } from 'store/constant';
@@ -25,8 +25,10 @@ function Dashboard() {
     const { user } = useAuth();
     const { setAll } = usePods();
     const pods = useSelector((state) => state.pod);
+    const { status } = getClusterStatus(user.uid);
 
-    // console.log(user);
+    console.log(status);
+
     useEffect(async () => {
         try {
             const { client } = await getKubeSource({
@@ -124,6 +126,7 @@ function Dashboard() {
                                 isLoading={isLoading}
                                 data={pods}
                                 userName={user.name}
+                                status={status}
                             />
                         )}
                         {!user && <NotLoginedStatusCard />}
