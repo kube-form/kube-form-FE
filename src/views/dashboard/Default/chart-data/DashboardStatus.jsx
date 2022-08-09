@@ -25,7 +25,8 @@ function DashboardStatus({ data }) {
     return (
         <>
             {data.sub.map((node, idx) => (
-                <Box
+                <Grid
+                    item
                     sx={{
                         border: `solid 2px ${theme.palette.grey[200]}`,
                         borderRadius: 4,
@@ -110,7 +111,7 @@ function DashboardStatus({ data }) {
                             </Typography>
                         </Grid>
                     )}
-                </Box>
+                </Grid>
             ))}
         </>
     );
