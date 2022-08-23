@@ -5,7 +5,7 @@
         <img src="./assets/kubeform.png">
     </a>
     <h3 align="center">
-        <a href="">Visit the live app</a>
+        <a href="https://kube-form.web.app/">Visit the live app</a>
     </h3>
     
 </p>
