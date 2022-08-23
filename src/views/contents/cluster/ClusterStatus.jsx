@@ -127,21 +127,24 @@ function ClusterStatus() {
                                     const item = tmp.find(
                                         (item1) => item1.id === itemz,
                                     );
-                                    return (
-                                        // 나중에 꼭 말해서 수정해야함.
-                                        <IngressControllerWithDialog
-                                            key={item.id}
-                                            id={item.id}
-                                            url={
-                                                data?.data?.data &&
-                                                data.data.data.entry_points.find(
-                                                    (itemf) =>
-                                                        itemf.name ===
-                                                        item.name,
-                                                ).entry_point
-                                            }
-                                        />
-                                    );
+                                    if (item) {
+                                        return (
+                                            // 나중에 꼭 말해서 수정해야함.
+                                            <IngressControllerWithDialog
+                                                key={item.id}
+                                                id={item.id}
+                                                url={
+                                                    data?.data?.data &&
+                                                    data.data.data.entry_points.find(
+                                                        (itemf) =>
+                                                            itemf.name ===
+                                                            item.name,
+                                                    ).entry_point
+                                                }
+                                            />
+                                        );
+                                    }
+                                    return <></>;
                                 })}
                             {/* {Object.keys(ingressStatus).map((item) => (
                                 <IngressControllerWithDialog
