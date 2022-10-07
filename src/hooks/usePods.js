@@ -83,7 +83,6 @@ const usePods = () => {
         }
     };
 
-    // remove subIdx: sub pod index
     const removeSub = (subNodeIndex, subIdx) => {
         const subs = [...container.sub];
         const item = subs[subNodeIndex][subIdx];
@@ -105,7 +104,6 @@ const usePods = () => {
         }
     };
 
-    // set worker node set
     const setWorkerNodeCnt = (cnt) => {
         try {
             if (cnt <= -1 || cnt >= 3) {

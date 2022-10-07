@@ -1,4 +1,3 @@
-import axios from 'axios';
 import useSWR from 'swr';
 import API from './base';
 
@@ -28,11 +27,8 @@ export const uploadToS3 = async ({ fileType, fileContents, objectKey }) => {
     const formData = new FormData();
     formData.append('Content-Type', fileType);
 
-    formData.append('file', fileContents); // The file has be the last element
+    formData.append('file', fileContents);
 
-    // const response = await axios.put(presignedPostUrl.url, formData, {
-    //     headers: { 'Content-Type': 'multipart/form-data' },
-    // });
     const response = await fetch(
         new Request(presignedPostUrl.url, {
             method: 'PUT',
@@ -61,7 +57,6 @@ export const deleteIAMUser = ({ fuid }) =>
 
 export const getClusterStatus = (uid) => {
     if (!uid) {
-        // throw new Error('uid is undefined');
         return { data: { status: 'not', data: {} } };
     }
     return useSWR(`/cluster/${uid.toLowerCase()}`, getFetcher);

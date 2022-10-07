@@ -32,26 +32,6 @@ import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
 import NotificationList from './NotificationList';
 
-// notification status options
-const status = [
-    {
-        value: 'all',
-        label: 'All Notification',
-    },
-    {
-        value: 'new',
-        label: 'New',
-    },
-    {
-        value: 'unread',
-        label: 'Unread',
-    },
-    {
-        value: 'other',
-        label: 'Other',
-    },
-];
-
 // ==============================|| NOTIFICATION ||============================== //
 
 function NotificationSection() {
@@ -219,46 +199,6 @@ function NotificationSection() {
                                                     direction="column"
                                                     spacing={2}
                                                 >
-                                                    <Grid item xs={12}>
-                                                        <Box
-                                                            sx={{
-                                                                px: 2,
-                                                                pt: 0.25,
-                                                            }}
-                                                        >
-                                                            <TextField
-                                                                id="outlined-select-currency-native"
-                                                                select
-                                                                fullWidth
-                                                                value={value}
-                                                                onChange={
-                                                                    handleChange
-                                                                }
-                                                                SelectProps={{
-                                                                    native: true,
-                                                                }}
-                                                            >
-                                                                {status.map(
-                                                                    (
-                                                                        option,
-                                                                    ) => (
-                                                                        <option
-                                                                            key={
-                                                                                option.value
-                                                                            }
-                                                                            value={
-                                                                                option.value
-                                                                            }
-                                                                        >
-                                                                            {
-                                                                                option.label
-                                                                            }
-                                                                        </option>
-                                                                    ),
-                                                                )}
-                                                            </TextField>
-                                                        </Box>
-                                                    </Grid>
                                                     <Grid item xs={12} p={0}>
                                                         <Divider
                                                             sx={{ my: 0 }}
