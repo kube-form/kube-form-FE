@@ -13,9 +13,8 @@ import TotalArnCard from 'ui-component/dashboard/TotalArnCard';
 // project imports
 import { gridSpacing } from 'store/constant';
 import EarningCard from './EarningCard';
-import PopularCard from './PopularCard';
-import TotalOrderLineChartCard from './TotalOrderLineChartCard';
-import TotalGrowthBarChart from './TotalGrowthBarChart';
+import StatusCard from './StatusCard';
+import TotalChartCard from './TotalChartCard';
 import NotLoginedStatusCard from '../../../ui-component/dashboard/NotLoginedStatus';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
@@ -33,7 +32,7 @@ function Dashboard() {
                             <EarningCard isLoading />
                         </Grid>
                         <Grid item lg={4} md={6} sm={6} xs={12}>
-                            <TotalOrderLineChartCard isLoading />
+                            <TotalChartCard isLoading />
                         </Grid>
                         <Grid item lg={4} md={12} sm={12} xs={12}>
                             <Grid
@@ -115,7 +114,7 @@ function Dashboard() {
                         <EarningCard isLoading={isLoading} />
                     </Grid>
                     <Grid item lg={4} md={6} sm={6} xs={12}>
-                        <TotalOrderLineChartCard isLoading={isLoading} />
+                        <TotalChartCard isLoading={isLoading} />
                     </Grid>
                     <Grid item lg={4} md={12} sm={12} xs={12}>
                         <Grid
@@ -183,7 +182,7 @@ function Dashboard() {
                     </Grid>
                     <Grid item xs={12} md={4}>
                         {user && (
-                            <PopularCard
+                            <StatusCard
                                 isLoading={isLoading}
                                 data={pods}
                                 userName={user.name}

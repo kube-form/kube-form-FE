@@ -22,8 +22,6 @@ function DashboardStatus({ data }) {
     const theme = useTheme();
     const { workerNodeCnt } = usePods();
 
-    // console.log(data);
-
     return (
         <>
             {data.sub.slice(0, workerNodeCnt + 1).map((node, idx) => (
@@ -43,7 +41,7 @@ function DashboardStatus({ data }) {
                     }}
                 >
                     <Typography variant="h5" sx={{ mb: 1.5 }}>
-                        Worker Node Num: {idx}
+                        Worker Node {idx}
                     </Typography>
                     {data.sub[idx].length ? (
                         node.map((docker) => {
@@ -61,6 +59,7 @@ function DashboardStatus({ data }) {
                                                         <img
                                                             className="ContainerStatusImage"
                                                             alt={`${idx}_container_image`}
+                                                            width="40px"
                                                             src={docker.image}
                                                         />
                                                     </Avatar>

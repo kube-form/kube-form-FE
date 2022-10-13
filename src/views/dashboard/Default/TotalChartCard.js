@@ -61,7 +61,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 // ==============================|| DASHBOARD - TOTAL ORDER LINE CHART CARD ||============================== //
 
-function TotalOrderLineChartCard({ isLoading }) {
+function TotalChartCard({ isLoading }) {
     const theme = useTheme();
 
     const [timeValue, setTimeValue] = useState(false);
@@ -221,8 +221,8 @@ function TotalOrderLineChartCard({ isLoading }) {
     );
 }
 
-TotalOrderLineChartCard.propTypes = {
+TotalChartCard.propTypes = {
     isLoading: PropTypes.bool.isRequired,
 };
 
-export default TotalOrderLineChartCard;
+export default TotalChartCard;
