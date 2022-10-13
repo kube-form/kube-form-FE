@@ -9,7 +9,6 @@ import StatusBottomContainer from 'ui-component/bottomTab/StatusBottomContainer'
 import LoadingComponent from 'ui-component/node/LoadingComponent';
 import RightUserNode from 'ui-component/node/RightUserNode';
 import usePods from 'hooks/usePods';
-import IngressControllerNode from 'ui-component/node/IngressControllerNode';
 import { useXarrow } from 'react-xarrows';
 import IngressControllerWithDialog from 'ui-component/dialog/IngressControllerWithDialog';
 import { getKubeSource, deleteKubeSource } from 'utils/s3Util';
@@ -28,19 +27,6 @@ function ClusterStatus() {
     const { sub, workerNodeCnt } = useSelector((state) => state.pod);
     const updateXarrow = useXarrow();
     const { data } = getClusterStatus(user?.uid);
-
-    // useEffect(async () => {
-    //     try {
-    //         const { client } = await getKubeSource({
-    //             uid: user.uid,
-    //             id: 'main.json',
-    //         });
-    //         setAll(client);
-    //     } catch (e) {
-    //         console.log(e);
-    //         setInit();
-    //     }
-    // }, []);
 
     useEffect(async () => {
         try {

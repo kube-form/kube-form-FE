@@ -4,7 +4,6 @@ import useAuth from 'hooks/useAuth';
 
 import PropTypes from 'prop-types';
 
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import { Box, Drawer, useMediaQuery } from '@mui/material';
 

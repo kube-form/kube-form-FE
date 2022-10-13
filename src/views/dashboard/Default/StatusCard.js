@@ -2,16 +2,11 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
 import {
-    Avatar,
     Button,
     CardActions,
     CardContent,
-    Divider,
     Grid,
-    Menu,
-    MenuItem,
     Typography,
 } from '@mui/material';
 
@@ -25,24 +20,7 @@ import LoadingComponent from 'ui-component/node/LoadingComponent';
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import DashboardStatus from './chart-data/DashboardStatus';
 
-// import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
-// import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
-// import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-
-// ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
-
-function PopularCard({ isLoading, data, userName, status }) {
-    const theme = useTheme();
-    const [anchorEl, setAnchorEl] = useState(null);
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
+function StatusCard({ isLoading, data, userName, status }) {
     return (
         <>
             {isLoading ? (
@@ -92,9 +70,9 @@ function PopularCard({ isLoading, data, userName, status }) {
     );
 }
 
-PopularCard.propTypes = {
+StatusCard.propTypes = {
     isLoading: PropTypes.bool.isRequired,
     data: PropTypes.objectOf.isRequired,
 };
 
-export default PopularCard;
+export default StatusCard;

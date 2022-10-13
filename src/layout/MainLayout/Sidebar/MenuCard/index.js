@@ -65,7 +65,7 @@ function LinearProgressWithLabel({ value, ...others }) {
                             variant="h6"
                             sx={{ color: theme.palette.primary[800] }}
                         >
-                            Progress
+                            Capacity
                         </Typography>
                     </Grid>
                     <Grid item>
