@@ -8,32 +8,22 @@ import NodeContainer from 'ui-component/node/NodeContainer';
 
 import { getKubeSource } from 'utils/s3Util';
 import MainWorkerNode from 'ui-component/node/MainWorkerNode';
-import { Xwrapper } from 'react-xarrows';
+import { Xwrapper, useXarrow } from 'react-xarrows';
 import LeftUserNode from 'ui-component/node/LeftUserNode';
 import LineSet from 'ui-component/line/LineSet';
 import WorkerNodeNumStatus from 'ui-component/node/WorkerNodeNumStatus';
 import { getDockerImages } from 'api/cluster';
-import { useTheme } from 'styled-components';
+// import { useTheme } from 'styled-components';
 import RightUserNode from 'ui-component/node/RightUserNode';
 import IngressControllerNode from 'ui-component/node/IngressControllerNode';
 import ClusterSubmitDialog from 'ui-component/dialog/ClusterSubmitDialog';
 import useAuth from 'hooks/useAuth';
-import { Grid, Box, Button } from '@mui/material';
+import { Grid, Box, FormControlLabel, Switch } from '@mui/material';
 
 export default function Cluster() {
     const pods = usePods();
     const { user } = useAuth();
     const { data, error } = getDockerImages(user.uid);
-
-    const theme = useTheme();
-    const [open, setOpen] = useState(false);
-
-    const handleOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
 
     const getWaitImages = async () => {
         // if (DUMMYDATA) {
@@ -115,6 +105,18 @@ export default function Cluster() {
     // if (isLoading) {
     //     return <>loading</>;
     // }
+    const [open, setOpen] = useState(true);
+    const updateXarrow = useXarrow();
+
+    const onResize = () => {
+        setTimeout(() => {
+            updateXarrow();
+        }, 300);
+    };
+    const handleOpen = () => {
+        setOpen((prev) => !prev);
+        onResize();
+    };
 
     return (
         <>
@@ -133,6 +135,15 @@ export default function Cluster() {
                                 }}
                             >
                                 <WorkerNodeNumStatus />
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+                                            checked={open}
+                                            onChange={handleOpen}
+                                        />
+                                    }
+                                    label="Show"
+                                />
                                 <LeftUserNode className="admin" />
                             </Grid>
                             <Grid
@@ -144,6 +155,7 @@ export default function Cluster() {
                             >
                                 <MainWorkerNode className="main" />
                             </Grid>
+
                             <Grid item xs={4} id="sub">
                                 {[...Array(pods.workerNodeCnt + 1)].map(
                                     (item, index) => (
@@ -152,6 +164,7 @@ export default function Cluster() {
                                             // eslint-disable-next-line react/no-array-index-key
                                             key={index}
                                             nodeIndex={index}
+                                            visible={open}
                                         />
                                     ),
                                 )}
@@ -182,6 +195,7 @@ export default function Cluster() {
                                             <IngressControllerNode
                                                 key={item}
                                                 id={item}
+                                                visible={open}
                                             />
                                         ))}
                                     {/* {Object.keys(pods.ingressStatus).map(
@@ -230,7 +244,7 @@ export default function Cluster() {
                         </Grid>
                     </Grid>
 
-                    <LineSet />
+                    <LineSet visible={open} />
 
                     <Grid item xs={12}>
                         <WaitContainer waitData={waitData} />

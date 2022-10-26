@@ -185,7 +185,7 @@ function SearchSection() {
                                                         alignItems="center"
                                                         justifyContent="space-between"
                                                     >
-                                                        <Grid item xs>
+                                                        <Grid item>
                                                             <MobileSearch
                                                                 value={value}
                                                                 setValue={
