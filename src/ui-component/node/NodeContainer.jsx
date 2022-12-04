@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import usePods from 'hooks/usePods';
 import { useTheme } from '@mui/material/styles';
-import {
-    Grid,
-    Typography,
-    Divider,
-    Switch,
-    Collapse,
-    FormControlLabel,
-} from '@mui/material';
+import { Grid, Typography, Divider, Switch, Collapse } from '@mui/material';
 import { gridSpacing } from 'store/constant';
 import styled from '@emotion/styled';
 import { Droppable } from 'react-beautiful-dnd';
@@ -41,23 +34,16 @@ function NodeContainer({ nodeIndex, visible }) {
                 <Grid item xs={12}>
                     <Typography sx={{ m: 2 }} variant="h3">
                         worker node {nodeIndex + 1}
-                        {/* <FormControlLabel
-                            control={
-                                <Switch checked={open} onChange={handleOpen} />
-                            }
-                            label="Show"
-                        /> */}
                     </Typography>
                 </Grid>
                 <Grid item xs={12} minHeight={15}>
                     <Divider />
                 </Grid>
-                <Collapse in={visible}>
+                <Collapse in={visible} collapsedSize={10}>
                     <Droppable droppableId={`sub${nodeIndex}`}>
                         {(provided, snapshot) => (
                             <TaskList
                                 ref={provided.innerRef}
-                                // isDraggingOver={snapshot.isDraggingOver}
                                 isdraggingover={snapshot.isDraggingOver}
                                 {...provided.droppableProps}
                                 theme={theme}
@@ -100,6 +86,4 @@ const TaskList = styled(Grid)`
             : 'transparent'};
     flex-grow: 1;
     min-height: 100px;
-
-    /* z-index: 99; */
 `;
